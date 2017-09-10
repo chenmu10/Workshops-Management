@@ -20,7 +20,7 @@ namespace gui.Models
               Body = "שלום, {0}" +
                   "\nישנה סדנא חדשה באזורכם. \n" +
                   "מעבר לעמוד השיבוץ: {1}"
-              }
+              }  //blabla
             },
             { Type.VolunteerInvite,
                new MessageStructure()
