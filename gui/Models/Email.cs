@@ -7,6 +7,7 @@ using System.Web;
 
 namespace gui.Models
 {
+    //karina hi
     public class EmailTemplate
     {
         public enum Type { SchoolInvite, VolunteerInvite, AssignComplete, SchoolPrepare, executeVolunteers, executeSchool,  };
