@@ -62,8 +62,114 @@ C:\Users\Avi\Desktop\MMT_Project\Web Project\MMT\gui\bin\gui.dll.config
 C:\Users\Avi\Desktop\MMT_Project\Web Project\MMT\gui\bin\gui.dll
 C:\Users\Avi\Desktop\MMT_Project\Web Project\MMT\gui\bin\gui.pdb
 C:\Users\Avi\Desktop\MMT_Project\Web Project\MMT\gui\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\Avi\Desktop\MMT_Project\Web Project\MMT\gui\bin\MySql.Data.dll
 C:\Users\Avi\Desktop\MMT_Project\Web Project\MMT\gui\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 C:\Users\Avi\Desktop\MMT_Project\Web Project\MMT\gui\obj\Debug\gui.dll
 C:\Users\Avi\Desktop\MMT_Project\Web Project\MMT\gui\obj\Debug\gui.pdb
-C:\Users\Avi\Desktop\MMT_Project\Web Project\MMT\gui\bin\MySql.Data.dll
 C:\Users\Avi\Desktop\MMT_Project\Web Project\MMT\gui\obj\Debug\gui.csprojResolveAssemblyReference.cache
+C:\MMT2.4\gui\bin\roslyn\csc.exe
+C:\MMT2.4\gui\bin\roslyn\csc.exe.config
+C:\MMT2.4\gui\bin\roslyn\csc.rsp
+C:\MMT2.4\gui\bin\roslyn\csi.exe
+C:\MMT2.4\gui\bin\roslyn\csi.rsp
+C:\MMT2.4\gui\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\MMT2.4\gui\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\MMT2.4\gui\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\MMT2.4\gui\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\MMT2.4\gui\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\MMT2.4\gui\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\MMT2.4\gui\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\MMT2.4\gui\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\MMT2.4\gui\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+C:\MMT2.4\gui\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\MMT2.4\gui\bin\roslyn\System.AppContext.dll
+C:\MMT2.4\gui\bin\roslyn\System.Collections.Immutable.dll
+C:\MMT2.4\gui\bin\roslyn\System.Diagnostics.StackTrace.dll
+C:\MMT2.4\gui\bin\roslyn\System.IO.FileSystem.dll
+C:\MMT2.4\gui\bin\roslyn\System.IO.FileSystem.Primitives.dll
+C:\MMT2.4\gui\bin\roslyn\System.Reflection.Metadata.dll
+C:\MMT2.4\gui\bin\roslyn\vbc.exe
+C:\MMT2.4\gui\bin\roslyn\vbc.exe.config
+C:\MMT2.4\gui\bin\roslyn\vbc.rsp
+C:\MMT2.4\gui\bin\roslyn\VBCSCompiler.exe
+C:\MMT2.4\gui\bin\roslyn\VBCSCompiler.exe.config
+C:\MMT2.4\gui\bin\gui.dll.config
+C:\MMT2.4\gui\bin\gui.dll
+C:\MMT2.4\gui\bin\gui.pdb
+C:\MMT2.4\gui\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\MMT2.4\gui\bin\MySql.Data.dll
+C:\MMT2.4\gui\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\MMT2.4\gui\obj\Debug\gui.csprojResolveAssemblyReference.cache
+C:\MMT2.4\gui\obj\Debug\gui.dll
+C:\MMT2.4\gui\obj\Debug\gui.pdb
+C:\MMT2.4chen\gui\bin\roslyn\csc.exe
+C:\MMT2.4chen\gui\bin\roslyn\csc.exe.config
+C:\MMT2.4chen\gui\bin\roslyn\csc.rsp
+C:\MMT2.4chen\gui\bin\roslyn\csi.exe
+C:\MMT2.4chen\gui\bin\roslyn\csi.rsp
+C:\MMT2.4chen\gui\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\MMT2.4chen\gui\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\MMT2.4chen\gui\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\MMT2.4chen\gui\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\MMT2.4chen\gui\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\MMT2.4chen\gui\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\MMT2.4chen\gui\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\MMT2.4chen\gui\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\MMT2.4chen\gui\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+C:\MMT2.4chen\gui\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\MMT2.4chen\gui\bin\roslyn\System.AppContext.dll
+C:\MMT2.4chen\gui\bin\roslyn\System.Collections.Immutable.dll
+C:\MMT2.4chen\gui\bin\roslyn\System.Diagnostics.StackTrace.dll
+C:\MMT2.4chen\gui\bin\roslyn\System.IO.FileSystem.dll
+C:\MMT2.4chen\gui\bin\roslyn\System.IO.FileSystem.Primitives.dll
+C:\MMT2.4chen\gui\bin\roslyn\System.Reflection.Metadata.dll
+C:\MMT2.4chen\gui\bin\roslyn\vbc.exe
+C:\MMT2.4chen\gui\bin\roslyn\vbc.exe.config
+C:\MMT2.4chen\gui\bin\roslyn\vbc.rsp
+C:\MMT2.4chen\gui\bin\roslyn\VBCSCompiler.exe
+C:\MMT2.4chen\gui\bin\roslyn\VBCSCompiler.exe.config
+C:\MMT2.4chen\gui\bin\gui.dll.config
+C:\MMT2.4chen\gui\bin\gui.dll
+C:\MMT2.4chen\gui\bin\gui.pdb
+C:\MMT2.4chen\gui\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\MMT2.4chen\gui\bin\MySql.Data.dll
+C:\MMT2.4chen\gui\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\MMT2.4chen\gui\obj\Debug\gui.csprojResolveAssemblyReference.cache
+C:\MMT2.4chen\gui\obj\Debug\gui.dll
+C:\MMT2.4chen\gui\obj\Debug\gui.pdb
+C:\Users\Chen\Google Drive\סדנא\פרויקט 2.4\MMT2.4chen\gui\bin\roslyn\csc.exe
+C:\Users\Chen\Google Drive\סדנא\פרויקט 2.4\MMT2.4chen\gui\bin\roslyn\csc.exe.config
+C:\Users\Chen\Google Drive\סדנא\פרויקט 2.4\MMT2.4chen\gui\bin\roslyn\csc.rsp
+C:\Users\Chen\Google Drive\סדנא\פרויקט 2.4\MMT2.4chen\gui\bin\roslyn\csi.exe
+C:\Users\Chen\Google Drive\סדנא\פרויקט 2.4\MMT2.4chen\gui\bin\roslyn\csi.rsp
+C:\Users\Chen\Google Drive\סדנא\פרויקט 2.4\MMT2.4chen\gui\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\Chen\Google Drive\סדנא\פרויקט 2.4\MMT2.4chen\gui\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\Chen\Google Drive\סדנא\פרויקט 2.4\MMT2.4chen\gui\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\Users\Chen\Google Drive\סדנא\פרויקט 2.4\MMT2.4chen\gui\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\Chen\Google Drive\סדנא\פרויקט 2.4\MMT2.4chen\gui\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\Users\Chen\Google Drive\סדנא\פרויקט 2.4\MMT2.4chen\gui\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\Chen\Google Drive\סדנא\פרויקט 2.4\MMT2.4chen\gui\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\Chen\Google Drive\סדנא\פרויקט 2.4\MMT2.4chen\gui\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\Users\Chen\Google Drive\סדנא\פרויקט 2.4\MMT2.4chen\gui\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+C:\Users\Chen\Google Drive\סדנא\פרויקט 2.4\MMT2.4chen\gui\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\Chen\Google Drive\סדנא\פרויקט 2.4\MMT2.4chen\gui\bin\roslyn\System.AppContext.dll
+C:\Users\Chen\Google Drive\סדנא\פרויקט 2.4\MMT2.4chen\gui\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\Chen\Google Drive\סדנא\פרויקט 2.4\MMT2.4chen\gui\bin\roslyn\System.Diagnostics.StackTrace.dll
+C:\Users\Chen\Google Drive\סדנא\פרויקט 2.4\MMT2.4chen\gui\bin\roslyn\System.IO.FileSystem.dll
+C:\Users\Chen\Google Drive\סדנא\פרויקט 2.4\MMT2.4chen\gui\bin\roslyn\System.IO.FileSystem.Primitives.dll
+C:\Users\Chen\Google Drive\סדנא\פרויקט 2.4\MMT2.4chen\gui\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\Chen\Google Drive\סדנא\פרויקט 2.4\MMT2.4chen\gui\bin\roslyn\vbc.exe
+C:\Users\Chen\Google Drive\סדנא\פרויקט 2.4\MMT2.4chen\gui\bin\roslyn\vbc.exe.config
+C:\Users\Chen\Google Drive\סדנא\פרויקט 2.4\MMT2.4chen\gui\bin\roslyn\vbc.rsp
+C:\Users\Chen\Google Drive\סדנא\פרויקט 2.4\MMT2.4chen\gui\bin\roslyn\VBCSCompiler.exe
+C:\Users\Chen\Google Drive\סדנא\פרויקט 2.4\MMT2.4chen\gui\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\Chen\Google Drive\סדנא\פרויקט 2.4\MMT2.4chen\gui\bin\gui.dll.config
+C:\Users\Chen\Google Drive\סדנא\פרויקט 2.4\MMT2.4chen\gui\bin\gui.dll
+C:\Users\Chen\Google Drive\סדנא\פרויקט 2.4\MMT2.4chen\gui\bin\gui.pdb
+C:\Users\Chen\Google Drive\סדנא\פרויקט 2.4\MMT2.4chen\gui\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\Chen\Google Drive\סדנא\פרויקט 2.4\MMT2.4chen\gui\bin\MySql.Data.dll
+C:\Users\Chen\Google Drive\סדנא\פרויקט 2.4\MMT2.4chen\gui\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\Chen\Google Drive\סדנא\פרויקט 2.4\MMT2.4chen\gui\obj\Debug\gui.csprojResolveAssemblyReference.cache
+C:\Users\Chen\Google Drive\סדנא\פרויקט 2.4\MMT2.4chen\gui\obj\Debug\gui.dll
+C:\Users\Chen\Google Drive\סדנא\פרויקט 2.4\MMT2.4chen\gui\obj\Debug\gui.pdb
+C:\Users\Chen\Google Drive\סדנא\פרויקט 2.4\MMT2.4chen\gui\bin\roslyn\desktop.ini

@@ -70,11 +70,35 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Contact\homepic.PNG" />
     <Content Include="css\bootstrap-rtl.min.css" />
-    <Content Include="Gui\New_WorkShop_Form.aspx" />
-    <Content Include="Gui\New_Volunteer_Form.aspx" />
+    <Content Include="Gui\Documents\FeedbackTeacher.aspx" />
+    <Content Include="Gui\Documents\FeedbackVolunteer.aspx" />
+    <Content Include="Gui\Documents\nav.ascx" />
+    <Content Include="Gui\Documents\ExternalForms.aspx" />
+    <Content Include="Gui\Volunteer\ApproveNewVolunteerForm.aspx" />
+    <Content Include="Gui\Company\CompanyView.aspx" />
+    <Content Include="Gui\Company\CompanyEditInformation.aspx" />
+    <Content Include="Gui\Documents\Manager_Home.aspx" />
+    <Content Include="Gui\Company\NewCompanyForm.aspx" />
+    <Content Include="Gui\Volunteer\NewVolunteerForm.aspx" />
+    <Content Include="Gui\Workshop\CompanyWorkshopEditInfo.aspx" />
+    <Content Include="Gui\Workshop\newCompanyWorkshop.aspx" />
+    <Content Include="Gui\Workshop\NewSchoolWorkshop.aspx" />
+    <Content Include="Gui\School\SchoolsView.aspx" />
+    <Content Include="Gui\School\SchoolSelectWorkshopFromIndustry.aspx" />
+    <Content Include="Gui\Documents\SuccessForm.aspx" />
+    <Content Include="Gui\Volunteer\VolunteerAssignWorkshops.aspx" />
+    <Content Include="Gui\Volunteer\VolunteerView.aspx" />
+    <Content Include="Gui\Volunteer\VolunteerEditInformation.aspx" />
+    <Content Include="Gui\Workshop\SchoolWorkshopEditInfo.aspx" />
+    <Content Include="Gui\Workshop\WorkShopPrepareForm.aspx" />
+    <Content Include="Gui\Workshop\WorkshopsView.aspx" />
     <Content Include="js\jquery-3.2.1.min.js" />
-    <Content Include="packages.config" />
+    <Content Include="js\ScrollableTablePlugin_1.0_min.js" />
+    <Content Include="packages.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="css\bootstrap-theme.css.map" />
     <Content Include="css\bootstrap-theme.min.css.map" />
     <Content Include="css\bootstrap.css.map" />
@@ -107,20 +131,165 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Gui\Documents\FeedbackTeacher.aspx.cs">
+      <DependentUpon>FeedbackTeacher.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Gui\Documents\FeedbackTeacher.aspx.designer.cs">
+      <DependentUpon>FeedbackTeacher.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Gui\Documents\FeedbackVolunteer.aspx.cs">
+      <DependentUpon>FeedbackVolunteer.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Gui\Documents\FeedbackVolunteer.aspx.designer.cs">
+      <DependentUpon>FeedbackVolunteer.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Gui\Documents\nav.ascx.cs">
+      <DependentUpon>nav.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Gui\Documents\nav.ascx.designer.cs">
+      <DependentUpon>nav.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Gui\Documents\ExternalForms.aspx.cs">
+      <DependentUpon>ExternalForms.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Gui\Documents\ExternalForms.aspx.designer.cs">
+      <DependentUpon>ExternalForms.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Gui\Volunteer\ApproveNewVolunteerForm.aspx.cs">
+      <DependentUpon>ApproveNewVolunteerForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Gui\Volunteer\ApproveNewVolunteerForm.aspx.designer.cs">
+      <DependentUpon>ApproveNewVolunteerForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Gui\Company\CompanyView.aspx.cs">
+      <DependentUpon>CompanyView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Gui\Company\CompanyView.aspx.designer.cs">
+      <DependentUpon>CompanyView.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Gui\Company\CompanyEditInformation.aspx.cs">
+      <DependentUpon>CompanyEditInformation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Gui\Company\CompanyEditInformation.aspx.designer.cs">
+      <DependentUpon>CompanyEditInformation.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Gui\Documents\Manager_Home.aspx.cs">
+      <DependentUpon>Manager_Home.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Gui\Documents\Manager_Home.aspx.designer.cs">
+      <DependentUpon>Manager_Home.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Gui\Company\NewCompanyForm.aspx.cs">
+      <DependentUpon>NewCompanyForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Gui\Company\NewCompanyForm.aspx.designer.cs">
+      <DependentUpon>NewCompanyForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Gui\Volunteer\NewVolunteerForm.aspx.cs">
+      <DependentUpon>NewVolunteerForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Gui\Volunteer\NewVolunteerForm.aspx.designer.cs">
+      <DependentUpon>NewVolunteerForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Gui\Workshop\CompanyWorkshopEditInfo.aspx.cs">
+      <DependentUpon>CompanyWorkshopEditInfo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Gui\Workshop\CompanyWorkshopEditInfo.aspx.designer.cs">
+      <DependentUpon>CompanyWorkshopEditInfo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Gui\School\SchoolsView.aspx.cs">
+      <DependentUpon>SchoolsView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Gui\School\SchoolsView.aspx.designer.cs">
+      <DependentUpon>SchoolsView.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Gui\School\SchoolSelectWorkshopFromIndustry.aspx.cs">
+      <DependentUpon>SchoolSelectWorkshopFromIndustry.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Gui\School\SchoolSelectWorkshopFromIndustry.aspx.designer.cs">
+      <DependentUpon>SchoolSelectWorkshopFromIndustry.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Gui\Documents\SuccessForm.aspx.cs">
+      <DependentUpon>SuccessForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Gui\Documents\SuccessForm.aspx.designer.cs">
+      <DependentUpon>SuccessForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Gui\Volunteer\VolunteerAssignWorkshops.aspx.cs">
+      <DependentUpon>VolunteerAssignWorkshops.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Gui\Volunteer\VolunteerAssignWorkshops.aspx.designer.cs">
+      <DependentUpon>VolunteerAssignWorkshops.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Gui\Volunteer\VolunteerView.aspx.cs">
+      <DependentUpon>VolunteerView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Gui\Volunteer\VolunteerView.aspx.designer.cs">
+      <DependentUpon>VolunteerView.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Gui\Volunteer\VolunteerEditInformation.aspx.cs">
+      <DependentUpon>VolunteerEditInformation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Gui\Volunteer\VolunteerEditInformation.aspx.designer.cs">
+      <DependentUpon>VolunteerEditInformation.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Gui\Workshop\newCompanyWorkshop.aspx.cs">
+      <DependentUpon>newCompanyWorkshop.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Gui\Workshop\newCompanyWorkshop.aspx.designer.cs">
+      <DependentUpon>newCompanyWorkshop.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Gui\Workshop\SchoolWorkshopEditInfo.aspx.cs">
+      <DependentUpon>SchoolWorkshopEditInfo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Gui\Workshop\SchoolWorkshopEditInfo.aspx.designer.cs">
+      <DependentUpon>SchoolWorkshopEditInfo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Gui\Workshop\WorkShopPrepareForm.aspx.cs">
+      <DependentUpon>WorkShopPrepareForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Gui\Workshop\WorkShopPrepareForm.aspx.designer.cs">
+      <DependentUpon>WorkShopPrepareForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Gui\Workshop\WorkshopsView.aspx.cs">
+      <DependentUpon>WorkshopsView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Gui\Workshop\WorkshopsView.aspx.designer.cs">
+      <DependentUpon>WorkshopsView.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Email.cs" />
+    <Compile Include="Models\Company.cs" />
+    <Compile Include="Models\CompanyWorkshop.cs" />
+    <Compile Include="Models\PrepareForm.cs" />
+    <Compile Include="Models\WorkshopJoin.cs" />
     <Compile Include="Models\DB.cs" />
-    <Compile Include="Gui\New_WorkShop_Form.aspx.cs">
-      <DependentUpon>New_WorkShop_Form.aspx</DependentUpon>
+    <Compile Include="Gui\Workshop\NewSchoolWorkshop.aspx.cs">
+      <DependentUpon>NewSchoolWorkshop.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Gui\New_WorkShop_Form.aspx.designer.cs">
-      <DependentUpon>New_WorkShop_Form.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Gui\New_Volunteer_Form.aspx.cs">
-      <DependentUpon>New_Volunteer_Form.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Gui\New_Volunteer_Form.aspx.designer.cs">
-      <DependentUpon>New_Volunteer_Form.aspx</DependentUpon>
+    <Compile Include="Gui\Workshop\NewSchoolWorkshop.aspx.designer.cs">
+      <DependentUpon>NewSchoolWorkshop.aspx</DependentUpon>
     </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
@@ -132,8 +301,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\School.cs" />
+    <Compile Include="Models\SchoolWorkShop.cs" />
     <Compile Include="Models\Volunteer.cs" />
-    <Compile Include="Models\Workshop.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
