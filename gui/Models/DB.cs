@@ -15,6 +15,7 @@ namespace gui
     class DB
     {
         string query;
+        string query2;
         // Connection 
         public DB()
         {
@@ -33,7 +34,7 @@ namespace gui
             {
                 if (String.IsNullOrEmpty(DatabaseName))
                     result = false;
-                string connstring = string.Format("Server=localhost; database={0}; UID=root; password=root ; charset=utf8;", DatabaseName);
+                string connstring = string.Format("Server=localhost; database={0}; UID=root; password=myroot ; charset=utf8;", DatabaseName);
                 connection = new MySqlConnection(connstring);
                 connection.Open();
 
@@ -79,7 +80,47 @@ namespace gui
             {
                 foreach (DataRow dr in dt.Rows)
                 {
-                    result.Add(new Volunteer(dr));
+                    Volunteer volunteer = new Volunteer(dr);
+                    volunteer.Volunteer_Area_Activity = new List<int>();
+                    query2= string.Format("SELECT * FROM VolunteerToAreas WHERE Volunteer_ID='{0}'", volunteer.Volunteer_ID);
+                    DataTable dt2 = Select(query2);
+                    if (dt2 != null)
+                    {
+                        foreach (DataRow dr2 in dt2.Rows)
+                        {
+                            Int16 area = Int16.Parse((dr2["Volunteer_Area_Activity"]).ToString());
+                            volunteer.Volunteer_Area_Activity.Add(area);
+                        }
+                    }
+                  result.Add(volunteer);
+                }
+            }
+
+
+            return result;
+        }
+        public List<Volunteer> gettAllNewVolunteers()
+        {
+            List<Volunteer> result = new List<Volunteer>();
+            query = string.Format("SELECT * FROM volunteer WHERE Volunteer_Is_Active = False;");
+            DataTable dt = Select(query);
+            if (dt != null)
+            {
+                foreach (DataRow dr in dt.Rows)
+                {
+                    Volunteer volunteer = new Volunteer(dr);
+                    volunteer.Volunteer_Area_Activity = new List<int>();
+                    query2 = string.Format("SELECT * FROM VolunteerToAreas WHERE Volunteer_ID='{0}'", volunteer.Volunteer_ID);
+                    DataTable dt2 = Select(query2);
+                    if (dt2 != null)
+                    {
+                        foreach (DataRow dr2 in dt2.Rows)
+                        {
+                            Int16 area = Int16.Parse((dr2["Volunteer_Area_Activity"]).ToString());
+                            volunteer.Volunteer_Area_Activity.Add(area);
+                        }
+                    }
+                    result.Add(volunteer);
                 }
             }
             return result;
@@ -127,12 +168,32 @@ namespace gui
         /// <returns></returns>
         public Boolean InsetNewVolunteer(Volunteer volunteer)
         {
+            try
+            {           
             query = string.Format(@"INSERT INTO Volunteer 
-                VALUES(null,{0},'{1}','{2}','{3}','{4}','{5}','{6}',{7},'{8}',{9});",
-                volunteer.Volunteer_Practice, volunteer.Volunteer_First_Name, volunteer.Volunteer_Last_Name,
-                volunteer.Volunteer_Email, volunteer.Volunteer_phone, volunteer.Volunteer_Occupation, volunteer.Volunteer_Reference,
-                volunteer.Volunteer_Area_Activity, volunteer.Volunteer_Employer, volunteer.Volunteer_Number_Of_Activities); // didnt pass traning
-            return Update(query);
+                VALUES(null,{0},'{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}',{10},False,{11});",
+                volunteer.Volunteer_Practice, volunteer.Volunteer_First_Name, volunteer.Volunteer_First_Name_Eng, volunteer.Volunteer_Last_Name,
+                volunteer.Volunteer_Last_Name_Eng,volunteer.Volunteer_Email, volunteer.Volunteer_phone, volunteer.Volunteer_Occupation, volunteer.Volunteer_Reference,
+                volunteer.Volunteer_Employer, volunteer.Volunteer_Number_Of_Activities, volunteer.Volunteer_prefer_traning_area); 
+                query += "SELECT Volunteer_ID FROM mmt_db.volunteer order by Volunteer_ID DESC LIMIT 1;";
+                int row = Insert(query);
+                if (row == 0) return false;
+
+                //Get volunteer ID
+                volunteer.Volunteer_ID = row;
+
+
+                foreach (int Area in volunteer.Volunteer_Area_Activity)
+            {
+                query = string.Format(@"INSERT INTO VolunteerToAreas VALUES(null,{0},{1});", volunteer.Volunteer_ID, Area);
+                    if (!Update(query)) return false;
+            }
+            }
+            catch(Exception e)
+            {
+                return false;
+            }
+            return true;
         }  
         public Boolean UpdateVolunteerTraning(Volunteer volunteer , int new_status)
         {
@@ -151,7 +212,355 @@ namespace gui
         }
         #endregion
 
+        #region WorkShop
+        public List<School> GetAllSchools()
+        {
+            List<School> result = new List<School>();
+            query = string.Format("SELECT * FROM school");
+            DataTable dt = Select(query);
+            if (dt != null)
+            {
+                foreach (DataRow dr in dt.Rows)
+                {
+                    result.Add(new School(dr));
+                }
+            }
+            return result;
+        }
 
+        public List<CompanyWorkshop> GetAllCompanyWorshops()
+        {
+            List<CompanyWorkshop> result = new List<CompanyWorkshop>();
+            query = string.Format("SELECT * FROM CompanyWorkShop");
+            DataTable dt = Select(query);
+            if (dt != null)
+            {
+                foreach (DataRow dr in dt.Rows)
+                {
+                    result.Add(new CompanyWorkshop(dr));
+                }
+            }
+            return result;
+        }
+        public List<SchoolWorkShop> GetAllSchoolWorkShops()
+        {
+            List<SchoolWorkShop> result = new List<SchoolWorkShop>();
+            query = string.Format("SELECT * FROM SchoolWorkShop");
+            DataTable dt = Select(query);
+            if (dt != null)
+            {
+                foreach (DataRow dr in dt.Rows)
+                {
+                    result.Add(new SchoolWorkShop(dr));
+                }
+            }
+            return result;
+        }
+
+        public bool InsertNewSchoolWorkShop(SchoolWorkShop NewSchoolWorkShop) {
+            bool result = true;
+
+            /*INSERT INTO SchoolWorkShop VALUES(null,1,'2017-1-1 12:12:00','2017-1-1 12:12:00','2017-1-12 12:12:00',1,1,2,3,4,20,20,'להדליק את המזגן לפני','רכזת עמט מיכל','052-5782802','mci@gamil.com',false,1);*/
+            try
+            {
+                query = string.Format(@"INSERT INTO SchoolWorkShop 
+                VALUES(null,5,'{0}','{1}','{2}',0,null,null,null,null,{3},{4},'{5}','{6}','{7}','{8}',{9},{10});",
+                NewSchoolWorkShop.SchoolWorkShopDate1, NewSchoolWorkShop.SchoolWorkShopDate2, NewSchoolWorkShop.SchoolWorkShopDate3,
+                NewSchoolWorkShop.SchoolWorkShopStudentCount, NewSchoolWorkShop.SchoolWorkShopComputerCount, NewSchoolWorkShop.SchoolWorkShopComments,
+                NewSchoolWorkShop.WorkShop_AMT_Contact_Name, NewSchoolWorkShop.WorkShop_AMT_Contact_phone, NewSchoolWorkShop.WorkShop_AMT_Contact_Email,
+                NewSchoolWorkShop.WorkShop_For_AMT_students, NewSchoolWorkShop.WorkShop_School_ID
+                );
+                query += "SELECT WorkShop_ID FROM mmt_db.SchoolWorkShop order by WorkShop_ID DESC LIMIT 1;";
+                int row = Insert(query);
+                if (row == 0) return false;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+            return result;
+        }
+        public List<WorkshopJoin> GetAllWorkshopsByJoin()
+        {
+            List<WorkshopJoin> result = new List<WorkshopJoin>();
+            query = string.Format("SELECT * FROM Company_Workshops_view");
+            DataTable dt = Select(query);
+            if (dt != null)
+            {
+                foreach (DataRow dr in dt.Rows)
+                {
+                    WorkshopJoin t = new WorkshopJoin(dr);
+                    t.Is_company = true;
+                    result.Add(t);
+                }
+            }
+            query = string.Format("SELECT * FROM school_workshops_view");
+            dt = Select(query);
+            if (dt != null)
+            {
+                foreach (DataRow dr in dt.Rows)
+                {
+
+                    WorkshopJoin t = new WorkshopJoin(dr,2);
+                    t.Is_company = false;
+                    result.Add(t);
+                }
+            }
+            return result;
+        }
+ 
+        public SchoolWorkShop GetSchoolWorkShopByJoinID(int ID)
+        {
+            SchoolWorkShop result = new SchoolWorkShop();
+            query = string.Format("SELECT * FROM mmt_db.school_workshops_view WHERE WorkShop_ID ={0}", ID);
+            DataTable dt = Select(query);
+            if (dt != null)
+            {
+                foreach (DataRow dr in dt.Rows)
+                {
+                    return new SchoolWorkShop(dr);
+                }
+            }
+            return result;
+        }
+
+        public WorkshopJoin GetJoinWorkShopByID(int ID)
+        {
+            WorkshopJoin SchoolWorkshops = new WorkshopJoin();
+            query = string.Format("SELECT * FROM mmt_db.school_workshops_view WHERE WorkShop_ID ={0}", ID);
+            DataTable dt = Select(query);
+            if (dt != null)
+            {
+                foreach (DataRow dr in dt.Rows)
+                {
+                    return new WorkshopJoin(dr, 2);
+                }
+            }
+            return SchoolWorkshops;
+        }
+        public SchoolWorkShop GetSchoolWorkshopByID(int workshopID)
+        {
+            SchoolWorkShop sc = null;
+            query = string.Format("SELECT * FROM mmt_db.schoolworkshop where WorkShop_ID = '{0}'", workshopID);
+            DataTable dt = Select(query);
+            if (dt != null)
+            {
+                foreach (DataRow dr in dt.Rows)
+                {
+                    sc = new SchoolWorkShop(dr);
+                }
+            }
+            return sc;
+        }
+        public bool SchoolWorkShopUpdateDate(int SchoolID,int selectDate)
+        {
+            query = string.Format(@"UPDATE schoolworkshop SET WorkShop_SelectedDate = {0} WHERE WorkShop_ID = {1};", selectDate, SchoolID);
+            return Update(query);
+        }
+        public bool SchoolWorkShopUpdatestatus(int SchoolID, int status)
+        {
+            query = string.Format(@"UPDATE schoolworkshop SET WorkShop_Status = {0} WHERE WorkShop_ID = {1};", status, SchoolID);
+            return Update(query);
+        }
+        public bool InsertNewPrePare(int SchoolWorkShopID)
+        {
+            /*INSERT INTO mmt_db.prepare_school_workshop VALUES(NULL,NULL,NULL,FALSE,FALSE,FALSE,FALSE,NULL,NULL,NULL,NULL,1);*/
+            try
+            {
+                query = string.Format(@"INSERT INTO mmt_db.prepare_school_workshop 
+                VALUES(NULL,NULL,NULL,FALSE,FALSE,FALSE,FALSE,NULL,NULL,NULL,NULL,{0}););",
+                    SchoolWorkShopID
+                    );
+                int row = Insert(query);
+                //if (row == 0) return false;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+            return true;
+        }
+        public PrepareForm getPrePareFormByWorkshopID(int workshopID)
+        {
+            PrepareForm result = new PrepareForm();
+            query = string.Format("SELECT * FROM mmt_db.Prepare_School_WorkShop WHERE Workshop_School_Workshop_ID ={0}", workshopID);
+            DataTable dt = Select(query);
+            if (dt != null)
+            {
+                foreach (DataRow dr in dt.Rows)
+                {
+                    return new PrepareForm(dr);
+                }
+            }
+            return result;
+
+        }
+        #endregion
+
+        #region Manager
+
+        //public List<Workshop> GetallWorkShopsBetweenMonths(int year,int startMonth, int endMonth)
+        //{
+        //    List<Workshop> result = new List<Workshop>();
+        //    query = string.Format(@"SELECT * FROM mmt_db.workshop 
+        //                           WHERE YEAR(`WorkShop_Date`) = {0}
+        //                           AND MONTH(`WorkShop_Date`) BETWEEN {1} AND {2}; ", year, startMonth, endMonth);
+        //    DataTable dt = Select(query);
+        //    if (dt != null)
+        //    {
+        //        foreach (DataRow dr in dt.Rows)
+        //        {
+        //            result.Add(new Workshop(dr));
+        //        }
+        //    }
+        //    return result;
+        //}
+
+        public Dictionary<int,string> GetAreaActivity()
+        {
+            Dictionary<int, string> result = new Dictionary<int, string>();
+            query = string.Format(@"SELECT * FROM mmt_db.area_activity; ");
+            DataTable dt = Select(query);
+            if (dt != null)
+            {
+                foreach (DataRow dr in dt.Rows)
+                {
+                    result.Add(int.Parse(dr["Area_Activity_ID"].ToString()), dr["Area_Activity_Description"].ToString());
+                }
+            }
+            return result;
+        }
+        public Dictionary<int, string> GetVolunteerStatus()
+        {
+            Dictionary<int, string> result = new Dictionary<int, string>();
+            query = string.Format(@"SELECT * FROM mmt_db.volunteers_practice; ");
+            DataTable dt = Select(query);
+            if (dt != null)
+            {
+                foreach (DataRow dr in dt.Rows)
+                {
+                    result.Add(int.Parse(dr["Volunteers_Practice_ID"].ToString()), dr["Volunteers_Practice_Description"].ToString());
+                }
+            }
+            return result;
+        }
+        #endregion
+
+        #region School
+        public Boolean InsetNewSchool(School school)
+        {
+            try
+            {
+                query = string.Format(@"INSERT INTO School VALUES(null,{0},'{1}','{2}','{3}',{4},'{5}','{6}','{7}','{8}','{9}','{10}');",
+                school.School_Serial_Number, school.School_Name, school.School_Address, school.School_City, school.School_Area, school.School_Contact_Name, school.Scool_Contact_Phone,
+                school.School_Contact_Email, school.School_Supervisor_Name, school.School_Supervisor_Phone,school.School_Parking_Info
+                    ); 
+                query += "SELECT School_ID FROM mmt_db.School order by School_ID DESC LIMIT 1;";
+                int row = Insert(query);
+                if (row == 0) return false;
+
+                //Get volunteer ID
+                school.School_ID = row;
+
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+            return true;
+        }
+        public School GetSchoolByID(int ID)
+        {
+            School result = new School();
+            query = string.Format("SELECT * FROM School WHERE School_ID={0}",ID);
+            DataTable dt = Select(query);
+            if (dt != null)
+            {
+                foreach (DataRow dr in dt.Rows)
+                {
+                    return new School(dr);
+                }
+            }
+            return result;
+        }       
+        #endregion
+
+        #region Company
+        public Boolean InsertNewCompany(Company company)
+        {
+            try
+            {
+                query = string.Format(@"INSERT INTO Company 
+                VALUES(null,'{0}','{1}','{2}','{3}','{4}',{5});",
+                    company.Company_Name,
+                    company.Company_Address,
+                    company.Company_Contact_Name,
+                    company.Company_Contact_phone,
+                    company.Company_Contact_Email,
+                    company.Company_Area_Activity);
+                query += "SELECT Company_ID FROM mmt_db.Company order by Company_ID DESC LIMIT 1;";
+                int row = Insert(query);
+                if (row == 0) return false;
+
+                //Get company ID
+                company.Company_ID = row;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+            return true;
+        }
+        public List<Company> GetAllComapny()
+        {
+            List<Company> result = new List<Company>();
+            query = string.Format("SELECT * FROM Company");
+            DataTable dt = Select(query);
+            if (dt != null)
+            {
+                foreach (DataRow dr in dt.Rows)
+                {
+                    Company company = new Company(dr);
+                    result.Add(company);
+                }
+            }
+            return result;
+        }
+        public Boolean UpdateCompany(Company company)
+        {
+            //TODO 
+            return true;
+           // query = string.Format(@"UPDATE Company SET Volunteer_Practice = {0} WHERE Volunteer_ID = {1};", );
+           // return Update(query);
+        }
+        public Boolean DeleteCompany(Company company)
+        {
+            query = string.Format(@"DELETE FROM Company WHERE Company_ID = {0};", company.Company_ID);
+            return Update(query);
+        }
+        public Boolean InsertNewCompanyWorkShop(CompanyWorkshop workshop)
+        {
+            /*INSERT INTO CompanyWorkShop VALUES(null,1,'2017-1-1 12:12:00',1,1,2,3,20,'להדליק את המזגן לפני',1,1,1,'הערת בית ספר');*/
+            try
+            {
+                query = string.Format(@"INSERT INTO CompanyWorkShop 
+                VALUES(null,2,'{0}',null,null,null,null,{1},'{2}',null,{3},null,null);",
+                    workshop.CompanyWorkShopDate,
+                    workshop.WorkShop_Number_Of_StudentPredicted,
+                    workshop.CompanyWorkShopComments,
+                    workshop.CompanyID
+                    );
+                query += "SELECT WorkShop_ID FROM mmt_db.CompanyWorkShop order by WorkShop_ID DESC LIMIT 1;";
+                int row = Insert(query);
+                if (row == 0) return false;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+            return true;
+        }
+        #endregion
 
         #region DB commands
         public DataTable Select(string query)
@@ -207,7 +616,30 @@ namespace gui
             }
             return result;
         }
+        public int Insert(string query)
+        {
+            int result = 0;
+            //Open connection
+            if (this.IsConnect() == true)
+            {
+                try
+                {
+                    
+                    //Create Command
+                    MySqlCommand cmd = new MySqlCommand(query, connection);
 
+                    //Create a data reader and Execute the command
+                    result=Convert.ToInt32(cmd.ExecuteScalar());
+                   // result = cmd.ExecuteNonQuery();
+                }
+                catch (MySqlException e)
+                {
+                    Console.WriteLine(e);
+                }
+
+            }
+            return result;
+        }
         #endregion
 
     }
