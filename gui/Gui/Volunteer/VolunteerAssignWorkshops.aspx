@@ -1,13 +1,10 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="VolunteerAssignWorkshops.aspx.cs" Inherits="gui.Gui.VolunteerAssignWorkshops" %>
 
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 <head runat="server">
-    <title>MMT Project </title>
-    <link href="../../css/bootstrap.css" rel="stylesheet" />
-    <link href="../../css/bootstrap-rtl.min.css" rel="stylesheet" />
-    <script src="../../js/jquery-3.0.0.min.js"></script>
-    <script src="../../js/bootstrap.min.js"></script>
+    <title>שיבוץ מתנדבות </title>
+   
 </head>
 
 <body>
@@ -46,7 +43,7 @@
                     <asp:Label ID="workshopIdLabel" runat="server" class="label label-primary" Font-Size="Large"></asp:Label>   
                 </h4>
                 
-                <h3>הכניסי את פרטייך באחד מהמקומות הפנויים:
+                <h3>הכניסי את פרטייך באחד מהמקומות הפנויים:<br />
                     <small>אם מישהי מילאה פרטי טרמפ, תוכלי ליצור איתה קשר דרך המייל הרשום.</small>
                 </h3>
                 <!-- volunteer1 -->

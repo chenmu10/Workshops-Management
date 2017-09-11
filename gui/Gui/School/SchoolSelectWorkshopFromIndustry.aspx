@@ -1,13 +1,19 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="SchoolSelectWorkshopFromIndustry.aspx.cs" Inherits="gui.Gui.SchoolSelectWorkshopFromIndustry" %>
 
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 <head runat="server">
-    <title>MMT Project </title>
+    <title>שיבוץ בית ספר</title>
     <link href="../../css/bootstrap.css" rel="stylesheet" />
     <link href="../../css/bootstrap-rtl.min.css" rel="stylesheet" />
     <script src="../../js/jquery-3.0.0.min.js"></script>
     <script src="../../js/bootstrap.min.js"></script>
+    <style type="text/css">
+        .auto-style1 {
+            width: 100%;
+            table-layout: fixed;
+        }
+    </style>
 </head>
 
 <body>
@@ -20,6 +26,8 @@
 
             <!-- Workshops Table-->
             <h3>בחרו סדנא עבור שיבוץ:</h3>
+            <br />
+            <asp:Label runat="server" ID="Msg" ForeColor="Red" Font-Bold="true"></asp:Label>
             <br />
 
             <asp:Table ID="workshopTable" class="table table-striped" runat="server">
@@ -50,36 +58,42 @@
             <h4 style="display: inline;">סדנא נבחרת: </h4>
             <asp:Label ID="workshopIdLabel" runat="server" class="label label-primary" Font-Size="Large"></asp:Label>
             <h3>מלאו פרטי רישום: </h3>
+            <div style="  display: table;
+                        border-spacing: 10px; " class="auto-style1">
 
-            <!-- Choose School -->
+            <asp:Label runat="server" ID="schoolName" Visible="true" Text=""></asp:Label>
 
-            <div class="controls form-inline">
-                <label class="control-label" for="schoolSymbol">סמל מוסד:</label>
-                <asp:TextBox ID="schoolSymbol"
-                    class="form-control"
-                    type="number"
-                    pattern="[0-9]{7}"
-                    Width="100px"
-                    runat="server">
-                </asp:TextBox>
-
-                <asp:Button runat="server" class="btn btn-link" ID="showSchool" OnClick="ShowSchool_Click" Text="הצג" />
-                <br />
             </div>
+            <div style=" display: table-cell;">
+                      <!-- Choose School -->
+            <label class="control-label" for="schoolSymbol">סמל מוסד:</label>
 
-            <label class="control-label" for="schoolName">שם בית ספר נבחר:</label>
-            <asp:Label runat="server" ID="schoolName"></asp:Label>
+            <asp:TextBox ID="schoolSymbol"
+                class="form-control"
+                type="number"
+                pattern="[0-9]{7}"
+                placeholder="לפי משרד החינוך"
+                width="200px"                
+                OnTextChanged="TextBox1_TextChanged"
+                runat="server">
+            </asp:TextBox>
+
+                </div>
             <br />
+             <div style=" display: table-cell;">
+               <asp:Button runat="server" ID="searchSchool" class="btn btn-info" Text="חפש/י סמל" OnClick="searchSchool_Click"/>
+            </div>
+            
             <br />
 
             <!-- Fill Workshop Details -->
             <label class="control-label" for="estimatedParticipants">להערכתכם/ן, כמה תלמידות יקחו חלק בסדנא: </label>
 
-            <asp:TextBox ID="numberofcumputers"
+            <asp:TextBox ID="estimatedParticipants"
                 type="number"
                 class="form-control"
                 min="0"
-                Width="100px"
+                width="200px"
                 runat="server"></asp:TextBox>
 
             <br />
@@ -88,12 +102,13 @@
                 runat="server"
                 class="form-control"
                 TextMode="MultiLine"
-                Width="200px"
+                width="200px"
                 Rows="3" Style="resize: none;"></asp:TextBox>
             <br />
 
-            <asp:Button runat="server" class="btn btn-success" ID="assign" OnClick="Assign_Click" Text="שליחה" />
+           <asp:Button runat="server" class="btn btn-success" ID="assign" OnClick="Assign_Click" Text="שליחה" />
         </div>
+
     </form>
 </body>
 </html>

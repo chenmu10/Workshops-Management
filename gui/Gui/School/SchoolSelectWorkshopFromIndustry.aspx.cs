@@ -11,6 +11,7 @@ namespace gui.Gui
     public partial class SchoolSelectWorkshopFromIndustry : System.Web.UI.Page
     {
         List<CompanyWorkshop> CompanyWorkshops = new List<CompanyWorkshop>();
+        List<School> Schools = new List<School>();
         DB db;
 
         protected void Page_Load(object sender, EventArgs e)
@@ -24,7 +25,7 @@ namespace gui.Gui
         protected void FillTable()
         {
             CompanyWorkshops = db.GetAllCompanyWorshops();
-
+            workshopTable.Rows.Clear();
             foreach (CompanyWorkshop t in CompanyWorkshops)
             {
                 if (t.CompanyWorkShopStatus == 2) // status "assign school"
@@ -84,45 +85,105 @@ namespace gui.Gui
         {
             Button selectedButton = (Button)sender;
             string WorkshopID = selectedButton.Attributes["WorkshopID"].ToString();
+            Session["SelectedWorkshopID"] = WorkshopID;
             workshopIdLabel.Text = WorkshopID;
+            ClearForm();
         }
 
         protected void Assign_Click(object sender, EventArgs e)
         {
-                
-        
-        
-        //TODO 
-          // show school name by serial num
-            //Update Companyworkshop BY ID 
 
-            //Update number of studes, comments
+            string str = "123";
+            Schools = db.GetAllSchools();
+            //Check Workshop Selected + School Symbol
+            if (workshopIdLabel.Text.Equals(""))
+            {
+                Msg.Text = "לא נבחרה סדנא";
+                return;
+            }
+            if (schoolSymbol.Text.Length < 1)
+            {
+                Msg.Text = "לא נבחר בית ספר";
+                return;
+            }
+
+            int sybol;
+            try
+            {
+                sybol = int.Parse(schoolSymbol.Text.ToString());
+            }
+            catch (Exception exp)
+            {
+                return;
+            }
+            List<School> selected = Schools.Where(x => x.School_Serial_Number == sybol).ToList();
+            if (selected.Count < 1)
+            {
+                Msg.Text = "לא נמצא בית ספר תואם";
+                return;
+            }
+            if (estimatedParticipants.Text.Equals(""))
+            {
+                Msg.Text = "יש לבחור מספר משתתפים";
+                return;
+            }
+
+            //Pass all the test update to DB
+            string WorkshopID = Session["SelectedWorkshopID"].ToString();
+            db.updateCompanyWorkshopSchoolAssign(WorkshopID, selected[0], estimatedParticipants.Text, comments.Text);
+
+            FillTable();
+            Msg.Text = "הסדנא עודכנה בהצלחה";
+            return;
+
+
+
+
+        }
+        protected void TextBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+        public void ClearForm()
+        {
+            schoolSymbol.Text = "";
+            estimatedParticipants.Text = "";
+            comments.Text = "";
+            schoolName.Text = "";
         }
 
-
-        protected void ShowSchool_Click(object sender, EventArgs e)
+        protected void searchSchool_Click(object sender, EventArgs e)
         {
-            List<School> allSchools = db.GetAllSchools();
-          
-            if (!string.IsNullOrEmpty(schoolSymbol.Text.ToString())) 
+            Schools = db.GetAllSchools();
+            Msg.Text = "";
+            if (schoolSymbol.Text.Length < 1)
             {
-                foreach (School currSchool in allSchools)
-                {
-
-                    if (currSchool.School_Serial_Number == int.Parse(schoolSymbol.Text.ToString()))
-                    {
-                        schoolName.Text = currSchool.School_Name;
-                        return;
-
-                    }
-                    else
-                    {
-                        schoolName.Text = "";
-                    }
-                }
+                ClearForm();
+                return;
             }
-           
-            
+            int sybol;
+            try
+            {
+                sybol = int.Parse(schoolSymbol.Text.ToString());
+            }
+            catch (Exception exp)
+            {
+                Msg.Text = "יש להזין מספרים לסמל בית הספר בלבד";
+                return;
+            }
+
+            List<School> selected = Schools.Where(x => x.School_Serial_Number == sybol).ToList();
+            if (selected.Count < 1)
+            {
+                Msg.Text = "לא נמצא בית ספר תואם";
+                ClearForm();
+            }
+            else
+            {
+                schoolName.Text = selected[0].School_Name;
+                estimatedParticipants.Text = "";
+                comments.Text = "";
+            }
         }
     }
 }

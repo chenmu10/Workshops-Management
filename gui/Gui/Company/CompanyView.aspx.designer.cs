@@ -40,15 +40,6 @@ namespace gui.Gui {
         protected global::System.Web.UI.WebControls.Button approve;
         
         /// <summary>
-        /// DropDownListStatus control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownListStatus;
-        
-        /// <summary>
         /// DropDownListAreas control.
         /// </summary>
         /// <remarks>
@@ -56,15 +47,6 @@ namespace gui.Gui {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList DropDownListAreas;
-        
-        /// <summary>
-        /// DropDownListTraining control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownListTraining;
         
         /// <summary>
         /// filter control.
@@ -83,15 +65,6 @@ namespace gui.Gui {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox name;
-        
-        /// <summary>
-        /// email control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox email;
         
         /// <summary>
         /// search control.

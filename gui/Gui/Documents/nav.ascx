@@ -27,7 +27,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="Manager_Home.aspx">MMT</a>
+            <a class="navbar-brand" href="../documents/Manager_Home.aspx">MMT</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
@@ -37,7 +37,7 @@
                 <li><a href="../workshop/WorkshopsView.aspx">סדנאות</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right flip">
-               <li><a href="ExternalForms.aspx">טפסים</a></li>
+               <li><a href="../documents/ExternalForms.aspx">טפסים</a></li>
 						<li><a href="emails.html">הודעות</a></li>
 						<li><a href="reports.html">דוחות</a></li>
 						<li><a href="manager.html">ניהול<span class="sr-only"></span></a></li>

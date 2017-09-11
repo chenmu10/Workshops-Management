@@ -22,22 +22,12 @@
                 <asp:Button runat="server" ID="approve" class="btn btn-link" OnClick="newComapnyWorkshopBtn_Click" Text="יצירת חברה חדשה" />
             </p>
             <div class="row">
-
-                <!-- Filter -->
-                <div class="col-md-8">
+ <!-- Filter -->
+                <div class="col-md-4">
                     <div class="form-inline">
-                        <h3><span class="glyphicon glyphicon-filter"></span>סינון</h3>
-
-                        <asp:DropDownList class="form-control" runat="server" ID="DropDownListStatus">
-                            <asp:ListItem>סטטוס</asp:ListItem>
-                        </asp:DropDownList>
-
+          
                         <asp:DropDownList class="form-control" runat="server" ID="DropDownListAreas">
-                            <asp:ListItem>אזור פעילות</asp:ListItem>
-                        </asp:DropDownList>
-
-                        <asp:DropDownList class="form-control" runat="server" ID="DropDownListTraining">
-                            <asp:ListItem>אזור הכשרה</asp:ListItem>
+                            <asp:ListItem>אזור</asp:ListItem>
                         </asp:DropDownList>
 
                         <asp:Button runat="server" ID="filter" class="btn btn-info" Text="סינון" />
@@ -45,13 +35,11 @@
                     </div>
                 </div>
                 <!-- Search-->
-                <div class="col-md-4">
+                <div class="col-md-8">
                     <div class="form-inline">
-                        <h3><span class="glyphicon glyphicon-search"></span>חיפוש</h3>
+   
                         <asp:TextBox ID="name" runat="server" type="text" class="form-control" placeholder="שם" Width="100px"> </asp:TextBox>
-                        או 
-                        <asp:TextBox ID="email" runat="server" type="text" class="form-control" placeholder="אימייל" Width="100px"> </asp:TextBox>
-
+                       
                         <asp:Button runat="server" ID="search" class="btn btn-info" Text="חיפוש" />
                     </div>
                     <br />

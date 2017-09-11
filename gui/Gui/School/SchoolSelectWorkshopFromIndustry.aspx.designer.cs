@@ -22,6 +22,15 @@ namespace gui.Gui {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
+        /// Msg control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Msg;
+        
+        /// <summary>
         /// workshopTable control.
         /// </summary>
         /// <remarks>
@@ -40,24 +49,6 @@ namespace gui.Gui {
         protected global::System.Web.UI.WebControls.Label workshopIdLabel;
         
         /// <summary>
-        /// schoolSymbol control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox schoolSymbol;
-        
-        /// <summary>
-        /// showSchool control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button showSchool;
-        
-        /// <summary>
         /// schoolName control.
         /// </summary>
         /// <remarks>
@@ -67,13 +58,31 @@ namespace gui.Gui {
         protected global::System.Web.UI.WebControls.Label schoolName;
         
         /// <summary>
-        /// numberofcumputers control.
+        /// schoolSymbol control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox numberofcumputers;
+        protected global::System.Web.UI.WebControls.TextBox schoolSymbol;
+        
+        /// <summary>
+        /// searchSchool control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button searchSchool;
+        
+        /// <summary>
+        /// estimatedParticipants control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox estimatedParticipants;
         
         /// <summary>
         /// comments control.
