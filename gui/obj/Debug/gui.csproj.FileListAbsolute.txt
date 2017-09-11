@@ -71,3 +71,6 @@ C:\Users\Chen\Projects\MMT_git\gui\obj\Debug\gui.csprojResolveAssemblyReference.
 C:\Users\Chen\Projects\MMT_git\gui\obj\Debug\gui.csproj.CoreCompileInputs.cache
 C:\Users\Chen\Projects\MMT_git\gui\obj\Debug\gui.dll
 C:\Users\Chen\Projects\MMT_git\gui\obj\Debug\gui.pdb
+C:\Users\chen\Projects\MMT\gui\bin\Google.Maps.dll
+C:\Users\chen\Projects\MMT\gui\bin\Newtonsoft.Json.dll
+C:\Users\chen\Projects\MMT\gui\bin\Newtonsoft.Json.xml
