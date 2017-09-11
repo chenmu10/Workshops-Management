@@ -8,35 +8,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
-    <link href="../../css/bootstrap.css" rel="stylesheet" />
-    <link href="../../css/bootstrap-rtl.min.css" rel="stylesheet" />
-
-    <style type="text/css">
-        
-        .auto-style12 {
-            width: 490px;
-        }
-
-        .auto-style13 {
-            width: 22%;
-        }
-        .auto-style14 {
-            width: 13%;
-            height: 140px;
-        }
-        .auto-style15 {
-            border-collapse: collapse;
-            width: 52%;
-            max-width: 100%;
-            margin-bottom: 20px;
-        }
-        .auto-style16 {
-            width: 52%;
-        }
-        .auto-style17 {
-            width: 238px;
-        }
-    </style>
+  
+    
 
 </head>
 <body>
