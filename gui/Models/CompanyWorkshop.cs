@@ -16,7 +16,7 @@ namespace gui.Models
         public int CompanyWorkShopVolunteerID1;
         public int CompanyWorkShopVolunteerID2;
         public int CompanyWorkShopVolunteerID3;
-        public int CompanyWorkShopVolunteerID4;    
+        public int CompanyWorkShopVolunteerID4;
         public string CompanyWorkShopComments;
         public string WorkShop_School_Comment;
         public int CompanyID;
@@ -35,7 +35,7 @@ namespace gui.Models
             CompanyWorkShopComments = dr["WorkShop_Comments"].ToString();
             WorkShop_School_Comment = dr["WorkShop_School_Comments"].ToString();
             CompanyID = int.Parse(dr["WorkShop_Company_ID"].ToString());
-            CompanySchoolID = int.Parse(dr["WorkShop_School_ID"].ToString());
+            CompanySchoolID = dr["WorkShop_School_ID"].ToString().Equals("") ? 0 : int.Parse(dr["WorkShop_School_ID"].ToString());
         }
         public CompanyWorkshop() { }
     }

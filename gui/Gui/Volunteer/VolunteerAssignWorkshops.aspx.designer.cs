@@ -58,6 +58,15 @@ namespace gui.Gui {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl Volunteer1;
         
         /// <summary>
+        /// VolunteerName1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label VolunteerName1;
+        
+        /// <summary>
         /// Voluntter1DropDownList control.
         /// </summary>
         /// <remarks>
@@ -83,6 +92,15 @@ namespace gui.Gui {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl Volunteer2;
+        
+        /// <summary>
+        /// VolunteerName2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label VolunteerName2;
         
         /// <summary>
         /// Voluntter2DropDownList control.
@@ -112,6 +130,15 @@ namespace gui.Gui {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl Volunteer3;
         
         /// <summary>
+        /// VolunteerName3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label VolunteerName3;
+        
+        /// <summary>
         /// Voluntter3DropDownList control.
         /// </summary>
         /// <remarks>
@@ -137,5 +164,32 @@ namespace gui.Gui {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button assign;
+        
+        /// <summary>
+        /// DupLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label DupLabel;
+        
+        /// <summary>
+        /// succsess control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label succsess;
+        
+        /// <summary>
+        /// nonSelected control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label nonSelected;
     }
 }

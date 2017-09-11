@@ -43,7 +43,7 @@
                         <h4 class="list-group-item-heading">משוב לסדנא (מורה)</h4>
                         <p class="list-group-item-text">לאחר סדנא בבית ספר, המורה מקבלת טופס מילוי משוב.</p>
                     </a>
-                    <a href="../volunteer/volunteerAssignWorkshop.aspx" class="list-group-item">
+                    <a href="../Volunteer/volunteerAssignWorkshops.aspx" class="list-group-item">
                         <h4 class="list-group-item-heading">שיבוץ מתנדבות לסדנא</h4>
                         <p class="list-group-item-text">קישור לעמוד השיבוץ נשלח אוטומטית למתנדבות הנמצאות באותו אזור של הסדנא.</p>
                     </a>

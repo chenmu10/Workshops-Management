@@ -1,27 +1,15 @@
 ﻿using gui.Models;
 using System;
 using System.Collections.Generic;
+using System.Threading;
 using System.Web.UI.WebControls;
 
 namespace gui.Gui
 {
     public partial class VolunteerAssignWorkshops : System.Web.UI.Page
     {
-        // TO DO add call from DB to school id #1# (search #1# to find the place to fix, you can use ctr+f))
-        // TO DO check if the volunteer is senior #3#
-        // TO DO WorkshopJoin should hold volunteer mail instead of names, after you fix this go to #4# (in 3 places you can use ctr+f)and replace the code in the " /*....*/ "
-        // TO DO add VolunterAssignPlaceHolder.Display = flase when Editbtn is pressed
         List<WorkshopJoin> CompanyWorkshopsJoin = new List<WorkshopJoin>();
-
         DB db;
-
-        List<bool> volExist;
-        /*override protected void OnInit(EventArgs e)
-        {
-        
-           // WorkShops = db.GetallWorkShopsBetweenMonths(DateTime.Now.Year, getValidLastMonth(), getValidNextMonth());
-
-        }*/
         protected void Page_Load(object sender, EventArgs e)
         {
             this.Load += new System.EventHandler(this.Page_Load);
@@ -33,10 +21,8 @@ namespace gui.Gui
         protected void FillTable()
         {
             CompanyWorkshopsJoin = db.GetAllWorkshopsByJoin();
-
             foreach (WorkshopJoin t in CompanyWorkshopsJoin)
             {
-
                 if (t.Status_Description.Equals(" לשיבוץ מתנדבות"))
                 {
                     TableRow row = new TableRow();
@@ -76,6 +62,7 @@ namespace gui.Gui
                     Editbtn.Attributes.Add("IsCompany", t.Is_company.ToString());
                     Editbtn.Click += new EventHandler(Select_Click);
                     Editbtn.Text = "בחירה";
+                    Editbtn.CssClass = "btn btn-info";
                     Edit.Controls.Add(Editbtn);
                     row.Cells.Add(Edit);
                     workshopTable.Rows.Add(row);
@@ -85,114 +72,256 @@ namespace gui.Gui
 
         protected void Select_Click(object sender, EventArgs e)
         {
-            ClearForm();
-
+            DupLabel.Visible = false;
+            succsess.Visible = false;
+            nonSelected.Visible = false;
+            List<Volunteer> Volunteers = db.GetAllVolunteers();
+            Volunteer volnteer1 = new Volunteer(), volnteer2 = new Volunteer(), volnteer3 = new Volunteer();
             Button selectedButton = (Button)sender;
-
             string isCompany = selectedButton.Attributes["IsCompany"];
             string workshopId = selectedButton.Attributes["WorkshopID"];
-            //SchoolWorkShop s = db.GetSchoolWorkShopByID(int.Parse(workshopId));
-            //string volunteer1 = selectedButton.Attributes["Voluntter1"];
-            //string volunteer2 = selectedButton.Attributes["Voluntter2"];
-            //string volunteer3 = selectedButton.Attributes["Voluntter3"];
-
+            Session["LocalWorkShopID"] = workshopId;
+            Session["LocalisCompany"] = isCompany;
+            workshopIdLabel.Text = workshopId;
             if (bool.Parse(isCompany))
             {
-                CompanyWorkshop companyWorkshop;
-                // TO FIX #2# 
-                List<CompanyWorkshop> allCompanyWorkshops = db.GetAllCompanyWorshops();
-                foreach (CompanyWorkshop t in allCompanyWorkshops)
+                // Company Workshop 
+                CompanyWorkshop selectedWorkshop = db.getCompanyWorkshopByID(int.Parse(workshopId));
+            }
+            else
+            {
+                //School workshop
+
+                SchoolWorkShop SelectedWorkshop = db.GetSchoolWorkshopByID(int.Parse(workshopId));
+                if (!(SelectedWorkshop.SchoolWorkShopVolunteerID1.Equals("") || SelectedWorkshop.SchoolWorkShopVolunteerID1.Equals("0")))
                 {
-                    if (t.CompanyWorkShopID == int.Parse(workshopId))
-                    {
-                        companyWorkshop = t;
-                        break;
-                    }
+                    volnteer1 = Volunteers.Find(x => x.Volunteer_ID == SelectedWorkshop.SchoolWorkShopVolunteerID1);
+                }
+                if (!(SelectedWorkshop.SchoolWorkShopVolunteerID2.Equals("") || SelectedWorkshop.SchoolWorkShopVolunteerID2.Equals("0")))
+                {
+                    volnteer2 = Volunteers.Find(x => x.Volunteer_ID == SelectedWorkshop.SchoolWorkShopVolunteerID2);
+                }
+                if (!(SelectedWorkshop.SchoolWorkShopVolunteerID3.Equals("") || SelectedWorkshop.SchoolWorkShopVolunteerID3.Equals("0")))
+                {
+                    volnteer3 = Volunteers.Find(x => x.Volunteer_ID == SelectedWorkshop.SchoolWorkShopVolunteerID3);
+                }
+            }
+            InitializeVoluntter1(volnteer1, Volunteers);
+            InitializeVoluntter2(volnteer2, Volunteers);
+            InitializeVoluntter3(volnteer3, Volunteers);
+
+            InitializeVoluntterRide(volnteer1, volnteer2, volnteer3, int.Parse(workshopId), bool.Parse(isCompany));
+            //Remove Duplicated Volunteers
+            RemoveDup(volnteer1, volnteer2, volnteer3);
+
+
+
+        }
+
+        private void InitializeVoluntterRide(Volunteer volnteer1, Volunteer volnteer2, Volunteer volnteer3, int workshopId, bool isCompany)
+        {
+            string Ride1 = "", Ride2 = "", Ride3 = "";
+            volunteer1Ride.Enabled = true;
+            volunteer2Ride.Enabled = true;
+            volunteer3Ride.Enabled = true;
+            if (isCompany)
+            {
+
+            }
+            else
+            {
+                if (volnteer1 != null)
+                {
+                    Ride1 = db.getVolunteerSchoolRide(volnteer1.Volunteer_ID, workshopId);
+                    volunteer1Ride.Enabled = false;
+                    if (Ride1.Equals("")) Ride1 = " ";
+                }
+                if (volnteer2 != null)
+                {
+                    Ride2 = db.getVolunteerSchoolRide(volnteer2.Volunteer_ID, workshopId);
+                    volunteer2Ride.Enabled = false;
+                    if (Ride2.Equals("")) Ride2 = " ";
+                }
+                if (volnteer3 != null)
+                {
+                    Ride3 = db.getVolunteerSchoolRide(volnteer3.Volunteer_ID, workshopId);
+                    volunteer3Ride.Enabled = false;
+                    if (Ride3.Equals("")) Ride3 = " ";
                 }
 
             }
 
-            //workshopIdLabel.Text = workshopId;
-            //InitializeVoluntter1(volunteer1);
-            //InitializeVoluntter2(volunteer2);
-            //InitializeVoluntter3(volunteer3);
+
+            volunteer1Ride.Text = Ride1;
+            volunteer2Ride.Text = Ride2;
+            volunteer3Ride.Text = Ride3;
 
         }
 
-        public void InitializeVoluntter1(string volunteer1)
+        private void RemoveDup(Volunteer volnteer1, Volunteer volnteer2, Volunteer volnteer3)
         {
-            List<Volunteer> volunteers = db.GetAllVolunteers();
-            //if (Voluntter1DropDownList.Items.Count < 1)
-            if (volunteer1.Equals(""))
+
+            if (volnteer1 != null)
             {
-                volExist[1] = false;
-                Voluntter1DropDownList.Items.Add(new ListItem("בחר/י", "0"));
-                for (int i = 0; i < volunteers.Count; i++)
+                if (Voluntter2DropDownList.Items.Count > 1)
                 {
-                    if (volunteers[i].Volunteer_Practice == 3)
+                    for (int i = 0; i < Voluntter2DropDownList.Items.Count; i++)
                     {
-                        // listItems.Add(new ListItem(volunteers[i].Volunteer_Email));
-                        // Voluntter1DropDownList.Items.Add(new ListItem(listItems[i].Text, (i + 1).ToString()));
-                        Voluntter1DropDownList.Items.Add(new ListItem(volunteers[i].Volunteer_Email));
+                        ListItem t = Voluntter2DropDownList.Items[i];
+                        if (t.Text.Equals(volnteer1.Volunteer_Email.ToString()))
+                            Voluntter2DropDownList.Items.Remove(t);
+                    }
+                }
+                if (Voluntter3DropDownList.Items.Count > 1)
+                {
+                    for (int i = 0; i < Voluntter3DropDownList.Items.Count; i++)
+                    {
+                        ListItem t = Voluntter3DropDownList.Items[i];
+                        if (t.Text.Equals(volnteer1.Volunteer_Email.ToString()))
+                            Voluntter3DropDownList.Items.Remove(t);
+                    }
+                }
+
+            }
+            if (volnteer2 != null)
+            {
+                if (Voluntter1DropDownList.Items.Count > 1)
+                {
+                    for (int i = 0; i < Voluntter1DropDownList.Items.Count; i++)
+                    {
+                        ListItem t = Voluntter1DropDownList.Items[i];
+                        if (t.Text.Equals(volnteer2.Volunteer_Email.ToString()))
+                            Voluntter1DropDownList.Items.Remove(t);
+                    }
+                }
+                if (Voluntter3DropDownList.Items.Count > 1)
+                {
+                    for (int i = 0; i < Voluntter3DropDownList.Items.Count; i++)
+                    {
+                        ListItem t = Voluntter3DropDownList.Items[i];
+                        if (t.Text.Equals(volnteer2.Volunteer_Email.ToString()))
+                            Voluntter3DropDownList.Items.Remove(t);
+                    }
+                }
+
+            }
+            if (volnteer3 != null)
+            {
+                if (Voluntter1DropDownList.Items.Count > 1)
+                {
+                    for (int i = 0; i < Voluntter1DropDownList.Items.Count; i++)
+                    {
+                        ListItem t = Voluntter1DropDownList.Items[i];
+                        if (t.Text.Equals(volnteer3.Volunteer_Email.ToString()))
+                            Voluntter1DropDownList.Items.Remove(t);
+                    }
+                }
+                if (Voluntter2DropDownList.Items.Count > 1)
+                {
+                    for (int i = 0; i < Voluntter2DropDownList.Items.Count; i++)
+                    {
+                        ListItem t = Voluntter2DropDownList.Items[i];
+                        if (t.Text.Equals(volnteer3.Volunteer_Email.ToString()))
+                            Voluntter2DropDownList.Items.Remove(t);
+                    }
+                }
+
+            }
+        }
+
+        public void InitializeVoluntter1(Volunteer volunteer, List<Volunteer> Volunteerlist)
+        {
+            Voluntter1DropDownList.Items.Clear();
+            VolunteerName1.Text = "";
+            Voluntter1DropDownList.BackColor = System.Drawing.Color.White;
+            if (volunteer == null)
+            {
+                ListItem t = new ListItem("בחר/י", "0");
+                t.Attributes.Add("ID", "0");
+                Voluntter1DropDownList.Items.Add(t);
+
+                foreach (Volunteer v in Volunteerlist)
+                {
+                    if (v.Volunteer_Practice == 3) //וותיקה
+                    {
+                        ListItem i = new ListItem(v.Volunteer_Email, v.Volunteer_First_Name + " " + v.Volunteer_Last_Name);
+                        i.Attributes.Add("ID", v.Volunteer_ID.ToString());
+                        Voluntter1DropDownList.Items.Add(i);
                     }
                 }
             }
             else
             {
-                Voluntter1DropDownList.Items.Add(new ListItem(volunteer1));
-                Voluntter1DropDownList.Enabled = false;
+                ListItem t = new ListItem(volunteer.Volunteer_Email);
+                t.Attributes.Add("ID", volunteer.Volunteer_ID.ToString());
+
+                Voluntter1DropDownList.Items.Add(t);
+                Voluntter1DropDownList.DataBind();
+                VolunteerName1.Text = volunteer.Volunteer_First_Name + "  " + volunteer.Volunteer_Last_Name;
+                Voluntter1DropDownList.BackColor = System.Drawing.Color.LightSlateGray;
             }
         }
-
-        public void InitializeVoluntter2(string volunteer2)
+        public void InitializeVoluntter2(Volunteer volunteer, List<Volunteer> Volunteerlist)
         {
-            List<Volunteer> volunteers = db.GetAllVolunteers();
-            //if (Voluntter1DropDownList.Items.Count < 1)
-            if (volunteer2.Equals(""))
+            Voluntter2DropDownList.Items.Clear();
+            VolunteerName2.Text = "";
+            Voluntter2DropDownList.BackColor = System.Drawing.Color.White;
+            if (volunteer == null)
             {
-                volExist[2] = false;
-                Voluntter2DropDownList.Items.Add(new ListItem("בחר/י", "0"));
-                for (int i = 0; i < volunteers.Count; i++)
+                ListItem t = new ListItem("בחר/י", "0");
+                t.Attributes.Add("ID", "0");
+                Voluntter2DropDownList.Items.Add(t);
+
+                foreach (Volunteer v in Volunteerlist)
                 {
-                    if (volunteers[i].Volunteer_Practice == 3)
+                    if (v.Volunteer_Practice == 2 || v.Volunteer_Practice == 3)
                     {
-                        // listItems.Add(new ListItem(volunteers[i].Volunteer_Email));
-                        // Voluntter1DropDownList.Items.Add(new ListItem(listItems[i].Text, (i + 1).ToString()));
-                        Voluntter2DropDownList.Items.Add(new ListItem(volunteers[i].Volunteer_Email));
+                        t = new ListItem(v.Volunteer_Email, v.Volunteer_First_Name + " " + v.Volunteer_Last_Name);
+                        t.Attributes.Add("ID", v.Volunteer_ID.ToString());
+                        Voluntter2DropDownList.Items.Add(t);
                     }
                 }
             }
             else
             {
-                Voluntter2DropDownList.Items.Add(new ListItem(volunteer2));
-                Voluntter2DropDownList.Enabled = false;
+                ListItem t = new ListItem(volunteer.Volunteer_Email);
+                t.Attributes.Add("ID", volunteer.Volunteer_ID.ToString());
+                Voluntter2DropDownList.Items.Add(t);
+                VolunteerName2.Text = volunteer.Volunteer_First_Name + "  " + volunteer.Volunteer_Last_Name;
+                Voluntter2DropDownList.BackColor = System.Drawing.Color.LightSlateGray;
             }
         }
-
-        public void InitializeVoluntter3(string volunteer3)
+        public void InitializeVoluntter3(Volunteer volunteer, List<Volunteer> Volunteerlist)
         {
-
-
-            //if (Voluntter1DropDownList.Items.Count < 1)
-            if (volunteer3.Equals(""))
+            Voluntter3DropDownList.Items.Clear();
+            VolunteerName3.Text = "";
+            Voluntter3DropDownList.BackColor = System.Drawing.Color.White;
+            if (volunteer == null)
             {
-                List<Volunteer> volunteers = db.GetAllVolunteers();
-                volExist[3] = false;
-                Voluntter3DropDownList.Items.Add(new ListItem("בחר/י", "0"));
-                for (int i = 0; i < volunteers.Count; i++)
+                ListItem t = new ListItem("בחר/י", "0");
+                t.Attributes.Add("ID", "0");
+                Voluntter3DropDownList.Items.Add(t);
+
+                foreach (Volunteer v in Volunteerlist)
                 {
-                    if (volunteers[i].Volunteer_Practice == 3)
+                    if (v.Volunteer_Practice == 2 || v.Volunteer_Practice == 3)
                     {
-                        Voluntter3DropDownList.Items.Add(new ListItem(volunteers[i].Volunteer_Email));
+                        t = new ListItem(v.Volunteer_Email, v.Volunteer_First_Name + " " + v.Volunteer_Last_Name);
+                        t.Attributes.Add("ID", v.Volunteer_ID.ToString());
+                        Voluntter3DropDownList.Items.Add(t);
                     }
                 }
             }
             else
             {
-                Voluntter3DropDownList.Items.Add(new ListItem(volunteer3));
-                Voluntter3DropDownList.Enabled = false;
+                ListItem t = new ListItem(volunteer.Volunteer_Email);
+                t.Attributes.Add("ID", volunteer.Volunteer_ID.ToString());
+                Voluntter3DropDownList.Items.Add(t);
+                VolunteerName3.Text = volunteer.Volunteer_First_Name + "  " + volunteer.Volunteer_Last_Name;
+                Voluntter3DropDownList.BackColor = System.Drawing.Color.LightSlateGray;
             }
         }
+
 
         private string GetWorkshopAddress(int workShop_ID, bool isCompany)
         {
@@ -215,67 +344,107 @@ namespace gui.Gui
             return address;
         }
 
-        protected void Calendar_DayRender(object sender, DayRenderEventArgs e)
+        protected void Voluntter1DropDownList_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //string test1 = e.Day.Date.ToString();
-            //string test2 = WorkShops[0].WorkShop_Date.ToString();
-
-
-            //if (WorkShops.Exists(x => x.WorkShop_Date.Date == e.Day.Date.Date))
-            //{
-            //    e.Cell.BackColor = Color.IndianRed;
-            //}
-
-
-        }
-
-        protected void Calendar_SelectionChanged(object sender, EventArgs e)
-        {
-
-
-
-
-
-        }
-
-        public int getValidLastMonth()
-        {
-            int month = DateTime.Now.Month;
-            month--;
-            if (month < 1)
-                return 12;
+            int index = Voluntter1DropDownList.SelectedIndex;
+            string Name = Voluntter1DropDownList.Items[index].Value;
+            if (index == 0)
+                VolunteerName1.Text = "";
             else
-                return month;
+                VolunteerName1.Text = Name;
         }
 
-        public int getValidNextMonth()
+        protected void Voluntter2DropDownList_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int month = DateTime.Now.Month;
-            month++;
-            if (month > 12)
-                return 1;
+            int index = Voluntter2DropDownList.SelectedIndex;
+            string Name = Voluntter2DropDownList.Items[index].Value;
+            if (index == 0)
+                VolunteerName2.Text = "";
             else
-                return month;
+                VolunteerName2.Text = Name;
         }
 
-
-        public void ClearForm()
+        protected void Voluntter3DropDownList_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Voluntter1DropDownList.Items.Clear();
-            Voluntter2DropDownList.Items.Clear();
-            Voluntter3DropDownList.Items.Clear();
+            int index = Voluntter3DropDownList.SelectedIndex;
+            string Name = Voluntter3DropDownList.Items[index].Value;
+            if (index == 0)
+                VolunteerName3.Text = "";
+            else
+                VolunteerName3.Text = Name;
         }
 
-        //protected void Assign_Click(object sender, EventArgs e)
-        //{
-        //    if (Volunteer1.)
+        protected void assign_Click(object sender, EventArgs e)
+        {
+            DupLabel.Visible = false;
+            succsess.Visible = false;
+            nonSelected.Visible = false;
+            List<Volunteer> Volunteers = db.GetAllVolunteers();
+            // Check if 2/3 of the same try to submit
+            ListItem t1 = Voluntter1DropDownList.SelectedItem;
+            ListItem t2 = Voluntter2DropDownList.SelectedItem;
+            ListItem t3 = Voluntter3DropDownList.SelectedItem;
+
+            int ID1 = 0, ID2 = 0, ID3 = 0;
+            bool result = true;
+            try { ID1 = int.Parse(t1.Value); } catch (Exception exp) { ID1 = 1; }
+            try { ID2 = int.Parse(t2.Value); } catch (Exception exp) { ID2 = 1; }
+            try { ID3 = int.Parse(t3.Value); } catch (Exception exp) { ID3 = 1; }
+
+            if (ID1 != 0 && ID2 != 0)
+                if (t1.Value.Equals(t2.Value))
+                    result = false;
+            if (ID1 != 0 && ID3 != 0)
+                if (t1.Value.Equals(t3.Value))
+                    result = false;
+            if (ID2 != 0 && ID3 != 0)
+                if (t2.Value.Equals(t3.Value))
+                    result = false;
 
 
-        //TODO check duplicated volunteer 
+            if (result)
+            {
+                string isCompany = Session["LocalisCompany"].ToString();
+                string workshopId = Session["LocalWorkShopID"].ToString();
+                if (ID1 != 0) ID1 = Volunteers.Find(x => x.Volunteer_Email.Equals(t1.Text.ToString())).Volunteer_ID;
+                if (ID2 != 0) ID2 = Volunteers.Find(x => x.Volunteer_Email.Equals(t2.Text.ToString())).Volunteer_ID;
+                if (ID3 != 0) ID3 = Volunteers.Find(x => x.Volunteer_Email.Equals(t3.Text.ToString())).Volunteer_ID;
+
+                if (bool.Parse(isCompany))
+                {
+                    // Company Workshop 
+                    CompanyWorkshop selectedWorkshop = db.getCompanyWorkshopByID(int.Parse(workshopId));
+                }
+                else
+                {
+                    //School workshop
+                    SchoolWorkShop SelectedWorkshop = db.GetSchoolWorkshopByID(int.Parse(workshopId));
+                    //Check if was change
+                    if (ID1 != SelectedWorkshop.SchoolWorkShopVolunteerID1 ||
+                       ID2 != SelectedWorkshop.SchoolWorkShopVolunteerID2 ||
+                       ID3 != SelectedWorkshop.SchoolWorkShopVolunteerID3)
+                    {
+                        //Update DB
+                        if (db.updateSchoolWorkshopVolunteer(SelectedWorkshop.SchoolWorkShopID, ID1, ID2, ID3,
+                            volunteer1Ride.Text, volunteer2Ride.Text, volunteer3Ride.Text))
+                        {
+                            succsess.Visible = true;
+                        }
+
+                    }
+                    else
+                    {
+                        nonSelected.Visible = true;
+                    }
+
+                }
 
 
-
-        //    db.insertVolunteer();
-        //}
+            }
+            else
+            {
+                DupLabel.Visible = true;
+            }
+        }
     }
 }

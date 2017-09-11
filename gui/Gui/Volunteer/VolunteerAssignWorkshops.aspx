@@ -14,14 +14,10 @@
     <form id="form1" runat="server">
         <div class="container">
 
-            <div class="jumbotron">
                 <h2>סדנאות: שיבוץ מתנדבות</h2>
-            </div>
 
             <!-- Workshops Table-->
             <h3>בחרי סדנא עבור שיבוץ:</h3>
-            <br />
-
             <asp:Table ID="workshopTable" class="table table-striped" runat="server">
                 <asp:TableHeaderRow>
                     <asp:TableHeaderCell>
@@ -44,28 +40,32 @@
                     </asp:TableHeaderCell>
                 </asp:TableHeaderRow>
             </asp:Table>
-            <br />
-
             <!-- Volunteers Assignment -->
             <asp:PlaceHolder ID="VolunteerAssignPlaceHolder" runat="server">
-                <h4>סדנא נבחרת: </h4>
-                <asp:Label ID="workshopIdLabel" runat="server" class="label label-primary" Font-Size="Large"></asp:Label>
-                <h3>הכניסי את פרטייך באחד מהמקומות הפנויים:<br />
+                <h4>סדנא נבחרת:
+                    <asp:Label ID="workshopIdLabel" runat="server" class="label label-primary" Font-Size="Large"></asp:Label>   
+                </h4>
+                
+                <h3>הכניסי את פרטייך באחד מהמקומות הפנויים:
                     <small>אם מישהי מילאה פרטי טרמפ, תוכלי ליצור איתה קשר דרך המייל הרשום.</small>
                 </h3>
-                <br />
                 <!-- volunteer1 -->
                 <div class="col-md-4">
                     <fieldset id="Volunteer1" runat="server">
                         <legend>מתנדבת 1 - ותיקה</legend>
+                         <asp:Label runat="server" ID="VolunteerName1" Text="" ></asp:Label>
+                        <br />
                         <asp:DropDownList
                             Width="250px"
                             ID="Voluntter1DropDownList"
+                            AutoPostBack="true"
+                            OnSelectedIndexChanged="Voluntter1DropDownList_SelectedIndexChanged"
                             runat="server"
                             class="form-control">
                         </asp:DropDownList>
-                         <br />
+                       <br />
                         <label class="control-label" for="volunteer1Ride">פרטי טרמפ: </label>
+                         <br />   
                         <asp:TextBox
                             ID="volunteer1Ride"
                             type="text"
@@ -76,19 +76,22 @@
                         </asp:TextBox>
                     </fieldset>
                 </div>
-
                 <!-- volunteer2 -->
                 <div class="col-md-4">
                     <fieldset id="Volunteer2" runat="server">
                         <legend>מתנדבת 2 </legend>
+                        <asp:Label runat="server" ID="VolunteerName2" Text="" ></asp:Label>
+                        <br />
                         <asp:DropDownList ID="Voluntter2DropDownList"
+                            AutoPostBack="true"
+                            OnSelectedIndexChanged="Voluntter2DropDownList_SelectedIndexChanged"
                             Width="250px"
                             runat="server"
                            class="form-control">
-                        </asp:DropDownList>
-                        <br />
-
+                        </asp:DropDownList>     
+                        <br />                 
                         <label class="control-label" for="volunteer2Ride">פרטי טרמפ: </label>
+                         <br />   
                         <asp:TextBox
                             ID="volunteer2Ride"
                             type="text"
@@ -104,14 +107,18 @@
                 <div class="col-md-4">
                     <fieldset id="Volunteer3" runat="server">
                         <legend>מתנדבת 3</legend>
+                         <asp:Label runat="server" ID="VolunteerName3" Text="" ></asp:Label>    
+                        <br />                    
                         <asp:DropDownList
-                            ID="Voluntter3DropDownList"
+                            AutoPostBack="true"
+                            ID="Voluntter3DropDownList" OnSelectedIndexChanged="Voluntter3DropDownList_SelectedIndexChanged"
                             Width="250px"
                             runat="server"
                           class="form-control">
-                        </asp:DropDownList>
-                        <br />
+                        </asp:DropDownList>    
+                        <br />                    
                         <label class="control-label" for="volunteer3Ride">פרטי טרמפ: </label>
+                         <br />   
                         <asp:TextBox
                             ID="volunteer3Ride"
                             type="text"
@@ -121,26 +128,16 @@
                             Width="250px">
                         </asp:TextBox>
                     </fieldset>
-                </div>
-      
-
-                    <br />
-                 
-          
-                <br />
-                <br />
-                
+                </div>               
             </asp:PlaceHolder>
-        </div>
-
-     
-        <br />
-        <div style="margin-right:50%">
-<asp:Button runat="server"  class="btn btn-success" ID="assign" Text="עדכני" />
-
-        </div>
-        
+        </div>           
+        <div style="margin-right:50%;margin-top:25px" >
+<asp:Button runat="server"  class="btn btn-success" ID="assign" Text="עדכני" OnClick="assign_Click" />
+            <asp:Label runat="server" ID="DupLabel" Text="יש כפילות בבחירת המתנדבות,אנא בחרי שנית" Visible="false"></asp:Label>
+            <asp:Label runat="server" ID="succsess" Text="ההרשמה הצליחה" Visible="false"></asp:Label>
+            <asp:Label runat="server" ID="nonSelected" Text="יש לבחור מתנדבת על מנת לעדכן" Visible="false"></asp:Label>
+        </div>        
     </form>
-    <br />
+    
 </body>
 </html>
