@@ -58,6 +58,60 @@ namespace gui.Gui.Workshop {
         protected global::System.Web.UI.WebControls.Label WorkShopDate;
         
         /// <summary>
+        /// selectpicker control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList selectpicker;
+        
+        /// <summary>
+        /// updateStatus control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button updateStatus;
+        
+        /// <summary>
+        /// PrepareFormCreate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label PrepareFormCreate;
+        
+        /// <summary>
+        /// volunteerfinishedlabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label volunteerfinishedlabel;
+        
+        /// <summary>
+        /// yesToVolunteerFinished control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button yesToVolunteerFinished;
+        
+        /// <summary>
+        /// noToVolunteerFinished control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button noToVolunteerFinished;
+        
+        /// <summary>
         /// bar1 control.
         /// </summary>
         /// <remarks>
@@ -229,15 +283,6 @@ namespace gui.Gui.Workshop {
         protected global::System.Web.UI.WebControls.DropDownList dateselector;
         
         /// <summary>
-        /// volAssignUpdate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button volAssignUpdate;
-        
-        /// <summary>
         /// volunteercount control.
         /// </summary>
         /// <remarks>
@@ -265,15 +310,6 @@ namespace gui.Gui.Workshop {
         protected global::System.Web.UI.WebControls.Label VolunteerName1;
         
         /// <summary>
-        /// VolunteerFeedback1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton VolunteerFeedback1;
-        
-        /// <summary>
         /// VolunteerName2 control.
         /// </summary>
         /// <remarks>
@@ -283,15 +319,6 @@ namespace gui.Gui.Workshop {
         protected global::System.Web.UI.WebControls.Label VolunteerName2;
         
         /// <summary>
-        /// VolunteerFeedback2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton VolunteerFeedback2;
-        
-        /// <summary>
         /// VolunteerName3 control.
         /// </summary>
         /// <remarks>
@@ -299,15 +326,6 @@ namespace gui.Gui.Workshop {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label VolunteerName3;
-        
-        /// <summary>
-        /// VolunteerFeedback3 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton VolunteerFeedback3;
         
         /// <summary>
         /// prepareUpdate control.
@@ -472,60 +490,6 @@ namespace gui.Gui.Workshop {
         protected global::System.Web.UI.WebControls.Button updateToFeedback;
         
         /// <summary>
-        /// selectpicker control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList selectpicker;
-        
-        /// <summary>
-        /// PrepareFormCreate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label PrepareFormCreate;
-        
-        /// <summary>
-        /// volunteerfinishedlabel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label volunteerfinishedlabel;
-        
-        /// <summary>
-        /// yesToVolunteerFinished control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button yesToVolunteerFinished;
-        
-        /// <summary>
-        /// noToVolunteerFinished control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button noToVolunteerFinished;
-        
-        /// <summary>
-        /// updateStatus control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button updateStatus;
-        
-        /// <summary>
         /// Label2 control.
         /// </summary>
         /// <remarks>
@@ -535,13 +499,13 @@ namespace gui.Gui.Workshop {
         protected global::System.Web.UI.WebControls.Label Label2;
         
         /// <summary>
-        /// LinkButton2 control.
+        /// LinkButton1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkButton2;
+        protected global::System.Web.UI.WebControls.LinkButton LinkButton1;
         
         /// <summary>
         /// Label3 control.
@@ -553,13 +517,13 @@ namespace gui.Gui.Workshop {
         protected global::System.Web.UI.WebControls.Label Label3;
         
         /// <summary>
-        /// LinkButton3 control.
+        /// LinkButton2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkButton3;
+        protected global::System.Web.UI.WebControls.LinkButton LinkButton2;
         
         /// <summary>
         /// Label4 control.
@@ -569,6 +533,24 @@ namespace gui.Gui.Workshop {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Label4;
+        
+        /// <summary>
+        /// LinkButton3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton LinkButton3;
+        
+        /// <summary>
+        /// teacher control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label teacher;
         
         /// <summary>
         /// LinkButton4 control.

@@ -20,7 +20,7 @@
 
         <div class="container">
             <div class="page-header">
-                <h3>צפייה בפרטי סדנא בבית ספר</h3>
+                <h3>צפייה בפרטי סדנא בבית ספר</h3><hr />
                 <p>
                     <label class="control-label" for="WorkShopID">מס' מזהה: </label>
                     <asp:Label runat="server" ID="WorkShopID"></asp:Label>
@@ -34,6 +34,28 @@
                     <asp:Label runat="server" ID="WorkShopDate"></asp:Label>
 
                     <br />
+                    <label class="control-label" for="DropDownListStatus">שינוי סטטוס: </label>
+
+                    <asp:DropDownList runat="server" ID="selectpicker">
+                        <asp:ListItem Value="1">לבדיקת תאריכים</asp:ListItem>
+                        <asp:ListItem Value="2">לשיבוץ מתנדבות</asp:ListItem>
+                        <asp:ListItem Value="3">לשיבוץ הושלם</asp:ListItem>
+                        <asp:ListItem Value="4">להכנה</asp:ListItem>
+                        <asp:ListItem Value="5">לביצוע</asp:ListItem>
+                        <asp:ListItem Value="6">למישוב</asp:ListItem>
+                        <asp:ListItem Value="7">לסגור</asp:ListItem>
+                    </asp:DropDownList>
+
+                    <asp:Button runat="server" OnClick="updateStatus_Click" ID="updateStatus" Text="אישור שינוי" class="btn btn-link" />
+
+                    <br />
+                    <asp:Label runat="server" ID="PrepareFormCreate" Text="נוצר טופס הכנה, ניתן לראות ב'פרטי הכנה'"></asp:Label>
+                    <br />
+                    <br />
+                    <asp:Label runat="server" ID="volunteerfinishedlabel" Text="יש כמות קטנה של מתנדבות,האם להמשיך?"></asp:Label>
+                    <br />
+                    <asp:Button runat="server" ID="yesToVolunteerFinished" Text="כן" class="btn btn-success" OnClick="yesToVolunteerFinished_Click" />
+                    <asp:Button runat="server" ID="noToVolunteerFinished" Text="לא" class="btn btn-danger" />
                     <button id="cancelWorkshop" class="btn btn-danger">ביטול סדנא</button>
                 </p>
             </div>
@@ -155,7 +177,6 @@
                                         </asp:DropDownList>
                                     </fieldset>
 
-                                    <asp:Button runat="server" ID="volAssignUpdate" Text="עדכני לשיבוץ מתנדבות" class="btn btn-success" />
                                 </div>
                                 <br />
                             </div>
@@ -174,19 +195,15 @@
                                 </div>
                                 <div class="col-md-6">
                                     <fieldset>
-
                                         <legend>פרטי מתנדבות</legend>
                                         <label class="control-label" for="VolunteerName1">מתנדבת 1: </label>
                                         <asp:Label runat="server" ID="VolunteerName1"></asp:Label>
-                                        <asp:LinkButton runat="server" ID="VolunteerFeedback1" Text="משוב"></asp:LinkButton>
                                         <br />
                                         <label class="control-label" for="VolunteerName2">מתנדבת 2: </label>
                                         <asp:Label runat="server" ID="VolunteerName2"></asp:Label>
-                                        <asp:LinkButton runat="server" ID="VolunteerFeedback2" Text="משוב"></asp:LinkButton>
                                         <br />
                                         <label class="control-label" for="VolunteerName3">מתנדבת 3: </label>
                                         <asp:Label runat="server" ID="VolunteerName3"></asp:Label>
-                                        <asp:LinkButton runat="server" ID="VolunteerFeedback3" Text="משוב"></asp:LinkButton>
                                         <br />
                                     </fieldset>
                                 </div>
@@ -282,11 +299,10 @@
                                     <!-- Teacher Details-->
                                     <div>
                                         <fieldset>
-
                                             <legend>מורה נוכח/ת בפעילות</legend>
                                             <!-- Name-->
                                             <label class="control-label">שם מלא:</label>
-
+                                             <br />
                                             <asp:TextBox ID="teacherName" class="form-control" Width="40%"
                                                 type="text" Enabled="false"
                                                 pattern="[\u0590-\u05FF''-'\s]{1,20}"
@@ -296,11 +312,11 @@
                                                 runat="server"></asp:TextBox>
                                             <br />
                                             <!-- Email-->
-                                            <label class="control-label" for="teacherEmail">אימייל:</label>
+                                            <label class="control-label" for="teacherEmail">אימייל:</label> <br />
                                             <asp:TextBox Enabled="false" class="form-control" runat="server" Width="40%" ID="teacherEmail" placeholder="example@gmail.com" type="email" required="required" />
                                             <br />
                                             <!--Phone-->
-                                            <label class="control-label" for="teacherPhone">טלפון:</label>
+                                            <label class="control-label" for="teacherPhone">טלפון:</label> <br />
                                             <asp:TextBox Enabled="false" class="form-control" ID="teacherPhone" Width="40%"
                                                 type="tel"
                                                 pattern="[0-9]{3}-[0-9]{7}"
@@ -323,35 +339,10 @@
 
                             <%--  TAB 4 - execute--%>
                             <div class="tab-pane fade" id="execute">
-                                <asp:Label runat="server" ID="Label1" Text="תאריך הסדנא לא הגיע. תאריך הסדנא עבר."></asp:Label>
+                                <asp:Label runat="server" ID="Label1" Text="תאריך הסדנא לא הגיע/תאריך הסדנא עבר."></asp:Label>
+                                    <br />
 
-                                 <asp:Button runat="server" ID="updateToFeedback" Text="עדכני למישוב" class="btn btn-success" />
-                                <label class="control-label" for="DropDownListStatus">שינוי סטטוס: </label>
-
-                                <asp:DropDownList runat="server" ID="selectpicker">
-                                    <asp:ListItem Value="1">לבדיקת תאריכים</asp:ListItem>
-                                    <asp:ListItem Value="2">לשיבוץ מתנדבות</asp:ListItem>
-                                    <asp:ListItem Value="3">לשיבוץ הושלם</asp:ListItem>
-                                    <asp:ListItem Value="4">להכנה</asp:ListItem>
-                                    <asp:ListItem Value="5">לביצוע</asp:ListItem>
-                                    <asp:ListItem Value="6">למישוב</asp:ListItem>
-                                    <asp:ListItem Value="7">לסגור</asp:ListItem>
-                                </asp:DropDownList>
-                                <br />
-                                <br />
-
-                                <br />
-                                <asp:Label runat="server" ID="PrepareFormCreate" Text="נוצר טופס הכנה, ניתן לראות ב'פרטי הכנה'"></asp:Label>
-                                <br />
-                                <br />
-                                <asp:Label runat="server" ID="volunteerfinishedlabel" Text="יש כמות קטנה של מתנדבות,האם להמשיך?"></asp:Label>
-                                <br />
-                                <asp:Button runat="server" ID="yesToVolunteerFinished" Text="כן" class="btn btn-success" OnClick="yesToVolunteerFinished_Click" />
-                                <asp:Button runat="server" ID="noToVolunteerFinished" Text="לא" class="btn btn-danger" />
-                                <br />
-                                <br />
-                                <br />
-                                <asp:Button runat="server" OnClick="updateStatus_Click" ID="updateStatus" Text="עדכון סטטוס" class="btn btn-success" />
+                                <asp:Button runat="server" ID="updateToFeedback" Text="עדכני למישוב" class="btn btn-success" />
 
 
                             </div>
@@ -365,16 +356,19 @@
 
                                     <label class="control-label" for="VolunteerName1">מתנדבת 1: </label>
                                     <asp:Label runat="server" ID="Label2"></asp:Label>
-                                    <asp:LinkButton runat="server" ID="LinkButton2" Text="משוב"></asp:LinkButton>
+                                    <asp:LinkButton runat="server" ID="LinkButton1" Text="משוב"></asp:LinkButton>
                                     <br />
                                     <label class="control-label" for="VolunteerName2">מתנדבת 2: </label>
                                     <asp:Label runat="server" ID="Label3"></asp:Label>
-                                    <asp:LinkButton runat="server" ID="LinkButton3" Text="משוב"></asp:LinkButton>
+                                    <asp:LinkButton runat="server" ID="LinkButton2" Text="משוב"></asp:LinkButton>
                                     <br />
                                     <label class="control-label" for="VolunteerName3">מתנדבת 3: </label>
                                     <asp:Label runat="server" ID="Label4"></asp:Label>
-                                    <asp:LinkButton runat="server" ID="LinkButton4" Text="משוב"></asp:LinkButton>
+                                    <asp:LinkButton runat="server" ID="LinkButton3" Text="משוב"></asp:LinkButton>
                                     <br />
+                                     <label class="control-label" for="teacherName">מורה: </label>
+                                    <asp:Label runat="server" ID="teacher"></asp:Label>
+                                    <asp:LinkButton runat="server" ID="LinkButton4" Text="משוב"></asp:LinkButton>
                                 </fieldset>
                             </div>
 
