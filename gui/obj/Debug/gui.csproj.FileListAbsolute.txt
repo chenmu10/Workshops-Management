@@ -33,3 +33,4 @@ C:\Users\chen\Projects\MMT\gui\bin\MySql.Data.dll
 C:\Users\chen\Projects\MMT\gui\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 C:\Users\chen\Projects\MMT\gui\obj\Debug\gui.dll
 C:\Users\chen\Projects\MMT\gui\obj\Debug\gui.pdb
+C:\Users\chen\Projects\MMT\gui\obj\Debug\gui.csprojResolveAssemblyReference.cache

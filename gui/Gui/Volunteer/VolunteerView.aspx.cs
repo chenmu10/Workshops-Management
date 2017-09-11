@@ -10,7 +10,7 @@ namespace gui.Gui
 {
     public partial class VolunteerView : System.Web.UI.Page
     {
-     
+
         List<Volunteer> Volunteers = new List<Volunteer>();
         Dictionary<int, string> Areas = new Dictionary<int, string>();
         Dictionary<int, string> ListStatus = new Dictionary<int, string>();
@@ -18,20 +18,19 @@ namespace gui.Gui
         bool EditMode = false;
         DB db;
 
-
         override protected void OnInit(EventArgs e)
         {
             this.Load += new System.EventHandler(this.Page_Load);
             db = new DB();
             db.IsConnect();
-
+            Volunteers = db.GetAllVolunteers();
             Areas = db.GetAreaActivity();
             ListStatus = db.GetVolunteerStatus();
-            InsertToVolunterTable();
+            InsertToVolunterTable(Volunteers);
             FillFilterDropdowns();
         }
 
-        private void InsertToVolunterTable()
+        private void InsertToVolunterTable(List<Volunteer> Volunteers)
         {
             Volunteers = db.GetAllVolunteers();
             foreach (Volunteer volunteer in Volunteers)
@@ -65,10 +64,10 @@ namespace gui.Gui
                 }
 
                 TableCell Area = new TableCell();
-             
-                //Area.Controls.Add(DropListAreas);
                 Area.Text = activityAreas;
-                // Area.Text = Areas[volunteer.Volunteer_Area_Activity];
+
+                TableCell traning = new TableCell();
+                traning.Text = Areas[volunteer.Volunteer_prefer_traning_area];
 
                 TableCell ActiviesNumber = new TableCell();
                
@@ -93,6 +92,7 @@ namespace gui.Gui
                 TableRow.Cells.Add(Email);
                 TableRow.Cells.Add(Phone);
                 TableRow.Cells.Add(Area);
+                TableRow.Cells.Add(traning);
                 TableRow.Cells.Add(ActiviesNumber);
                 TableRow.Cells.Add(Edit);
 
@@ -138,17 +138,84 @@ namespace gui.Gui
 
         protected void Search_Click(object sender, EventArgs e)
         {
-            Response.Write("<script>alert('חיפוש');</script>");
+            Volunteers = db.GetAllVolunteers();
+            TableRow t = volunteerTable.Rows[0];
+            volunteerTable.Rows.Clear();
+            volunteerTable.Rows.Add(t);
+            string name = nameText.Text.ToString();
+            string email = emailText.Text.ToString();
+
+            if (!name.Equals(""))
+                Volunteers = Volunteers.Where(x => x.Volunteer_First_Name.Contains(name) || x.Volunteer_First_Name_Eng.Contains(name) ||
+                  x.Volunteer_Last_Name.Contains(name) || x.Volunteer_Last_Name_Eng.Contains(name)).ToList();
+            if (!email.Equals(""))
+                Volunteers = Volunteers.Where(x => x.Volunteer_Email.Contains(email)).ToList();
+            InsertToVolunterTable(Volunteers);
         }
 
         protected void Filter_Click(object sender, EventArgs e)
         {
-            Response.Write("<script>alert('פילטר');</script>");
+
+            InsertToVolunterTable(SortByFilterFunc());
+        }
+        public List<Volunteer> SortByFilterFunc()
+        {
+            List<Volunteer> result = new List<Volunteer>();
+            Volunteers = db.GetAllVolunteers();
+            TableRow t = volunteerTable.Rows[0];
+            volunteerTable.Rows.Clear();
+            volunteerTable.Rows.Add(t);
+            int status = DropDownListStatus.SelectedIndex;
+            int area = DropDownListAreas.SelectedIndex;
+            int traning = DropDownListTraining.SelectedIndex;
+            result = Volunteers;
+            if (status != 0)
+                result = result.FindAll(x => x.Volunteer_Practice == status);
+            if (area != 0)
+                result = result.FindAll(x => x.Volunteer_Area_Activity.Contains(area));
+            if (traning != 0)
+                result = result.FindAll(x => x.Volunteer_prefer_traning_area == traning);
+
+            return result;
         }
 
         protected void Approve_Click(object sender, EventArgs e)
         {
             //רק אחרי סינון למתנדבות ללא הכשרה
+        }
+
+        protected void NameSort(object sender, EventArgs e)
+        {
+            List<TableRow> rows = new List<TableRow>();
+            TableRow t = volunteerTable.Rows[0];
+            List<Volunteer> volunteers = SortByFilterFunc();
+            volunteers = volunteers.OrderBy(x => x.Volunteer_First_Name.ToString()).ToList();
+            volunteerTable.Rows.Clear();
+            volunteerTable.Rows.Add(t);
+
+            InsertToVolunterTable(volunteers);
+        }
+        protected void StatusSort(object sender, EventArgs e)
+        {
+            List<TableRow> rows = new List<TableRow>();
+            TableRow t = volunteerTable.Rows[0];
+            List<Volunteer> volunteers = SortByFilterFunc();
+            volunteers = volunteers.OrderBy(x => x.Volunteer_Practice).ToList();
+            volunteerTable.Rows.Clear();
+            volunteerTable.Rows.Add(t);
+
+            InsertToVolunterTable(volunteers);
+        }
+        protected void OccupationSort(object sender, EventArgs e)
+        {
+            List<TableRow> rows = new List<TableRow>();
+            TableRow t = volunteerTable.Rows[0];
+            List<Volunteer> volunteers = SortByFilterFunc();
+            volunteers = volunteers.OrderBy(x => x.Volunteer_Occupation.ToString()).ToList();
+            volunteerTable.Rows.Clear();
+            volunteerTable.Rows.Add(t);
+
+            InsertToVolunterTable(volunteers);
         }
     }
 }
