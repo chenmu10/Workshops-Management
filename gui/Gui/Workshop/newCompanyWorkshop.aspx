@@ -11,14 +11,13 @@
             padding: 5px;
         }
 
-         #td {
+        #td {
             padding: 5px;
         }
 
-         td {
+        td {
             padding: 5px;
         }
-
     </style>
 </head>
 <body>
@@ -90,36 +89,38 @@
                         Rows="3" Style="resize: none;"></asp:TextBox>
 
                     <br />
-                    <div class="col-md-4">
-                        <!-- Date -->
-                        <asp:Label runat="server" ID="DateError" Font-Bold="True" Font-Size="Large" ForeColor="Red"></asp:Label>
-                        <label for="calendar">תאריך : </label>
+                  
+                       
+                            <!-- Date -->
+                            <asp:Label runat="server" ID="DateError" Font-Bold="True" Font-Size="Large" ForeColor="Red"></asp:Label>
+                            <label for="calendar">תאריך : </label>
 
-                        <asp:Calendar FirstDayOfWeek="Sunday" ID="calendar" runat="server" DayNameFormat="Shortest" CellPadding="10" OnDayRender="calendar_DayRender">
-                            <TodayDayStyle BackColor="Blue" ForeColor="Yellow"></TodayDayStyle>
-                            <DayStyle Height="10" Width="10" />
-                        </asp:Calendar>
-                    </div>
+                            <asp:Calendar FirstDayOfWeek="Sunday" ID="calendar" runat="server" DayNameFormat="Shortest"  Width="200px" OnDayRender="calendar_DayRender">
+                                <TodayDayStyle BackColor="Blue" ForeColor="Yellow"></TodayDayStyle>
 
-                    <!-- Time -->
-                    <b>שעה:</b>
-                    <br />
+                            </asp:Calendar>
 
-                        <!-- Minutes -->
-                        <asp:TextBox ID="minutes"
-                            type="number" min="0" max="50" step="10"
-                            class="form-control"
-                            Text="0"
-                            runat="server" CssClass="pull-right"></asp:TextBox>
 
-                        <!-- Hour -->
-                        <asp:Label runat="server" Style="float: right;">:</asp:Label>
-                        <asp:TextBox ID="hour"
-                            type="number" min="7" max="23" runat="server" Text="8"
-                            class="form-control"
-                            CssClass="pull-right"></asp:TextBox>
+                            <!-- Time -->
+                            <b>שעה:</b>
+                            <br />
 
-              </fieldset>
+                            <!-- Minutes -->
+                            <asp:TextBox ID="minutes"
+                                type="number" min="0" max="50" step="10"
+                                class="form-control"
+                                Text="0"
+                                runat="server" CssClass="pull-right"></asp:TextBox>
+
+                            <!-- Hour -->
+                            <asp:Label runat="server" Style="float: right;">:</asp:Label>
+                            <asp:TextBox ID="hour"
+                                type="number" min="7" max="23" runat="server" Text="8"
+                                class="form-control"
+                                CssClass="pull-right"></asp:TextBox>
+                       
+                   
+                </fieldset>
 
                 <p class="tpbutton btn-toolbar text-center">
 

@@ -7,7 +7,7 @@
 <html>
 <head runat="server">
     <title>Volunteers Table</title>
-  
+
 </head>
 <body>
     <form id="form1" runat="server">
@@ -17,7 +17,7 @@
 
         <div class="container">
             <h2>מתנדבות</h2>
-               <hr />
+            <hr />
             <p>
                 <asp:Button runat="server" ID="approve" class="btn btn-link" OnClick="Approve_Click" Text="אישור מתנדבות חדשות" />
             </p>
@@ -48,9 +48,9 @@
                 <div class="col-md-4">
                     <div class="form-inline">
                         <h3><span class="glyphicon glyphicon-search"></span>חיפוש</h3>
-                        <asp:TextBox ID="name" runat="server" type="text" class="form-control" placeholder="שם" Width="100px"> </asp:TextBox>
+                        <asp:TextBox ID="nameText" runat="server" type="text" class="form-control" placeholder="שם" Width="100px"> </asp:TextBox>
                         או 
-                        <asp:TextBox ID="email" runat="server" type="text" class="form-control" placeholder="אימייל" Width="100px"> </asp:TextBox>
+                        <asp:TextBox ID="emailText" runat="server" type="text" class="form-control" placeholder="אימייל" Width="100px"> </asp:TextBox>
 
                         <asp:Button runat="server" ID="search" class="btn btn-info" OnClick="Search_Click" Text="חיפוש" />
                     </div>
@@ -64,12 +64,28 @@
             <asp:Table ID="volunteerTable" runat="server" CssClass="table table-hover">
                 <asp:TableRow>
                     <asp:TableCell Font-Bold="true">#</asp:TableCell>
-                    <asp:TableCell Font-Bold="true">שם <span class="glyphicon glyphicon-sort"></span></asp:TableCell>
-                    <asp:TableCell Font-Bold="true">סטטוס</asp:TableCell>
-                    <asp:TableCell Font-Bold="true">עיסוק  <span class="glyphicon glyphicon-sort"></span></asp:TableCell>
+                    <asp:TableCell Font-Bold="true">
+                        <asp:LinkButton OnClick="NameSort" ForeColor="Black" runat="server" ID="LinkButton3">
+                            שם 
+                            <span class="glyphicon glyphicon-sort"></span>
+                        </asp:LinkButton>
+                    </asp:TableCell>
+                    <asp:TableCell Font-Bold="true">
+                        <asp:LinkButton OnClick="StatusSort" ForeColor="Black" runat="server" ID="LinkButton5">
+                            סטטוס 
+                            <span class="glyphicon glyphicon-sort"></span>
+                        </asp:LinkButton>
+                    </asp:TableCell>
+                    <asp:TableCell Font-Bold="true">
+                        <asp:LinkButton OnClick="OccupationSort" ForeColor="Black" runat="server" ID="LinkButton4">
+                            עיסוק 
+                            <span class="glyphicon glyphicon-sort"></span>
+                        </asp:LinkButton>
+                    </asp:TableCell>
                     <asp:TableCell Font-Bold="true">אימייל</asp:TableCell>
                     <asp:TableCell Font-Bold="true">טלפון</asp:TableCell>
                     <asp:TableCell Font-Bold="true">איזור פעילות</asp:TableCell>
+                    <asp:TableCell Font-Bold="true">איזור הכשרה</asp:TableCell>
                     <asp:TableCell Font-Bold="true">סדנאות שהועברו <span class="glyphicon glyphicon-sort"></span></asp:TableCell>
                     <asp:TableCell Font-Bold="true">פעולות</asp:TableCell>
                 </asp:TableRow>
@@ -80,6 +96,7 @@
         <br />
         <br />
     </form>
-        <script>   $(" .navbar a:contains('מתנדבות')").parent().addClass('active');</script>
+    <script>   $(" .navbar a:contains('מתנדבות')").parent().addClass('active');</script>
 </body>
 </html>
+

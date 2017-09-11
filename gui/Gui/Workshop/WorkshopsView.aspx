@@ -8,7 +8,7 @@
 <html>
 <head runat="server">
     <title></title>
-   
+
 </head>
 <body>
 
@@ -33,14 +33,14 @@
                             <asp:ListItem>לשיבוץ מתנדבות</asp:ListItem>
                             <asp:ListItem>מתנדבות שובצו</asp:ListItem>
                             <asp:ListItem>להכנה</asp:ListItem>
-                             <asp:ListItem>לביצוע</asp:ListItem>
-                             <asp:ListItem>למישוב</asp:ListItem>
+                            <asp:ListItem>לביצוע</asp:ListItem>
+                            <asp:ListItem>למישוב</asp:ListItem>
                         </asp:DropDownList>
 
                         <asp:DropDownList class="form-control" runat="server" ID="DropDownListType">
                             <asp:ListItem>סוג</asp:ListItem>
-                              <asp:ListItem>בתעשייה</asp:ListItem>
-                              <asp:ListItem>בבתי ספר</asp:ListItem>
+                            <asp:ListItem>בתעשייה</asp:ListItem>
+                            <asp:ListItem>בבתי ספר</asp:ListItem>
                         </asp:DropDownList>
 
                         <asp:DropDownList class="form-control" runat="server" ID="DropDownListAreas">
@@ -57,9 +57,8 @@
 
                         מתאריך:
                         <asp:TextBox class="form-control" ID="from_Date" runat="server" TextMode="Date"></asp:TextBox>
-                        עד תאריך:
-                        <asp:TextBox class="form-control" ID="to_Date" runat="server" TextMode="Date"></asp:TextBox>
-       
+                        עד תאריך:<asp:TextBox class="form-control" ID="to_Date" runat="server" TextMode="Date"></asp:TextBox>
+
                         <asp:Button runat="server" ID="filter" class="btn btn-info" OnClick="Filter_Click" Text="סינון" />
                     </div>
 
@@ -86,7 +85,7 @@
             </div>
         </div>
     </form>
-        <script>   $(" .navbar a:contains('סדנאות')").parent().addClass('active');</script>
+    <script>   $(" .navbar a:contains('סדנאות')").parent().addClass('active');</script>
 </body>
 
 </html>
