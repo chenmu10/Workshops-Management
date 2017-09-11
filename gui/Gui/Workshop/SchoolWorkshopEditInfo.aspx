@@ -35,27 +35,26 @@
                     <br />
                 </p>
             </div>
+           
+                <div class="checkout-wrap">
 
-            <div class="checkout-wrap">
+                    <ul class="checkout-bar">
 
-                <ul class="checkout-bar">
-
-                    <li runat="server" id="bar1">פניית בית ספר</li>
-                    <li runat="server" id="bar2">בדיקת תאריכים</li>
-                    <li runat="server" id="bar3">שיבוץ מתנדבות</li>
-                    <li runat="server" id="bar4">שיבוץ הושלם</li>
-                    <li runat="server" id="bar5">להכנה</li>
-                    <li runat="server" id="bar6">לביצוע</li>
-                    <li runat="server" id="bar7">למישוב</li>
-                    <li runat="server" id="bar8">סגור</li>
+                        <li runat="server" id="bar1">פניית בית ספר</li>
+                        <li runat="server" id="bar2">בדיקת תאריכים</li>
+                        <li runat="server" id="bar3">שיבוץ מתנדבות</li>
+                        <li runat="server" id="bar4">שיבוץ הושלם</li>
+                        <li runat="server" id="bar5">להכנה</li>
+                        <li runat="server" id="bar6">לביצוע</li>
+                        <li runat="server" id="bar7">למישוב</li>
+                        <li runat="server" id="bar8">סגור</li>
 
 
-                </ul>
-            </div>
-            <br />  <br />
+                    </ul> </div>
+               
 
             <div class="row">
-                <div class="col-md-3">
+                <div class="col-md-2">
 
                     <br />
                     <label class="control-label" for="DropDownListStatus">שינוי סטטוס: </label>
@@ -90,7 +89,7 @@
                     <button id="cancelWorkshop" class="btn btn-danger">ביטול סדנא</button>
                 </div>
 
-                <div class="col-md-9">
+                <div class="col-md-10">
 
                     <div class="panel with-nav-tabs panel-default">
                         <div class="panel-heading">
@@ -98,13 +97,14 @@
                                 <li class="active"><a href="#school" data-toggle="tab">פרטי פניית בי"ס</a></li>
                                 <li><a href="#volunteers" data-toggle="tab">פרטי שיבוץ מתנדבות</a></li>
                                 <li><a href="#prepare" data-toggle="tab">פרטי הכנה</a></li>
+                                <li><a href="#feedback" data-toggle="tab">משובים</a></li>
 
                             </ul>
                         </div>
                         <div class="panel-body">
                             <div class="tab-content">
 
-                                 <%--  TAB 1 - SCHOOL REQUEST--%>
+                                <%--  TAB 1 - SCHOOL REQUEST--%>
                                 <div class="tab-pane fade in active" id="school">
                                     <div class="col-md-6">
                                         <asp:LinkButton runat="server" ID="LinkSchoolInfo" Text="פרטי בית הספר"></asp:LinkButton>
@@ -186,13 +186,14 @@
                                                 <asp:ListItem Value="3"></asp:ListItem>
                                             </asp:DropDownList>
                                         </fieldset>
-                                   
-                                    <asp:Button runat="server" ID="volAssignUpdate" Text="עדכני לשיבוץ מתנדבות" class="btn btn-success" />
-                                     </div><br />
+
+                                        <asp:Button runat="server" ID="volAssignUpdate" Text="עדכני לשיבוץ מתנדבות" class="btn btn-success" />
+                                    </div>
+                                    <br />
                                 </div>
 
 
-                              <%--  TAB 2 - VOLUNTEER ASSIGN--%>
+                                <%--  TAB 2 - VOLUNTEER ASSIGN--%>
                                 <div class="tab-pane fade" id="volunteers">
                                     <div class="col-md-6">
                                         <label class="control-label" for="volunteercount">מס' מתנדבות נוכחי: </label>
@@ -226,7 +227,7 @@
 
                                 </div>
 
-                                 <%--  TAB 3 - PREPARE--%>
+                                <%--  TAB 3 - PREPARE--%>
                                 <div class="tab-pane fade" id="prepare">
                                     <div class="col-md-6">
 
@@ -348,10 +349,34 @@
                                     <asp:Button runat="server" class="btn btn-success" Text="עדכני לביצוע" />
 
                                 </div>
+                                <!-- /tab3-->
+
+                                <%--  TAB 4 - FEEDBACK--%>
+                                <div class="tab-pane fade" id="feedback">
+
+                                    <fieldset>
+
+                                        <label class="control-label" for="VolunteerName1">מתנדבת 1: </label>
+                                        <asp:Label runat="server" ID="Label2"></asp:Label>
+                                        <asp:LinkButton runat="server" ID="LinkButton2" Text="משוב"></asp:LinkButton>
+                                        <br />
+                                        <label class="control-label" for="VolunteerName2">מתנדבת 2: </label>
+                                        <asp:Label runat="server" ID="Label3"></asp:Label>
+                                        <asp:LinkButton runat="server" ID="LinkButton3" Text="משוב"></asp:LinkButton>
+                                        <br />
+                                        <label class="control-label" for="VolunteerName3">מתנדבת 3: </label>
+                                        <asp:Label runat="server" ID="Label4"></asp:Label>
+                                        <asp:LinkButton runat="server" ID="LinkButton4" Text="משוב"></asp:LinkButton>
+                                        <br />
+                                    </fieldset>
+                                </div>
 
 
 
-                                <!-- ________________________________________________________________________________--->
+                            </div>
+
+
+                            <!-- ________________________________________________________________________________--->
 
                             </div>
 
