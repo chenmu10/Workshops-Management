@@ -100,6 +100,7 @@ namespace gui.Gui.Workshop
                         dateselector.Items[1].Text = schoolWorkshop.SchoolWorkShopDate1.ToString();
                         dateselector.Items[2].Text = schoolWorkshop.SchoolWorkShopDate2.ToString();
                         dateselector.Items[3].Text = schoolWorkshop.SchoolWorkShopDate3.ToString();
+
                         break;
                     case 6:
                         /*  להכנה*/ 
