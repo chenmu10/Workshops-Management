@@ -1,4 +1,7 @@
-﻿using gui.Models;
+﻿using Google.Maps;
+using Google.Maps.Geocoding;
+using Google.Maps.StaticMaps;
+using gui.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,7 +21,7 @@ namespace gui.Gui.Workshop
 
         override protected void OnInit(EventArgs e)
         {
-            //this.Load += new System.EventHandler(this.Page_Load);
+            this.Load += new System.EventHandler(this.Page_Load);
             db = new DB();
             db.IsConnect();
             Companies = db.GetAllComapny();
@@ -63,8 +66,9 @@ namespace gui.Gui.Workshop
                 if (db.InsertNewCompanyWorkShop(newcw))
                 {
                     Response.Write("<script>alert('הסדנא נוספה בהצלחה. ניתן להוסיף עוד סדנאות עבור החברה הנבחרת');</script>");
-                    SendInvitesToSchools(Convert.ToInt32(companyID.Text));
-                    //ClearWorkshopDetails();
+                    SendInvitesToSchools();
+
+                    ClearWorkshopDetails();
                 }
                 else
                 {
@@ -74,12 +78,33 @@ namespace gui.Gui.Workshop
             }
         }
 
-        protected void SendInvitesToSchools(int companyID)
+        private static string getStaticMap(string address)
+        {
+            var map = new StaticMapRequest();
+            MapMarkersCollection markers = new MapMarkersCollection();
+            //markers.Add(new Location("1600 Amphitheatre Parkway Mountain View, CA 94043"));
+            //markers.Add(new Location("בית ספר אלייאנס תל אביב"));
+            markers.Add(new Location(address));
+            markers[0].Color = System.Drawing.Color.Blue;
+
+            map.Markers = markers;
+            map.Size = new System.Drawing.Size(300, 300);
+            map.Zoom = 17;
+            map.Sensor = false;
+            map.Format = GMapsImageFormats.JPG;
+
+            var imgTagSrc = map.ToUri();
+            System.Diagnostics.Debug.WriteLine("the URL is : " + imgTagSrc.ToString());
+            return imgTagSrc.ToString();
+        }
+
+        protected void SendInvitesToSchools()
         {
 
             int countSchools = 0;
             List<School> allSchools = db.GetAllSchools();
-            int companyArea = companyID;
+            //int companyArea = Convert.ToInt32(companyID);
+            int companyArea = 1;
 
             EmailTemplate mail = new EmailTemplate(EmailTemplate.PREDEFINED_TEMPLATES[EmailTemplate.Type.SchoolInvite]);
 
@@ -89,7 +114,8 @@ namespace gui.Gui.Workshop
                 {
                     string schoolEmail = currentSchool.School_Contact_Email;
                     string schoolContactName = currentSchool.School_Contact_Name;
-                    mail.Send(schoolEmail, schoolContactName, "http://MMT.co.il/schoolAssign.aspx?area=" + companyArea);
+                    string schoolAddress = currentSchool.School_Address + " " + currentSchool.School_City;
+                    mail.Send(schoolEmail, schoolContactName, "http://MMT.co.il/schoolAssign.aspx?area=" + companyArea, getStaticMap(schoolAddress));
                     countSchools++;
                 }
             }
@@ -124,16 +150,14 @@ namespace gui.Gui.Workshop
 
         }
 
-
-
-        //private void ClearWorkshopDetails()
-        //{
-        //    possibleStudentsNum.Text = "";
-        //    hour.Text = "";
-        //    minutes.Text = "";
-        //    comments.Text = "";
-        //    calendar.SelectedDate = DateTime.Now;
-        //}
+        private void ClearWorkshopDetails()
+        {
+            possibleStudentsNum.Text = "";
+            hour.Text = "";
+            minutes.Text = "";
+            comments.Text = "";
+            calendar.SelectedDate = DateTime.Now;
+        }
 
 
         protected void Page_Load(object sender, EventArgs e)
