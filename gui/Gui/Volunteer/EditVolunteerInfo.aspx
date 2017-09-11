@@ -1,48 +1,40 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="NewVolunteerForm.aspx.cs" Inherits="gui.Default" %>
-
-<%@ Register Src="../Documents/nav.ascx" TagName="nav" TagPrefix="uc1" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="EditVolunteerInfo.aspx.cs" Inherits="gui.Gui.Volunteer.EditVolunteerInfo" %>
 
 <!DOCTYPE html>
 
 <html>
 <head runat="server">
     <title></title>
-    <link href="../../css/bootstrap.css" rel="stylesheet" />
-    <link href="../../css/bootstrap-rtl.min.css" rel="stylesheet" />
-    <script src="../../js/jquery-3.0.0.min.js"></script>
-    <script src="../../js/bootstrap.min.js"></script>
-    <style type="text/css">
-        
-        .form-control {
-            width: 70%;
-        }
-    </style>
 </head>
 <body>
     <form id="form1" runat="server">
-
-        <div class="container">
+         <div class="container">
             <div class="row">
                 <div class="col-sm-6">
 
                     <div class="page-header">
-                        <h3>הצטרפות להתנדבות בסדנאות 
-							<br />
-                            <small>נעדכן אותך בסדנאות ובאירועי הכשרת מתנדבות.</small>
+                        <h3>פרטי מתנדבת 
                         </h3>
-                        <p>
-                            מי אנחנו? מהממ"ט (מהממות בהנדסה, מדעים, מתמטיקה וטכנולוגיה) הוא פרויקט התנדבותי שמטרתו לעודד בנות לבחור מגמה מדעית טכנולוגית בתיכון.
-                        <br />
-                            מה אנחנו עושות? המתנדבות שלנו מעבירות סדנה בת 3 שעות לבנות כיתה ט' בבתי ספר ברחבי הארץ.
-                    בסדנה הבנות לומדות לפתח את אפליקציית האנדרואיד הראשונה שלהן!
-                    לא דרוש ידע קודם בפיתוח אפליקציות, אנחנו נלמד אתכן הכל בהכשרה.
-                    לאחר ההכשרה את מוזמנת להירשם להעברת סדנה במועד ובמקום שמתאים לך.
-                    אחת לחודש - חודשיים אנחנו מקיימות ערב הכשרה. את מוזמנת להירשם מטה ונודיע לך על ערב ההכשרה הבא שלנו.
-                    הצטרפי אלינו בהובלת שינוי משמעותי בכמות הבנות הנרשמות למגמות טכנולוגיות!
-                        </p>
                     </div>
                     <br />
-
+                     <!-- ID-->
+                    <div>
+                        <label class="control-label" for="email">מספר מזהה:</label>
+                        <asp:TextBox class="form-control" runat="server" ID="id" type="number" Enabled="false" />
+                    </div>
+                    <br />
+                     <!-- Status-->
+                    <div>
+                        <label class="control-label" for="email">סטטוס הכשרה:</label>
+                        <asp:TextBox class="form-control" runat="server" ID="status" />
+                    </div>
+                    <br />
+                      <!-- doneWorkshops-->
+                    <div>
+                        <label class="control-label" for="email">מספר סדנאות שביצעה:</label>
+                        <asp:TextBox class="form-control" runat="server" ID="doneWorkshops" type="number" Enabled="false" />
+                    </div>
+                    <br />
                     <!-- Hebrew First & Last Name-->
                     <div>
                         <label class="control-label">שם בעברית:</label>
@@ -53,7 +45,7 @@
                             pattern="[\u0590-\u05FF''-'\s]{1,20}"
                             oninvalid="setCustomValidity('שם פרטי לא תקין, אנא נסי שם בעיברית')"
                             onchange="try{setCustomValidity('')}catch(e){}"
-                            required="required" placeholder="שם פרטי"
+                            placeholder="שם פרטי"
                             runat="server"></asp:TextBox>
                         <br />
 
@@ -62,7 +54,7 @@
                             pattern="[\u0590-\u05FF''-'\s]{1,20}"
                             oninvalid="setCustomValidity('שם משפחה לא תקין, אנא נסי שם בעיברית ')"
                             onchange="try{setCustomValidity('')}catch(e){}"
-                            required="required" placeholder="שם משפחה"
+                            placeholder="שם משפחה"
                             runat="server"></asp:TextBox>
                     </div>
                     <br />
@@ -74,7 +66,7 @@
                             pattern="[/^[a-z ,.'-]+$/i]{1,20}"
                             oninvalid="setCustomValidity('שם באנגלית בבקשה ')"
                             onchange="try{setCustomValidity('')}catch(e){}"
-                            required="required" placeholder="first name"
+                             placeholder="first name"
                             runat="server"></asp:TextBox>
                         <br />
                         <asp:TextBox ID="Lastnameeng" class="form-control"
@@ -82,14 +74,14 @@
                             pattern="[/^[a-z ,.'-]+$/i]{1,20}"
                             oninvalid="setCustomValidity('שם באנגלית בבקשה ')"
                             onchange="try{setCustomValidity('')}catch(e){}"
-                            required="required" placeholder="last name"
+                            placeholder="last name"
                             runat="server"></asp:TextBox>
                     </div>
                     <br />
                     <!-- Email-->
                     <div>
                         <label class="control-label" for="email">אימייל:</label>
-                        <asp:TextBox class="form-control" runat="server" ID="Email" placeholder="name@email.com" type="email" required="required" />
+                        <asp:TextBox class="form-control" runat="server" ID="Email" placeholder="name@email.com" type="email"   />
                     </div>
                     <br />
                     <!--Phone-->
@@ -100,7 +92,6 @@
                         <asp:TextBox class="form-control" ID="Phone"
                             type="tel"
                             pattern="[0-9]{3}-[0-9]{7}"
-                            required="required"
                             oninvalid="setCustomValidity('05X-XXXXXXX  הכנסי את הטלפון לפי הפורמט')"
                             onchange="try{setCustomValidity('')}catch(e){}"
                             placeholder="05X-XXXXXXX "
@@ -111,7 +102,7 @@
                     <div>
                         <label class="control-label" for="DropDownListOccupation">עיסוק: </label>
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="DropDownListOccupation" ErrorMessage="יש לבחור" InitialValue="בחרי" Font-Bold="True" ForeColor="Red"></asp:RequiredFieldValidator>
-                        <asp:DropDownList class="form-control" ID="DropDownListOccupation" required="required" runat="server">
+                        <asp:DropDownList class="form-control" ID="DropDownListOccupation"   runat="server">
                             <asp:ListItem Value="בחרי"></asp:ListItem>
                             <asp:ListItem Value="סטודנטית"></asp:ListItem>
                             <asp:ListItem Value="אקדמאית"></asp:ListItem>
@@ -128,14 +119,14 @@
                             pattern="([A-z\u0590-\u05FF0-9\s]){2,}"
                             oninvalid="setCustomValidity('קלט לא תקין')"
                             onchange="try{setCustomValidity('')}catch(e){}"
-                            required="required" runat="server"></asp:TextBox>
+                              runat="server"></asp:TextBox>
                     </div>
                     <br />
                     <!--Reference-->
                     <div>
                         <label class="control-label" for="DropDownListReference">איך הגעת אלינו: </label>
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="DropDownListReference" ErrorMessage="יש לבחור" InitialValue="בחרי" Font-Bold="True" ForeColor="Red"></asp:RequiredFieldValidator>
-                        <asp:DropDownList class="form-control" ID="DropDownListReference" runat="server" required="required">
+                        <asp:DropDownList class="form-control" ID="DropDownListReference" runat="server"  >
                             <asp:ListItem Value="בחרי"></asp:ListItem>
                             <asp:ListItem Value="פייסבוק"></asp:ListItem>
                             <asp:ListItem Value="מכרים"></asp:ListItem>
@@ -162,7 +153,7 @@
                         <label class="control-label" for="CheckBoxListAreas">אזור פעילות מועדף: </label>
                         <!--AreaErrorMsg-->
                         <asp:Label ID="AreaErrorMsg" runat="server" Font-Bold="True" ForeColor="Red"></asp:Label>
-                        <asp:CheckBoxList ID="CheckBoxListAreas" runat="server" required="required"></asp:CheckBoxList>
+                        <asp:CheckBoxList ID="CheckBoxListAreas" runat="server"  ></asp:CheckBoxList>
                     </div>
                     <br />
 
@@ -170,7 +161,7 @@
                     <div>
                         <label class="control-label" for="DropDownListTraining">אזור מועדף להכשרה:</label>
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="DropDownListTraining" ErrorMessage="יש לבחור" InitialValue="בחרי" Font-Bold="True" ForeColor="Red"></asp:RequiredFieldValidator>
-                        <asp:DropDownList class="form-control" ID="DropDownListTraining" runat="server" required="required">
+                        <asp:DropDownList class="form-control" ID="DropDownListTraining" runat="server"  >
                             <asp:ListItem Value="0" Text="בחרי"></asp:ListItem>
                         </asp:DropDownList>
 
@@ -190,7 +181,3 @@
     </form>
 </body>
 </html>
-
-
-
-
