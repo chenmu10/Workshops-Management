@@ -10,7 +10,6 @@ namespace gui.Gui
 {
     public partial class VolunteerView : System.Web.UI.Page
     {
-
         List<Volunteer> Volunteers = new List<Volunteer>();
         Dictionary<int, string> Areas = new Dictionary<int, string>();
         Dictionary<int, string> ListStatus = new Dictionary<int, string>();
@@ -32,28 +31,18 @@ namespace gui.Gui
 
         private void InsertToVolunterTable(List<Volunteer> Volunteers)
         {
-            Volunteers = db.GetAllVolunteers();
             foreach (Volunteer volunteer in Volunteers)
             {
-                TableCell id = new TableCell();
-                id.Text = volunteer.Volunteer_ID.ToString();
-
                 TableCell Name = new TableCell();
                 Name.Text = volunteer.Volunteer_First_Name + "  " + volunteer.Volunteer_Last_Name;
-
                 TableCell Status = new TableCell();
                 Status.Text = ListStatus[volunteer.Volunteer_Practice];
-             
                 TableCell Occupation = new TableCell();
                 Occupation.Text = volunteer.Volunteer_Occupation;
-
                 TableCell Email = new TableCell();
                 Email.Text = volunteer.Volunteer_Email;
-
                 TableCell Phone = new TableCell();
                 Phone.Text = volunteer.Volunteer_phone;
-
-                // Activity Area
                 string activityAreas = string.Empty;
                 DropDownList DropListAreas = new DropDownList();
                 foreach (int VolunterrArea in volunteer.Volunteer_Area_Activity)
@@ -69,12 +58,10 @@ namespace gui.Gui
                 TableCell traning = new TableCell();
                 traning.Text = Areas[volunteer.Volunteer_prefer_traning_area];
 
+                // Area.Text = Areas[volunteer.Volunteer_Area_Activity];
                 TableCell ActiviesNumber = new TableCell();
-               
                 ActiviesNumber.Text = volunteer.Volunteer_Number_Of_Activities.ToString();
-
                 TableCell Edit = new TableCell();
-              
                 Button Editbtn = new Button();
                 Editbtn.ID = volunteer.Volunteer_ID.ToString();
                 Editbtn.Click += new EventHandler(Edit_Click);
@@ -84,8 +71,7 @@ namespace gui.Gui
                 Edit.Controls.Add(Editbtn);
 
                 TableRow TableRow = new TableRow();
-             
-                TableRow.Cells.Add(id);
+                TableRow.HorizontalAlign = HorizontalAlign.Right;
                 TableRow.Cells.Add(Name);
                 TableRow.Cells.Add(Status);
                 TableRow.Cells.Add(Occupation);
@@ -99,12 +85,11 @@ namespace gui.Gui
                 volunteerTable.Rows.Add(TableRow);
             }
         }
-
         public void FillFilterDropdowns()
         {
             // practice status 
             DropDownListStatus.Items.Add("ללא הכשרה");
-            DropDownListStatus.Items.Add("רגילה");
+            DropDownListStatus.Items.Add("עברה הכשרה");
             DropDownListStatus.Items.Add("ותיקה");
 
             // training and activity area
@@ -116,14 +101,10 @@ namespace gui.Gui
             }
 
         }
-
-
-
         protected void Page_Load(object sender, EventArgs e)
         {
 
         }
-
 
         protected void Edit_Click(object sender, EventArgs e)
         {
