@@ -4,53 +4,25 @@
 
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 <head runat="server">
     <title></title>
-    <link href="../../css/bootstrap.css" rel="stylesheet" />
-    <script src="../../js/jquery-3.0.0.min.js"></script>
-    <script src="../../js/bootstrap.min.js"></script>
-
-    <link href="../../css/bootstrap-rtl.min.css" rel="stylesheet" />
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-    <script src="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.9/jquery-ui.js" type="text/javascript"></script>
-    <link rel="stylesheet" href="//cdn.rawgit.com/morteza/bootstrap-rtl/v3.3.4/dist/css/bootstrap-rtl.min.css" />
     <link href="../../css/StatusBar.css" rel="stylesheet" />
-    <link href='https://fonts.googleapis.com/css?family=PT+Sans+Caption:400,700' rel='stylesheet' type='text/css' />
     <link href="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.9/themes/start/jquery-ui.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-
-
 
     <form id="form1" runat="server">
 
         <uc1:nav ID="nav1" runat="server" />
 
-        <div class="checkout-wrap">
-
-            <ul class="checkout-bar">
-
-                <li runat="server" id="bar1">פניית בית ספר</li>
-                <li runat="server" id="bar2">בדיקת תאריכים</li>
-                <li runat="server" id="bar3">שיבוץ מתנדבות</li>
-                <li runat="server" id="bar4">שיבוץ הושלם</li>
-                <li runat="server" id="bar5">להכנה</li>
-                <li runat="server" id="bar6">לביצוע</li>
-                <li runat="server" id="bar7">למישוב</li>
-                <li runat="server" id="bar8">סגור</li>
-
-
-            </ul>
-        </div>
-        <br />
         <br />
 
         <div class="container">
             <div class="page-header">
                 <h3>צפייה בפרטי סדנא בבית ספר</h3>
                 <p>
-                      <label class="control-label" for="WorkShopID">מס' מזהה: </label>
+                    <label class="control-label" for="WorkShopID">מס' מזהה: </label>
                     <asp:Label runat="server" ID="WorkShopID"></asp:Label>
                     <br />
 
@@ -64,10 +36,26 @@
                 </p>
             </div>
 
+            <div class="checkout-wrap">
+
+                <ul class="checkout-bar">
+
+                    <li runat="server" id="bar1">פניית בית ספר</li>
+                    <li runat="server" id="bar2">בדיקת תאריכים</li>
+                    <li runat="server" id="bar3">שיבוץ מתנדבות</li>
+                    <li runat="server" id="bar4">שיבוץ הושלם</li>
+                    <li runat="server" id="bar5">להכנה</li>
+                    <li runat="server" id="bar6">לביצוע</li>
+                    <li runat="server" id="bar7">למישוב</li>
+                    <li runat="server" id="bar8">סגור</li>
+
+
+                </ul>
+            </div>
+            <br />  <br />
+
             <div class="row">
                 <div class="col-md-3">
-
-                  
 
                     <br />
                     <label class="control-label" for="DropDownListStatus">שינוי סטטוס: </label>
@@ -107,15 +95,17 @@
                     <div class="panel with-nav-tabs panel-default">
                         <div class="panel-heading">
                             <ul class="nav nav-tabs">
-                                <li class="active"><a href="#tab1default" data-toggle="tab">פרטי פניית בי"ס</a></li>
-                                <li><a href="#tab2default" data-toggle="tab">פרטי שיבוץ מתנדבות</a></li>
-                                <li><a href="#tab3default" data-toggle="tab">פרטי הכנה</a></li>
+                                <li class="active"><a href="#school" data-toggle="tab">פרטי פניית בי"ס</a></li>
+                                <li><a href="#volunteers" data-toggle="tab">פרטי שיבוץ מתנדבות</a></li>
+                                <li><a href="#prepare" data-toggle="tab">פרטי הכנה</a></li>
 
                             </ul>
                         </div>
                         <div class="panel-body">
                             <div class="tab-content">
-                                <div class="tab-pane fade in active" id="tab1default">
+
+                                 <%--  TAB 1 - SCHOOL REQUEST--%>
+                                <div class="tab-pane fade in active" id="school">
                                     <div class="col-md-6">
                                         <asp:LinkButton runat="server" ID="LinkSchoolInfo" Text="פרטי בית הספר"></asp:LinkButton>
                                         <br />
@@ -196,11 +186,14 @@
                                                 <asp:ListItem Value="3"></asp:ListItem>
                                             </asp:DropDownList>
                                         </fieldset>
-                                    </div>
-
-
+                                   
+                                    <asp:Button runat="server" ID="volAssignUpdate" Text="עדכני לשיבוץ מתנדבות" class="btn btn-success" />
+                                     </div><br />
                                 </div>
-                                <div class="tab-pane fade" id="tab2default">
+
+
+                              <%--  TAB 2 - VOLUNTEER ASSIGN--%>
+                                <div class="tab-pane fade" id="volunteers">
                                     <div class="col-md-6">
                                         <label class="control-label" for="volunteercount">מס' מתנדבות נוכחי: </label>
                                         <asp:Label runat="server" ID="volunteercount"></asp:Label>
@@ -228,10 +221,13 @@
                                             <br />
                                         </fieldset>
                                     </div>
-                                    <button id="prepareUpdate" class="btn btn-success text-center">עדכני להכנה</button>
+                                    <asp:Button runat="server" ID="prepareUpdate" Text="עדכני להכנה" class="btn btn-success" />
+
+
                                 </div>
 
-                                <div class="tab-pane fade" id="tab3default">
+                                 <%--  TAB 3 - PREPARE--%>
+                                <div class="tab-pane fade" id="prepare">
                                     <div class="col-md-6">
 
                                         <asp:Button runat="server" ID="prepareForm" OnClick="prepareForm_Click" Text="טופס הכנה" />
@@ -348,8 +344,8 @@
                                         <br />
                                         <br />
                                     </div>
-                                
-                                    <asp:Button runat="server" CssClass="btn btn-success center-block text-center" Text="עדכני לביצוע" />
+
+                                    <asp:Button runat="server" class="btn btn-success" Text="עדכני לביצוע" />
 
                                 </div>
 

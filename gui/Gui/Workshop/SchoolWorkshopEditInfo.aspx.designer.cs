@@ -31,6 +31,33 @@ namespace gui.Gui.Workshop {
         protected global::gui.Gui.Documents.nav nav1;
         
         /// <summary>
+        /// WorkShopID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label WorkShopID;
+        
+        /// <summary>
+        /// WorkShopStatus control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label WorkShopStatus;
+        
+        /// <summary>
+        /// WorkShopDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label WorkShopDate;
+        
+        /// <summary>
         /// bar1 control.
         /// </summary>
         /// <remarks>
@@ -101,33 +128,6 @@ namespace gui.Gui.Workshop {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl bar8;
-        
-        /// <summary>
-        /// WorkShopID control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label WorkShopID;
-        
-        /// <summary>
-        /// WorkShopStatus control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label WorkShopStatus;
-        
-        /// <summary>
-        /// WorkShopDate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label WorkShopDate;
         
         /// <summary>
         /// selectpicker control.
@@ -283,6 +283,15 @@ namespace gui.Gui.Workshop {
         protected global::System.Web.UI.WebControls.DropDownList dateselector;
         
         /// <summary>
+        /// volAssignUpdate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button volAssignUpdate;
+        
+        /// <summary>
         /// volunteercount control.
         /// </summary>
         /// <remarks>
@@ -353,6 +362,15 @@ namespace gui.Gui.Workshop {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton VolunteerFeedback3;
+        
+        /// <summary>
+        /// prepareUpdate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button prepareUpdate;
         
         /// <summary>
         /// prepareForm control.
