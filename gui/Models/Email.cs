@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Google.Maps;
+using Google.Maps.StaticMaps;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -18,10 +20,11 @@ namespace gui.Models
               new MessageStructure()
               {
               Subject = "סדנא חדשה באזורכם-פרויקט מהממט",
-              Body = "שלום, {0}" +
-                  "\nישנה סדנא חדשה באזורכם. \n" +
-                  "מעבר לעמוד השיבוץ: {1}"
-              } 
+              Body = "<h2> שלום, {0} </h2>" +
+                  "\nישנה סדנא חדשה באזורכם. <br><br> \n" +
+                  "מעבר לעמוד השיבוץ: {1}" +
+                  "<img src='{2}'>"
+              }
             },
             { Type.VolunteerInvite,
                new MessageStructure()
@@ -44,8 +47,8 @@ namespace gui.Models
             }
         };
 
-        private string fromAddress = "";
-        private string fromPassword = "";
+        private string fromAddress = "chenitunes@gmail.com";
+        private string fromPassword = "mmtproject";
         private string signature = "בברכה,\nפרויקט מהממט, המרכז לחינוך סייבר";
         private MessageStructure emailInfo;
         private SmtpClient smtp;
@@ -76,6 +79,8 @@ namespace gui.Models
             mail.To.Add(new MailAddress(toAddress));
             mail.Subject = emailInfo.Subject;
             mail.Body = sendBody + "\n\n\n" + signature;
+            mail.IsBodyHtml = true;
+           
             smtp.Send(mail);
         }
 
