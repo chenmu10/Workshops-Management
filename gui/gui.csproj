@@ -24,6 +24,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -90,7 +91,6 @@
     <Content Include="Gui\Documents\SuccessForm.aspx" />
     <Content Include="Gui\Volunteer\VolunteerAssignWorkshops.aspx" />
     <Content Include="Gui\Volunteer\VolunteerView.aspx" />
-    <Content Include="Gui\Volunteer\VolunteerEditInformation.aspx" />
     <Content Include="Gui\Workshop\SchoolWorkshopEditInfo.aspx" />
     <Content Include="Gui\Workshop\WorkShopPrepareForm.aspx" />
     <Content Include="Gui\Workshop\WorkshopsView.aspx" />
@@ -242,13 +242,6 @@
     </Compile>
     <Compile Include="Gui\Volunteer\VolunteerView.aspx.designer.cs">
       <DependentUpon>VolunteerView.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Gui\Volunteer\VolunteerEditInformation.aspx.cs">
-      <DependentUpon>VolunteerEditInformation.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Gui\Volunteer\VolunteerEditInformation.aspx.designer.cs">
-      <DependentUpon>VolunteerEditInformation.aspx</DependentUpon>
     </Compile>
     <Compile Include="Gui\Workshop\newCompanyWorkshop.aspx.cs">
       <DependentUpon>newCompanyWorkshop.aspx</DependentUpon>

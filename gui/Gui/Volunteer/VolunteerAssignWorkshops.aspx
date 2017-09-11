@@ -4,7 +4,10 @@
 <html>
 <head runat="server">
     <title>שיבוץ מתנדבות </title>
-   
+    <link href="../../css/bootstrap.css" rel="stylesheet" />
+    <link href="../../css/bootstrap-rtl.min.css" rel="stylesheet" />
+    <script src="../../js/jquery-3.0.0.min.js"></script>
+    <script src="../../js/bootstrap.min.js"></script>
 </head>
 
 <body>

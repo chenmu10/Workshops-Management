@@ -1,20 +1,35 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="NewVolunteerForm.aspx.cs" Inherits="gui.Default"  %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="NewVolunteerForm.aspx.cs" Inherits="gui.Default" %>
+
+<%@ Register Src="../Documents/nav.ascx" TagName="nav" TagPrefix="uc1" %>
 
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 <head runat="server">
     <title></title>
+    <link href="../../css/bootstrap.css" rel="stylesheet" />
+    <link href="../../css/bootstrap-rtl.min.css" rel="stylesheet" />
+    <script src="../../js/jquery-3.0.0.min.js"></script>
+    <script src="../../js/bootstrap.min.js"></script>
+    <style type="text/css">
+        
+        .form-control {
+            width: 70%;
+        }
+    </style>
 </head>
 <body>
     <form id="form1" runat="server">
+
         <div class="container">
             <div class="row">
                 <div class="col-sm-6">
+
                     <div class="page-header">
-                        <h3>הרשמה להתנדבות בפרוייקט מהממ"ט 
+                        <h3>הצטרפות להתנדבות בסדנאות 
 							<br />
-                            <small>נעדכן אותך בסדנאות ובאירועי הכשרת מתנדבות.</small></h3>
+                            <small>נעדכן אותך בסדנאות ובאירועי הכשרת מתנדבות.</small>
+                        </h3>
                         <p>
                             מי אנחנו? מהממ"ט (מהממות בהנדסה, מדעים, מתמטיקה וטכנולוגיה) הוא פרויקט התנדבותי שמטרתו לעודד בנות לבחור מגמה מדעית טכנולוגית בתיכון.
                         <br />
@@ -79,7 +94,9 @@
                     <br />
                     <!--Phone-->
                     <div>
-                        <label class="control-label" for="phone">טלפון: </label>
+                        <label class="control-label" for="phone">
+                            טלפון: 
+                        </label>
                         <asp:TextBox class="form-control" ID="Phone"
                             type="tel"
                             pattern="[0-9]{3}-[0-9]{7}"
@@ -154,22 +171,26 @@
                         <label class="control-label" for="DropDownListTraining">אזור מועדף להכשרה:</label>
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="DropDownListTraining" ErrorMessage="יש לבחור" InitialValue="בחרי" Font-Bold="True" ForeColor="Red"></asp:RequiredFieldValidator>
                         <asp:DropDownList class="form-control" ID="DropDownListTraining" runat="server" required="required">
-                            <asp:ListItem Value="בחרי"></asp:ListItem>
+                            <asp:ListItem Value="0" Text="בחרי"></asp:ListItem>
                         </asp:DropDownList>
 
                     </div>
                     <br />
+
+
+                    <asp:Button ID="send" class="btn btn-success" runat="server" Text="שליחה" />
+
+
                 </div>
-            </div>
 
-
-            <br />
-
-            <div class="col-md-4 text-center">
-                <asp:Button ID="send" class="btn btn-success text-center" runat="server" Text="שליחה" />
             </div>
 
         </div>
+
     </form>
 </body>
 </html>
+
+
+
+
