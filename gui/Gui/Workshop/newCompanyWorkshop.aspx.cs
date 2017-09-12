@@ -13,11 +13,11 @@ namespace gui.Gui.Workshop
 {
     public partial class newCompanyWorkshop : System.Web.UI.Page
     {
-        // TODO add area
         // TODO fix db.insert
 
         List<Company> Companies = new List<Company>();
         DB db;
+        int companyArea;
 
         override protected void OnInit(EventArgs e)
         {
@@ -47,7 +47,7 @@ namespace gui.Gui.Workshop
             companyID.Text = selectedComp.Company_ID.ToString();
             address.Text = selectedComp.Company_Address;
             area.Text = selectedComp.Company_Area_Activity.ToString();
-
+            companyArea = selectedComp.Company_Area_Activity;
 
         }
 
@@ -103,8 +103,6 @@ namespace gui.Gui.Workshop
 
             int countSchools = 0;
             List<School> allSchools = db.GetAllSchools();
-            //int companyArea = Convert.ToInt32(companyID);
-            int companyArea = 1;
 
             EmailTemplate mail = new EmailTemplate(EmailTemplate.PREDEFINED_TEMPLATES[EmailTemplate.Type.SchoolInvite]);
 

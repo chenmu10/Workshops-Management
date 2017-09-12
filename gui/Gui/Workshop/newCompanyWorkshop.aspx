@@ -6,26 +6,14 @@
 <html>
 <head runat="server">
     <title></title>
-    <style>
-        .td {
-            padding: 5px;
-        }
-
-        #td {
-            padding: 5px;
-        }
-
-        td {
-            padding: 5px;
-        }
-    </style>
+    
 </head>
 <body>
     <form id="form1" runat="server">
 
         <uc1:nav ID="nav1" runat="server" />
         <br />
-        <hr />
+     
         <div class="container">
 
             <h2>הוספת סדנאות בחברה</h2>
