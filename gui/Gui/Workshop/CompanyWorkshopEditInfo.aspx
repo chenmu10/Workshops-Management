@@ -50,7 +50,7 @@
                 </p>
             </div>
 
-              <div class="checkout-wrap">
+            <div class="checkout-wrap">
 
                 <ul class="checkout-bar">
 
@@ -105,7 +105,9 @@
                                             <asp:TextBox ID="address" runat="server" Enabled="false"></asp:TextBox>
                                         </div>
                                         <br />
-                                         <asp:LinkButton runat="server" id="goToCompany" class="btn btn-link">מעבר לפרטי חברה</asp:LinkButton>
+                                        <asp:LinkButton runat="server" ID="goToCompany" class="btn btn-link">מעבר לפרטי חברה</asp:LinkButton>       <br /> 
+                                         <asp:LinkButton runat="server" ID="goToSchoolAssign" class="btn btn-link">מעבר לטופס שיבוץ בית ספר</asp:LinkButton>
+                         
                                     </fieldset>
                                 </div>
 
@@ -128,7 +130,7 @@
                                         <br />
                                         <label class="control-label" for="companyComments">הערות: </label>
                                         <div class="form-inline">
-                                            <asp:TextBox ID="companyComments" Enabled="false" 
+                                            <asp:TextBox ID="companyComments" Enabled="false"
                                                 runat="server" Width="220px"
                                                 class="form-control"
                                                 TextMode="MultiLine"
@@ -137,7 +139,7 @@
                                         <br />
                                         <label class="control-label" for="dateTime">תאריך ושעה: </label>
                                         <div class="form-inline">
-                                            <asp:TextBox ID="dateTime" Enabled="false" 
+                                            <asp:TextBox ID="dateTime" Enabled="false"
                                                 runat="server" Width="220px"
                                                 class="form-control"></asp:TextBox>
                                         </div>
@@ -163,6 +165,7 @@
 
                             <%--TAB 2-School Details--%>
                             <div class="tab-pane fade" id="school">
+                               
                                 <label class="control-label" for="schoolName">שם בי"ס :</label>
                                 <div class="form-inline">
                                     <asp:TextBox ID="schoolname" Enabled="false"
@@ -170,10 +173,10 @@
                                         class="form-control"
                                         oninvalid="setCustomValidity('יש להזין שם בית ספר')"
                                         onchange="try{setCustomValidity('')}catch(e){}"
-                                        runat="server" Width="220px">
+                                        runat="server">
                                     </asp:TextBox>
-                                  
-                                    <asp:LinkButton runat="server" id="goToSchool" class="btn btn-link">מעבר לפרטי בי"ס</asp:LinkButton>
+
+                                    <asp:LinkButton runat="server" ID="goToSchool" class="btn btn-link">מעבר לפרטי בי"ס</asp:LinkButton>
                                 </div>
 
                                 <br />
@@ -193,13 +196,13 @@
                                 <label class="control-label" for="schoolComments">הערות: </label>
                                 <div class="form-inline">
                                     <asp:TextBox ID="schoolComments" Enabled="false"
-                                        runat="server" Width="220px"
+                                        runat="server"
                                         class="form-control"
                                         TextMode="MultiLine"
                                         Rows="5" Style="resize: none;"></asp:TextBox>
                                 </div>
                                 <asp:Button runat="server" ID="AssignVolUpdate" Text=" עדכני לשיבוץ מתנדבות" class="btn btn-success" />
-                              
+
 
                             </div>
 
@@ -228,8 +231,8 @@
                                         <br />
                                     </fieldset>
                                 </div>
-                                  <asp:Button runat="server" class="btn btn-success" Text="עדכני לביצוע" />
-                                  <asp:Button runat="server" ID="backToSchoolAssign"  Text="חזרי לסטטוס שיבוץ בית ספר" class="btn btn-danger" />
+                                <asp:Button runat="server" class="btn btn-success" Text="עדכני לביצוע" />
+                                <asp:Button runat="server" ID="backToSchoolAssign" Text="חזרי לסטטוס שיבוץ בית ספר" class="btn btn-danger" />
 
 
                             </div>
@@ -237,7 +240,8 @@
                             <%--  TAB 4 - execute--%>
                             <div class="tab-pane fade" id="execute">
                                 <asp:Label runat="server" ID="Label1" Text="תאריך הסדנא לא הגיע/תאריך הסדנא עבר."></asp:Label>
-                                <br /> <br />
+                                <br />
+                                <br />
 
                                 <asp:Button runat="server" ID="updateToFeedback" Text="עדכני למישוב" class="btn btn-success" />
 

@@ -79,7 +79,7 @@ namespace gui.Gui.Workshop
                 Editbtn.Text = "צפייה";
                 Editbtn.Attributes.Add("WorkshopID", t.WorkShop_ID.ToString());
                 Editbtn.Attributes.Add("IsCompany", t.Is_company.ToString());
-                Editbtn.CssClass = "btn btn-info";
+                Editbtn.CssClass = "btn btn-default";
 
                 Edit.Controls.Add(Editbtn);
                 row.Cells.Add(Edit);

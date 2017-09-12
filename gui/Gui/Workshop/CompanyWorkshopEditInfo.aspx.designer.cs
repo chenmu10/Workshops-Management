@@ -175,6 +175,15 @@ namespace gui.Gui.Workshop {
         protected global::System.Web.UI.WebControls.LinkButton goToCompany;
         
         /// <summary>
+        /// goToSchoolAssign control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton goToSchoolAssign;
+        
+        /// <summary>
         /// workshopDetails control.
         /// </summary>
         /// <remarks>
