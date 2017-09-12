@@ -257,18 +257,18 @@
                             </div>
 
                         </div>
-                        <!--tab-content-->
+
                     </div>
-                    <!--panel-body-->
+ 
 
                 </div>
-                <!--panel with-nav-tabs panel-default-->
+        
 
             </div>
-            <!--row-->
+            <!--/row-->
 
         </div>
-        <!--container-->
+        <!--/container-->
     </form>
 </body>
 </html>

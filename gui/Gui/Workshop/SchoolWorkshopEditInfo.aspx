@@ -369,7 +369,8 @@
                                      <label class="control-label" for="teacherName">מורה: </label>
                                     <asp:Label runat="server" ID="teacher"></asp:Label>
                                     <asp:LinkButton runat="server" ID="LinkButton4" Text="משוב"></asp:LinkButton>
-                                </fieldset>
+                                </fieldset><br />
+                                 <asp:Button runat="server" ID="Button1" Text="עדכני לסגירה" class="btn btn-success" />
                             </div>
 
                         </div>
