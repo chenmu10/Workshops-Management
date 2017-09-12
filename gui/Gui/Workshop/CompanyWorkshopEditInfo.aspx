@@ -30,30 +30,14 @@
 
                     <label class="control-label" for="WorkShopDate">מועד קיום: </label>
                     <asp:Label runat="server" ID="WorkShopDate"></asp:Label>
-
                     <br />
-                    <label class="control-label" for="DropDownListStatus">שינוי סטטוס: </label>
-                    <asp:DropDownList runat="server" ID="selectpicker">
-                        <asp:ListItem Value="1">לשיבוץ בית ספר</asp:ListItem>
-                        <asp:ListItem Value="2">בית ספר שובץ</asp:ListItem>
-                        <asp:ListItem Value="3">לשיבוץ מתנדבות</asp:ListItem>
-                        <asp:ListItem Value="4">מתנדבות שובצו</asp:ListItem>
-                        <asp:ListItem Value="5">לביצוע</asp:ListItem>
-                        <asp:ListItem Value="6">למישוב</asp:ListItem>
-                        <asp:ListItem Value="7">לסגור</asp:ListItem>
-                    </asp:DropDownList>
-                    <asp:Button runat="server" ID="updateStatus" Text="אישור שינוי" class="btn btn-link" />
 
-                    <br />
                     <button id="cancelWorkshop" class="btn btn-danger">ביטול סדנא</button>
-
                 </p>
             </div>
 
             <div class="checkout-wrap">
-
                 <ul class="checkout-bar">
-
                     <li runat="server" id="bar1">שיבוץ בית ספר</li>
                     <li runat="server" id="bar2">בי"ס שובץ</li>
                     <li runat="server" id="bar3">שיבוץ מתנדבות</li>
@@ -61,7 +45,6 @@
                     <li runat="server" id="bar6">ביצוע</li>
                     <li runat="server" id="bar7">מישוב</li>
                     <li runat="server" id="bar8">סגור</li>
-
                 </ul>
             </div>
 
@@ -105,9 +88,10 @@
                                             <asp:TextBox ID="address" runat="server" Enabled="false"></asp:TextBox>
                                         </div>
                                         <br />
-                                        <asp:LinkButton runat="server" ID="goToCompany" class="btn btn-link">מעבר לפרטי חברה</asp:LinkButton>       <br /> 
-                                         <asp:LinkButton runat="server" ID="goToSchoolAssign" class="btn btn-link">מעבר לטופס שיבוץ בית ספר</asp:LinkButton>
-                         
+                                        <asp:LinkButton runat="server" ID="goToCompany" class="btn btn-link">מעבר לפרטי חברה</asp:LinkButton>
+                                        <br />
+                                        <asp:LinkButton runat="server" ID="goToSchoolAssign" class="btn btn-link">מעבר לטופס שיבוץ בית ספר</asp:LinkButton>
+
                                     </fieldset>
                                 </div>
 
@@ -150,13 +134,13 @@
                                             <asp:TextBox ID="minutes"
                                                 type="number" min="0" max="55" step="5"
                                                 class="form-control"
-                                                placeholder="MM"
+                                                placeholder="MM" Enabled="false"
                                                 runat="server" CssClass="pull-right"></asp:TextBox>
                                             <!-- Hour -->
                                             <asp:Label runat="server" Style="float: right;">:</asp:Label>
                                             <asp:TextBox ID="hour"
                                                 type="number" min="0" max="23" runat="server" placeholder="HH"
-                                                class="form-control"
+                                                class="form-control" Enabled="false"
                                                 CssClass="pull-right"></asp:TextBox>
                                         </div>
                                     </fieldset>
@@ -165,7 +149,7 @@
 
                             <%--TAB 2-School Details--%>
                             <div class="tab-pane fade" id="school">
-                               
+
                                 <label class="control-label" for="schoolName">שם בי"ס :</label>
                                 <div class="form-inline">
                                     <asp:TextBox ID="schoolname" Enabled="false"
@@ -254,7 +238,6 @@
                             <div class="tab-pane fade" id="feedback">
 
                                 <fieldset>
-
                                     <label class="control-label" for="VolunteerName1">מתנדבת 1: </label>
                                     <asp:Label runat="server" ID="Label2"></asp:Label>
                                     <asp:LinkButton runat="server" ID="LinkButton1" Text="משוב"></asp:LinkButton>
@@ -267,6 +250,8 @@
                                     <asp:Label runat="server" ID="Label4"></asp:Label>
                                     <asp:LinkButton runat="server" ID="LinkButton3" Text="משוב"></asp:LinkButton>
                                     <br />
+
+                                    <asp:Button runat="server" ID="Button1" Text="עדכני לסגירה" class="btn btn-success" />
 
                                 </fieldset>
                             </div>
