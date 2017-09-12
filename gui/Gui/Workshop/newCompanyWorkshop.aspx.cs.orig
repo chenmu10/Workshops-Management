@@ -15,7 +15,6 @@ namespace gui.Gui.Workshop
     {
 
         // TODO fix db.insert - problem with dateTime type
-        // TODO area activity shows number instead of string when choosing company
 
         List<Company> Companies = new List<Company>();
         DB db;
@@ -50,7 +49,6 @@ namespace gui.Gui.Workshop
             address.Text = selectedComp.Company_Address;
             area.Text = selectedComp.Company_Area_Activity.ToString();
             companyArea = selectedComp.Company_Area_Activity; // needed for email function
-           
 
         }
 
