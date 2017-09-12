@@ -5,20 +5,8 @@
 
 <html>
 <head runat="server">
-    <title></title>
-    <style>
-        .td {
-            padding: 5px;
-        }
-
-        #td {
-            padding: 5px;
-        }
-
-        td {
-            padding: 5px;
-        }
-    </style>
+    <title>הוספת סדנאות בתעשייה</title>
+   
 </head>
 <body>
     <form id="form1" runat="server">

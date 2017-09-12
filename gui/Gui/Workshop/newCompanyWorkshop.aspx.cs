@@ -13,11 +13,12 @@ namespace gui.Gui.Workshop
 {
     public partial class newCompanyWorkshop : System.Web.UI.Page
     {
-        // TODO add area
-        // TODO fix db.insert
+
+        // TODO fix db.insert - problem with dateTime type
 
         List<Company> Companies = new List<Company>();
         DB db;
+        int companyArea;
 
         override protected void OnInit(EventArgs e)
         {
@@ -47,7 +48,7 @@ namespace gui.Gui.Workshop
             companyID.Text = selectedComp.Company_ID.ToString();
             address.Text = selectedComp.Company_Address;
             area.Text = selectedComp.Company_Area_Activity.ToString();
-
+            companyArea = selectedComp.Company_Area_Activity; // needed for email function
 
         }
 
@@ -59,10 +60,10 @@ namespace gui.Gui.Workshop
                 CompanyWorkshop newcw = new CompanyWorkshop();
                 newcw.CompanyWorkShopComments = comments.Text.ToString();
                 newcw.CompanyWorkShopDate = calendar.SelectedDate.ToString();
-                newcw.CompanyID = Convert.ToInt32(companyID.Text);
                 newcw.WorkShop_Number_Of_StudentPredicted = Convert.ToInt32(possibleStudentsNum.Text);
+                newcw.CompanyID = Convert.ToInt32(companyID.Text);
 
-
+                // insert not working - problem with dateTime type
                 if (db.InsertNewCompanyWorkShop(newcw))
                 {
                     Response.Write("<script>alert('הסדנא נוספה בהצלחה. ניתן להוסיף עוד סדנאות עבור החברה הנבחרת');</script>");
@@ -72,7 +73,7 @@ namespace gui.Gui.Workshop
                 }
                 else
                 {
-                    Response.Write("<script>alert('שגיאה ביצירת חברה');</script>");
+                    Response.Write("<script>alert('שגיאה ביצירת סדנא');</script>");
                 }
 
             }
@@ -103,8 +104,6 @@ namespace gui.Gui.Workshop
 
             int countSchools = 0;
             List<School> allSchools = db.GetAllSchools();
-            //int companyArea = Convert.ToInt32(companyID);
-            int companyArea = 1;
 
             EmailTemplate mail = new EmailTemplate(EmailTemplate.PREDEFINED_TEMPLATES[EmailTemplate.Type.SchoolInvite]);
 
