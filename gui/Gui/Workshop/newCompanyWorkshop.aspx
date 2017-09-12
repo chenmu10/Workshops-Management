@@ -6,6 +6,7 @@
 <html>
 <head runat="server">
     <title>הוספת סדנאות בתעשייה</title>
+    
    
 </head>
 <body>
@@ -13,7 +14,7 @@
 
         <uc1:nav ID="nav1" runat="server" />
         <br />
-        <hr />
+     
         <div class="container">
 
             <h2>הוספת סדנאות בחברה</h2>
