@@ -18,254 +18,265 @@
         <div class="container">
             <div class="page-header">
                 <h3>צפייה בפרטי סדנא בחברה</h3>
-                <hr />
-                <p>
-                    <label class="control-label" for="WorkShopID">מס' מזהה: </label>
-                    <asp:Label runat="server" ID="WorkShopID"></asp:Label>
-                    <br />
-
-                    <label class="control-label" for="WorkShopStatus">סטטוס נוכחי: </label>
-                    <asp:Label runat="server" ID="WorkShopStatus"></asp:Label>
-                    <br />
-
-                    <label class="control-label" for="WorkShopDate">מועד קיום: </label>
-                    <asp:Label runat="server" ID="WorkShopDate"></asp:Label>
-                    <br />
-
-                    <button id="cancelWorkshop" class="btn btn-danger">ביטול סדנא</button>
-                </p>
             </div>
 
-            <div class="checkout-wrap">
-                <ul class="checkout-bar">
-                    <li runat="server" id="bar1">שיבוץ בית ספר</li>
-                    <li runat="server" id="bar2">בי"ס שובץ</li>
-                    <li runat="server" id="bar3">שיבוץ מתנדבות</li>
-                    <li runat="server" id="bar4">מתנדבות שובצו</li>
-                    <li runat="server" id="bar6">ביצוע</li>
-                    <li runat="server" id="bar7">מישוב</li>
-                    <li runat="server" id="bar8">סגור</li>
-                </ul>
+
+            <label class="control-label" for="WorkShopID">מס' מזהה: </label>
+            <asp:Label runat="server" ID="WorkShopID"></asp:Label>
+            <br />
+
+            <label class="control-label" for="WorkShopStatus">סטטוס נוכחי: </label>
+            <asp:Label runat="server" ID="WorkShopStatus"></asp:Label>
+            <br />
+
+            <label class="control-label" for="WorkShopDate">מועד קיום: </label>
+            <asp:Label runat="server" ID="WorkShopDate"></asp:Label>
+            <br />
+            <div class="form-inline">
+                <label class="control-label" for="DropDownListStatus">שינוי סטטוס: </label>
+                <asp:DropDownList runat="server" ID="selectpicker" CssClass="form-control" Width="150px">
+                    <asp:ListItem Value="1">לשיבוץ בי"ס</asp:ListItem>
+                    <asp:ListItem Value="2">לשיבוץ מתנדבות</asp:ListItem>
+                    <asp:ListItem Value="3">לשיבוץ מתנדבות הושלם</asp:ListItem>
+                    <asp:ListItem Value="4">לביצוע</asp:ListItem>
+                    <asp:ListItem Value="5">למישוב</asp:ListItem>
+                    <asp:ListItem Value="6">לסגור</asp:ListItem>
+                </asp:DropDownList>
+                <asp:Button runat="server" ID="Button2" Text="אישור שינוי" class="btn btn-link" />
             </div>
-
-            <div class="row">
-                <div class="panel with-nav-tabs panel-default">
-                    <div class="panel-heading">
-                        <ul class="nav nav-tabs">
-                            <li class="active"><a href="#companyWorkshop" data-toggle="tab">פרטי סדנא בחברה</a></li>
-                            <li><a href="#school" data-toggle="tab">פרטי שיבוץ בי"ס</a></li>
-                            <li><a href="#volunteers" data-toggle="tab">פרטי שיבוץ מתנדבות</a></li>
-                            <li><a href="#execute" data-toggle="tab">פרטי ביצוע</a></li>
-                            <li><a href="#feedback" data-toggle="tab">משובים</a></li>
-                        </ul>
-                    </div>
-
-                    <div class="panel-body">
-                        <div class="tab-content">
-
-                            <%--TAB 1-Company Details--%>
-                            <div class="tab-pane fade in active" id="companyWorkshop">
-
-                                <!-- column 1-->
-                                <div class="col-md-6">
-                                    <fieldset id="companyDetails" runat="server">
-                                        <legend>פרטי חברה</legend>
-                                        <!-- Company Name -->
-                                        <label class="control-label" for="companyName">שם:</label>
-                                        <div class="form-inline">
-                                            <asp:TextBox ID="companyName" Enabled="false"
-                                                required="required"
-                                                class="form-control"
-                                                oninvalid="setCustomValidity('יש להזין שם חברה')"
-                                                onchange="try{setCustomValidity('')}catch(e){}"
-                                                runat="server">
-                                            </asp:TextBox>
-                                        </div>
-                                        <br />
-                                        <!-- Company Address -->
-                                        <label class="control-label" for="address">כתובת:</label>
-                                        <div>
-                                            <asp:TextBox ID="address" runat="server" Enabled="false"></asp:TextBox>
-                                        </div>
-                                        <br />
-                                        <asp:LinkButton runat="server" ID="goToCompany" class="btn btn-link">מעבר לפרטי חברה</asp:LinkButton>
-                                        <br />
-                                        <asp:LinkButton runat="server" ID="goToSchoolAssign" class="btn btn-link">מעבר לטופס שיבוץ בית ספר</asp:LinkButton>
-
-                                    </fieldset>
-                                </div>
-
-                                <!-- column 2-->
-                                <div class="col-md-6">
-                                    <fieldset id="workshopDetails" runat="server">
-                                        <legend>פרטי סדנא</legend>
-                                        <label class="control-label" for="possibleStudentsNum">מס' משתתפות אפשרי: </label>
-                                        <div class="form-inline">
-                                            <asp:TextBox ID="possibleStudentsNum" Enabled="false"
-                                                type="number"
-                                                class="form-control"
-                                                min="0"
-                                                required="required"
-                                                oninvalid="setCustomValidity('יש להזין מס' משתתפות אפשרי')"
-                                                onchange="try{setCustomValidity('')}catch(e){}"
-                                                runat="server" Width="220px"></asp:TextBox>
-                                        </div>
-
-                                        <br />
-                                        <label class="control-label" for="companyComments">הערות: </label>
-                                        <div class="form-inline">
-                                            <asp:TextBox ID="companyComments" Enabled="false"
-                                                runat="server" Width="220px"
-                                                class="form-control"
-                                                TextMode="MultiLine"
-                                                Rows="5" Style="resize: none;"></asp:TextBox>
-                                        </div>
-                                        <br />
-                                        <label class="control-label" for="dateTime">תאריך ושעה: </label>
-                                        <div class="form-inline">
-                                            <asp:TextBox ID="dateTime" Enabled="false"
-                                                runat="server" Width="220px"
-                                                class="form-control"></asp:TextBox>
-                                        </div>
-                                        <!-- Time -->
-                                        <b>שעה</b>
-                                        <div>
-                                            <!-- Minutes -->
-                                            <asp:TextBox ID="minutes"
-                                                type="number" min="0" max="55" step="5"
-                                                class="form-control"
-                                                placeholder="MM" Enabled="false"
-                                                runat="server" CssClass="pull-right"></asp:TextBox>
-                                            <!-- Hour -->
-                                            <asp:Label runat="server" Style="float: right;">:</asp:Label>
-                                            <asp:TextBox ID="hour"
-                                                type="number" min="0" max="23" runat="server" placeholder="HH"
-                                                class="form-control" Enabled="false"
-                                                CssClass="pull-right"></asp:TextBox>
-                                        </div>
-                                    </fieldset>
-                                </div>
-                            </div>
-
-                            <%--TAB 2-School Details--%>
-                            <div class="tab-pane fade" id="school">
-
-                                <label class="control-label" for="schoolName">שם בי"ס :</label>
-                                <div class="form-inline">
-                                    <asp:TextBox ID="schoolname" Enabled="false"
-                                        required="required"
-                                        class="form-control"
-                                        oninvalid="setCustomValidity('יש להזין שם בית ספר')"
-                                        onchange="try{setCustomValidity('')}catch(e){}"
-                                        runat="server">
-                                    </asp:TextBox>
-
-                                    <asp:LinkButton runat="server" ID="goToSchool" class="btn btn-link">מעבר לפרטי בי"ס</asp:LinkButton>
-                                </div>
-
-                                <br />
-
-                                <label class="control-label" for="studentsPredictedNum">מספר בנות צפויות מבי"ס: </label>
-                                <div>
-                                    <asp:TextBox ID="studentsPredictedNum" Enabled="false"
-                                        type="number"
-                                        class="form-control"
-                                        min="0"
-                                        required="required"
-                                        oninvalid="setCustomValidity('יש להזין מס' משתתפות')"
-                                        onchange="try{setCustomValidity('')}catch(e){}"
-                                        runat="server"></asp:TextBox>
-                                </div>
-                                <br />
-                                <label class="control-label" for="schoolComments">הערות: </label>
-                                <div class="form-inline">
-                                    <asp:TextBox ID="schoolComments" Enabled="false"
-                                        runat="server"
-                                        class="form-control"
-                                        TextMode="MultiLine"
-                                        Rows="5" Style="resize: none;"></asp:TextBox>
-                                </div>
-                                <asp:Button runat="server" ID="AssignVolUpdate" Text=" עדכני לשיבוץ מתנדבות" class="btn btn-success" />
+        <br />
+        <asp:Button runat="server" ID="cancelWorkshop" Text="ביטול סדנא" class="btn btn-danger" />
 
 
-                            </div>
+        <hr />
+        <div class="checkout-wrap">
+            <ul class="checkout-bar">
+                <li runat="server" id="bar1">שיבוץ בית ספר</li>
+                <li runat="server" id="bar2">בי"ס שובץ</li>
+                <li runat="server" id="bar3">שיבוץ מתנדבות</li>
+                <li runat="server" id="bar4">מתנדבות שובצו</li>
+                <li runat="server" id="bar6">ביצוע</li>
+                <li runat="server" id="bar7">מישוב</li>
+                <li runat="server" id="bar8">סגור</li>
+            </ul>
+        </div>
 
-                            <%--  TAB 3 - VOLUNTEER ASSIGN--%>
-                            <div class="tab-pane fade" id="volunteers">
-                                <div class="col-md-6">
-                                    <label class="control-label" for="volunteercount">מס' מתנדבות נוכחי: </label>
-                                    <asp:Label runat="server" ID="volunteercount"></asp:Label>
+        <div class="row">
+            <div class="panel with-nav-tabs panel-default">
+                <div class="panel-heading">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a href="#companyWorkshop" data-toggle="tab">פרטי סדנא בחברה</a></li>
+                        <li><a href="#school" data-toggle="tab">פרטי שיבוץ בי"ס</a></li>
+                        <li><a href="#volunteers" data-toggle="tab">פרטי שיבוץ מתנדבות</a></li>
+                        <li><a href="#execute" data-toggle="tab">פרטי ביצוע</a></li>
+                        <li><a href="#feedback" data-toggle="tab">משובים</a></li>
+                    </ul>
+                </div>
+
+                <div class="panel-body">
+                    <div class="tab-content">
+
+                        <%--TAB 1-Company Details--%>
+                        <div class="tab-pane fade in active" id="companyWorkshop">
+
+                            <!-- column 1-->
+                            <div class="col-md-6">
+                                <fieldset id="companyDetails" runat="server">
+                                    <legend>פרטי חברה</legend>
+                                    <!-- Company Name -->
+                                    <label class="control-label" for="companyName">שם:</label>
+                                    <div class="form-inline">
+                                        <asp:TextBox ID="companyName" Enabled="false"
+                                            required="required"
+                                            class="form-control"
+                                            oninvalid="setCustomValidity('יש להזין שם חברה')"
+                                            onchange="try{setCustomValidity('')}catch(e){}"
+                                            runat="server">
+                                        </asp:TextBox>
+                                    </div>
                                     <br />
-                                    <asp:LinkButton runat="server" ID="LinkVolunteerAssign" Text="מעבר לעמוד שיבוץ"></asp:LinkButton>
+                                    <!-- Company Address -->
+                                    <label class="control-label" for="address">כתובת:</label>
+                                    <div>
+                                        <asp:TextBox ID="address" runat="server" Enabled="false"></asp:TextBox>
+                                    </div>
                                     <br />
-
+                                    <asp:LinkButton runat="server" ID="goToCompany" class="btn btn-link">מעבר לפרטי חברה</asp:LinkButton>
                                     <br />
-                                </div>
-                                <div class="col-md-6">
-                                    <fieldset>
-                                        <legend>פרטי מתנדבות</legend>
-                                        <label class="control-label" for="VolunteerName1">מתנדבת 1: </label>
-                                        <asp:Label runat="server" ID="VolunteerName1"></asp:Label>
-                                        <br />
-                                        <label class="control-label" for="VolunteerName2">מתנדבת 2: </label>
-                                        <asp:Label runat="server" ID="VolunteerName2"></asp:Label>
-                                        <br />
-                                        <label class="control-label" for="VolunteerName3">מתנדבת 3: </label>
-                                        <asp:Label runat="server" ID="VolunteerName3"></asp:Label>
-                                        <br />
-                                    </fieldset>
-                                </div>
-                                <asp:Button runat="server" class="btn btn-success" Text="עדכני לביצוע" />
-                                <asp:Button runat="server" ID="backToSchoolAssign" Text="חזרי לסטטוס שיבוץ בית ספר" class="btn btn-danger" />
-
-
-                            </div>
-
-                            <%--  TAB 4 - execute--%>
-                            <div class="tab-pane fade" id="execute">
-                                <asp:Label runat="server" ID="Label1" Text="תאריך הסדנא לא הגיע/תאריך הסדנא עבר."></asp:Label>
-                                <br />
-                                <br />
-
-                                <asp:Button runat="server" ID="updateToFeedback" Text="עדכני למישוב" class="btn btn-success" />
-
-
-                            </div>
-
-
-
-                            <%--  TAB 5 - FEEDBACK--%>
-                            <div class="tab-pane fade" id="feedback">
-
-                                <fieldset>
-                                    <label class="control-label" for="VolunteerName1">מתנדבת 1: </label>
-                                    <asp:Label runat="server" ID="Label2"></asp:Label>
-                                    <asp:LinkButton runat="server" ID="LinkButton1" Text="משוב"></asp:LinkButton>
-                                    <br />
-                                    <label class="control-label" for="VolunteerName2">מתנדבת 2: </label>
-                                    <asp:Label runat="server" ID="Label3"></asp:Label>
-                                    <asp:LinkButton runat="server" ID="LinkButton2" Text="משוב"></asp:LinkButton>
-                                    <br />
-                                    <label class="control-label" for="VolunteerName3">מתנדבת 3: </label>
-                                    <asp:Label runat="server" ID="Label4"></asp:Label>
-                                    <asp:LinkButton runat="server" ID="LinkButton3" Text="משוב"></asp:LinkButton>
-                                    <br />
-
-                                    <asp:Button runat="server" ID="Button1" Text="עדכני לסגירה" class="btn btn-success" />
+                                    <asp:LinkButton runat="server" ID="goToSchoolAssign" class="btn btn-link">מעבר לטופס שיבוץ בית ספר</asp:LinkButton>
 
                                 </fieldset>
                             </div>
 
+                            <!-- column 2-->
+                            <div class="col-md-6">
+                                <fieldset id="workshopDetails" runat="server">
+                                    <legend>פרטי סדנא</legend>
+                                    <label class="control-label" for="possibleStudentsNum">מס' משתתפות אפשרי: </label>
+                                    <div class="form-inline">
+                                        <asp:TextBox ID="possibleStudentsNum" Enabled="false"
+                                            type="number"
+                                            class="form-control"
+                                            min="0"
+                                            required="required"
+                                            oninvalid="setCustomValidity('יש להזין מס' משתתפות אפשרי')"
+                                            onchange="try{setCustomValidity('')}catch(e){}"
+                                            runat="server" Width="220px"></asp:TextBox>
+                                    </div>
+
+                                    <br />
+                                    <label class="control-label" for="companyComments">הערות: </label>
+                                    <div class="form-inline">
+                                        <asp:TextBox ID="companyComments" Enabled="false"
+                                            runat="server" Width="220px"
+                                            class="form-control"
+                                            TextMode="MultiLine"
+                                            Rows="5" Style="resize: none;"></asp:TextBox>
+                                    </div>
+                                    <br />
+                                    <label class="control-label" for="dateTime">תאריך ושעה: </label>
+                                    <div class="form-inline">
+                                        <asp:TextBox ID="dateTime" Enabled="false"
+                                            runat="server" Width="220px"
+                                            class="form-control"></asp:TextBox>
+                                    </div>
+                                    <!-- Time -->
+                                    <b>שעה</b>
+                                    <div>
+                                        <!-- Minutes -->
+                                        <asp:TextBox ID="minutes"
+                                            type="number" min="0" max="55" step="5"
+                                            class="form-control"
+                                            placeholder="MM" Enabled="false"
+                                            runat="server" CssClass="pull-right"></asp:TextBox>
+                                        <!-- Hour -->
+                                        <asp:Label runat="server" Style="float: right;">:</asp:Label>
+                                        <asp:TextBox ID="hour"
+                                            type="number" min="0" max="23" runat="server" placeholder="HH"
+                                            class="form-control" Enabled="false"
+                                            CssClass="pull-right"></asp:TextBox>
+                                    </div>
+                                </fieldset>
+                            </div>
+                        </div>
+
+                        <%--TAB 2-School Details--%>
+                        <div class="tab-pane fade" id="school">
+
+                            <label class="control-label" for="schoolName">שם בי"ס :</label>
+                            <div class="form-inline">
+                                <asp:TextBox ID="schoolname" Enabled="false"
+                                    required="required"
+                                    class="form-control"
+                                    oninvalid="setCustomValidity('יש להזין שם בית ספר')"
+                                    onchange="try{setCustomValidity('')}catch(e){}"
+                                    runat="server">
+                                </asp:TextBox>
+
+                                <asp:LinkButton runat="server" ID="goToSchool" class="btn btn-link">מעבר לפרטי בי"ס</asp:LinkButton>
+                            </div>
+
+                            <br />
+
+                            <label class="control-label" for="studentsPredictedNum">מספר בנות צפויות מבי"ס: </label>
+                            <div>
+                                <asp:TextBox ID="studentsPredictedNum" Enabled="false"
+                                    type="number"
+                                    class="form-control"
+                                    min="0"
+                                    required="required"
+                                    oninvalid="setCustomValidity('יש להזין מס' משתתפות')"
+                                    onchange="try{setCustomValidity('')}catch(e){}"
+                                    runat="server"></asp:TextBox>
+                            </div>
+                            <br />
+                            <label class="control-label" for="schoolComments">הערות: </label>
+                            <div class="form-inline">
+                                <asp:TextBox ID="schoolComments" Enabled="false"
+                                    runat="server"
+                                    class="form-control"
+                                    TextMode="MultiLine"
+                                    Rows="5" Style="resize: none;"></asp:TextBox>
+                            </div>
+                            <asp:Button runat="server" ID="AssignVolUpdate" Text=" עדכני לשיבוץ מתנדבות" class="btn btn-success" />
+
+
+                        </div>
+
+                        <%--  TAB 3 - VOLUNTEER ASSIGN--%>
+                        <div class="tab-pane fade" id="volunteers">
+                            <div class="col-md-6">
+                                <label class="control-label" for="volunteercount">מס' מתנדבות נוכחי: </label>
+                                <asp:Label runat="server" ID="volunteercount"></asp:Label>
+                                <br />
+                                <asp:LinkButton runat="server" ID="LinkVolunteerAssign" Text="מעבר לעמוד שיבוץ"></asp:LinkButton>
+                                <br />
+
+                                <br />
+                            </div>
+                            <div class="col-md-6">
+                                <fieldset>
+                                    <legend>פרטי מתנדבות</legend>
+                                    <label class="control-label" for="VolunteerName1">מתנדבת 1: </label>
+                                    <asp:Label runat="server" ID="VolunteerName1"></asp:Label>
+                                    <br />
+                                    <label class="control-label" for="VolunteerName2">מתנדבת 2: </label>
+                                    <asp:Label runat="server" ID="VolunteerName2"></asp:Label>
+                                    <br />
+                                    <label class="control-label" for="VolunteerName3">מתנדבת 3: </label>
+                                    <asp:Label runat="server" ID="VolunteerName3"></asp:Label>
+                                    <br />
+                                </fieldset>
+                            </div>
+                            <asp:Button runat="server" class="btn btn-success" Text="עדכני לביצוע" />
+                            <asp:Button runat="server" ID="backToSchoolAssign" Text="חזרי לסטטוס שיבוץ בית ספר" class="btn btn-danger" />
+
+
+                        </div>
+
+                        <%--  TAB 4 - execute--%>
+                        <div class="tab-pane fade" id="execute">
+                            <asp:Label runat="server" ID="Label1" Text="תאריך הסדנא לא הגיע/תאריך הסדנא עבר."></asp:Label>
+                            <br />
+                            <br />
+
+                            <asp:Button runat="server" ID="updateToFeedback" Text="עדכני למישוב" class="btn btn-success" />
+
+
+                        </div>
+
+                        <%--  TAB 5 - FEEDBACK--%>
+                        <div class="tab-pane fade" id="feedback">
+
+                            <fieldset>
+                                <label class="control-label" for="VolunteerName1">מתנדבת 1: </label>
+                                <asp:Label runat="server" ID="Label2"></asp:Label>
+                                <asp:LinkButton runat="server" ID="LinkButton1" Text="משוב"></asp:LinkButton>
+                                <br />
+                                <label class="control-label" for="VolunteerName2">מתנדבת 2: </label>
+                                <asp:Label runat="server" ID="Label3"></asp:Label>
+                                <asp:LinkButton runat="server" ID="LinkButton2" Text="משוב"></asp:LinkButton>
+                                <br />
+                                <label class="control-label" for="VolunteerName3">מתנדבת 3: </label>
+                                <asp:Label runat="server" ID="Label4"></asp:Label>
+                                <asp:LinkButton runat="server" ID="LinkButton3" Text="משוב"></asp:LinkButton>
+                                <br />
+
+                                <asp:Button runat="server" ID="Button1" Text="עדכני לסגירה" class="btn btn-success" />
+
+                            </fieldset>
                         </div>
 
                     </div>
- 
 
                 </div>
-        
+
 
             </div>
-            <!--/row-->
+
+
+        </div>
+        <!--/row-->
 
         </div>
         <!--/container-->

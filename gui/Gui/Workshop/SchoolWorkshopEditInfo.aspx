@@ -36,7 +36,7 @@
                     <br />
                     <label class="control-label" for="DropDownListStatus">שינוי סטטוס: </label>
 
-                    <asp:DropDownList runat="server" ID="selectpicker">
+                    <asp:DropDownList runat="server" ID="selectpicker" CssClass="form-control"  Width="150px">
                         <asp:ListItem Value="1">לבדיקת תאריכים</asp:ListItem>
                         <asp:ListItem Value="2">לשיבוץ מתנדבות</asp:ListItem>
                         <asp:ListItem Value="3">לשיבוץ הושלם</asp:ListItem>
