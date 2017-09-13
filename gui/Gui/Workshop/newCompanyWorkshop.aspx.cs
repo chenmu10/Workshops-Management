@@ -1,12 +1,8 @@
 ﻿using Google.Maps;
-using Google.Maps.Geocoding;
 using Google.Maps.StaticMaps;
 using gui.Models;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
 
 namespace gui.Gui.Workshop
@@ -81,33 +77,14 @@ namespace gui.Gui.Workshop
             }
         }
 
-        private static string getStaticMap(string address)
-        {
-            var map = new StaticMapRequest();
-            MapMarkersCollection markers = new MapMarkersCollection();
-            //markers.Add(new Location("1600 Amphitheatre Parkway Mountain View, CA 94043"));
-            //markers.Add(new Location("בית ספר אלייאנס תל אביב"));
-            markers.Add(new Location(address));
-            markers[0].Color = System.Drawing.Color.Blue;
-
-            map.Markers = markers;
-            map.Size = new System.Drawing.Size(300, 300);
-            map.Zoom = 17;
-            map.Sensor = false;
-            map.Format = GMapsImageFormats.JPG;
-
-            var imgTagSrc = map.ToUri();
-            System.Diagnostics.Debug.WriteLine("the URL is : " + imgTagSrc.ToString());
-            return imgTagSrc.ToString();
-        }
+       
 
         protected void SendInvitesToSchools()
         {
-
             int countSchools = 0;
             List<School> allSchools = db.GetAllSchools();
 
-            EmailTemplate mail = new EmailTemplate(EmailTemplate.PREDEFINED_TEMPLATES[EmailTemplate.schoolByType.SchoolInvite]);
+            EmailTemplate mail = new EmailTemplate(EmailTemplate.PREDEFINED_TEMPLATES_COMPANY[EmailTemplate.CompanyByType.SchoolInvite]);
 
             foreach (School currentSchool in allSchools)
             {
@@ -116,7 +93,7 @@ namespace gui.Gui.Workshop
                     string schoolEmail = currentSchool.School_Contact_Email;
                     string schoolContactName = currentSchool.School_Contact_Name;
                     string schoolAddress = currentSchool.School_Address + " " + currentSchool.School_City;
-                    mail.Send(schoolEmail, schoolContactName, "http://MMT.co.il/schoolAssign.aspx?area=" + companyArea, getStaticMap(schoolAddress));
+                    mail.Send(schoolEmail, schoolContactName, "http://MMT.co.il/schoolAssign.aspx?area=" + companyArea);
                     countSchools++;
                 }
             }

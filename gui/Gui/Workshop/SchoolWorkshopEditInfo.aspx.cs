@@ -1,4 +1,6 @@
-﻿using gui.Models;
+﻿using Google.Maps;
+using Google.Maps.StaticMaps;
+using gui.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +12,8 @@ namespace gui.Gui.Workshop
 {
     public partial class SchoolWorkshopEditInfo : System.Web.UI.Page
     {
+        // TODO get the school area
+
         DB db;
         WorkshopJoin WorkshopToView = new WorkshopJoin();
         SchoolWorkShop schoolWorkshop = new SchoolWorkShop();
@@ -30,6 +34,7 @@ namespace gui.Gui.Workshop
                 yesToVolunteerFinished.Visible = false;
                 noToVolunteerFinished.Visible = false;
                 PrepareFormCreate.Visible = false;
+
                 int ID = int.Parse(Session["WorkshopID"].ToString());
                 WorkshopToView = db.GetJoinWorkShopByID(ID);
                 schoolWorkshop = db.GetSchoolWorkshopByID(ID);
@@ -43,6 +48,7 @@ namespace gui.Gui.Workshop
                     scientificWorkshop.SelectedIndex = 0;
                 else
                     scientificWorkshop.SelectedIndex = 1;
+
                 WorkShopID.Text = WorkshopToView.WorkShop_ID.ToString();
 
                 WorkShopStatus.Text = WorkshopToView.Status_Description.ToString();
@@ -327,5 +333,96 @@ namespace gui.Gui.Workshop
         {
             db.SchoolWorkShopUpdatestatus(schoolWorkshop.SchoolWorkShopID, 4);
         }
+
+        private void VolunteerInviteEmail() // בקשה להשתבצות מתנדבות
+        {
+            int volunteerCount = 0;
+            List<Volunteer> allVolunteers = db.GetAllVolunteersWithTraining(true);
+
+            EmailTemplate mail = new EmailTemplate(EmailTemplate.PREDEFINED_TEMPLATES_GENERAL[EmailTemplate.GeneralByType.VolunteerInvite]);
+
+            foreach (Volunteer currentVolunteer in allVolunteers)
+            {
+                // TODO get the school area
+                //if (currentVolunteer.Volunteer_Area_Activity == selectedSchool.school_activity_area)
+                //    {
+                //        string volunteerEmail = currentVolunteer.Volunteer_Email;
+                //        string volunteertName = currentVolunteer.Volunteer_First_Name;
+                //        mail.Send(volunteerEmail, volunteertName, "http://MMT.co.il/volunteerAssign.aspx?area=" , getStaticMap(schoolAddress));
+                //        volunteerCount++;
+                //    }
+                //}
+
+                //Msg.Text = "נשלחו בקשות אל " + volunteerCount + "מתנדבות";
+
+            }
+        }
+
+
+        private void AssignCompleteEmail() // הודעת שיבוץ הושלם
+        {
+            EmailTemplate mail = new EmailTemplate(EmailTemplate.PREDEFINED_TEMPLATES_GENERAL[EmailTemplate.GeneralByType.AssignComplete]);
+            // צריך לשלוח את הנתונים הבאים לפונקצית המייל:
+            //mail.Send(volunteer1Email, volunteer1tName);
+            //mail.Send(volunteer2Email, volunteer2tName);
+            //mail.Send(volunteer3Email, volunteer3tName);
+            //mail.Send(schoolContactEmail, schoolContactName);
+        }
+
+        private void PrepareEmail() // להכנה
+        {
+            EmailTemplate mail = new EmailTemplate(EmailTemplate.PREDEFINED_TEMPLATES_SCHOOL[EmailTemplate.SchoolByType.SchoolPrepare]);
+            //mail.Send(schoolContactEmail, schoolContactName, more..);
+        }
+
+        private void ExecuteEmail() // יומיים לפני קיום הסדנא
+        {
+            EmailTemplate mailToSchool = new EmailTemplate(EmailTemplate.PREDEFINED_TEMPLATES_SCHOOL[EmailTemplate.SchoolByType.executeSchool]);
+            //mail.Send(schoolContactEmail, schoolContactName, more..);
+            EmailTemplate mailToVolunteer = new EmailTemplate(EmailTemplate.PREDEFINED_TEMPLATES_SCHOOL[EmailTemplate.SchoolByType.executeVolunteers]);
+            //mail.Send(volunteer1Email, volunteer1tName, more..);
+        }
+
+        private void FeedBackEmail()
+        {
+            EmailTemplate mail = new EmailTemplate(EmailTemplate.PREDEFINED_TEMPLATES_GENERAL[EmailTemplate.GeneralByType.FeedBack]);
+            //mail.Send(volunteer1Email, volunteer1tName, more..);
+            //mail.Send(teacherEmail, teacherName, more..);
+
+        }
+
+
+        private void CancelWorkshopEmail()
+        {
+            EmailTemplate mail = new EmailTemplate(EmailTemplate.PREDEFINED_TEMPLATES_GENERAL[EmailTemplate.GeneralByType.CancelWorkshop]);
+            //mail.Send(volunteer1Email, volunteer1tName, workshopDate);
+            //mail.Send(volunteer2Email, volunteer2tName, workshopDate);
+            //mail.Send(volunteer3Email, volunteer3tName, workshopDate);
+            //mail.Send(schoolContactEmail, schoolContactName, workshopDate);
+
+        }
+
+        private static string GetStaticMap(string address)
+        {
+            var map = new StaticMapRequest();
+            MapMarkersCollection markers = new MapMarkersCollection();
+            //markers.Add(new Location("1600 Amphitheatre Parkway Mountain View, CA 94043"));
+            //markers.Add(new Location("בית ספר אלייאנס תל אביב"));
+            markers.Add(new Location(address));
+            markers[0].Color = System.Drawing.Color.Blue;
+
+            map.Markers = markers;
+            map.Size = new System.Drawing.Size(300, 300);
+            map.Zoom = 17;
+            map.Sensor = false;
+            map.Format = GMapsImageFormats.JPG;
+
+            var imgTagSrc = map.ToUri();
+            System.Diagnostics.Debug.WriteLine("the URL is : " + imgTagSrc.ToString());
+            return imgTagSrc.ToString();
+        }
+
+
+
     }
 }
