@@ -12,11 +12,11 @@ namespace gui.Models
    
     public class EmailTemplate
     {
-        public enum Type { SchoolInvite, VolunteerInvite, AssignComplete, SchoolPrepare, executeVolunteers, executeSchool,  };
-        public static Dictionary<Type, MessageStructure> PREDEFINED_TEMPLATES = new Dictionary<Type, MessageStructure>()
+        public enum schoolByType { SchoolInvite, VolunteerInvite, AssignComplete, SchoolPrepare, executeVolunteers, executeSchool,  };
+        public static Dictionary<schoolByType, MessageStructure> PREDEFINED_TEMPLATES = new Dictionary<schoolByType, MessageStructure>()
         {
 		// Templates for Emails
-            { Type.SchoolInvite ,
+            { schoolByType.SchoolInvite ,
               new MessageStructure()
               {
               Subject = "סדנא חדשה באזורכם-פרויקט מהממט",
@@ -26,20 +26,20 @@ namespace gui.Models
                   "<img src='{2}'>"
               }
             },
-            { Type.VolunteerInvite,
+            { schoolByType.VolunteerInvite,
                new MessageStructure()
                {
                    Subject = "סדנה חדשה באזורך-פרויקט מהממט",
                    Body = "Hello {0}\nThere is a workshop near {1}.\n{2}"
                }
             },
-            { Type.SchoolPrepare,
+            { schoolByType.SchoolPrepare,
                new MessageStructure()
                {Subject = "הכנה לסדנת מהממט",
                    Body = "Hello {0}\nThere is a workshop near {1}.\n{2}"
                }
             },
-            { Type.AssignComplete,
+            { schoolByType.AssignComplete,
                 new MessageStructure()
                 {Subject = "שיבוץ לסדנה הושלם-פרויקט מהממט",
                     Body = "Hello {0}\nThere is a workshop near {1}.\n{2}"

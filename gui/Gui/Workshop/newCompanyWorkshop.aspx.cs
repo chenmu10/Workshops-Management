@@ -107,7 +107,7 @@ namespace gui.Gui.Workshop
             int countSchools = 0;
             List<School> allSchools = db.GetAllSchools();
 
-            EmailTemplate mail = new EmailTemplate(EmailTemplate.PREDEFINED_TEMPLATES[EmailTemplate.Type.SchoolInvite]);
+            EmailTemplate mail = new EmailTemplate(EmailTemplate.PREDEFINED_TEMPLATES[EmailTemplate.schoolByType.SchoolInvite]);
 
             foreach (School currentSchool in allSchools)
             {
