@@ -5,6 +5,12 @@ using System;
 using System.Collections.Generic;
 using System.Web.UI.WebControls;
 
+using Google.Apis.Auth.OAuth2;
+using Google.Apis.Calendar.v3;
+using Google.Apis.Calendar.v3.Data;
+using Google.Apis.Services;
+using System.Threading;
+
 namespace gui.Gui.Workshop
 {
     public partial class newCompanyWorkshop : System.Web.UI.Page
@@ -46,7 +52,7 @@ namespace gui.Gui.Workshop
             address.Text = selectedComp.Company_Address;
             area.Text = selectedComp.Company_Area_Activity.ToString();
             companyArea = selectedComp.Company_Area_Activity; // needed for email function
-           
+
 
         }
 
@@ -77,7 +83,7 @@ namespace gui.Gui.Workshop
             }
         }
 
-       
+
 
         protected void SendInvitesToSchools()
         {
@@ -103,6 +109,52 @@ namespace gui.Gui.Workshop
             Response.Write("<script>alert('נשלחו מיילים');</script>");
             Msg.Text = "נשלחו מיילים אל " + countSchools + "בתי ספר";
 
+        }
+
+        private void MakeAppointment()
+        {
+            UserCredential credential = GoogleWebAuthorizationBroker.AuthorizeAsync(
+                new ClientSecrets
+                {
+                    ClientId = "CLIENTID",
+                    ClientSecret = "CLIENTSECRET",
+                },
+                new[] { CalendarService.Scope.Calendar },
+                "user",
+                CancellationToken.None).Result;
+
+            // Create the service.
+            var service = new CalendarService(new BaseClientService.Initializer()
+            {
+                HttpClientInitializer = credential,
+                ApplicationName = "Calendar API Sample",
+            });
+
+
+            Event myEvent = new Event
+            {
+                Summary = "Appointment",
+                Location = "Somewhere",
+                Start = new EventDateTime()
+                {
+                    DateTime = new DateTime(2014, 6, 2, 10, 0, 0),
+                    TimeZone = "America/Los_Angeles"
+                },
+                End = new EventDateTime()
+                {
+                    DateTime = new DateTime(2014, 6, 2, 10, 30, 0),
+                    TimeZone = "America/Los_Angeles"
+                },
+                Recurrence = new String[] {
+                    "RRULE:FREQ=WEEKLY;BYDAY=MO"
+                },
+                Attendees = new List<EventAttendee>()
+      {
+        new EventAttendee() { Email = "johndoe@gmail.com" }
+      }
+            };
+
+            Event recurringEvent = service.Events.Insert(myEvent, "primary").Execute();
         }
 
         private bool IsEmptyFields()
@@ -142,13 +194,13 @@ namespace gui.Gui.Workshop
 
         protected void Page_Load(object sender, EventArgs e)
         {
-          
+
         }
 
         protected void calendar_DayRender(object sender,
                          DayRenderEventArgs e)
         {
-          
+
             if (e.Day.Date.CompareTo(DateTime.Today) < 0 || e.Day.Date.DayOfWeek == DayOfWeek.Saturday)
             {
                 e.Day.IsSelectable = false;

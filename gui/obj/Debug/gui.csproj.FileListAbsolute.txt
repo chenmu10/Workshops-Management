@@ -77,3 +77,8 @@ C:\Users\chen\Projects\MMT\gui\bin\Newtonsoft.Json.xml
 C:\Users\Chen\Projects\MMT_git\gui\bin\Google.Maps.dll
 C:\Users\Chen\Projects\MMT_git\gui\bin\Newtonsoft.Json.dll
 C:\Users\Chen\Projects\MMT_git\gui\bin\Newtonsoft.Json.xml
+C:\Users\Chen\Projects\MMT_git\gui\bin\Google.Apis.Core.dll
+C:\Users\Chen\Projects\MMT_git\gui\bin\Google.Apis.dll
+C:\Users\Chen\Projects\MMT_git\gui\bin\Google.Apis.PlatformServices.dll
+C:\Users\Chen\Projects\MMT_git\gui\bin\Google.Apis.xml
+C:\Users\Chen\Projects\MMT_git\gui\bin\Google.Apis.Core.xml
