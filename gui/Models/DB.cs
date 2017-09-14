@@ -281,12 +281,12 @@ namespace gui
                 ", i1, i2, i3, schoolWorkShopID);
             return Update(query);
         }
-        public bool updateCompanyWorkshopSchoolAssign(string WorkshopID, School School, string finalParticipants, string comments)
+        public bool updateCompanyWorkshopSchoolAssign(string WorkshopID, int SchoolID, string finalParticipants, string comments)
         {
             query = string.Format(@"
             UPDATE companyworkshop SET 
             WorkShop_School_ID={0}, WorkShop_School_Comments={1}, WorkShop_Number_Of_Final_Student={2},WorkShop_Status={3} WHERE WorkShop_ID={4};
-                ", School, comments, finalParticipants, 4, WorkshopID);
+                ", SchoolID, comments, finalParticipants, 4, WorkshopID);
             return Update(query);
         }
         public List<CompanyWorkshop> GetAllCompanyWorshops()

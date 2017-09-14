@@ -130,7 +130,7 @@ namespace gui.Gui
 
             //Pass all the test update to DB
             string WorkshopID = Session["SelectedWorkshopID"].ToString();
-            db.updateCompanyWorkshopSchoolAssign(WorkshopID, selected[0], finalParticipants.Text, comments.Text);
+            db.updateCompanyWorkshopSchoolAssign(WorkshopID, selected[0].School_ID, finalParticipants.Text, comments.Text);
 
             FillTable();
             Msg.Text = "הסדנא עודכנה בהצלחה";
