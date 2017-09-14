@@ -130,11 +130,19 @@ namespace gui.Gui
 
             //Pass all the test update to DB
             string WorkshopID = Session["SelectedWorkshopID"].ToString();
-            db.updateCompanyWorkshopSchoolAssign(WorkshopID, selected[0].School_ID, finalParticipants.Text, comments.Text);
 
-            FillTable();
-            Msg.Text = "הסדנא עודכנה בהצלחה";
-            return;
+            if (db.updateCompanyWorkshopSchoolAssign(WorkshopID, selected[0].School_ID, finalParticipants.Text, comments.Text))
+            {
+                FillTable();
+                Msg.Text = "הסדנא עודכנה בהצלחה";
+                return;
+            }
+            else
+            {
+                Msg.Text = "שגיאה - העדכון לא בוצע";
+                return;
+            }
+            
 
 
 
