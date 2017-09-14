@@ -24,14 +24,18 @@ namespace gui.Models
 
         //templates for general workshop emails    
         public static Dictionary<GeneralByType, MessageStructure> PREDEFINED_TEMPLATES_GENERAL = new Dictionary<GeneralByType, MessageStructure>(){
-        {GeneralByType.VolunteerInvite, new MessageStructure(){ Subject="סדנה חדשה באזורך-פרויקט מהממט", Body="Content"} } ,
-        {GeneralByType.AssignComplete, new MessageStructure() { Subject = "שיבוץ הושלם בסדנא-פרויקט מהממט", Body = "Content"} },
+        {GeneralByType.VolunteerInvite, new MessageStructure(){ Subject="סדנה חדשה באזורך-פרויקט מהממט",
+                                                                Body="שלום, {0}," + "\n ישנה סדנא חדשה באזורך \n" + "מעבר לעמוד שיבוץ: {1}"
+                                                                } } ,
+        {GeneralByType.AssignComplete, new MessageStructure() { Subject = "שיבוץ הושלם בסדנא-פרויקט מהממט",
+                                                                Body = "שלום, {0}," + "\n השיבוץ לסדנא הושלם. תשלח תזכורת יומיים לפני. "
+        } },
         {GeneralByType.FeedBack, new MessageStructure(){ Subject="בקשה למשוב-פרויקט מהממט", Body="Content"} },
         {GeneralByType.CancelWorkshop, new MessageStructure() { Subject = "ביטול סדנא-פרויקט מהממט", Body = "Content"} }
         };
 
         //templates for SCHOOL workshop emails    
-        public static Dictionary<SchoolByType, MessageStructure> PREDEFINED_TEMPLATES_SCHOOL = new Dictionary<SchoolByType, MessageStructure>(){ 
+        public static Dictionary<SchoolByType, MessageStructure> PREDEFINED_TEMPLATES_SCHOOL = new Dictionary<SchoolByType, MessageStructure>(){
         {SchoolByType.SchoolPrepare, new MessageStructure(){ Subject="הכנה לסדנא-פרויקט מהממט", Body="Content"} } ,
         {SchoolByType.executeVolunteers, new MessageStructure() { Subject = "הוראות לקראת סדנא-פרויקט מהממט", Body = "Content"} },
         {SchoolByType.executeSchool, new MessageStructure(){ Subject="הוראות לקראת סדנא-פרויקט מהממט", Body="Content"} }
@@ -87,7 +91,6 @@ namespace gui.Models
             public string Subject;
             public string Body;
         }
-
 
     }
 }

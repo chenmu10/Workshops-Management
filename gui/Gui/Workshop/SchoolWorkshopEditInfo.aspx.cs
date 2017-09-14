@@ -379,6 +379,7 @@ namespace gui.Gui.Workshop
         {
             EmailTemplate mailToSchool = new EmailTemplate(EmailTemplate.PREDEFINED_TEMPLATES_SCHOOL[EmailTemplate.SchoolByType.executeSchool]);
             //mail.Send(schoolContactEmail, schoolContactName, more..);
+
             EmailTemplate mailToVolunteer = new EmailTemplate(EmailTemplate.PREDEFINED_TEMPLATES_SCHOOL[EmailTemplate.SchoolByType.executeVolunteers]);
             //mail.Send(volunteer1Email, volunteer1tName, more..);
         }
@@ -387,6 +388,8 @@ namespace gui.Gui.Workshop
         {
             EmailTemplate mail = new EmailTemplate(EmailTemplate.PREDEFINED_TEMPLATES_GENERAL[EmailTemplate.GeneralByType.FeedBack]);
             //mail.Send(volunteer1Email, volunteer1tName, more..);
+            //mail.Send(volunteer2Email, volunteer2tName, more..);
+            //mail.Send(volunteer3Email, volunteer3tName, more..);
             //mail.Send(teacherEmail, teacherName, more..);
 
         }

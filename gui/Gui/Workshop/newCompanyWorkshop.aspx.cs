@@ -58,7 +58,7 @@ namespace gui.Gui.Workshop
                 CompanyWorkshop newcw = new CompanyWorkshop();
                 newcw.CompanyWorkShopComments = comments.Text.ToString();
                 newcw.CompanyWorkShopDate = calendar.SelectedDate.ToString();
-                newcw.WorkShop_Number_Of_StudentPredicted = Convert.ToInt32(possibleStudentsNum.Text);
+                newcw.WorkShop_Number_Of_StudentPredicted = Convert.ToInt32(PredictedStudentsNum.Text);
                 newcw.CompanyID = Convert.ToInt32(companyID.Text);
 
                 // insert not working - problem with dateTime type
@@ -110,7 +110,7 @@ namespace gui.Gui.Workshop
                 Response.Write("<script>alert('לא נבחרה חברה');</script>");
                 return true;
             }
-            else if (possibleStudentsNum.Text.Equals("") || hour.Text.Equals("") || minutes.Text.Equals(""))
+            else if (PredictedStudentsNum.Text.Equals("") || hour.Text.Equals("") || minutes.Text.Equals(""))
             {
                 Response.Write("<script>alert('שדות חובה חסרים');</script>");
                 return true;
@@ -130,7 +130,7 @@ namespace gui.Gui.Workshop
 
         private void ClearWorkshopDetails()
         {
-            possibleStudentsNum.Text = "";
+            PredictedStudentsNum.Text = "";
             hour.Text = "";
             minutes.Text = "";
             comments.Text = "";

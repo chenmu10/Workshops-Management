@@ -20,22 +20,23 @@
 
         <div class="container">
             <div class="page-header">
-                <h3>צפייה בפרטי סדנא בבית ספר</h3><hr />
-                <p>
-                    <label class="control-label" for="WorkShopID">מס' מזהה: </label>
-                    <asp:Label runat="server" ID="WorkShopID"></asp:Label>
-                    <br />
+                <h3>צפייה בפרטי סדנא בבית ספר</h3>
+                <hr />
 
-                    <label class="control-label" for="WorkShopStatus">סטטוס נוכחי: </label>
-                    <asp:Label runat="server" ID="WorkShopStatus"></asp:Label>
-                    <br />
+                <label class="control-label" for="WorkShopID">מס' מזהה: </label>
+                <asp:Label runat="server" ID="WorkShopID"></asp:Label>
+                <br />
 
-                    <label class="control-label" for="WorkShopDate">מועד קיום: </label>
-                    <asp:Label runat="server" ID="WorkShopDate"></asp:Label>
+                <label class="control-label" for="WorkShopStatus">סטטוס נוכחי: </label>
+                <asp:Label runat="server" ID="WorkShopStatus"></asp:Label>
+                <br />
+
+                <label class="control-label" for="WorkShopDate">מועד קיום: </label>
+                <asp:Label runat="server" ID="WorkShopDate"></asp:Label>
+                <div class="form-inline">
 
                     <br />
                     <label class="control-label" for="DropDownListStatus">שינוי סטטוס: </label>
-                      <br />
                     <asp:DropDownList runat="server" ID="selectpicker" CssClass="form-control" Width="150px">
                         <asp:ListItem Value="1">לבדיקת תאריכים</asp:ListItem>
                         <asp:ListItem Value="2">לשיבוץ מתנדבות</asp:ListItem>
@@ -45,19 +46,18 @@
                         <asp:ListItem Value="6">למישוב</asp:ListItem>
                         <asp:ListItem Value="7">לסגור</asp:ListItem>
                     </asp:DropDownList>
-
                     <asp:Button runat="server" OnClick="updateStatus_Click" ID="updateStatus" Text="אישור שינוי" class="btn btn-link" />
+                </div>
+                <br />
+                <asp:Label runat="server" ID="PrepareFormCreate" Text="נוצר טופס הכנה, ניתן לראות ב'פרטי הכנה'"></asp:Label>
+                <br />
+                <br />
+                <asp:Label runat="server" ID="volunteerfinishedlabel" Text="יש כמות קטנה של מתנדבות,האם להמשיך?"></asp:Label>
+                <br />
+                <asp:Button runat="server" ID="yesToVolunteerFinished" Text="כן" class="btn btn-success" OnClick="yesToVolunteerFinished_Click" />
+                <asp:Button runat="server" ID="noToVolunteerFinished" Text="לא" class="btn btn-danger" />
+                <button id="cancelWorkshop" class="btn btn-danger">ביטול סדנא</button>
 
-                    <br />
-                    <asp:Label runat="server" ID="PrepareFormCreate" Text="נוצר טופס הכנה, ניתן לראות ב'פרטי הכנה'"></asp:Label>
-                    <br />
-                    <br />
-                    <asp:Label runat="server" ID="volunteerfinishedlabel" Text="יש כמות קטנה של מתנדבות,האם להמשיך?"></asp:Label>
-                    <br />
-                    <asp:Button runat="server" ID="yesToVolunteerFinished" Text="כן" class="btn btn-success" OnClick="yesToVolunteerFinished_Click" />
-                    <asp:Button runat="server" ID="noToVolunteerFinished" Text="לא" class="btn btn-danger" />
-                    <button id="cancelWorkshop" class="btn btn-danger">ביטול סדנא</button>
-                </p>
             </div>
 
             <div class="checkout-wrap">
@@ -302,7 +302,7 @@
                                             <legend>מורה נוכח/ת בפעילות</legend>
                                             <!-- Name-->
                                             <label class="control-label">שם מלא:</label>
-                                             <br />
+                                            <br />
                                             <asp:TextBox ID="teacherName" class="form-control" Width="40%"
                                                 type="text" Enabled="false"
                                                 pattern="[\u0590-\u05FF''-'\s]{1,20}"
@@ -312,11 +312,13 @@
                                                 runat="server"></asp:TextBox>
                                             <br />
                                             <!-- Email-->
-                                            <label class="control-label" for="teacherEmail">אימייל:</label> <br />
+                                            <label class="control-label" for="teacherEmail">אימייל:</label>
+                                            <br />
                                             <asp:TextBox Enabled="false" class="form-control" runat="server" Width="40%" ID="teacherEmail" placeholder="example@gmail.com" type="email" required="required" />
                                             <br />
                                             <!--Phone-->
-                                            <label class="control-label" for="teacherPhone">טלפון:</label> <br />
+                                            <label class="control-label" for="teacherPhone">טלפון:</label>
+                                            <br />
                                             <asp:TextBox Enabled="false" class="form-control" ID="teacherPhone" Width="40%"
                                                 type="tel"
                                                 pattern="[0-9]{3}-[0-9]{7}"
@@ -340,7 +342,7 @@
                             <%--  TAB 4 - execute--%>
                             <div class="tab-pane fade" id="execute">
                                 <asp:Label runat="server" ID="Label1" Text="תאריך הסדנא לא הגיע/תאריך הסדנא עבר."></asp:Label>
-                                    <br />
+                                <br />
 
                                 <asp:Button runat="server" ID="updateToFeedback" Text="עדכני למישוב" class="btn btn-success" />
 
@@ -366,11 +368,12 @@
                                     <asp:Label runat="server" ID="Label4"></asp:Label>
                                     <asp:LinkButton runat="server" ID="LinkButton3" Text="משוב"></asp:LinkButton>
                                     <br />
-                                     <label class="control-label" for="teacherName">מורה: </label>
+                                    <label class="control-label" for="teacherName">מורה: </label>
                                     <asp:Label runat="server" ID="teacher"></asp:Label>
                                     <asp:LinkButton runat="server" ID="LinkButton4" Text="משוב"></asp:LinkButton>
-                                </fieldset><br />
-                                 <asp:Button runat="server" ID="Button1" Text="עדכני לסגירה" class="btn btn-success" />
+                                </fieldset>
+                                <br />
+                                <asp:Button runat="server" ID="Button1" Text="עדכני לסגירה" class="btn btn-success" />
                             </div>
 
                         </div>

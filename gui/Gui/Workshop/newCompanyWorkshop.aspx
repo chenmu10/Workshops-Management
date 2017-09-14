@@ -59,9 +59,9 @@
                 <fieldset id="workshopDetails" runat="server">
                     <legend>פרטי סדנא</legend>
                     <!-- Possible Students Num-->
-                    <label class="control-label" for="possibleStudentsNum">מס' משתתפות אפשרי: </label>
+                    <label class="control-label" for="PredictedStudentsNum">מס' משתתפות אפשרי: </label>
 
-                    <asp:TextBox ID="possibleStudentsNum"
+                    <asp:TextBox ID="PredictedStudentsNum"
                         type="number"
                         class="form-control"
                         min="0"

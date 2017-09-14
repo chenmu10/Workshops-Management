@@ -94,13 +94,13 @@ namespace gui.Gui.Workshop {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl workshopDetails;
         
         /// <summary>
-        /// possibleStudentsNum control.
+        /// PredictedStudentsNum control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox possibleStudentsNum;
+        protected global::System.Web.UI.WebControls.TextBox PredictedStudentsNum;
         
         /// <summary>
         /// comments control.

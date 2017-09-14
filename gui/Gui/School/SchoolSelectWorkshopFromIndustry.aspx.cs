@@ -122,7 +122,7 @@ namespace gui.Gui
                 Msg.Text = "לא נמצא בית ספר תואם";
                 return;
             }
-            if (estimatedParticipants.Text.Equals(""))
+            if (finalParticipants.Text.Equals(""))
             {
                 Msg.Text = "יש לבחור מספר משתתפים";
                 return;
@@ -130,7 +130,7 @@ namespace gui.Gui
 
             //Pass all the test update to DB
             string WorkshopID = Session["SelectedWorkshopID"].ToString();
-            db.updateCompanyWorkshopSchoolAssign(WorkshopID, selected[0], estimatedParticipants.Text, comments.Text);
+            db.updateCompanyWorkshopSchoolAssign(WorkshopID, selected[0], finalParticipants.Text, comments.Text);
 
             FillTable();
             Msg.Text = "הסדנא עודכנה בהצלחה";
@@ -147,7 +147,7 @@ namespace gui.Gui
         public void ClearForm()
         {
             schoolSymbol.Text = "";
-            estimatedParticipants.Text = "";
+            finalParticipants.Text = "";
             comments.Text = "";
             schoolName.Text = "";
         }
@@ -181,7 +181,7 @@ namespace gui.Gui
             else
             {
                 schoolName.Text = selected[0].School_Name;
-                estimatedParticipants.Text = "";
+                finalParticipants.Text = "";
                 comments.Text = "";
             }
         }
