@@ -20,12 +20,18 @@ namespace gui.Gui
 
         protected void FillTable()
         {
+            int countLines = 0;
             CompanyWorkshopsJoin = db.GetAllWorkshopsByJoin();
             foreach (WorkshopJoin t in CompanyWorkshopsJoin)
             {
                 if (t.Status_Description.Equals(" לשיבוץ מתנדבות"))
                 {
                     TableRow row = new TableRow();
+                    countLines++;
+                    TableCell lineNumber = new TableCell();
+                    lineNumber.Text = countLines.ToString();
+                    row.Cells.Add(lineNumber);
+                   
 
                     TableCell workshopID = new TableCell();
                     workshopID.Text = t.WorkShop_ID;
@@ -50,6 +56,7 @@ namespace gui.Gui
                     TableCell Edit = new TableCell();
                     Button Editbtn = new Button();
                     Editbtn.Attributes.Add("WorkshopID", t.WorkShop_ID.ToString());
+                    Editbtn.Attributes.Add("countLine", countLines.ToString());
                     // TO DO #4# 
                     Editbtn.Attributes.Add("Voluntter1", t.Volunteer1_Name);
                     Editbtn.Attributes.Add("Voluntter2", t.Volunteer2_Name);
@@ -80,9 +87,11 @@ namespace gui.Gui
             Button selectedButton = (Button)sender;
             string isCompany = selectedButton.Attributes["IsCompany"];
             string workshopId = selectedButton.Attributes["WorkshopID"];
+            string CountLine = selectedButton.Attributes["CountLine"];
             Session["LocalWorkShopID"] = workshopId;
+            Session["LocalCountLine"] = CountLine;
             Session["LocalisCompany"] = isCompany;
-            workshopIdLabel.Text = workshopId;
+            workshopIdLabel.Text = CountLine;
             if (bool.Parse(isCompany))
             {
                 // Company Workshop 
