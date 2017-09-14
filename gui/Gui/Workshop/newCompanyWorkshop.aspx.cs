@@ -85,6 +85,8 @@ namespace gui.Gui.Workshop
             List<School> allSchools = db.GetAllSchools();
 
             EmailTemplate mail = new EmailTemplate(EmailTemplate.PREDEFINED_TEMPLATES_COMPANY[EmailTemplate.CompanyByType.SchoolInvite]);
+            Company selectedComp = Companies[dropDownCompanyName.SelectedIndex - 1];
+            companyArea = selectedComp.Company_Area_Activity;
 
             foreach (School currentSchool in allSchools)
             {
@@ -93,7 +95,7 @@ namespace gui.Gui.Workshop
                     string schoolEmail = currentSchool.School_Contact_Email;
                     string schoolContactName = currentSchool.School_Contact_Name;
                     string schoolAddress = currentSchool.School_Address + " " + currentSchool.School_City;
-                    mail.Send(schoolEmail, schoolContactName, "http://MMT.co.il/schoolAssign.aspx?area=" + companyArea);
+                    mail.Send("karinaves1991@gmail.com", schoolContactName, "http://MMT.co.il/schoolAssign.aspx?area=" + companyArea);
                     countSchools++;
                 }
             }

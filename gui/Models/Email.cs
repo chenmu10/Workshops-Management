@@ -6,6 +6,8 @@ using System.Linq;
 using System.Net;
 using System.Net.Mail;
 using System.Web;
+using System.IO;
+using System.Text;
 
 namespace gui.Models
 {
@@ -25,7 +27,7 @@ namespace gui.Models
         //templates for general workshop emails    
         public static Dictionary<GeneralByType, MessageStructure> PREDEFINED_TEMPLATES_GENERAL = new Dictionary<GeneralByType, MessageStructure>(){
         {GeneralByType.VolunteerInvite, new MessageStructure(){ Subject="סדנה חדשה באזורך-פרויקט מהממט",
-                                                                Body="שלום, {0}," + "\n ישנה סדנא חדשה באזורך \n" + "מעבר לעמוד שיבוץ: {1}"
+                                                                Body=File.ReadAllText(@"C:\Users\Chen\Projects\MMT_git\gui\Models\mail1.txt", Encoding.UTF8)
                                                                 } } ,
         {GeneralByType.AssignComplete, new MessageStructure() { Subject = "שיבוץ הושלם בסדנא-פרויקט מהממט",
                                                                 Body = "שלום, {0}," + "\n השיבוץ לסדנא הושלם. תשלח תזכורת יומיים לפני. "
@@ -46,8 +48,8 @@ namespace gui.Models
         {CompanyByType.SchoolInvite, new MessageStructure(){ Subject="סדנא חדשה בתעשייה באזורכם-פרויקט מהממט",
                                                               Body = "<h2> שלום, {0} </h2>" +
                                                                       "\nישנה סדנא חדשה באזורכם. <br><br> \n" +
-                                                                      "מעבר לעמוד השיבוץ: {1}" +
-                                                                      "<img src='{2}'>"
+                                                                      "מעבר לעמוד השיבוץ: {1}" // +
+                                                                     //"<img src='{2}'>"
                                                                   } } ,
         {CompanyByType.executeVolunteers, new MessageStructure() { Subject = "הוראות לקראת סדנא-פרויקט מהממט", Body = "Content"} },
         {CompanyByType.executeSchool, new MessageStructure() { Subject = "הוראות לקראת סדנא-פרויקט מהממט", Body = "Content"} },
@@ -79,7 +81,11 @@ namespace gui.Models
             mail.From = new MailAddress(fromAddress, "MMT");
             mail.To.Add(new MailAddress(toAddress));
             mail.Subject = emailInfo.Subject;
-            sendBody = string.Format(emailInfo.Body, dynamicInfo);
+            //sendBody = string.Format(emailInfo.Body, dynamicInfo);
+
+            string text = File.ReadAllText(@"C:\Users\Chen\Projects\MMT_git\gui\Models\mail1.txt", Encoding.UTF8);
+
+            sendBody = string.Format(text, dynamicInfo);
             mail.Body = sendBody + "\n\n\n" + signature;
             mail.IsBodyHtml = true;
            
