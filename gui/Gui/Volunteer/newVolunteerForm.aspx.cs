@@ -8,7 +8,7 @@ namespace gui
 {
     public partial class Default : System.Web.UI.Page
     {
-        //TODO check new volunteer uniqness
+      // bug in Send_Click. 
 
         DB db;
         public bool FormOkToDB = true;
@@ -22,19 +22,17 @@ namespace gui
             db = new DB();
             db.IsConnect();
             GetAreasFromDB();
-               
         }
 
         protected void Page_Load(object sender, EventArgs e)
         {
 
-            FormOkToDB = !FormOkToDB;
-            if (Page.IsPostBack && !IsEmptyFields() && FormOkToDB)
-            {
-                LastPostRequest = DateTime.Now;
-                InsertVolunteerToDB();
-               
-            }
+            //FormOkToDB = !FormOkToDB;
+            //if (Page.IsPostBack && !IsEmptyFields() && FormOkToDB)
+            //{
+            //    LastPostRequest = DateTime.Now;
+            //    InsertVolunteerToDB();
+            //}
 
         }
 
@@ -49,6 +47,7 @@ namespace gui
                 {
                     CheckBoxListAreas.Items.Add(new ListItem(Areas[i].Text, i.ToString()));
                     DropDownListTraining.Items.Add(new ListItem(Areas[i].Text, i.ToString()));
+
                 }
 
             }
@@ -128,7 +127,7 @@ namespace gui
             {
                 Response.Write("<script>alert('שגיאה בגישה למאגר');</script>");
             }
-
+            
         }
 
         private bool CheckAreaCheckList()
@@ -145,11 +144,7 @@ namespace gui
             return result;
         }
 
-        protected void Button1_Click(object sender, EventArgs e)
-        {
-
-        }
-
+       
         private bool IsEmptyFields()
         {
             if (string.IsNullOrWhiteSpace(Firstname.Text) ||
@@ -196,8 +191,61 @@ namespace gui
             return false;
         }
 
-       
+        protected void Send_Click(object sender, EventArgs e)
+        {
+            if(!IsEmptyFields())
+            {
+                Volunteer NewVolunteer = new Volunteer();
+                NewVolunteer.Volunteer_First_Name= Firstname.Text.ToString();
+                NewVolunteer.Volunteer_Last_Name = Lastname.Text.ToString();
+                NewVolunteer.Volunteer_First_Name_Eng = Firstnameeng.Text.ToString();
+                NewVolunteer.Volunteer_Last_Name_Eng= Lastnameeng.Text.ToString();
+                NewVolunteer.Volunteer_Email = Email.Text.ToString();
+                NewVolunteer.Volunteer_phone= Phone.Text.ToString();
+                NewVolunteer.Volunteer_Employer = Employer.Text.ToString();
+                NewVolunteer.Volunteer_Occupation= DropDownListOccupation.SelectedValue.ToString();
+                NewVolunteer.Volunteer_prefer_traning_area = Convert.ToInt32(DropDownListTraining.SelectedValue) +1;
 
+              
+                // check "other" field
+                if (DropDownListReference.SelectedValue == "אחר")
+                {
+                    NewVolunteer.Volunteer_Reference = otherRef.Text.ToString();
+                }
+                else
+                {
+                    NewVolunteer.Volunteer_Reference = DropDownListReference.SelectedValue.ToString();
+                }
+
+                // get all selected from checkbox
+                List<int> SelectedAreas = new List<int>();
+                foreach (ListItem item in CheckBoxListAreas.Items)
+                {
+                    if (item.Selected)
+                    {
+                        SelectedAreas.Add(int.Parse(item.Value) + 1);
+                    }
+                }
+
+                NewVolunteer.Volunteer_Area_Activity = SelectedAreas;
+                NewVolunteer.Volunteer_Number_Of_Activities = 0;
+
+                if (db.IsVolunteerExist(NewVolunteer))
+                {
+                    Response.Write("<script>alert('מתנדבת קיימת. צרי קשר במקרה של שינוי/בעיה');</script>");
+                }
+                else if (db.InsetNewVolunteer(NewVolunteer))
+                {
+                    Response.Write("<script>alert('נוספת בהצלחה למאגר');</script>");
+                }
+                else
+                {
+                    Response.Write("<script>alert('שגיאה בגישה למאגר');</script>");
+                }
+
+
+            }
+        }
     }
 }
 

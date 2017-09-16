@@ -178,7 +178,7 @@
                     <br />
 
 
-                    <asp:Button ID="send" class="btn btn-success" runat="server" Text="שליחה" />
+                    <asp:Button ID="Send" class="btn btn-success" runat="server" Text="שליחה" OnClick="Send_Click" />
 
 
                 </div>
