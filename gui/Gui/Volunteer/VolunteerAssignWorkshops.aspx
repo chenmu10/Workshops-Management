@@ -21,7 +21,10 @@
             <asp:Table ID="workshopTable" class="table table-striped" runat="server">
                 <asp:TableHeaderRow>
                     <asp:TableHeaderCell>
-                        #
+                        שורה
+                    </asp:TableHeaderCell>
+                    <asp:TableHeaderCell>
+                        מס מזהה
                     </asp:TableHeaderCell>
                     <asp:TableHeaderCell>
                         מועד

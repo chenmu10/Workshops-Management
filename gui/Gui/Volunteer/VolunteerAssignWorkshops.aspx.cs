@@ -439,7 +439,6 @@ namespace gui.Gui
                         {
                             succsess.Visible = true;
                         }
-
                     }
                     else
                     {

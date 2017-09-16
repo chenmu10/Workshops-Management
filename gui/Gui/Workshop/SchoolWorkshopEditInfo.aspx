@@ -68,9 +68,9 @@
                     <li runat="server" id="bar2">בדיקת תאריכים</li>
                     <li runat="server" id="bar3">שיבוץ מתנדבות</li>
                     <li runat="server" id="bar4">שיבוץ הושלם</li>
-                    <li runat="server" id="bar5">להכנה</li>
-                    <li runat="server" id="bar6">לביצוע</li>
-                    <li runat="server" id="bar7">למישוב</li>
+                    <li runat="server" id="bar5">הכנה</li>
+                    <li runat="server" id="bar6">ביצוע</li>
+                    <li runat="server" id="bar7">מישוב</li>
                     <li runat="server" id="bar8">סגור</li>
 
                 </ul>
@@ -207,8 +207,8 @@
                                         <br />
                                     </fieldset>
                                 </div>
-                                <asp:Button runat="server" ID="prepareUpdate" Text="עדכני להכנה" class="btn btn-success" />
-                                <asp:Button runat="server" ID="backToDates" Text="חזרי לסטטוס בחירת תאריך" class="btn btn-danger" />
+                               
+                                <asp:Button runat="server" ID="backToDates" Text="חזור לסטטוס בחירת תאריך" class="btn btn-danger" />
 
 
                             </div>
@@ -333,7 +333,7 @@
                                     <br />
                                 </div>
 
-                                <asp:Button runat="server" class="btn btn-success" Text="עדכני לביצוע" />
+                             
 
                             </div>
                             <!-- /tab3-->
@@ -344,7 +344,7 @@
                                 <asp:Label runat="server" ID="Label1" Text="תאריך הסדנא לא הגיע/תאריך הסדנא עבר."></asp:Label>
                                 <br />
 
-                                <asp:Button runat="server" ID="updateToFeedback" Text="עדכני למישוב" class="btn btn-success" />
+                              
 
 
                             </div>

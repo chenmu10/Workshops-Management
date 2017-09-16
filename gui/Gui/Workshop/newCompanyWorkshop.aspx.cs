@@ -41,10 +41,12 @@ namespace gui.Gui.Workshop
 
         protected void FillCompanyDetails(object sender, EventArgs e)
         {
+            List<ListItem> Areas = db.GetAllAreas();
+
             Company selectedComp = Companies[((DropDownList)sender).SelectedIndex - 1];
             companyID.Text = selectedComp.Company_ID.ToString();
             address.Text = selectedComp.Company_Address;
-            area.Text = selectedComp.Company_Area_Activity.ToString();
+            area.Text = Areas[selectedComp.Company_Area_Activity].Text.ToString();
             companyArea = selectedComp.Company_Area_Activity; // needed for email function
            
 
@@ -65,8 +67,15 @@ namespace gui.Gui.Workshop
                 if (db.InsertNewCompanyWorkShop(newcw))
                 {
                     Response.Write("<script>alert('הסדנא נוספה בהצלחה. ניתן להוסיף עוד סדנאות עבור החברה הנבחרת');</script>");
-                    SendInvitesToSchools();
 
+                    if(SendInvitesToSchools(newcw))
+                    {
+                        Msg.Text = "אימיילים נשלחו אל בתי ספר רלוונטים";
+                    }
+                    else 
+                    {
+                        Response.Write("<script>alert('שגיאה בשליחת אימיילים');</script>");
+                    }
                     ClearWorkshopDetails();
                 }
                 else
@@ -78,31 +87,21 @@ namespace gui.Gui.Workshop
         }
 
        
-
-        protected void SendInvitesToSchools()
+        /// <summary>
+        /// This function send emails to all the relevant school.
+        /// inform them that new company workshop was created
+        /// </summary>
+        protected bool SendInvitesToSchools(CompanyWorkshop selectedWorkshop)
         {
-            int countSchools = 0;
             List<School> allSchools = db.GetAllSchools();
+            List<Company> allCompany = db.GetAllComapny();
 
-            EmailTemplate mail = new EmailTemplate(EmailTemplate.PREDEFINED_TEMPLATES_COMPANY[EmailTemplate.CompanyByType.SchoolInvite]);
-            Company selectedComp = Companies[dropDownCompanyName.SelectedIndex - 1];
-            companyArea = selectedComp.Company_Area_Activity;
+            int companyID = selectedWorkshop.CompanyID;
+            Company SelectedComapny = allCompany.Find(x => x.Company_ID == companyID);
 
-            foreach (School currentSchool in allSchools)
-            {
-                if (currentSchool.School_Area == companyArea)
-                {
-                    string schoolEmail = currentSchool.School_Contact_Email;
-                    string schoolContactName = currentSchool.School_Contact_Name;
-                    string schoolAddress = currentSchool.School_Address + " " + currentSchool.School_City;
-                    mail.Send("karinaves1991@gmail.com", schoolContactName, "http://MMT.co.il/schoolAssign.aspx?area=" + companyArea);
-                    countSchools++;
-                }
-            }
-
-            Response.Write("<script>alert('נשלחו מיילים');</script>");
-            Msg.Text = "נשלחו מיילים אל " + countSchools + "בתי ספר";
-
+            allSchools = allSchools.FindAll(x => x.School_Area == SelectedComapny.Company_Area_Activity);
+            EmailHelper email = new EmailHelper();
+            return email.SendInitesToSchools(allSchools, selectedWorkshop);
         }
 
         private bool IsEmptyFields()

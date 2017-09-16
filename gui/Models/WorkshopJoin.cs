@@ -18,7 +18,10 @@ namespace gui.Models
         public string Volunteer3_Name;
         public string Volunteer4_Name;
         public bool Is_company;
-
+        public int Status;
+        public int Area;
+        public int SchoolID;
+        public int CompanyID;
         public WorkshopJoin(DataRow dr)
         {
             WorkShop_ID = dr["WorkShop_ID"].ToString();
@@ -30,6 +33,10 @@ namespace gui.Models
             Volunteer2_Name = dr["Volunteer2_Name"].ToString();
             Volunteer3_Name = dr["Volunteer3_Name"].ToString();
             Volunteer4_Name = dr["Volunteer4_Name"].ToString();
+            Status = int.Parse(dr["WorkShop_Status"].ToString());
+            Area = int.Parse(dr["Area"].ToString());
+            CompanyID = dr["Company_ID"].ToString().Equals("") ? 0 : int.Parse(dr["Company_ID"].ToString());
+            SchoolID = dr["School_ID"].ToString().Equals("") ? 0 : int.Parse(dr["School_ID"].ToString());
 
         }
         public WorkshopJoin(DataRow dr,int x)
@@ -38,6 +45,9 @@ namespace gui.Models
             WorkShop_ID = dr["WorkShop_ID"].ToString();
             Status_Description = dr["Status_Description"].ToString();
             isDateSelected = dr["WorkShop_SelectedDate"].ToString();
+            Status = int.Parse(dr["WorkShop_Status"].ToString());
+            Area = int.Parse(dr["Area"].ToString());
+            SchoolID = dr["School_ID"].ToString().Equals("") ? 0 : int.Parse(dr["School_ID"].ToString());
             if (isDateSelected.Equals("0") || isDateSelected.Equals(""))
             {
                 WorkShop_Date = "אין תאריך עדיין";

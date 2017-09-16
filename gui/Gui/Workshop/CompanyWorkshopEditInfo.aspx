@@ -7,8 +7,9 @@
 <html>
 <head runat="server">
     <title></title>
-    <link href="../../css/StatusBar.css" rel="stylesheet" />
+   
     <link href="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.9/themes/start/jquery-ui.css" rel="stylesheet" type="text/css" />
+ <link href="../../css/StatusBar.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
     <form id="form1" runat="server">

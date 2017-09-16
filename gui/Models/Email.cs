@@ -14,6 +14,11 @@ namespace gui.Models
 
     public class EmailTemplate
     {
+
+
+
+
+
         private string fromAddress = "chenitunes@gmail.com"; // temporary - personal email..
         private string fromPassword = "mmtproject";
         private string signature = "בברכה,\nפרויקט מהממט, המרכז לחינוך סייבר";
@@ -73,6 +78,10 @@ namespace gui.Models
             };
         }
 
+        public EmailTemplate()
+        {
+        }
+
         public void Send(string toAddress, params string[] dynamicInfo)
         {
             string sendBody;
@@ -97,6 +106,9 @@ namespace gui.Models
             public string Subject;
             public string Body;
         }
+
+        
+
 
     }
 }
