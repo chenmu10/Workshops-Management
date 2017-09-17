@@ -184,15 +184,6 @@ namespace gui.Gui.Workshop {
         protected global::System.Web.UI.WebControls.LinkButton goToCompany;
         
         /// <summary>
-        /// goToSchoolAssign control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton goToSchoolAssign;
-        
-        /// <summary>
         /// workshopDetails control.
         /// </summary>
         /// <remarks>
@@ -283,15 +274,6 @@ namespace gui.Gui.Workshop {
         protected global::System.Web.UI.WebControls.TextBox schoolComments;
         
         /// <summary>
-        /// AssignVolUpdate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button AssignVolUpdate;
-        
-        /// <summary>
         /// volunteercount control.
         /// </summary>
         /// <remarks>
@@ -355,15 +337,6 @@ namespace gui.Gui.Workshop {
         protected global::System.Web.UI.WebControls.Label Label1;
         
         /// <summary>
-        /// updateToFeedback control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button updateToFeedback;
-        
-        /// <summary>
         /// Label2 control.
         /// </summary>
         /// <remarks>
@@ -416,14 +389,5 @@ namespace gui.Gui.Workshop {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton LinkButton3;
-        
-        /// <summary>
-        /// Button1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button1;
     }
 }

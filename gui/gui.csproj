@@ -88,12 +88,14 @@
     <Content Include="Gui\Documents\FeedbackVolunteer.aspx" />
     <Content Include="Gui\Documents\nav.ascx" />
     <Content Include="Gui\Documents\ExternalForms.aspx" />
+    <Content Include="Gui\School\SchoolEditInfo.aspx" />
     <Content Include="Gui\Volunteer\ApproveNewVolunteerForm.aspx" />
     <Content Include="Gui\Company\CompanyView.aspx" />
     <Content Include="Gui\Company\CompanyEditInformation.aspx" />
     <Content Include="Gui\Documents\Manager_Home.aspx" />
     <Content Include="Gui\Company\NewCompanyForm.aspx" />
     <Content Include="Gui\Volunteer\NewVolunteerForm.aspx" />
+    <Content Include="Gui\Volunteer\VolunteerEditInfo.aspx" />
     <Content Include="Gui\Workshop\CompanyWorkshopEditInfo.aspx" />
     <Content Include="Gui\Workshop\newCompanyWorkshop.aspx" />
     <Content Include="Gui\Workshop\NewSchoolWorkshop.aspx" />
@@ -170,6 +172,13 @@
     <Compile Include="Gui\Documents\ExternalForms.aspx.designer.cs">
       <DependentUpon>ExternalForms.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Gui\School\SchoolEditInfo.aspx.cs">
+      <DependentUpon>SchoolEditInfo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Gui\School\SchoolEditInfo.aspx.designer.cs">
+      <DependentUpon>SchoolEditInfo.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Gui\Volunteer\ApproveNewVolunteerForm.aspx.cs">
       <DependentUpon>ApproveNewVolunteerForm.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -211,6 +220,13 @@
     </Compile>
     <Compile Include="Gui\Volunteer\NewVolunteerForm.aspx.designer.cs">
       <DependentUpon>NewVolunteerForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Gui\Volunteer\VolunteerEditInfo.aspx.cs">
+      <DependentUpon>VolunteerEditInfo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Gui\Volunteer\VolunteerEditInfo.aspx.designer.cs">
+      <DependentUpon>VolunteerEditInfo.aspx</DependentUpon>
     </Compile>
     <Compile Include="Gui\Workshop\CompanyWorkshopEditInfo.aspx.cs">
       <DependentUpon>CompanyWorkshopEditInfo.aspx</DependentUpon>

@@ -116,4 +116,3 @@ C:\Users\Avi\Desktop\MMT\gui\bin\Newtonsoft.Json.xml
 C:\Users\Avi\Desktop\MMT\gui\obj\Debug\gui.dll
 C:\Users\Avi\Desktop\MMT\gui\obj\Debug\gui.pdb
 C:\Users\Avi\Desktop\MMT\gui\obj\Debug\gui.csprojResolveAssemblyReference.cache
-C:\Users\Chen\Projects\MMT\gui\obj\Debug\gui.csproj.CoreCompileInputs.cache

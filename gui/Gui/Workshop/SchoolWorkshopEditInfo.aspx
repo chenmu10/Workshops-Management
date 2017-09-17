@@ -97,7 +97,9 @@
                             <%--  TAB 1 - SCHOOL REQUEST--%>
                             <div class="tab-pane fade in active" id="school">
                                 <div class="col-md-6">
-                                    <asp:LinkButton runat="server" ID="LinkSchoolInfo" Text="פרטי בית הספר"></asp:LinkButton>
+                                
+                                    <a class="btn btn-link" href="../School/SchoolEditInfo.aspx">פרטי בית הספר</a>
+
                                     <br />
                                     <br />
 
@@ -107,7 +109,7 @@
                                     <div class="form-inline">
                                         <asp:TextBox ID="schoolname" Enabled="false"
                                             required="required"
-                                            class="form-control"
+                                            CssClass="form-control disabled"
                                             oninvalid="setCustomValidity('יש להזין שם בית ספר')"
                                             onchange="try{setCustomValidity('')}catch(e){}"
                                             runat="server" Width="220px">
@@ -207,7 +209,7 @@
                                         <br />
                                     </fieldset>
                                 </div>
-                               
+
                                 <asp:Button runat="server" ID="backToDates" Text="חזור לסטטוס בחירת תאריך" class="btn btn-danger" />
 
 
@@ -333,7 +335,7 @@
                                     <br />
                                 </div>
 
-                             
+
 
                             </div>
                             <!-- /tab3-->
@@ -344,7 +346,7 @@
                                 <asp:Label runat="server" ID="Label1" Text="תאריך הסדנא לא הגיע/תאריך הסדנא עבר."></asp:Label>
                                 <br />
 
-                              
+
 
 
                             </div>
@@ -373,7 +375,7 @@
                                     <asp:LinkButton runat="server" ID="LinkButton4" Text="משוב"></asp:LinkButton>
                                 </fieldset>
                                 <br />
-                                <asp:Button runat="server" ID="Button1" Text="עדכני לסגירה" class="btn btn-success" />
+                               
                             </div>
 
                         </div>
