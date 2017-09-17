@@ -37,30 +37,26 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <th scope="row">בקשות לסדנא</th>
+                            <th scope="row">בקשות בתי ספר לקיום סדנא</th>
                             <td><span class="badge">2</span></td>
 
                         </tr>
                         <tr>
-                            <th scope="row">סדנאות בשיבוץ בי"ס</th>
+                            <th scope="row">סדנאות בחברות לשיבוץ בתי ספר</th>
                             <td><span class="badge">2</span></td>
 
                         </tr>
                         <tr>
-                            <th scope="row">סדנאות בשיבוץ מתנדבות</th>
+                            <th scope="row">סדנאות לשיבוץ מתנדבות</th>
                             <td><span class="badge">2</span></td>
 
                         </tr>
                         <tr>
-                            <th scope="row">מתדנבות שובצו</th>
+                            <th scope="row">סדנאות בשיבוץ הושלם להכנה</th>
                             <td colspan="2"><span class="badge">2</span></td>
 
                         </tr>
-                        <tr>
-                            <th scope="row">סדנאות להכנה/אושרה הכנה</th>
-                            <td colspan="2"><span class="badge">2</span></td>
-
-                        </tr>
+                       
                         <tr>
                             <th scope="row">סדנאות לביצוע</th>
                             <td colspan="2"><span class="badge">2</span></td>
@@ -68,6 +64,11 @@
                         </tr>
                         <tr>
                             <th scope="row">סדנאות למישוב</th>
+                            <td colspan="2"><span class="badge">2</span></td>
+
+                        </tr>
+                         <tr>
+                            <th scope="row">סדנאות סגורות</th>
                             <td colspan="2"><span class="badge">2</span></td>
 
                         </tr>

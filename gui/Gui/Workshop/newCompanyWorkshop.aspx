@@ -90,11 +90,12 @@
 
                             </asp:Calendar>
 
-
+                       
+                  
                             <!-- Time -->
                             <b>שעה:</b>
                             <br />
-
+                         <asp:TextBox type="datetime-local"  runat="server"></asp:TextBox> <br />
                             <!-- Minutes -->
                             <asp:TextBox ID="minutes"
                                 type="number" min="0" max="50" step="10"
@@ -115,7 +116,7 @@
                 <p class="tpbutton btn-toolbar text-center">
 
                     <asp:Button ID="Button1" runat="server" CssClass="btn btn-success" OnClick="AddWorkshop" Text="הוספת סדנא" />
-                    <a class="btn btn-default">חזרה לעמוד סדנאות</a>
+                    <a class="btn btn-default" href="WorkshopsView.aspx">חזרה לעמוד סדנאות</a>
                 </p>
 
             </div>

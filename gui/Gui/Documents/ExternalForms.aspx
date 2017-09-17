@@ -28,7 +28,7 @@
                         <p class="list-group-item-text">באתר מהממ"ט יהיה קישור שיוביל לדף זה. נרשמת חדשה תהיה בסטטוס "ללא הכשרה"</p>
                     </a>
                     <a href="../workshop/newSchoolWorkshop.aspx" class="list-group-item" target="_blank">
-                        <h4 class="list-group-item-heading">בקשת בית ספר לקיום סדנא</h4>
+                        <h4 class="list-group-item-heading">טופס בקשת בית ספר לקיום סדנא</h4>
                         <p class="list-group-item-text">באתר יהיה קישור לדף זה. הוספת סדנא בסטטוס "לבדיקה" עבור בית ספר חדש או קיים</p>
                     </a>
                     <a href="../workshop/workshopPrepareform.aspx" class="list-group-item" target="_blank">
@@ -48,7 +48,7 @@
                         <p class="list-group-item-text">קישור לעמוד השיבוץ נשלח אוטומטית למתנדבות הנמצאות באותו אזור של הסדנא.</p>
                     </a>
                     <a href="../school/schoolSelectWorkshopFromIndustry.aspx" class="list-group-item" target="_blank">
-                        <h4 class="list-group-item-heading">שיבוץ בית ספר לסדנא בתעשייה</h4>
+                        <h4 class="list-group-item-heading">שיבוץ בית ספר לסדנה בחברה</h4>
                         <p class="list-group-item-text">קישור לעמוד השיבוץ נשלח אוטומטית לכל בתי הספר במאגר שנמצאים באזור הסדנא.</p>
                     </a>
                 </div>

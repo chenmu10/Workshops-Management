@@ -48,16 +48,21 @@
                         </asp:DropDownList>
 
                         <asp:DropDownList class="form-control" runat="server" ID="DropDownListSchool" Width="120px">
-                            <asp:ListItem>בי"ס</asp:ListItem>
+                            <asp:ListItem>שם בית ספר</asp:ListItem>
                         </asp:DropDownList>
 
                         <asp:DropDownList class="form-control" runat="server" ID="DropDownListCompany" Width="120px">
-                            <asp:ListItem>חברה</asp:ListItem>
+                            <asp:ListItem>שם חברה</asp:ListItem>
                         </asp:DropDownList>
+
+                       <%-- מועד קיום:
+                        <asp:TextBox class="form-control" ID="date" runat="server" TextMode="Date" Width="150px"></asp:TextBox>
+                        <br />--%>
 
                         מתאריך:
                         <asp:TextBox class="form-control" ID="from_Date" runat="server" TextMode="Date" Width="150px"></asp:TextBox>
-                        עד תאריך:<asp:TextBox class="form-control" ID="to_Date" runat="server" TextMode="Date" Width="150px"></asp:TextBox>
+                        עד תאריך:
+                        <asp:TextBox class="form-control" ID="to_Date" runat="server" TextMode="Date" Width="150px"></asp:TextBox>
 
                         <asp:Button runat="server" ID="filter" class="btn btn-info" OnClick="Filter_Click" Text="סינון" />
                     </div>

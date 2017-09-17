@@ -185,16 +185,18 @@ namespace gui.Gui
 
             InsertToVolunterTable(volunteers);
         }
-        protected void OccupationSort(object sender, EventArgs e)
-        {
-            List<TableRow> rows = new List<TableRow>();
-            TableRow t = volunteerTable.Rows[0];
-            List<Volunteer> volunteers = SortByFilterFunc();
-            volunteers = volunteers.OrderBy(x => x.Volunteer_Occupation.ToString()).ToList();
-            volunteerTable.Rows.Clear();
-            volunteerTable.Rows.Add(t);
 
-            InsertToVolunterTable(volunteers);
-        }
+
+        //protected void OccupationSort(object sender, EventArgs e)
+        //{
+        //    List<TableRow> rows = new List<TableRow>();
+        //    TableRow t = volunteerTable.Rows[0];
+        //    List<Volunteer> volunteers = SortByFilterFunc();
+        //    volunteers = volunteers.OrderBy(x => x.Volunteer_Occupation.ToString()).ToList();
+        //    volunteerTable.Rows.Clear();
+        //    volunteerTable.Rows.Add(t);
+
+        //    InsertToVolunterTable(volunteers);
+        //}
     }
 }

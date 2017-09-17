@@ -57,8 +57,12 @@
             <asp:Table ID="ScoolsTable" runat="server" CssClass="table table-hover">
                 <asp:TableRow>
                     <asp:TableCell Font-Bold="true">#</asp:TableCell>
-                    <asp:TableCell Font-Bold="true">שם בית ספר</asp:TableCell>
-                    <asp:TableCell Font-Bold="true"> סמל מוסד</asp:TableCell>
+                     <asp:TableCell Font-Bold="true">
+                        <asp:LinkButton ForeColor="Black" runat="server" ID="LinkButton1">שם בית ספר 
+                            <span class="glyphicon glyphicon-sort"></span>
+                        </asp:LinkButton>
+                    </asp:TableCell>
+                   <%-- <asp:TableCell Font-Bold="true"> סמל מוסד</asp:TableCell>--%>
                     <asp:TableCell Font-Bold="true"> איזור </asp:TableCell>
                     <asp:TableCell Font-Bold="true"> כתובת</asp:TableCell>
                     <asp:TableCell Font-Bold="true"> שם איש קשר</asp:TableCell>

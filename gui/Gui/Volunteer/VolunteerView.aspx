@@ -68,12 +68,12 @@
                 <asp:TableRow>
                     <asp:TableCell><asp:LinkButton OnClick="NameSort" ForeColor="Black" runat="server" ID="NameSortBtn">שם  <span class="glyphicon glyphicon-sort"></span></asp:LinkButton></asp:TableCell>
                     <asp:TableCell ><asp:LinkButton OnClick="StatusSort" ForeColor="Black" runat="server" ID="LinkButton1">סטטוס  <span class="glyphicon glyphicon-sort"></span></asp:LinkButton></asp:TableCell>
-                    <asp:TableCell ><asp:LinkButton OnClick="OccupationSort" ForeColor="Black" runat="server" ID="LinkButton2">עיסוק  <span class="glyphicon glyphicon-sort"></span></asp:LinkButton></asp:TableCell>
+                    <asp:TableCell Font-Bold="true" >עיסוק </asp:TableCell>
                     <asp:TableCell Font-Bold="true">אימייל</asp:TableCell>
                     <asp:TableCell Font-Bold="true">טלפון</asp:TableCell>
                     <asp:TableCell Font-Bold="true">איזור פעילות</asp:TableCell>
                     <asp:TableCell Font-Bold="true">איזור הכשרה</asp:TableCell>
-                    <asp:TableCell Font-Bold="true">סדנאות שהועברו <span class="glyphicon glyphicon-sort"></span></asp:TableCell>
+                    <asp:TableCell Font-Bold="true">סדנאות שהועברו </asp:TableCell>
                     <asp:TableCell Font-Bold="true">צפייה</asp:TableCell>
                 </asp:TableRow>
 

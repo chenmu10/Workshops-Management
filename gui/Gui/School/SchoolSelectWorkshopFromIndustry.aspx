@@ -21,7 +21,7 @@
         <div class="container">
 
             <div class="jumbotron">
-                <h2>סדנאות בתעשייה: שיבוץ בתי ספר</h2>
+                <h2>סדנאות בחברות: שיבוץ בתי ספר</h2>
             </div>
 
             <!-- Workshops Table-->
@@ -81,7 +81,7 @@
                 </div>
             <br />
              <div style=" display: table-cell;">
-               <asp:Button runat="server" ID="searchSchool" class="btn btn-info" Text="חפש/י סמל" OnClick="searchSchool_Click"/>
+               <asp:Button runat="server" ID="searchSchool" class="btn btn-info" Text="חיפוש סמל" OnClick="searchSchool_Click"/>
             </div>
             
             <br />
