@@ -110,18 +110,27 @@ namespace gui.Gui.Workshop
                         break;
                     case 6:
                         /*  להכנה*/ 
+                      
                         PrepareForm pf = db.getPrePareFormByWorkshopID(Convert.ToInt32(WorkShopID.Text));
-                        finalParticipants.Text = pf.WorkShop_Number_Of_Final_Student.ToString();
-                        RadioButtonListProjectOrControl.SelectedValue = pf.WorkShop_Is_Projector.ToString();
-                        //WorkShop_Is_Seniors_Coming = pf.WorkShop_Is_Seniors_Coming;
-                        //WorkShop_Did_Preparation = pf.WorkShop_Did_Preparation;
-                        //WorkShop_Teacher_Name = pf.WorkShop_Teacher_Name;
-                        //WorkShop_Teacher_Email = pf.WorkShop_Teacher_Email;
-                        //WorkShop_Teacher_phone = pf.WorkShop_Teacher_phone;
-                        //WorkShop_Comments = pf.WorkShop_Comments
-                        //WorkShop_Is_Video_possible = pf.WorkShop_Is_Video_possible;
-                        numOfCompWithEmulator.Text = pf.WorkShop_Number_Of_emulator_Computer.ToString();
-                        break;
+                        if (pf != null)
+                       {
+                            finalParticipants.Text = pf.WorkShop_Number_Of_Final_Student.ToString();
+                            RadioButtonListProjectOrControl.SelectedValue = pf.WorkShop_Is_Projector.ToString();
+                            RadioButtonListSeniors.Text = pf.WorkShop_Is_Seniors_Coming.ToString();
+                            RadioButtonListDidPrepare.SelectedValue = pf.WorkShop_Did_Preparation.ToString();
+                            RadioButtonListShowVideo.Text = pf.WorkShop_Is_Video_possible.ToString();
+                            numOfCompWithEmulator.Text = pf.WorkShop_Number_Of_emulator_Computer.ToString();
+                            teacherName.Text = pf.WorkShop_Teacher_Name;
+                            teacherEmail.Text = pf.WorkShop_Teacher_Email;
+                            teacherPhone.Text = pf.WorkShop_Teacher_phone;
+                            prepareComments.Text = pf.WorkShop_Comments;
+                            break;
+
+                        }
+                        else {
+                            break;
+                        }
+                       
                     case 7:
                         break;
                     case 8:
@@ -247,16 +256,19 @@ namespace gui.Gui.Workshop
 
         protected void updateStatus_Click(object sender, EventArgs e)
         {
+            //EmailTemplate EmailHelper = new EmailTemplate();
             int ID = int.Parse(Session["WorkshopID"].ToString());
             WorkshopToView = db.GetJoinWorkShopByID(ID);
             schoolWorkshop = db.GetSchoolWorkshopByID(ID);
+            EmailHelper Email = new EmailHelper();
             int status = int.Parse(selectpicker.SelectedValue);
+            
             switch (status)
             {
                 case 1:
                     // לבדיקת תאריך
-                    string str1 = "על מנת לעבור סטטוס יש לבחור סטטוס רצוי";
-                    Response.Write("<script>alert('" + str1 + "'); window.location.href = ''; </script>");
+                    ErrorMsg(4);
+
 
                     break;
                 case 2:
@@ -264,14 +276,18 @@ namespace gui.Gui.Workshop
                     // בדיקה שתאריך נבחר
                     int dateSelected = dateselector.SelectedIndex;
                     if (dateSelected == 0)
-                    {
-                        string str = "על מנת לעבור סטטוס לשיבוץ מתנדבות,צריך לבחור תאריך";
-                        Response.Write("<script>alert('" + str + "'); window.location.href = ''; </script>");
-                    }
+                        ErrorMsg(3);
                     else
                     {
-                        db.SchoolWorkShopUpdateDate(schoolWorkshop.SchoolWorkShopID, dateSelected);
-                        db.SchoolWorkShopUpdatestatus(schoolWorkshop.SchoolWorkShopID, 1);
+                        List<Volunteer> allVolunteer = db.GetAllVolunteers();
+                        List<School> allSchool = db.GetAllSchools();
+                        School school = allSchool.Find(x => x.School_ID == schoolWorkshop.WorkShop_School_ID) ;
+                        allVolunteer=allVolunteer.FindAll(x => x.Volunteer_Area_Activity.Contains(school.School_Area));
+
+                        if (!db.SchoolWorkShopUpdateDate(schoolWorkshop.SchoolWorkShopID, dateSelected)) ErrorMsg(1);
+                        if (!db.SchoolWorkShopUpdatestatus(schoolWorkshop.SchoolWorkShopID, 1)) ErrorMsg(1);
+                        if (!Email.SendInivetsToVolunteers(allVolunteer, school.School_Area, dateselector.SelectedItem.Text)) ErrorMsg(2);
+
                         Response.Redirect(Request.RawUrl);
                     }                    
                     break;
@@ -290,14 +306,18 @@ namespace gui.Gui.Workshop
                     }
                     else
                     {
-                        db.SchoolWorkShopUpdatestatus(schoolWorkshop.SchoolWorkShopID, 3);
-                        Response.Write("<script> window.location.href = ''; </script>");
+                       
+                        if (!db.SchoolWorkShopUpdatestatus(schoolWorkshop.SchoolWorkShopID, 3)) ErrorMsg(1);
+                        if (!Email.SendAssignComplete(schoolWorkshop)) ErrorMsg(2);
+                       
+                        Response.Write("<script>alert(איימילים נשלחו לגורמים הרלוונטים); window.location.href = ''; </script>");
                     }
                     break;
                 case 4:
                     //להכנה
                     db.InsertNewPrePare(ID);
-                    db.SchoolWorkShopUpdatestatus(schoolWorkshop.SchoolWorkShopID, 6);
+                    if(!db.SchoolWorkShopUpdatestatus(schoolWorkshop.SchoolWorkShopID, 6)) ErrorMsg(1);
+                    if(!Email.PrepareMail(schoolWorkshop)) ErrorMsg(2);
                     PrepareFormCreate.Visible = true;
                     Response.Write("<script> window.location.href = ''; </script>");
                     break;
@@ -425,7 +445,27 @@ namespace gui.Gui.Workshop
             return imgTagSrc.ToString();
         }
 
-
+        public void ErrorMsg(int type)
+        {
+            switch (type)
+            {
+                case 1:
+                    Response.Write("<script>alert(שגיאה ברישום למסד נתונים); window.location.href = ''; </script>");
+                    break;
+                case 2:
+                    Response.Write("<script>alert(שגיאה בשליחת איימיל); window.location.href = ''; </script>");
+                    break;
+                case 3:
+                    string str = "על מנת לעבור סטטוס לשיבוץ מתנדבות,צריך לבחור תאריך";
+                    Response.Write("<script>alert('" + str + "'); window.location.href = ''; </script>");
+                    break;
+                case 4:
+                    string str1 = "על מנת לעבור סטטוס יש לבחור סטטוס רצוי";
+                    Response.Write("<script>alert('" + str1 + "'); window.location.href = ''; </script>");
+                    break;
+            }
+            
+        }
 
     }
 }

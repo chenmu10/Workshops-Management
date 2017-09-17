@@ -30,8 +30,8 @@ namespace gui.Gui
                 TableCell Name = new TableCell();
                 Name.Text = School.School_Name;
 
-                TableCell Symbol = new TableCell();
-                Symbol.Text = School.School_Serial_Number.ToString(); ;
+                //TableCell Symbol = new TableCell();
+                //Symbol.Text = School.School_Serial_Number.ToString(); ;
 
                 TableCell Area = new TableCell();
                 Area.Text = Areas[School.School_Area];
@@ -58,7 +58,7 @@ namespace gui.Gui
           
                 TableRow.Cells.Add(id);
                 TableRow.Cells.Add(Name);
-                TableRow.Cells.Add(Symbol);
+                //TableRow.Cells.Add(Symbol);
                 TableRow.Cells.Add(Area);
                 TableRow.Cells.Add(Address);
                 TableRow.Cells.Add(ContectName);

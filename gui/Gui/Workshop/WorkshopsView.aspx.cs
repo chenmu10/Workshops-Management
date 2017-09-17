@@ -10,18 +10,62 @@ namespace gui.Gui.Workshop
 {
     public partial class WorkshopsView : System.Web.UI.Page
     {
-        List<WorkshopJoin> CompanyWorkshopsJoin = new List<WorkshopJoin>();
+        List<WorkshopJoin> WorkshopsJoin = new List<WorkshopJoin>();
         DB db;
         protected void Page_Load(object sender, EventArgs e)
         {
             this.Load += new System.EventHandler(this.Page_Load);
             db = new DB();
             db.IsConnect();
-            FillTable();
+
+            GetAreasFromDB();
+            GetSchoolFromDB();
+            GetCompanyFromDB();
+
+            WorkshopsJoin = db.GetAllWorkshopsByJoin();
+            FillTable(WorkshopsJoin);
         }
-        private void FillTable()
+        public void GetAreasFromDB()
         {
-            CompanyWorkshopsJoin = db.GetAllWorkshopsByJoin();
+            List<ListItem> Areas = db.GetAllAreas();
+            if (DropDownListAreas.Items.Count <= 1)
+            {
+                for (int i = 0; i < Areas.Count; i++)
+                {
+                    DropDownListAreas.Items.Add(new ListItem(Areas[i].Text, i.ToString()));
+                }
+            }
+        }
+        public void GetSchoolFromDB()
+        {
+            List<School> Schools = db.GetAllSchools();
+            if(DropDownListSchool.Items.Count<=1)
+            {
+                foreach(School s in Schools)
+                {
+                    DropDownListSchool.Items.Add(new ListItem(s.School_Name, s.School_ID.ToString()));
+                }
+            }
+        }
+        public void GetCompanyFromDB()
+        {
+            List<Company> Companies = db.GetAllComapny();
+            if(DropDownListCompany.Items.Count<=1)
+            {
+                foreach(Company c in Companies)
+                {
+                    DropDownListCompany.Items.Add(new ListItem(c.Company_Name, c.Company_ID.ToString()));
+                }
+            }
+        }
+        private void FillTable(List<WorkshopJoin> CompanyWorkshopsJoin)
+        {
+
+
+            TableRow Headers =  workshopTable.Rows[0];
+            workshopTable.Rows.Clear();
+            workshopTable.Rows.Add(Headers);
+
             /* Company Workshops*/
             foreach (WorkshopJoin t in CompanyWorkshopsJoin)
             {
@@ -112,9 +156,89 @@ namespace gui.Gui.Workshop
         }
         protected void Filter_Click(object sender, EventArgs e)
         {
+            List<WorkshopJoin> result = db.GetAllWorkshopsByJoin();
+            List<CompanyWorkshop> companies = db.GetAllCompanyWorshops();
+            List<SchoolWorkShop> Schools = db.GetAllSchoolWorkShops();
+
+            int status = DropDownListStatus.SelectedIndex;
+            int type = DropDownListType.SelectedIndex;
+            int area = DropDownListAreas.SelectedIndex;
+            int shcool = DropDownListSchool.SelectedIndex;
+            int company = DropDownListCompany.SelectedIndex;
+            string start_date = from_Date.Text; //YYYY-MM-DD
+            string end_date = to_Date.Text;
+
+            if (status!=0)
+            {
+                result = result.FindAll(x => x.Status == status);
+            }
+            if (type != 0)
+                result = result.FindAll(x => x.Is_company == (type == 1));
+            if (area != 0)
+                result = result.FindAll(x => x.Area == area);
+            if (shcool != 0)
+                result = result.FindAll(x => x.SchoolID == shcool);
+            if (company != 0)
+                result = result.FindAll(x => x.CompanyID == company);
+            if(!start_date.Equals("") && !end_date.Equals(""))
+            {
+                //DateBetween 
+                DateTime start = TimeReplace(start_date,false);
+                DateTime end = TimeReplace(end_date, false);
+                DateTime WorkshopDate= DateTime.Now;
+                List<WorkshopJoin> removeable = new List<WorkshopJoin>();
+
+                foreach (WorkshopJoin j in result)
+                {
+                    WorkshopDate = TimeReplace(j.WorkShop_Date,true);
+                    if(!(WorkshopDate >= start && WorkshopDate <= end))
+                    {
+                        // not in between remove from the list
+                        removeable.Add(j);
+                    }
+                }
+                foreach(WorkshopJoin j in removeable)
+                    result.Remove(j);                
+            }
+
+
+
+
+                FillTable(result);
+
 
         }
 
+        public DateTime TimeReplace(string FullDate,bool shortdate)
+        {
+            string temp = FullDate;
+            string[] date;
+            string year ;
+            string month;
+            string day;
+            if (shortdate)
+            {
+                temp = FullDate.Split(' ')[0];
+                date = temp.Split('/');
+                year = date[2];
+                month = date[1];
+                day = date[0];
+            }
+            else
+            {
+                date = temp.Split('-');
+                year = date[0];
+                month = date[1];
+                day = date[2];
+            }
+                
+            
+            DateTime t = new DateTime(int.Parse(year), int.Parse(month), int.Parse(day));
+            return t;
+
+
+
+        }
       
     }
 }

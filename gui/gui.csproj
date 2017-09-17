@@ -78,6 +78,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Contact\homepic.PNG" />
+    <Content Include="Contact\PrepareBody.txt" />
+    <Content Include="Contact\SchoolInviteMailBody.txt" />
+    <Content Include="Contact\Signature.txt" />
+    <Content Include="Contact\AssignCompleteSchool.txt" />
+    <Content Include="Contact\VolunteerInviteBody.txt" />
     <Content Include="css\bootstrap-rtl.min.css" />
     <Content Include="Gui\Documents\FeedbackTeacher.aspx" />
     <Content Include="Gui\Documents\FeedbackVolunteer.aspx" />
@@ -280,6 +285,7 @@
     <Compile Include="Models\Email.cs" />
     <Compile Include="Models\Company.cs" />
     <Compile Include="Models\CompanyWorkshop.cs" />
+    <Compile Include="Models\EmailHelper.cs" />
     <Compile Include="Models\PrepareForm.cs" />
     <Compile Include="Models\WorkshopJoin.cs" />
     <Compile Include="Models\DB.cs" />

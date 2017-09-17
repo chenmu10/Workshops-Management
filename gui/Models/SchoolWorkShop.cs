@@ -28,6 +28,28 @@ namespace gui.Models
         public int WorkShop_School_ID;
 
         public SchoolWorkShop() { }
+        public string getSelectedDate()
+        {
+            try
+            {
+                switch (SchoolWorkShopSelectedDate)
+                {
+                    case 1:
+                        return SchoolWorkShopDate1;
+                        break;
+
+                    case 2:
+                        return SchoolWorkShopDate2;
+                        break;
+
+                    case 3:
+                        return SchoolWorkShopDate3;
+                        break;
+                }
+            }
+            catch (Exception e) { return ""; }
+            return "";
+        }
         public SchoolWorkShop(DataRow dr)
         {
             SchoolWorkShopID = int.Parse(dr["WorkShop_ID"].ToString());

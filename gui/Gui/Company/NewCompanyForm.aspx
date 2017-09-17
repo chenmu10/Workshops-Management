@@ -53,6 +53,19 @@
                             <asp:ListItem Value="בחרי"></asp:ListItem>
                         </asp:DropDownList>
                     </div>
+
+                    <%-- <!--Comments-->
+                    <div>
+                        <label class="control-label" for="comments">הערות:</label>
+                         <asp:TextBox
+                        ID="comments"
+                        class="form-control"
+                        TextMode="multiline"
+                        Columns="50"
+                        Rows="4"
+                        runat="server">
+                    </asp:TextBox>
+                    </div>--%>
                 </fieldset>
             </div>
 

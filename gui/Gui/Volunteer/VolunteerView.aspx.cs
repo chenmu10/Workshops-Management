@@ -87,8 +87,8 @@ namespace gui.Gui
         {
             // practice status 
             DropDownListStatus.Items.Add("ללא הכשרה");
-            DropDownListStatus.Items.Add("עברה הכשרה");
-            DropDownListStatus.Items.Add("ותיקה");
+            DropDownListStatus.Items.Add("מתנדבת חדשה");
+            DropDownListStatus.Items.Add("מתנדבת ותיקה");
 
             // training and activity area
             List<ListItem> Areas = db.GetAllAreas();
@@ -185,16 +185,18 @@ namespace gui.Gui
 
             InsertToVolunterTable(volunteers);
         }
-        protected void OccupationSort(object sender, EventArgs e)
-        {
-            List<TableRow> rows = new List<TableRow>();
-            TableRow t = volunteerTable.Rows[0];
-            List<Volunteer> volunteers = SortByFilterFunc();
-            volunteers = volunteers.OrderBy(x => x.Volunteer_Occupation.ToString()).ToList();
-            volunteerTable.Rows.Clear();
-            volunteerTable.Rows.Add(t);
 
-            InsertToVolunterTable(volunteers);
-        }
+
+        //protected void OccupationSort(object sender, EventArgs e)
+        //{
+        //    List<TableRow> rows = new List<TableRow>();
+        //    TableRow t = volunteerTable.Rows[0];
+        //    List<Volunteer> volunteers = SortByFilterFunc();
+        //    volunteers = volunteers.OrderBy(x => x.Volunteer_Occupation.ToString()).ToList();
+        //    volunteerTable.Rows.Clear();
+        //    volunteerTable.Rows.Add(t);
+
+        //    InsertToVolunterTable(volunteers);
+        //}
     }
 }

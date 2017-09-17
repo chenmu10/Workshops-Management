@@ -18,7 +18,6 @@ namespace gui.Gui
         {
             this.Load += new System.EventHandler(this.Page_Load);
             InitializeForm();
-
         }
 
         private void InitializeForm()
@@ -34,60 +33,9 @@ namespace gui.Gui
 
         protected void Page_Load(object sender, EventArgs e)
         {
-         
+
+    
         }
-
-        //protected void Calendar_DayRender(object sender, DayRenderEventArgs e)
-        //{
-        //    //string test1 = e.Day.Date.ToString();
-        //    //string test2 = WorkShops[0].WorkShop_Date.ToString();
-
-
-        //    //if(WorkShops.Exists(x=> x.WorkShop_Date.Date==e.Day.Date.Date))
-        //    //{
-        //    //    e.Cell.BackColor = Color.IndianRed;
-        //    //}
-                
-
-        //}
-
-        //protected void Calendar_SelectionChanged(object sender, EventArgs e)
-        //{
-
-        //    DateText.Text = "";
-        //    if (WorkShops.Exists(x => x.WorkShop_Date.Date == Calendar.SelectedDate.Date.Date))
-        //    {
-        //        Workshop selectedWorkShop = WorkShops.Find(x => x.WorkShop_Date.Date == Calendar.SelectedDate.Date.Date);
-               
-        //        DateText.Text += "צריך להציג פרטים של הסדנא בתאריך הזה";
-        //        DateText.Text += selectedWorkShop.WorkShop_Status.ToString() + selectedWorkShop.WorkShop_School_ID;
-        //    }
-        //    else
-        //    {
-        //        DateText.Text = "אין סדנאות בתאריך זה";
-        //    }
-
-            
-
-        //}
-        //public int getValidLastMonth()
-        //{
-        //    int month = DateTime.Now.Month;
-        //    month--;
-        //    if (month < 1)
-        //        return 12;
-        //    else
-        //        return month;
-        //}
-        //public int getValidNextMonth()
-        //{
-        //    int month = DateTime.Now.Month;
-        //    month++;
-        //    if (month >12)
-        //        return 1;
-        //    else
-        //        return month;
-        //}
 
   
     }

@@ -22,10 +22,10 @@
                 <asp:Button runat="server" ID="approve" class="btn btn-link" OnClick="newComapnyWorkshopBtn_Click" Text="יצירת חברה חדשה" />
             </p>
             <div class="row">
- <!-- Filter -->
+                <!-- Filter -->
                 <div class="col-md-4">
                     <div class="form-inline">
-          
+
                         <asp:DropDownList class="form-control" runat="server" ID="DropDownListAreas">
                             <asp:ListItem>אזור</asp:ListItem>
                         </asp:DropDownList>
@@ -37,9 +37,9 @@
                 <!-- Search-->
                 <div class="col-md-8">
                     <div class="form-inline">
-   
+
                         <asp:TextBox ID="name" runat="server" type="text" class="form-control" placeholder="שם" Width="100px"> </asp:TextBox>
-                       
+
                         <asp:Button runat="server" ID="search" class="btn btn-info" Text="חיפוש" />
                     </div>
                     <br />
@@ -54,6 +54,11 @@
                     <asp:TableCell Font-Bold="true">#</asp:TableCell>
                     <asp:TableCell Font-Bold="true">שם החברה</asp:TableCell>
                     <asp:TableCell Font-Bold="true">כתובת</asp:TableCell>
+                    <asp:TableCell Font-Bold="true">
+                        <asp:LinkButton ForeColor="Black" runat="server" ID="LinkButton1">אזור 
+                            <span class="glyphicon glyphicon-sort"></span>
+                        </asp:LinkButton>
+                    </asp:TableCell>
                     <asp:TableCell Font-Bold="true"> איש קשר</asp:TableCell>
                     <asp:TableCell Font-Bold="true"> טלפון</asp:TableCell>
                     <asp:TableCell Font-Bold="true"> אימייל </asp:TableCell>

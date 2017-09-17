@@ -25,39 +25,44 @@
             <div class="row">
                 <div class="col-md-12">
                     <!-- Filter -->
-
                     <div class="form-inline">
-                        <asp:DropDownList class="form-control" runat="server" ID="DropDownListStatus">
+                        <asp:DropDownList class="form-control" runat="server" ID="DropDownListStatus" Width="150px">
                             <asp:ListItem>סטטוס</asp:ListItem>
-                            <asp:ListItem>לבחירת תאריכים</asp:ListItem>
                             <asp:ListItem>לשיבוץ מתנדבות</asp:ListItem>
-                            <asp:ListItem>מתנדבות שובצו</asp:ListItem>
+                            <asp:ListItem>לשיבוץ בית ספר</asp:ListItem>
+                            <asp:ListItem>לבדיקת תאריכים</asp:ListItem>
                             <asp:ListItem>להכנה</asp:ListItem>
                             <asp:ListItem>לביצוע</asp:ListItem>
                             <asp:ListItem>למישוב</asp:ListItem>
+                            <asp:ListItem>סגור</asp:ListItem>
                         </asp:DropDownList>
 
-                        <asp:DropDownList class="form-control" runat="server" ID="DropDownListType">
+                        <asp:DropDownList class="form-control" runat="server" ID="DropDownListType" Width="110px">
                             <asp:ListItem>סוג</asp:ListItem>
                             <asp:ListItem>בתעשייה</asp:ListItem>
                             <asp:ListItem>בבתי ספר</asp:ListItem>
                         </asp:DropDownList>
 
-                        <asp:DropDownList class="form-control" runat="server" ID="DropDownListAreas">
+                        <asp:DropDownList class="form-control" runat="server" ID="DropDownListAreas" Width="150px">
                             <asp:ListItem>אזור</asp:ListItem>
                         </asp:DropDownList>
 
-                        <asp:DropDownList class="form-control" runat="server" ID="DropDownListSchool">
-                            <asp:ListItem>בי"ס</asp:ListItem>
+                        <asp:DropDownList class="form-control" runat="server" ID="DropDownListSchool" Width="120px">
+                            <asp:ListItem>שם בית ספר</asp:ListItem>
                         </asp:DropDownList>
 
-                        <asp:DropDownList class="form-control" runat="server" ID="DropDownListCompany">
-                            <asp:ListItem>חברה</asp:ListItem>
+                        <asp:DropDownList class="form-control" runat="server" ID="DropDownListCompany" Width="120px">
+                            <asp:ListItem>שם חברה</asp:ListItem>
                         </asp:DropDownList>
+
+                       <%-- מועד קיום:
+                        <asp:TextBox class="form-control" ID="date" runat="server" TextMode="Date" Width="150px"></asp:TextBox>
+                        <br />--%>
 
                         מתאריך:
-                        <asp:TextBox class="form-control" ID="from_Date" runat="server" TextMode="Date"></asp:TextBox>
-                        עד תאריך:<asp:TextBox class="form-control" ID="to_Date" runat="server" TextMode="Date"></asp:TextBox>
+                        <asp:TextBox class="form-control" ID="from_Date" runat="server" TextMode="Date" Width="150px"></asp:TextBox>
+                        עד תאריך:
+                        <asp:TextBox class="form-control" ID="to_Date" runat="server" TextMode="Date" Width="150px"></asp:TextBox>
 
                         <asp:Button runat="server" ID="filter" class="btn btn-info" OnClick="Filter_Click" Text="סינון" />
                     </div>

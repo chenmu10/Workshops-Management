@@ -10,249 +10,188 @@ namespace gui.Gui
 {
     public partial class ApproveNewVolunteerForm : System.Web.UI.Page
     {
-        // TO DO add call form DB to school id #1# (search #1# to find the place to fix, you can use ctr+f))
-        // TO DO check if the volunteer is senior #3#
-        // TO DO WorkshopJoin should hold volunteer mail instead of names, after you fix this go to #4# (in 3 places you can use ctr+f)and replace the code in the " /*....*/ "
-        // TO DO add VolunterAsiignPlaceHolder.Display = flase when Editbtn is pressed
-        List<WorkshopJoin> CompanyWorkshopsJoin = new List<WorkshopJoin>();
+        List<Volunteer> Volunteers = new List<Volunteer>();
+        Dictionary<int, string> Areas = new Dictionary<int, string>();
+        Dictionary<int, string> ListStatus = new Dictionary<int, string>();
+        List<Button> Buttons = new List<Button>();
+        bool EditMode = false;
         DB db;
-        /*override protected void OnInit(EventArgs e)
-        {
-        
-           // WorkShops = db.GetallWorkShopsBetweenMonths(DateTime.Now.Year, getValidLastMonth(), getValidNextMonth());
 
-        }*/
-        protected void Page_Load(object sender, EventArgs e)
+        override protected void OnInit(EventArgs e)
         {
             this.Load += new System.EventHandler(this.Page_Load);
             db = new DB();
             db.IsConnect();
-            FillTable();
+            Volunteers = db.GetAllVolunteers();
+            Areas = db.GetAreaActivity();
+            ListStatus = db.GetVolunteerStatus();
+            InsertToVolunterTable(Volunteers);
+            FillFilterDropdowns();
         }
 
-        private void FillTable()
+        private void InsertToVolunterTable(List<Volunteer> Volunteers)
         {
-            CompanyWorkshopsJoin = db.GetAllWorkshopsByJoin();
-
-            foreach (WorkshopJoin t in CompanyWorkshopsJoin)
+            foreach (Volunteer volunteer in Volunteers)
             {
-                if (t.Status_Description.Equals(" לשיבוץ מתנדבות"))
+                TableCell Name = new TableCell();
+                Name.Text = volunteer.Volunteer_First_Name + "  " + volunteer.Volunteer_Last_Name;
+                TableCell Status = new TableCell();
+                Status.Text = ListStatus[volunteer.Volunteer_Practice];
+                TableCell Occupation = new TableCell();
+                Occupation.Text = volunteer.Volunteer_Occupation;
+                TableCell Email = new TableCell();
+                Email.Text = volunteer.Volunteer_Email;
+                TableCell Phone = new TableCell();
+                Phone.Text = volunteer.Volunteer_phone;
+                string activityAreas = string.Empty;
+                DropDownList DropListAreas = new DropDownList();
+                foreach (int VolunterrArea in volunteer.Volunteer_Area_Activity)
                 {
-                    TableRow row = new TableRow();
-
-                    TableCell School = new TableCell();
-                    School.Text = t.School_Name;
-                    row.Cells.Add(School);
-
-                    TableCell Address = new TableCell();
-                    getSchoolAddress(int.Parse(t.WorkShop_ID), t.Is_company, School.Text);
-                    row.Cells.Add(School);
-
-                    TableCell Date = new TableCell();
-                    Date.Text = t.WorkShop_Date;
-                    row.Cells.Add(Date);
-
-                    TableCell Name = new TableCell();
-                    Name.Text = t.Company_Name;
-                    row.Cells.Add(Name);
-
-                    TableCell Assign = new TableCell();
-                    Assign.Text = "hello";
-                    row.Cells.Add(Assign);
-
-                    TableCell Edit = new TableCell();
-                    Button Editbtn = new Button();
-                    Editbtn.Attributes.Add("WorkshopID", t.WorkShop_ID.ToString());
-                    // TO DO #4#
-                    Editbtn.Attributes.Add("Voluntter1", t.Volunteer1_Name);
-                    Editbtn.Attributes.Add("Voluntter2", t.Volunteer2_Name);
-                    Editbtn.Attributes.Add("Voluntter3", t.Volunteer3_Name);
-                    /*
-                    Editbtn.Attributes.Add("Voluntter1", t.Volunteer1_Mail);
-                    Editbtn.Attributes.Add("Voluntter2", t.Volunteer2_Mail);
-                    Editbtn.Attributes.Add("Voluntter3", t.Volunteer3_Mail);
-                    */
-                    Editbtn.Attributes.Add("IsCompany", t.Is_company.ToString());
-                    Editbtn.Click += new EventHandler(worckshopToAssign);
-                    Editbtn.Text = "שיבוץ לסדנא";
-                    Edit.Controls.Add(Editbtn);
-                    row.Cells.Add(Edit);
-                    worckshopTable.Rows.Add(row);
-                }
-            }
-        }
-
-        protected void worckshopToAssign(object sender, EventArgs e)
-        {
-
-            Button selectedButton = (Button)sender;
-            string isCompany = selectedButton.Attributes["IsCompany"];
-            string workshopId = selectedButton.Attributes["WorkshopID"];
-            string volunteer1 = selectedButton.Attributes["Voluntter1"];
-            string volunteer2 = selectedButton.Attributes["Voluntter2"];
-            string volunteer3 = selectedButton.Attributes["Voluntter3"];
-
-            if (bool.Parse(isCompany))
-            {
-                CompanyWorkshop companyWorkshop;
-                // TO FIX #2# 
-                List<CompanyWorkshop> allCompanyWorkshops = db.GetAllCompanyWorshops();
-                foreach (CompanyWorkshop t in allCompanyWorkshops)
-                {
-                    if (t.CompanyWorkShopID == int.Parse(workshopId))
-                    {
-                        companyWorkshop = t;
-                        break;
-                    }
+                    activityAreas = activityAreas + new ListItem(Areas[VolunterrArea]);
+                    activityAreas = activityAreas + ",";
+                    DropListAreas.Items.Add(new ListItem(Areas[VolunterrArea]));
                 }
 
-                workshopIdLabel.Text = workshopId;
-                InitializeVoluntter1(volunteer1);
-                InitializeVoluntter2(volunteer2);
-                InitializeVoluntter3(volunteer3);
+                TableCell Area = new TableCell();
+                Area.Text = activityAreas;
+
+                TableCell traning = new TableCell();
+                traning.Text = Areas[volunteer.Volunteer_prefer_traning_area];
+
+                // Area.Text = Areas[volunteer.Volunteer_Area_Activity];
+                TableCell ActiviesNumber = new TableCell();
+                ActiviesNumber.Text = volunteer.Volunteer_Number_Of_Activities.ToString();
+                TableCell Edit = new TableCell();
+                Button Editbtn = new Button();
+                Editbtn.ID = volunteer.Volunteer_ID.ToString();
+                Editbtn.Click += new EventHandler(Edit_Click);
+                Buttons.Add(Editbtn);
+                Editbtn.Text = "צפייה";
+                Editbtn.CssClass = "btn btn-default";
+                Edit.Controls.Add(Editbtn);
+
+                TableRow TableRow = new TableRow();
+                TableRow.HorizontalAlign = HorizontalAlign.Right;
+                TableRow.Cells.Add(Name);
+                TableRow.Cells.Add(Status);
+                TableRow.Cells.Add(Occupation);
+                TableRow.Cells.Add(Email);
+                TableRow.Cells.Add(Phone);
+                TableRow.Cells.Add(Area);
+                TableRow.Cells.Add(traning);
+                TableRow.Cells.Add(ActiviesNumber);
+                TableRow.Cells.Add(Edit);
+
+                volunteerTable.Rows.Add(TableRow);
             }
-
         }
-
-        public void InitializeVoluntter1(string volunteer1)
+        public void FillFilterDropdowns()
         {
-            List<ListItem> listItems = new List<ListItem>();
-            List<Volunteer> Allvolunteers;
-            Allvolunteers = db.GetAllVolunteers();
-            //if (Voluntter1DropDownList.Items.Count < 1)
-            if (volunteer1.Equals(""))
+          
+
+            // training and activity area
+            List<ListItem> Areas = db.GetAllAreas();
+            for (int i = 0; i < Areas.Count; i++)
             {
-                Voluntter1DropDownList.Items.Add(new ListItem("בחר/י", "0"));
-                for (int i = 0; i < Allvolunteers.Count; i++)
-                {
-                    //TO DO check if the volunteer is senior #3#
-                    //if (isSenior && Allvolunteers[i].Volunteers_Practice == 3)
-                    {
-                        listItems.Add(new ListItem(Allvolunteers[i].Volunteer_Email));
-                        Voluntter1DropDownList.Items.Add(new ListItem(listItems[i].Text, (i + 1).ToString()));
-                    }
-                }
-            }
-            else
-            {
-                Voluntter1DropDownList.Items.Add(new ListItem(volunteer1, "0"));
-                Voluntter1DropDownList.Items[0].Enabled = true;
-            }
-        }
-
-        public void InitializeVoluntter2(string volunteer2)
-        {
-
-            List<ListItem> listItems = new List<ListItem>();
-            List<Volunteer> Allvolunteers;
-            Allvolunteers = db.GetAllVolunteers();
-            //if (Voluntter1DropDownList.Items.Count < 1)
-            {
-                if (volunteer2.Equals(""))
-                {
-                    Voluntter2DropDownList.Items.Add(new ListItem("בחר/י", "0"));
-                    for (int i = 0; i < Allvolunteers.Count; i++)
-                    {
-                        listItems.Add(new ListItem(Allvolunteers[i].Volunteer_Email));
-                        Voluntter2DropDownList.Items.Add(new ListItem(listItems[i].Text, (i + 1).ToString()));
-                    }
-                }
-                else
-                {
-                    Voluntter2DropDownList.Items.Add(new ListItem(volunteer2, "0"));
-                    Voluntter2DropDownList.Items[0].Enabled = true;
-                }
+             
+                DropDownListTraining.Items.Add(new ListItem(Areas[i].Text, i.ToString()));
             }
 
         }
-
-        public void InitializeVoluntter3(string volunteer3)
+        protected void Page_Load(object sender, EventArgs e)
         {
-            List<ListItem> listItems = new List<ListItem>();
-            List<Volunteer> Allvolunteers;
-            Allvolunteers = db.GetAllVolunteers();
-            //if (Voluntter1DropDownList.Items.Count < 1)
-            {
-                if (volunteer3.Equals(""))
-                {
-                    Voluntter3DropDownList.Items.Add(new ListItem("בחר/י", "0"));
-                    for (int i = 0; i < Allvolunteers.Count; i++)
-                    {
-                        listItems.Add(new ListItem(Allvolunteers[i].Volunteer_Email));
-                        Voluntter3DropDownList.Items.Add(new ListItem(listItems[i].Text, (i + 1).ToString()));
-                    }
-                }
-                else
-                {
-                    Voluntter3DropDownList.Items.Add(new ListItem(volunteer3, "0"));
-                    //Voluntter3DropDownList.Items[0].Enabled = true;
-                }
-            }
-        }
-
-        private string getSchoolAddress(int workShop_ID, bool isCompany, string workshopAddress)
-        {
-            string address;
-            if (isCompany)
-            {
-                List<CompanyWorkshop> TempCompanyWorkshop = db.GetAllCompanyWorshops();
-                List<Company> allCompany = db.GetAllComapny();
-                CompanyWorkshop t = TempCompanyWorkshop.Find(x => x.CompanyWorkShopID == workShop_ID);
-                address = allCompany.Find(y => y.Company_ID == t.CompanyID).Company_Address;
-            }
-            else
-            {
-                int tempBugFix = 1112121; // delete when BUG #1# fixed
-
-                List<SchoolWorkShop> TempSchoolWorkshop = db.GetAllSchoolWorkShops();
-                List<School> allSchool = db.GetAllSchools();
-                SchoolWorkShop t = TempSchoolWorkshop.Find(x => x.SchoolWorkShopID == workShop_ID);
-                address = allSchool.Find(y => y.School_Serial_Number == tempBugFix).School_Address; /*  #1#  t.school_ID*/
-            }
-
-            return address;
-        }
-
-        protected void Calendar_DayRender(object sender, DayRenderEventArgs e)
-        {
-            //string test1 = e.Day.Date.ToString();
-            //string test2 = WorkShops[0].WorkShop_Date.ToString();
-
-
-            //if (WorkShops.Exists(x => x.WorkShop_Date.Date == e.Day.Date.Date))
-            //{
-            //    e.Cell.BackColor = Color.IndianRed;
-            //}
-
 
         }
 
-        protected void Calendar_SelectionChanged(object sender, EventArgs e)
+        protected void Edit_Click(object sender, EventArgs e)
         {
 
-
-
-
+            EditMode = !EditMode;
+            int btnID = int.Parse(((Button)sender).ID);
+            Volunteer SelectedVolunteer = Volunteers.Find(x => x.Volunteer_ID == btnID);
+            Session["SelectedVolunteer"] = btnID;
+            Response.Redirect("VolunteerViewInformation.aspx", false);
 
         }
-        public int getValidLastMonth()
+
+        protected void Search_Click(object sender, EventArgs e)
         {
-            int month = DateTime.Now.Month;
-            month--;
-            if (month < 1)
-                return 12;
-            else
-                return month;
-        }
-        public int getValidNextMonth()
-        {
-            int month = DateTime.Now.Month;
-            month++;
-            if (month > 12)
-                return 1;
-            else
-                return month;
+            Volunteers = db.GetAllVolunteers();
+            TableRow t = volunteerTable.Rows[0];
+            volunteerTable.Rows.Clear();
+            volunteerTable.Rows.Add(t);
+            string name = nameText.Text.ToString();
+            string email = emailText.Text.ToString();
+
+            if (!name.Equals(""))
+                Volunteers = Volunteers.Where(x => x.Volunteer_First_Name.Contains(name) || x.Volunteer_First_Name_Eng.Contains(name) ||
+                  x.Volunteer_Last_Name.Contains(name) || x.Volunteer_Last_Name_Eng.Contains(name)).ToList();
+            if (!email.Equals(""))
+                Volunteers = Volunteers.Where(x => x.Volunteer_Email.Contains(email)).ToList();
+            InsertToVolunterTable(Volunteers);
         }
 
+        protected void Filter_Click(object sender, EventArgs e)
+        {
+
+            InsertToVolunterTable(SortByFilterFunc());
+        }
+        public List<Volunteer> SortByFilterFunc()
+        {
+            List<Volunteer> result = new List<Volunteer>();
+            Volunteers = db.GetAllVolunteers();
+            TableRow t = volunteerTable.Rows[0];
+            volunteerTable.Rows.Clear();
+            volunteerTable.Rows.Add(t);
+           
+            int traning = DropDownListTraining.SelectedIndex;
+            result = Volunteers;
+           
+            if (traning != 0)
+                result = result.FindAll(x => x.Volunteer_prefer_traning_area == traning);
+
+            return result;
+        }
+
+        protected void Approve_Click(object sender, EventArgs e)
+        {
+            //רק אחרי סינון למתנדבות ללא הכשרה
+        }
+
+        protected void NameSort(object sender, EventArgs e)
+        {
+            List<TableRow> rows = new List<TableRow>();
+            TableRow t = volunteerTable.Rows[0];
+            List<Volunteer> volunteers = SortByFilterFunc();
+            volunteers = volunteers.OrderBy(x => x.Volunteer_First_Name.ToString()).ToList();
+            volunteerTable.Rows.Clear();
+            volunteerTable.Rows.Add(t);
+
+            InsertToVolunterTable(volunteers);
+        }
+        protected void StatusSort(object sender, EventArgs e)
+        {
+            List<TableRow> rows = new List<TableRow>();
+            TableRow t = volunteerTable.Rows[0];
+            List<Volunteer> volunteers = SortByFilterFunc();
+            volunteers = volunteers.OrderBy(x => x.Volunteer_Practice).ToList();
+            volunteerTable.Rows.Clear();
+            volunteerTable.Rows.Add(t);
+
+            InsertToVolunterTable(volunteers);
+        }
+
+
+        //protected void OccupationSort(object sender, EventArgs e)
+        //{
+        //    List<TableRow> rows = new List<TableRow>();
+        //    TableRow t = volunteerTable.Rows[0];
+        //    List<Volunteer> volunteers = SortByFilterFunc();
+        //    volunteers = volunteers.OrderBy(x => x.Volunteer_Occupation.ToString()).ToList();
+        //    volunteerTable.Rows.Clear();
+        //    volunteerTable.Rows.Add(t);
+
+        //    InsertToVolunterTable(volunteers);
+        //}
     }
 }

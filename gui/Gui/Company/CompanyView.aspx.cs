@@ -11,12 +11,15 @@ namespace gui.Gui
     public partial class CompanyView : System.Web.UI.Page
     {
         List<Company> companies = new List<Company>();
+        Dictionary<int, string> Areas = new Dictionary<int, string>();
         override protected void OnInit(EventArgs e)
         {
             this.Load += new System.EventHandler(this.Page_Load);
             DB db = new DB();
             db.IsConnect();
             companies = db.GetAllComapny();
+            Areas = db.GetAreaActivity();
+
             foreach (Company company in companies)
             {
                 TableCell id = new TableCell();
@@ -27,6 +30,9 @@ namespace gui.Gui
 
                 TableCell Address = new TableCell();
                 Address.Text = company.Company_Address;
+
+                TableCell Area = new TableCell();
+                Area.Text = Areas[company.Company_Area_Activity]; 
 
                 TableCell ContectName = new TableCell();
                 ContectName.Text = company.Company_Contact_Name;
@@ -47,6 +53,7 @@ namespace gui.Gui
                 TableRow.Cells.Add(id);
                 TableRow.Cells.Add(Name);
                 TableRow.Cells.Add(Address);
+                TableRow.Cells.Add(Area);
                 TableRow.Cells.Add(ContectName);
                 TableRow.Cells.Add(ContectPhone);
                 TableRow.Cells.Add(ContectEmail);

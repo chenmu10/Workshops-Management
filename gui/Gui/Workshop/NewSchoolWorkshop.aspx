@@ -18,8 +18,8 @@
 
         <div class="container">
 
-            <div class="jumbotron">
-                <h1>&nbsp;רישום בי"ס לסדנת מהממ"ט</h1>
+               <div class="page-header">
+                <h1>פניה לתיאום סדנת מהממ"ט</h1>
                 <br />
                 <p class="lead">מורים? מנהלי בית ספר? אם אתם רוצים שנגיע אליכם, נשמח אם תמלאו את הטופס המצורף</p>
             </div>
@@ -185,7 +185,7 @@
                             runat="server" Width="220px"></asp:TextBox>
                     </div>
                     <br />
-                    <label class="control-label" for="estimatedParticipants">להערכתכם/ן, כמה תלמידות יקחו חלק בסדנא: </label>
+                    <label class="control-label" for="estimatedParticipants">להערכתך, כמה תלמידות יקחו חלק בסדנא: </label>
                     <div class="form-inline">
                         <asp:TextBox ID="numberofcumputers"
                             type="number"

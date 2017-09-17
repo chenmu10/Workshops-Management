@@ -25,7 +25,9 @@ namespace gui.Gui
         protected void FillTable()
         {
             CompanyWorkshops = db.GetAllCompanyWorshops();
+            TableRow Headers =  workshopTable.Rows[0];
             workshopTable.Rows.Clear();
+            workshopTable.Rows.Add(Headers);
             foreach (CompanyWorkshop t in CompanyWorkshops)
             {
                 if (t.CompanyWorkShopStatus == 2) // status "assign school"
@@ -62,7 +64,7 @@ namespace gui.Gui
                     row.Cells.Add(Edit);
                     workshopTable.Rows.Add(row);
                 }
-            }
+            }//for
         }
 
         private string GetCompanyAddress(int companyID)

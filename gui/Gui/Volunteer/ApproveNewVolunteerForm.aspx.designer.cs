@@ -22,129 +22,84 @@ namespace gui.Gui {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// ButtonSearch control.
+        /// nav1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button ButtonSearch;
+        protected global::gui.Gui.Documents.nav nav1;
         
         /// <summary>
-        /// ButtonFillter control.
+        /// DropDownListTraining control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button ButtonFillter;
+        protected global::System.Web.UI.WebControls.DropDownList DropDownListTraining;
         
         /// <summary>
-        /// worckshopTable control.
+        /// filter control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Table worckshopTable;
+        protected global::System.Web.UI.WebControls.Button filter;
         
         /// <summary>
-        /// VolunterAsiignPlaceHolder control.
+        /// nameText control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.PlaceHolder VolunterAsiignPlaceHolder;
+        protected global::System.Web.UI.WebControls.TextBox nameText;
         
         /// <summary>
-        /// workshopIdLabel control.
+        /// emailText control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label workshopIdLabel;
+        protected global::System.Web.UI.WebControls.TextBox emailText;
         
         /// <summary>
-        /// Volunteer1 control.
+        /// search control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Volunteer1;
+        protected global::System.Web.UI.WebControls.Button search;
         
         /// <summary>
-        /// Voluntter1DropDownList control.
+        /// volunteerTable control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList Voluntter1DropDownList;
+        protected global::System.Web.UI.WebControls.Table volunteerTable;
         
         /// <summary>
-        /// volunteer1Ride control.
+        /// NameSortBtn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox volunteer1Ride;
+        protected global::System.Web.UI.WebControls.LinkButton NameSortBtn;
         
         /// <summary>
-        /// Volunteer2 control.
+        /// LinkButton1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Volunteer2;
-        
-        /// <summary>
-        /// Voluntter2DropDownList control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList Voluntter2DropDownList;
-        
-        /// <summary>
-        /// volunteer2Ride control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox volunteer2Ride;
-        
-        /// <summary>
-        /// Volunteer3 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Volunteer3;
-        
-        /// <summary>
-        /// Voluntter3DropDownList control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList Voluntter3DropDownList;
-        
-        /// <summary>
-        /// volunteer3Ride control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox volunteer3Ride;
+        protected global::System.Web.UI.WebControls.LinkButton LinkButton1;
     }
 }

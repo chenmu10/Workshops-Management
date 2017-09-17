@@ -27,11 +27,11 @@ namespace gui.Models
             CompanyWorkShopStatus = int.Parse(dr["WorkShop_Status"].ToString());
             CompanyWorkShopDate = dr["WorkShop_Date"].ToString();
             WorkShop_Number_Of_StudentPredicted = int.Parse(dr["WorkShop_Number_Of_StudentPredicted"].ToString());
-            WorkShop_Number_Of_Final_Student = int.Parse(dr["WorkShop_Number_Of_Final_Student"].ToString());
-            CompanyWorkShopVolunteerID1 = int.Parse(dr["WorkShop_Volunteer1"].ToString());
-            CompanyWorkShopVolunteerID2 = int.Parse(dr["WorkShop_Volunteer2"].ToString());
-            CompanyWorkShopVolunteerID3 = int.Parse(dr["WorkShop_Volunteer3"].ToString());
-            CompanyWorkShopVolunteerID4 = int.Parse(dr["WorkShop_Volunteer4"].ToString());
+            WorkShop_Number_Of_Final_Student = dr["WorkShop_Number_Of_Final_Student"].ToString().Equals("") ? 0 : int.Parse(dr["WorkShop_Number_Of_Final_Student"].ToString());
+            CompanyWorkShopVolunteerID1 = dr["WorkShop_Volunteer1"].ToString().Equals("") ? 0 :  int.Parse(dr["WorkShop_Volunteer1"].ToString());
+            CompanyWorkShopVolunteerID2 = dr["WorkShop_Volunteer2"].ToString().Equals("") ? 0 :  int.Parse(dr["WorkShop_Volunteer2"].ToString());
+            CompanyWorkShopVolunteerID3 = dr["WorkShop_Volunteer3"].ToString().Equals("") ? 0 :  int.Parse(dr["WorkShop_Volunteer3"].ToString());
+            CompanyWorkShopVolunteerID4 = dr["WorkShop_Volunteer4"].ToString().Equals("") ? 0 :  int.Parse(dr["WorkShop_Volunteer4"].ToString());
             CompanyWorkShopComments = dr["WorkShop_Comments"].ToString();
             WorkShop_School_Comment = dr["WorkShop_School_Comments"].ToString();
             CompanyID = int.Parse(dr["WorkShop_Company_ID"].ToString());

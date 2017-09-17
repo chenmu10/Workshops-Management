@@ -7,8 +7,9 @@
 <html>
 <head runat="server">
     <title></title>
-    <link href="../../css/StatusBar.css" rel="stylesheet" />
+   
     <link href="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.9/themes/start/jquery-ui.css" rel="stylesheet" type="text/css" />
+ <link href="../../css/StatusBar.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
     <form id="form1" runat="server">
@@ -104,6 +105,7 @@
                                     <asp:LinkButton runat="server" ID="goToCompany" class="btn btn-link">מעבר לפרטי חברה</asp:LinkButton>
                                     <br />
                                     <asp:LinkButton runat="server" ID="goToSchoolAssign" class="btn btn-link">מעבר לטופס שיבוץ בית ספר</asp:LinkButton>
+                    <a class="btn btn-link" href="ApproveNewVolunteerForm.aspx">מעבר לטופס שיבוץ בית ספר</a>
 
                                 </fieldset>
                             </div>
