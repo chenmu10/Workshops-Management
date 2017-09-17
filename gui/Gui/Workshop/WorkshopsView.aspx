@@ -30,6 +30,8 @@
                             <asp:ListItem>סטטוס</asp:ListItem>
                             <asp:ListItem>לשיבוץ מתנדבות</asp:ListItem>
                             <asp:ListItem>לשיבוץ בית ספר</asp:ListItem>
+                            <asp:ListItem>מתנדבות שובצו</asp:ListItem>
+                            <asp:ListItem>בית ספר שובץ</asp:ListItem>
                             <asp:ListItem>לבדיקת תאריכים</asp:ListItem>
                             <asp:ListItem>להכנה</asp:ListItem>
                             <asp:ListItem>לביצוע</asp:ListItem>
@@ -55,7 +57,7 @@
                             <asp:ListItem>שם חברה</asp:ListItem>
                         </asp:DropDownList>
 
-                       <%-- מועד קיום:
+                        <%-- מועד קיום:
                         <asp:TextBox class="form-control" ID="date" runat="server" TextMode="Date" Width="150px"></asp:TextBox>
                         <br />--%>
 

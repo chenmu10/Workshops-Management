@@ -87,7 +87,7 @@
             <br />
 
             <!-- Fill Workshop Details -->
-            <label class="control-label" for="finalParticipants">להערכתכם/ן, כמה תלמידות יקחו חלק בסדנא: </label>
+            <label class="control-label" for="finalParticipants">להערכתך, כמה תלמידות יקחו חלק בסדנא: </label>
 
             <asp:TextBox ID="finalParticipants"
                 type="number"

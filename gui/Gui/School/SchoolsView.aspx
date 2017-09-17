@@ -67,7 +67,7 @@
                     <asp:TableCell Font-Bold="true"> כתובת</asp:TableCell>
                     <asp:TableCell Font-Bold="true"> שם איש קשר</asp:TableCell>
                     <asp:TableCell Font-Bold="true"> טלפון איש הקשר</asp:TableCell>
-                    <asp:TableCell Font-Bold="true"> כתובת מייל של איש קשר</asp:TableCell>
+                    <asp:TableCell Font-Bold="true"> אימייל איש קשר</asp:TableCell>
                     <asp:TableCell Font-Bold="true"> פעולות</asp:TableCell>
                 </asp:TableRow>
 

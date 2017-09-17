@@ -17,12 +17,12 @@
     <form id="form1" runat="server">
 
         <div class="container">
-
-               <div class="page-header">
-                <h1>פניה לתיאום סדנת מהממ"ט</h1>
-                <br />
-                <p class="lead">מורים? מנהלי בית ספר? אם אתם רוצים שנגיע אליכם, נשמח אם תמלאו את הטופס המצורף</p>
+             <div class="jumbotron">
+                 <h2>פניה לתיאום סדנת מהממ"ט</h2>
+                  מורים? מנהלי בית ספר? אם אתם רוצים שנגיע אליכם, נשמח אם תמלאו את הטופס המצורף.<br />
+                *כל השדות חובה
             </div>
+          
 
             <asp:Label runat="server" ID="DateError"></asp:Label>
             <!-- column 1-->
@@ -88,7 +88,7 @@
                     <div class="form-inline">
                         <asp:DropDownList ID="SchoolArea" runat="server"
                             required="required"
-                            class="custom-select"
+                            class="form-control custom-select"
                             oninvalid="setCustomValidity('יש לבחור איזור פעילות')"
                             onchange="try{setCustomValidity('')}catch(e){}">
                         </asp:DropDownList>
