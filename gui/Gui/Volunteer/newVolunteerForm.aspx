@@ -28,7 +28,9 @@
                     <div class="page-header">
                         <h3>הצטרפות להתנדבות בסדנאות 
 							<br />
-                            <small>נעדכן אותך בסדנאות ובאירועי הכשרת מתנדבות.</small>
+                            <small>נעדכן אותך בסדנאות ובאירועי הכשרת מתנדבות.
+                                <br />*כל השדות חובה
+                            </small>
                         </h3>
                         <p>
                             מי אנחנו? מהממ"ט (מהממות בהנדסה, מדעים, מתמטיקה וטכנולוגיה) הוא פרויקט התנדבותי שמטרתו לעודד בנות לבחור מגמה מדעית טכנולוגית בתיכון.
@@ -70,7 +72,7 @@
                     <div>
                         <label class="control-label">שם באנגלית:</label>
                         <asp:TextBox ID="Firstnameeng" class="form-control"
-                            type="text"
+                            type="text" 
                             pattern="[/^[a-z ,.'-]+$/i]{1,20}"
                             oninvalid="setCustomValidity('שם באנגלית בבקשה ')"
                             onchange="try{setCustomValidity('')}catch(e){}"
@@ -178,7 +180,7 @@
                     <br />
 
 
-                    <asp:Button ID="Send" class="btn btn-success" runat="server" Text="שליחה" OnClick="Send_Click" />
+                    <asp:Button ID="Send" class="btn btn-success" runat="server" Text="שליחה"/>
 
 
                 </div>

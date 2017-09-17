@@ -167,7 +167,7 @@ namespace gui
         /// </summary>
         /// <param name="volunteer"></param>
         /// <returns></returns>
-        public Boolean InsetNewVolunteer(Volunteer volunteer)
+        public Boolean InsertNewVolunteer(Volunteer volunteer)
         {
             try
             {

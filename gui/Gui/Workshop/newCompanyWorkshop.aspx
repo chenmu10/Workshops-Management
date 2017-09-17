@@ -6,16 +6,16 @@
 <html>
 <head runat="server">
     <title>הוספת סדנאות בתעשייה</title>
-    
-   
+
+
 </head>
 <body>
     <form id="form1" runat="server">
 
-  
+
         <uc1:nav ID="nav1" runat="server" />
         <br />
-     
+
         <div class="container">
 
             <h2>הוספת סדנאות בחברה</h2>
@@ -79,38 +79,39 @@
                         Rows="3" Style="resize: none;"></asp:TextBox>
 
                     <br />
-                  
-                       
-                            <!-- Date -->
-                            <asp:Label runat="server" ID="DateError" Font-Bold="True" Font-Size="Large" ForeColor="Red"></asp:Label>
-                            <label for="calendar">תאריך : </label>
 
-                            <asp:Calendar FirstDayOfWeek="Sunday" ID="calendar" runat="server" DayNameFormat="Shortest"  Width="200px" OnDayRender="calendar_DayRender">
-                                <TodayDayStyle BackColor="Blue" ForeColor="Yellow"></TodayDayStyle>
 
-                            </asp:Calendar>
+                    <!-- Date -->
+                    <asp:Label runat="server" ID="DateError" Font-Bold="True" Font-Size="Large" ForeColor="Red"></asp:Label>
+                    <label for="calendar">תאריך : </label>
 
-                       
-                  
-                            <!-- Time -->
-                            <b>שעה:</b>
-                            <br />
-                         <asp:TextBox type="datetime-local"  runat="server"></asp:TextBox> <br />
-                            <!-- Minutes -->
-                            <asp:TextBox ID="minutes"
-                                type="number" min="0" max="50" step="10"
-                                class="form-control"
-                                Text="0"
-                                runat="server" CssClass="pull-right"></asp:TextBox>
+                    <asp:Calendar FirstDayOfWeek="Sunday" ID="calendar" runat="server" DayNameFormat="Shortest" Width="200px" OnDayRender="calendar_DayRender">
+                        <TodayDayStyle BackColor="Blue" ForeColor="Yellow"></TodayDayStyle>
 
-                            <!-- Hour -->
-                            <asp:Label runat="server" Style="float: right;">:</asp:Label>
-                            <asp:TextBox ID="hour"
-                                type="number" min="7" max="23" runat="server" Text="8"
-                                class="form-control"
-                                CssClass="pull-right"></asp:TextBox>
-                       
-                   
+                    </asp:Calendar>
+
+
+
+                    <!-- Time -->
+                    <b>שעה:</b>
+                    <br />
+                    <asp:TextBox type="datetime-local" runat="server" ></asp:TextBox>
+                    <br />
+                   <%-- <!-- Minutes -->
+                    <asp:TextBox ID="minutes"
+                        type="number" min="0" max="50" step="10"
+                        class="form-control"
+                        Text="0"
+                        runat="server" CssClass="pull-right"></asp:TextBox>
+
+                    <!-- Hour -->
+                    <asp:Label runat="server" Style="float: right;">:</asp:Label>
+                    <asp:TextBox ID="hour"
+                        type="number" min="7" max="23" runat="server" Text="8"
+                        class="form-control"
+                        CssClass="pull-right"></asp:TextBox>--%>
+
+
                 </fieldset>
 
                 <p class="tpbutton btn-toolbar text-center">

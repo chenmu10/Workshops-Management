@@ -27,12 +27,12 @@ namespace gui
         protected void Page_Load(object sender, EventArgs e)
         {
 
-            //FormOkToDB = !FormOkToDB;
-            //if (Page.IsPostBack && !IsEmptyFields() && FormOkToDB)
-            //{
-            //    LastPostRequest = DateTime.Now;
-            //    InsertVolunteerToDB();
-            //}
+            FormOkToDB = !FormOkToDB;
+            if (Page.IsPostBack && !IsEmptyFields() && FormOkToDB)
+            {
+                LastPostRequest = DateTime.Now;
+                InsertVolunteerToDB();
+            }
 
         }
 
@@ -45,8 +45,8 @@ namespace gui
             {
                 for (int i = 0; i < Areas.Count; i++)
                 {
-                    CheckBoxListAreas.Items.Add(new ListItem(Areas[i].Text, i.ToString()));
-                    DropDownListTraining.Items.Add(new ListItem(Areas[i].Text, i.ToString()));
+                    CheckBoxListAreas.Items.Add(Areas[i]);
+                    DropDownListTraining.Items.Add(Areas[i]);
 
                 }
 
@@ -90,7 +90,7 @@ namespace gui
             string phonevalue = Phone.Text.ToString();
             string employervalue = Employer.Text.ToString();
             string occupation = DropDownListOccupation.SelectedValue.ToString();
-            int trainingArea = Convert.ToInt32(DropDownListTraining.SelectedValue)+1;
+            int trainingArea = Convert.ToInt32(DropDownListTraining.SelectedValue);
             string reference;
 
             // check "other" field
@@ -109,7 +109,7 @@ namespace gui
             {
                 if (item.Selected)
                 {
-                    SelectedAreas.Add(int.Parse(item.Value) + 1);
+                    SelectedAreas.Add(int.Parse(item.Value) );
                 }
             }
 
@@ -119,7 +119,7 @@ namespace gui
             {
                 Response.Write("<script>alert('מתנדבת קיימת. צרי קשר במקרה של שינוי/בעיה');</script>");
             }
-            else if (db.InsetNewVolunteer(NewVolunteer))
+            else if (db.InsertNewVolunteer(NewVolunteer))
             {
                 Response.Write("<script>alert('נוספת בהצלחה למאגר');</script>");
             }
@@ -204,7 +204,7 @@ namespace gui
                 NewVolunteer.Volunteer_phone= Phone.Text.ToString();
                 NewVolunteer.Volunteer_Employer = Employer.Text.ToString();
                 NewVolunteer.Volunteer_Occupation= DropDownListOccupation.SelectedValue.ToString();
-                NewVolunteer.Volunteer_prefer_traning_area = Convert.ToInt32(DropDownListTraining.SelectedValue) +1;
+                NewVolunteer.Volunteer_prefer_traning_area = Convert.ToInt32(DropDownListTraining.SelectedValue) ;
 
               
                 // check "other" field
@@ -223,7 +223,7 @@ namespace gui
                 {
                     if (item.Selected)
                     {
-                        SelectedAreas.Add(int.Parse(item.Value) + 1);
+                        SelectedAreas.Add(int.Parse(item.Value) );
                     }
                 }
 
@@ -234,7 +234,7 @@ namespace gui
                 {
                     Response.Write("<script>alert('מתנדבת קיימת. צרי קשר במקרה של שינוי/בעיה');</script>");
                 }
-                else if (db.InsetNewVolunteer(NewVolunteer))
+                else if (db.InsertNewVolunteer(NewVolunteer))
                 {
                     Response.Write("<script>alert('נוספת בהצלחה למאגר');</script>");
                 }
@@ -245,7 +245,7 @@ namespace gui
 
 
             }
-        }
+        } // better but doesn't work - not used
     }
 }
 

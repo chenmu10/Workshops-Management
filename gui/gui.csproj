@@ -77,7 +77,10 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Contact\feedbackTeacher.txt" />
     <Content Include="Contact\homepic.PNG" />
+    <Content Include="Contact\feedbackVolunteer.txt" />
+    <Content Include="Contact\CancelWorkshop.txt" />
     <Content Include="Contact\PrepareBody.txt" />
     <Content Include="Contact\SchoolInviteMailBody.txt" />
     <Content Include="Contact\Signature.txt" />
