@@ -35,3 +35,4 @@ _ReSharper*/
 .vs/
 #Nuget packages folder
 packages/
+/gui/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
