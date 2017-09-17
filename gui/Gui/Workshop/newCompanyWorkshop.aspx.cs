@@ -10,6 +10,7 @@ using Google.Apis.Calendar.v3;
 using Google.Apis.Calendar.v3.Data;
 using Google.Apis.Services;
 using System.Threading;
+using System.Net;
 
 namespace gui.Gui.Workshop
 {
@@ -59,6 +60,7 @@ namespace gui.Gui.Workshop
 
         protected void AddWorkshop(object sender, EventArgs e)
         {
+            //MakeAppointment();
             if (!IsEmptyFields())
             {
                 CompanyWorkshop newcw = new CompanyWorkshop();
@@ -113,11 +115,12 @@ namespace gui.Gui.Workshop
 
         private void MakeAppointment()
         {
+            //NetworkCredential credentials = new NetworkCredential(fromAddress, fromPassword);
             UserCredential credential = GoogleWebAuthorizationBroker.AuthorizeAsync(
                 new ClientSecrets
                 {
-                    ClientId = "CLIENTID",
-                    ClientSecret = "CLIENTSECRET",
+                    ClientId = "664988269501-vbi6h41b6gdj9rs9c1ua74th8e26sfub.apps.googleusercontent.com",
+                    ClientSecret = "LdNA4Vz16JO5fUkZJyW2G3gh",
                 },
                 new[] { CalendarService.Scope.Calendar },
                 "user",
@@ -126,6 +129,7 @@ namespace gui.Gui.Workshop
             // Create the service.
             var service = new CalendarService(new BaseClientService.Initializer()
             {
+                //HttpClientInitializer = credential,
                 HttpClientInitializer = credential,
                 ApplicationName = "Calendar API Sample",
             });
@@ -137,23 +141,24 @@ namespace gui.Gui.Workshop
                 Location = "Somewhere",
                 Start = new EventDateTime()
                 {
-                    DateTime = new DateTime(2014, 6, 2, 10, 0, 0),
+                    DateTime = new DateTime(2017, 9, 18, 12, 0, 0),
                     TimeZone = "America/Los_Angeles"
                 },
                 End = new EventDateTime()
                 {
-                    DateTime = new DateTime(2014, 6, 2, 10, 30, 0),
+                    DateTime = new DateTime(2017, 9, 18, 12, 30, 0),
                     TimeZone = "America/Los_Angeles"
                 },
                 Recurrence = new String[] {
                     "RRULE:FREQ=WEEKLY;BYDAY=MO"
                 },
+                GuestsCanInviteOthers = false,
                 Attendees = new List<EventAttendee>()
       {
-        new EventAttendee() { Email = "johndoe@gmail.com" }
+        new EventAttendee() { Email = "karinaves1991@gmail.com"}
       }
             };
-
+            service.Events.Insert(myEvent, "primary").SendNotifications = true;
             Event recurringEvent = service.Events.Insert(myEvent, "primary").Execute();
         }
 

@@ -82,3 +82,8 @@ C:\Users\Chen\Projects\MMT_git\gui\bin\Google.Apis.dll
 C:\Users\Chen\Projects\MMT_git\gui\bin\Google.Apis.PlatformServices.dll
 C:\Users\Chen\Projects\MMT_git\gui\bin\Google.Apis.xml
 C:\Users\Chen\Projects\MMT_git\gui\bin\Google.Apis.Core.xml
+C:\Users\Chen\Projects\MMT_git\gui\bin\Google.Apis.Auth.dll
+C:\Users\Chen\Projects\MMT_git\gui\bin\Google.Apis.Auth.PlatformServices.dll
+C:\Users\Chen\Projects\MMT_git\gui\bin\Google.Apis.Calendar.v3.dll
+C:\Users\Chen\Projects\MMT_git\gui\bin\Google.Apis.Auth.xml
+C:\Users\Chen\Projects\MMT_git\gui\bin\Google.Apis.Calendar.v3.xml
