@@ -23,20 +23,33 @@ namespace gui.Models
         bool IsTestMode = true;
         SmtpClient smtp;
         DB db;
-        
+
 
         // Files path
-        string SchoolInviteBody;
+        // General
         string VolunteerInviteBody;
+        string AssignCompleteVol;
+        string FeedBack;
+        string CancelWorkshop;
+
+        // Company
+        string SchoolInviteBody;
+        string executeVolunteersInCompany;
+        string executeSchoolInCompany;
+        string executeCompany;
+
+        // School
         string AssignCompleteSchool;
         string PrepareBody;
+        string executeVolunteersInSchool;
+        string executeSchoolInSchool;
+    
 
 
-
-        /// <summary>
-        /// Constractor
-        /// </summary>
-        public EmailHelper() {
+    /// <summary>
+    /// Constractor
+    /// </summary>
+    public EmailHelper() {
 
             db = new DB();
             db.IsConnect();
@@ -45,7 +58,13 @@ namespace gui.Models
             VolunteerInviteBody = System.Web.Hosting.HostingEnvironment.MapPath("~/Contact/VolunteerInviteBody.txt");
             AssignCompleteSchool = System.Web.Hosting.HostingEnvironment.MapPath("~/Contact/AssignCompleteSchool.txt");
             PrepareBody = System.Web.Hosting.HostingEnvironment.MapPath("~/Contact/PrepareBody.txt");
-            smtp = new SmtpClient()
+
+           
+       
+     
+
+
+    smtp = new SmtpClient()
             {
                 Host = "smtp.gmail.com",
                 Port = 587,

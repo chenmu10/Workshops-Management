@@ -21,7 +21,8 @@
         <div class="container">
             <h2>מתנדבות</h2>
             <p>
-                <asp:Button runat="server" id="approve" class="btn btn-link" OnClick="Approve_Click" text="אישור מתנדבות חדשות"/>
+               <%-- <asp:Button runat="server" id="approve" class="btn btn-link" OnClick="Approve_Click" text="אישור מתנדבות חדשות"/>--%>
+                    <a class="btn btn-link" href="ApproveNewVolunteerForm.aspx">אישור מתנדבות חדשות</a>
                
             </p>
             <div class="row">

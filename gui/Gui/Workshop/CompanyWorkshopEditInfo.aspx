@@ -105,6 +105,7 @@
                                     <asp:LinkButton runat="server" ID="goToCompany" class="btn btn-link">מעבר לפרטי חברה</asp:LinkButton>
                                     <br />
                                     <asp:LinkButton runat="server" ID="goToSchoolAssign" class="btn btn-link">מעבר לטופס שיבוץ בית ספר</asp:LinkButton>
+                    <a class="btn btn-link" href="ApproveNewVolunteerForm.aspx">מעבר לטופס שיבוץ בית ספר</a>
 
                                 </fieldset>
                             </div>

@@ -87,8 +87,8 @@ namespace gui.Gui
         {
             // practice status 
             DropDownListStatus.Items.Add("ללא הכשרה");
-            DropDownListStatus.Items.Add("עברה הכשרה");
-            DropDownListStatus.Items.Add("ותיקה");
+            DropDownListStatus.Items.Add("מתנדבת חדשה");
+            DropDownListStatus.Items.Add("מתנדבת ותיקה");
 
             // training and activity area
             List<ListItem> Areas = db.GetAllAreas();
