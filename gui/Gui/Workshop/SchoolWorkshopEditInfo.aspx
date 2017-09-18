@@ -187,6 +187,9 @@
                             <%--  TAB 2 - VOLUNTEER ASSIGN--%>
                             <div class="tab-pane fade" id="volunteers">
                                 <div class="col-md-6">
+                                    <label class="control-label" for="volEmailNum">אימיילים נשלחו אל: </label>
+                                    <asp:Label runat="server" ID="volEmailNum"></asp:Label>
+                                    <br />
                                     <label class="control-label" for="volunteercount">מס' מתנדבות נוכחי: </label>
                                     <asp:Label runat="server" ID="volunteercount"></asp:Label>
                                     <br />
@@ -197,7 +200,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <fieldset>
-                                        <legend>פרטי מתנדבות</legend>
+                                        <legend>פרטי מתנדבות משובצות</legend>
                                         <label class="control-label" for="VolunteerName1">מתנדבת 1: </label>
                                         <asp:Label runat="server" ID="VolunteerName1"></asp:Label>
                                         <br />

@@ -79,12 +79,15 @@ namespace gui.Gui.Workshop
                             break;
                         case 1:
                             WorkShopDate.Text = schoolWorkshop.SchoolWorkShopDate1.ToString();
+                            date1.Font.Bold = true;
                         break;
                         case 2:
                             WorkShopDate.Text = schoolWorkshop.SchoolWorkShopDate2.ToString();
+                           date2.Font.Bold = true;
                         break;
                         case 3:
                             WorkShopDate.Text = schoolWorkshop.SchoolWorkShopDate3.ToString();
+                            date3.Font.Bold = true;
                         break;
                     }
 
@@ -286,7 +289,14 @@ namespace gui.Gui.Workshop
 
                         if (!db.SchoolWorkShopUpdateDate(schoolWorkshop.SchoolWorkShopID, dateSelected)) ErrorMsg(1);
                         if (!db.SchoolWorkShopUpdatestatus(schoolWorkshop.SchoolWorkShopID, 1)) ErrorMsg(1);
-                        if (!Email.SendInivetsToVolunteers(allVolunteer, school.School_Area, dateselector.SelectedItem.Text)) ErrorMsg(2);
+                        if (!Email.SendInivetsToVolunteers(allVolunteer, school.School_Area, dateselector.SelectedItem.Text))
+                        {
+                            ErrorMsg(2);
+                        }
+                        else
+                        {
+                            Response.Write("<script>alert(איימילים נשלחו למתנדבות באזור); window.location.href = ''; </script>");
+                        }    
 
                         Response.Redirect(Request.RawUrl);
                     }                    
@@ -310,7 +320,7 @@ namespace gui.Gui.Workshop
                         if (!db.SchoolWorkShopUpdatestatus(schoolWorkshop.SchoolWorkShopID, 3)) ErrorMsg(1);
                         if (!Email.SendAssignComplete(schoolWorkshop)) ErrorMsg(2);
                        
-                        Response.Write("<script>alert(איימילים נשלחו לגורמים הרלוונטים); window.location.href = ''; </script>");
+                        Response.Write("<script>alert(איימילים נשלחו לבית הספר והמתנדבות הרשומות); window.location.href = ''; </script>");
                     }
                     break;
                 case 4:
@@ -463,6 +473,7 @@ namespace gui.Gui.Workshop
                     string str1 = "על מנת לעבור סטטוס יש לבחור סטטוס רצוי";
                     Response.Write("<script>alert('" + str1 + "'); window.location.href = ''; </script>");
                     break;
+               
             }
             
         }

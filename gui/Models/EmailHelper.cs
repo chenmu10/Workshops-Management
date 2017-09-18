@@ -138,7 +138,7 @@ namespace gui.Models
         public bool SendInivetsToVolunteers(List<Volunteer> allVolunteer,int Area_Activity,string Date)
         {
             //Variables
-            List<ListItem> Areas = db.GetAllAreas();
+            List<ListItem> Areas = db.GetAllAreas(); // notice index starts in 0 and in db it's 1 (צפון)
 
             var mail = new MailMessage();
             mail.From = new MailAddress(fromAddress, EmailTitle);
@@ -152,7 +152,7 @@ namespace gui.Models
                 //Subject & Body information
                 string subject = sendBody.Split('%')[0].Replace("\n", "").Replace("\r", "");
                 sendBody = sendBody.Split('%')[1];
-                string Area = Areas[Area_Activity].Text;
+                string Area = Areas[Area_Activity-1].Text; // -1 כי אינדקס מערך מתחיל ב-0
 
 
                 //Body information replace by values
