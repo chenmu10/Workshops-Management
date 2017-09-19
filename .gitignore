@@ -36,3 +36,4 @@ _ReSharper*/
 #Nuget packages folder
 packages/
 /gui/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
+/.vs/MMT/v15/.suo
