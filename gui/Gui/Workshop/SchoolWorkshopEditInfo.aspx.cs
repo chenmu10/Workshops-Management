@@ -1,12 +1,7 @@
-﻿using Google.Maps;
-using Google.Maps.StaticMaps;
-using gui.Models;
+﻿using gui.Models;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace gui.Gui.Workshop
 {
@@ -91,7 +86,7 @@ namespace gui.Gui.Workshop
                         break;
                     }
 
-                switch (status)
+                switch (status) // in page_load
                 {
                     case 1:
                         WorkShopStatus.Text = WorkshopToView.Status_Description.ToString();

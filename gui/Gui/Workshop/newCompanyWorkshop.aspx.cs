@@ -10,12 +10,8 @@ namespace gui.Gui.Workshop
     public partial class newCompanyWorkshop : System.Web.UI.Page
     {
 
-        // TODO fix db.insert - problem with dateTime type
-        // TODO area activity shows number instead of string when choosing company
-
         List<Company> Companies = new List<Company>();
         DB db;
-        int companyArea;
 
         override protected void OnInit(EventArgs e)
         {
@@ -47,9 +43,6 @@ namespace gui.Gui.Workshop
             companyID.Text = selectedComp.Company_ID.ToString();
             address.Text = selectedComp.Company_Address;
             area.Text = Areas[selectedComp.Company_Area_Activity].Text.ToString();
-            companyArea = selectedComp.Company_Area_Activity; // needed for email function
-           
-
         }
 
 
@@ -59,18 +52,17 @@ namespace gui.Gui.Workshop
             {
                 CompanyWorkshop newcw = new CompanyWorkshop();
                 newcw.CompanyWorkShopComments = comments.Text;
-                //newcw.CompanyWorkShopDate = calendar.SelectedDate.ToString();
                 newcw.WorkShop_Number_Of_StudentPredicted = Convert.ToInt32(PredictedStudentsNum.Text);
                 newcw.CompanyID = Convert.ToInt32(companyID.Text);
                 newcw.CompanyWorkShopDate = datetimePicker.Text;
 
-                // insert not working - problem with dateTime type
                 if (db.InsertNewCompanyWorkShop(newcw))
                 {
                     Response.Write("<script>alert('הסדנא נוספה בהצלחה. ניתן להוסיף עוד סדנאות עבור החברה הנבחרת');</script>");
 
                     if(SendInvitesToSchools(newcw))
                     {
+                        Response.Write("<script>alert('אימיילים נשלחו אל בתי ספר רלוונטים');</script>");
                         Msg.Text = "אימיילים נשלחו אל בתי ספר רלוונטים";
                     }
                     else 
