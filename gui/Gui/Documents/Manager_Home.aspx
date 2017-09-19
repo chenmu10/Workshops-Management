@@ -38,43 +38,45 @@
                     <tbody>
                         <tr>
                             <th scope="row">בקשות בתי ספר לקיום סדנא</th>
-                            <td><span class="badge">2</span></td>
+                            <td> <asp:Label runat="server" ID="newSchoolWorkshops"><span class="badge">5</span></asp:Label></td>
 
                         </tr>
                         <tr>
                             <th scope="row">סדנאות בחברות לשיבוץ בתי ספר</th>
-                            <td><span class="badge">2</span></td>
-
+                            <td> <asp:Label runat="server" ID="newCompanyWorkshops"><span class="badge">5</span></asp:Label></td>
+                           
                         </tr>
                         <tr>
                             <th scope="row">סדנאות לשיבוץ מתנדבות</th>
-                            <td><span class="badge">2</span></td>
+                            <td><asp:Label runat="server" ID="assignVolunteers"><span class="badge">5</span></asp:Label></td>
+                
+
 
                         </tr>
                         <tr>
                             <th scope="row">סדנאות בשיבוץ הושלם להכנה</th>
-                            <td colspan="2"><span class="badge">2</span></td>
+                            <td colspan="2"><asp:Label runat="server" ID="prepare"><span class="badge">5</span></asp:Label></td>
 
                         </tr>
                        
                         <tr>
                             <th scope="row">סדנאות לביצוע</th>
-                            <td colspan="2"><span class="badge">2</span></td>
+                              <td colspan="2"><asp:Label runat="server" ID="execute"><span class="badge">5</span></asp:Label></td>
 
                         </tr>
                         <tr>
                             <th scope="row">סדנאות למישוב</th>
-                            <td colspan="2"><span class="badge">2</span></td>
+                              <td colspan="2"><asp:Label runat="server" ID="feedback"><span class="badge">5</span></asp:Label></td>
 
                         </tr>
                          <tr>
                             <th scope="row">סדנאות סגורות</th>
-                            <td colspan="2"><span class="badge">2</span></td>
+                            <td colspan="2"><asp:Label runat="server" ID="closed"><span class="badge">5</span></asp:Label></td>
 
                         </tr>
                         <tr>
                             <th scope="row">מתנדבות חדשות לאישור</th>
-                            <td colspan="2"><span class="badge">2</span></td>
+                            <td colspan="2"><asp:Label runat="server" ID="newVolunteers"><span class="badge">5</span></asp:Label></td>
 
                         </tr>
                     </tbody>

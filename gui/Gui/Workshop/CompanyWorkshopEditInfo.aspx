@@ -33,19 +33,7 @@
             <label class="control-label" for="WorkShopDate">מועד קיום: </label>
             <asp:Label runat="server" ID="WorkShopDate"></asp:Label>
             <br />
-            <div class="form-inline">
-                <label class="control-label" for="DropDownListStatus">שינוי סטטוס: </label>
-                <asp:DropDownList runat="server" ID="selectpicker" CssClass="form-control" Width="150px">
-                    <asp:ListItem Value="1">לשיבוץ בי"ס</asp:ListItem>
-                    <asp:ListItem Value="2">לשיבוץ מתנדבות</asp:ListItem>
-                    <asp:ListItem Value="3">לשיבוץ מתנדבות הושלם</asp:ListItem>
-                    <asp:ListItem Value="4">לביצוע</asp:ListItem>
-                    <asp:ListItem Value="5">למישוב</asp:ListItem>
-                    <asp:ListItem Value="6">לסגור</asp:ListItem>
-                </asp:DropDownList>
-                <asp:Button runat="server" ID="Button2" Text="אישור שינוי" class="btn btn-link" />
-            </div>
-            <br />
+           
             <asp:Button runat="server" ID="cancelWorkshop" Text="ביטול סדנא" class="btn btn-danger" />
 
 
@@ -61,7 +49,17 @@
                     <li runat="server" id="bar8">סגור</li>
                 </ul>
             </div>
-
+             <div class="form-inline">
+                <label class="control-label" for="selectpicker">שינוי סטטוס: </label>
+                <asp:DropDownList runat="server" ID="selectpicker" CssClass="form-control" Width="150px">
+                    <asp:ListItem Value="1">לשיבוץ מתנדבות</asp:ListItem>
+                    <asp:ListItem Value="7">לביצוע</asp:ListItem>
+                    <asp:ListItem Value="8">למישוב</asp:ListItem>
+                    <asp:ListItem Value="9">לסגור</asp:ListItem>
+                </asp:DropDownList>
+                <asp:Button runat="server" ID="Button2" Text="אישור שינוי" class="btn btn-link" />
+            </div>
+            <br />
             <div class="row">
                 <div class="panel with-nav-tabs panel-default">
                     <div class="panel-heading">
@@ -143,22 +141,7 @@
                                                 runat="server" Width="220px"
                                                 class="form-control"></asp:TextBox>
                                         </div>
-                                        <!-- Time -->
-                                        <b>שעה</b>
-                                        <div>
-                                            <!-- Minutes -->
-                                            <asp:TextBox ID="minutes"
-                                                type="number" min="0" max="55" step="5"
-                                                class="form-control"
-                                                placeholder="MM" Enabled="false"
-                                                runat="server" CssClass="pull-right"></asp:TextBox>
-                                            <!-- Hour -->
-                                            <asp:Label runat="server" Style="float: right;">:</asp:Label>
-                                            <asp:TextBox ID="hour"
-                                                type="number" min="0" max="23" runat="server" placeholder="HH"
-                                                class="form-control" Enabled="false"
-                                                CssClass="pull-right"></asp:TextBox>
-                                        </div>
+                                     
                                     </fieldset>
                                 </div>
                             </div>
