@@ -264,7 +264,6 @@ namespace gui.Gui.Workshop
         {
            
             int ID = int.Parse(Session["WorkshopID"].ToString());
-            WorkshopToView = db.GetJoinWorkShopByID(ID);
             schoolWorkshop = db.GetSchoolWorkshopByID(ID);
             EmailHelper Email = new EmailHelper();
             int status = int.Parse(selectpicker.SelectedValue);
@@ -298,8 +297,8 @@ namespace gui.Gui.Workshop
                         }
                         else
                         {
-                            Response.Write("<script>alert('איימילים נשלחו למתנדבות באזור');</script>");
-                        }    
+                            Response.Write("<script>alert('איימילים נשלחו למתנדבות באזור'); window.location.href = '';</script>");
+                        }
 
                         Response.Redirect(Request.RawUrl);
                     }                    
@@ -323,18 +322,27 @@ namespace gui.Gui.Workshop
                     {
                        
                         if (!db.SchoolWorkShopUpdatestatus(schoolWorkshop.SchoolWorkShopID, 3)) ErrorMsg(1);
-                        if (!Email.SendAssignComplete(schoolWorkshop)) ErrorMsg(2);
-                        Response.Write("<script>alert(איימילים נשלחו לבית הספר והמתנדבות הרשומות); window.location.href = ''; </script>");
+                        else if (!Email.SendAssignComplete(schoolWorkshop)) ErrorMsg(2);
+                        else
+                        {
+                            Response.Write("<script>alert('איימילים נשלחו לבית הספר והמתנדבות הרשומות'); window.location.href = ''; </script>");
+                            SetStatusBar(5);
+                        }
                     }
                     break;
                 case 4:
                     //להכנה
                     db.InsertNewPrePare(ID);
-                    if(!db.SchoolWorkShopUpdatestatus(schoolWorkshop.SchoolWorkShopID, 6)) ErrorMsg(1);
-                    if(!Email.PrepareMail(schoolWorkshop)) ErrorMsg(2);
-                    PrepareFormCreate.Visible = true;
-                    Response.Write("<script>alert(נשלח אימייל לבית ספר); window.location.href = ''; </script>");
-
+                    if(!db.SchoolWorkShopUpdatestatus(schoolWorkshop.SchoolWorkShopID, 6)) 
+                        ErrorMsg(1);
+                    else if(!Email.PrepareMail(schoolWorkshop)) 
+                        ErrorMsg(2);
+                    else
+                    {
+                        PrepareFormCreate.Visible = true;
+                        Response.Write("<script>alert('נשלח אימייל לבית ספר');  window.location.href = '';</script>");
+                        SetStatusBar(6);
+                    }
                     break;
                 case 5:
                     //לביצוע
@@ -354,6 +362,9 @@ namespace gui.Gui.Workshop
                     break;
 
             }
+
+            WorkshopToView = db.GetJoinWorkShopByID(ID);
+            WorkShopStatus.Text = WorkshopToView.Status_Description.ToString();
         }
 
         protected void prepareForm_Click(object sender, EventArgs e)
@@ -447,10 +458,10 @@ namespace gui.Gui.Workshop
             switch (type)
             {
                 case 1:
-                    Response.Write("<script>alert(שגיאה ברישום למסד נתונים); window.location.href = ''; </script>");
+                    Response.Write("<script>alert('שגיאה ברישום למסד נתונים'); window.location.href = ''; </script>");
                     break;
                 case 2:
-                    Response.Write("<script>alert(שגיאה בשליחת איימיל); window.location.href = ''; </script>");
+                    Response.Write("<script>alert('שגיאה בשליחת איימיל'); window.location.href = ''; </script>");
                     break;
                 case 3:
                     string str = "על מנת לעבור סטטוס לשיבוץ מתנדבות,צריך לבחור תאריך";
