@@ -111,7 +111,7 @@ namespace gui.Gui
             int btnID = int.Parse(((Button)sender).ID);
             Volunteer SelectedVolunteer = Volunteers.Find(x => x.Volunteer_ID == btnID);
             Session["SelectedVolunteer"] = btnID;
-            Response.Redirect("VolunteerViewInformation.aspx", false);
+            Response.Redirect("VolunteerEditInfo.aspx", false);
 
         }
 

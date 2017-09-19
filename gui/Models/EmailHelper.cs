@@ -28,21 +28,21 @@ namespace gui.Models
         // Files path
         // General
         string VolunteerInviteBody;
-        string AssignCompleteVol;
+        //string AssignCompleteVol;
         string FeedBack;
         string CancelWorkshop;
 
         // Company
         string SchoolInviteBody;
-        string executeVolunteersInCompany;
-        string executeSchoolInCompany;
-        string executeCompany;
+        //string executeVolunteersInCompany;
+        // string executeSchoolInCompany;
+        //string executeCompany;
 
         // School
         string AssignCompleteSchool;
         string PrepareBody;
-        string executeVolunteersInSchool;
-        string executeSchoolInSchool;
+        //string executeVolunteersInSchool;
+        //string executeSchoolInSchool;
     
 
 
@@ -215,15 +215,22 @@ namespace gui.Models
             string name1 = v1 == null ? "" : v1.Volunteer_First_Name+" "+v1.Volunteer_Last_Name;
             string name2 = v1 == null ? "" : v2.Volunteer_First_Name + " " + v2.Volunteer_Last_Name;
             string name3 = v1 == null ? "" : v3.Volunteer_First_Name + " " + v3.Volunteer_Last_Name;
+            string addressAndCity = selectedSchool.School_Address+ " " + selectedSchool.School_City;
+            string map = GetStaticMap(addressAndCity);
+            string addressForMap = addressAndCity.Replace(" ", "+");
+                     
 
             //Body information replace by values
             // Replace {0},{1},{2}....
             sendBody = string.Format(sendBody,
                     s.getSelectedDate().Split(' ')[0], 
-                    selectedSchool.School_Name,selectedSchool.School_Address,
+                    selectedSchool.School_Name,
+                    addressAndCity,
                     name1,
                     name2,
-                    name3
+                    name3,
+                    addressForMap,
+                    map
                 );
 
                 mail.Subject = subject;
@@ -307,7 +314,25 @@ namespace gui.Models
             return true;
         }
 
+       
 
+        private static string GetStaticMap(string address)
+        {
+            var map = new StaticMapRequest();
+            MapMarkersCollection markers = new MapMarkersCollection();
+            markers.Add(new Location(address));
+            markers[0].Color = System.Drawing.Color.Blue;
+
+            map.Markers = markers;
+            map.Size = new System.Drawing.Size(300, 300);
+            map.Zoom = 17;
+            map.Sensor = false;
+            map.Format = GMapsImageFormats.JPG;
+
+            var imgTagSrc = map.ToUri();
+            System.Diagnostics.Debug.WriteLine("the URL is : " + imgTagSrc.ToString());
+            return imgTagSrc.ToString();
+        }
 
 
     }

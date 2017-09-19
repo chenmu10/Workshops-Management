@@ -635,19 +635,20 @@ namespace gui
             /*INSERT INTO CompanyWorkShop VALUES(null,1,'2017-1-1 12:12:00',1,1,2,3,20,'להדליק את המזגן לפני',1,1,1,'הערת בית ספר');*/
             try
             {
-                string dateCorrect = workshop.CompanyWorkShopDate.ToString();
-                dateCorrect = dateCorrect.Split(' ')[0];
-                string [] dateCorrectSplit = dateCorrect.Split('/');
-                string day = dateCorrectSplit[0];
-                string month = dateCorrectSplit[1];
-                string year = dateCorrectSplit[2];
-                //YYYY-MM-DD
-                string sqlFormt = year + "-" + month + "-" + day;
+                //string dateCorrect = workshop.CompanyWorkShopDate.ToString();
+                //dateCorrect = dateCorrect.Split(' ')[0];
+                //string[] dateCorrectSplit = dateCorrect.Split('/');
+                //string day = dateCorrectSplit[0];
+                //string month = dateCorrectSplit[1];
+                //string year = dateCorrectSplit[2];
+                //YYYY - MM - DD
+                //string sqlFormt = year + "-" + month + "-" + day;
+
 
 
                 query = string.Format(@"INSERT INTO CompanyWorkShop 
                 VALUES(null,2,'{0}',null,null,null,null,{1},'{2}',null,{3},null,null);",
-                    sqlFormt,
+                    workshop.CompanyWorkShopDate,
                     workshop.WorkShop_Number_Of_StudentPredicted,
                     workshop.CompanyWorkShopComments,
                     workshop.CompanyID

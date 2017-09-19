@@ -36,7 +36,7 @@
                 <div class="form-inline">
 
                     <br />
-                    <label class="control-label" for="DropDownListStatus">שינוי סטטוס: </label>
+                    <label class="control-label" for="selectpicker">שינוי סטטוס: </label>
                     <asp:DropDownList runat="server" ID="selectpicker" CssClass="form-control" Width="150px">
                         <asp:ListItem Value="1">לבדיקת תאריכים</asp:ListItem>
                         <asp:ListItem Value="2">לשיבוץ מתנדבות</asp:ListItem>
@@ -109,7 +109,7 @@
                                     <div class="form-inline">
                                         <asp:TextBox ID="schoolname" Enabled="false"
                                             required="required"
-                                            CssClass="form-control disabled"
+                                            CssClass="form-control"
                                             oninvalid="setCustomValidity('יש להזין שם בית ספר')"
                                             onchange="try{setCustomValidity('')}catch(e){}"
                                             runat="server" Width="220px">
@@ -193,7 +193,8 @@
                                     <label class="control-label" for="volunteercount">מס' מתנדבות נוכחי: </label>
                                     <asp:Label runat="server" ID="volunteercount"></asp:Label>
                                     <br />
-                                    <asp:LinkButton runat="server" ID="LinkVolunteerAssign" Text="מעבר לעמוד שיבוץ"></asp:LinkButton>
+                                    <%--<asp:LinkButton runat="server" ID="LinkVolunteerAssign" Text="מעבר לעמוד שיבוץ"></asp:LinkButton>--%>
+                                    <a href="../Volunteer/VolunteerAssignWorkshops.aspx" class="btn btn-link" target="_blank">מעבר לעמוד שיבוץ</a>
                                     <br />
 
                                     <br />

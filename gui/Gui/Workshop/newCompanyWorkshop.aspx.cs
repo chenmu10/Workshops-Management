@@ -58,10 +58,11 @@ namespace gui.Gui.Workshop
             if (!IsEmptyFields())
             {
                 CompanyWorkshop newcw = new CompanyWorkshop();
-                newcw.CompanyWorkShopComments = comments.Text.ToString();
-                newcw.CompanyWorkShopDate = calendar.SelectedDate.ToString();
+                newcw.CompanyWorkShopComments = comments.Text;
+                //newcw.CompanyWorkShopDate = calendar.SelectedDate.ToString();
                 newcw.WorkShop_Number_Of_StudentPredicted = Convert.ToInt32(PredictedStudentsNum.Text);
                 newcw.CompanyID = Convert.ToInt32(companyID.Text);
+                newcw.CompanyWorkShopDate = datetimePicker.Text;
 
                 // insert not working - problem with dateTime type
                 if (db.InsertNewCompanyWorkShop(newcw))
@@ -116,11 +117,11 @@ namespace gui.Gui.Workshop
             //    Response.Write("<script>alert('שדות חובה חסרים');</script>");
             //    return true;
             //}
-            else if (calendar.SelectedDate.Date.ToString().Equals("01/01/0001 00:00:00") || calendar.SelectedDate == null || calendar.SelectedDate == DateTime.Now)
-            {
-                Response.Write("<script>alert('לא נבחר תאריך');</script>");
-                return true;
-            }
+            //else if (calendar.SelectedDate.Date.ToString().Equals("01/01/0001 00:00:00") || calendar.SelectedDate == null || calendar.SelectedDate == DateTime.Now)
+            //{
+            //    Response.Write("<script>alert('לא נבחר תאריך');</script>");
+            //    return true;
+            //}
 
             else
             {
@@ -135,7 +136,7 @@ namespace gui.Gui.Workshop
             //hour.Text = "";
             //minutes.Text = "";
             comments.Text = "";
-            calendar.SelectedDate = DateTime.Now;
+            //calendar.SelectedDate = DateTime.Now;
         }
 
 

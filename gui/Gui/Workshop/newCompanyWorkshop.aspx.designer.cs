@@ -121,13 +121,13 @@ namespace gui.Gui.Workshop {
         protected global::System.Web.UI.WebControls.Label DateError;
         
         /// <summary>
-        /// calendar control.
+        /// datetimePicker control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Calendar calendar;
+        protected global::System.Web.UI.WebControls.TextBox datetimePicker;
         
         /// <summary>
         /// Button1 control.
