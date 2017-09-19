@@ -21,8 +21,13 @@
                 <div class="col-md-4">
                     <h2>פרטי מתנדבת</h2>
                     <hr />
+
+                     <!-- Automatic-->
                     <label class="control-label" for="doneWorkshops">השתתפות בסדנאות: </label>
                     <asp:Label runat="server" Text="טקסט" ID="doneWorkshops"><span class="label label-primary">5</span></asp:Label>
+                    <br />
+                      <label class="control-label" for="doneWorkshops">סטטוס: </label>
+                    <asp:Label runat="server" Text="טקסט" ID="Label1"><span class="label label-info">ללא הכשרה</span></asp:Label>
                     <!-- Hebrew First & Last Name-->
                     <div>
                         <label class="control-label">שם בעברית:</label>

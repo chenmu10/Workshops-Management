@@ -94,13 +94,16 @@ namespace gui.Gui.Workshop
                 switch (status)
                 {
                     case 1:
+                        WorkShopStatus.Text = WorkshopToView.Status_Description.ToString();
                         break;
                     case 2:
+                        WorkShopStatus.Text = WorkshopToView.Status_Description.ToString();
                         break;
                     case 3:
+                        WorkShopStatus.Text = WorkshopToView.Status_Description.ToString();
                         break;
                     case 4:
-
+                        WorkShopStatus.Text = WorkshopToView.Status_Description.ToString();
                         break;
                     case 5:
                         /*  לבדיקת תאריכים*/
@@ -109,7 +112,7 @@ namespace gui.Gui.Workshop
                         dateselector.Items[1].Text = schoolWorkshop.SchoolWorkShopDate1.ToString();
                         dateselector.Items[2].Text = schoolWorkshop.SchoolWorkShopDate2.ToString();
                         dateselector.Items[3].Text = schoolWorkshop.SchoolWorkShopDate3.ToString();
-
+                        WorkShopStatus.Text = WorkshopToView.Status_Description.ToString();
                         break;
                     case 6:
                         /*  להכנה*/ 
@@ -127,6 +130,7 @@ namespace gui.Gui.Workshop
                             teacherEmail.Text = pf.WorkShop_Teacher_Email;
                             teacherPhone.Text = pf.WorkShop_Teacher_phone;
                             prepareComments.Text = pf.WorkShop_Comments;
+                            WorkShopStatus.Text = WorkshopToView.Status_Description.ToString();
                             break;
 
                         }
@@ -318,6 +322,8 @@ namespace gui.Gui.Workshop
                         yesToVolunteerFinished.Visible = true;
                         noToVolunteerFinished.Visible = true;
                     }
+
+
                     else
                     {
                        
@@ -440,26 +446,7 @@ namespace gui.Gui.Workshop
 
         }
 
-        private static string GetStaticMap(string address)
-        {
-            var map = new StaticMapRequest();
-            MapMarkersCollection markers = new MapMarkersCollection();
-            //markers.Add(new Location("1600 Amphitheatre Parkway Mountain View, CA 94043"));
-            //markers.Add(new Location("בית ספר אלייאנס תל אביב"));
-            markers.Add(new Location(address));
-            markers[0].Color = System.Drawing.Color.Blue;
-
-            map.Markers = markers;
-            map.Size = new System.Drawing.Size(300, 300);
-            map.Zoom = 17;
-            map.Sensor = false;
-            map.Format = GMapsImageFormats.JPG;
-
-            var imgTagSrc = map.ToUri();
-            System.Diagnostics.Debug.WriteLine("the URL is : " + imgTagSrc.ToString());
-            return imgTagSrc.ToString();
-        }
-
+       
         public void ErrorMsg(int type)
         {
             switch (type)

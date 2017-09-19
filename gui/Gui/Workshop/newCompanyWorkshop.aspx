@@ -84,19 +84,20 @@
                     <!-- Date -->
                     <asp:Label runat="server" ID="DateError" Font-Bold="True" Font-Size="Large" ForeColor="Red"></asp:Label>
                     <label for="calendar">תאריך : </label>
-
-                    <asp:Calendar FirstDayOfWeek="Sunday" ID="calendar" runat="server" DayNameFormat="Shortest" Width="200px" OnDayRender="calendar_DayRender">
+                      <br />
+                    <asp:TextBox type="datetime-local" runat="server" ID="datetimePicker" ></asp:TextBox>
+                    <br />
+                 
+                    
+                    
+                    <%-- <asp:Calendar FirstDayOfWeek="Sunday" ID="calendar" runat="server" DayNameFormat="Shortest" Width="200px" OnDayRender="calendar_DayRender">
                         <TodayDayStyle BackColor="Blue" ForeColor="Yellow"></TodayDayStyle>
 
-                    </asp:Calendar>
-
-
+                    </asp:Calendar>--%>
 
                     <!-- Time -->
-                    <b>שעה:</b>
-                    <br />
-                    <asp:TextBox type="datetime-local" runat="server" ></asp:TextBox>
-                    <br />
+                  <%--  <b>שעה:</b>
+                  --%>
                    <%-- <!-- Minutes -->
                     <asp:TextBox ID="minutes"
                         type="number" min="0" max="50" step="10"
