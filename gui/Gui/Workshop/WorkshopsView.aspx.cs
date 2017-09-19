@@ -119,7 +119,7 @@ namespace gui.Gui.Workshop
 
                 TableCell Edit = new TableCell();
                 Button Editbtn = new Button();
-                Editbtn.Click += new EventHandler(MoreInfo_button);
+                Editbtn.Click += MoreInfo_button;
                 Editbtn.Text = "צפייה";
                 Editbtn.Attributes.Add("WorkshopID", t.WorkShop_ID.ToString());
                 Editbtn.Attributes.Add("IsCompany", t.Is_company.ToString());
@@ -132,6 +132,7 @@ namespace gui.Gui.Workshop
             }
 
         }
+
         protected void NewComapnyWorkshop_Click(object sender, EventArgs e)
         {
             Response.Redirect("../Workshop/newCompanyWorkshop.aspx", false);
