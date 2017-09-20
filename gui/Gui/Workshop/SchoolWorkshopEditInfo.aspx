@@ -191,7 +191,7 @@
                                     <asp:Label runat="server" ID="volunteercount"></asp:Label>
                                     <br />
                                     <%--<asp:LinkButton runat="server" ID="LinkVolunteerAssign" Text="מעבר לעמוד שיבוץ"></asp:LinkButton>--%>
-                                    <a href="../Volunteer/VolunteerAssignWorkshops.aspx" class="btn btn-link" target="_blank">מעבר לעמוד שיבוץ</a>
+                                    <a href="../Volunteer/VolunteerAssignWorkshops.aspx" class="btn btn-link">מעבר לעמוד שיבוץ</a>
                                     <br />
 
                                     <br />

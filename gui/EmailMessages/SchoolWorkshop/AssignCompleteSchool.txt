@@ -22,21 +22,21 @@
 </div>
 
 שלום לכולן!
-ביום {workshop_day}
- הקרוב, ה-{workshop_date} 
-מתקיימת סדנת מהממ"ט ב-{שם ביס}.
-הסדנה מתחילה ב-{workshop_time}  בבוקר, 
-אנא הגיעו בשעה-{שעתיים לפני}  להכין את הכל.
+ביום workshop_day
+ הקרוב, ה-workshop_date 
+מתקיימת סדנת מהממ"ט ב-שם ביס.
+הסדנה מתחילה ב-workshop_time  בבוקר, 
+אנא הגיעו בשעה-שעתיים לפני  להכין את הכל.
  
 כתובת בי"ס: school_address 
 חנייה: school_parking
-מורה מלווה: {workshop_teacher_name},  {workshop_teacher_phone}
-שיחת סיכום עם תלמידות ממגמת טכ"מ: {is_senior_coming}
+מורה מלווה: workshop_teacher_name,  workshop_teacher_phone
+שיחת סיכום עם תלמידות ממגמת טכ"מ:is_senior_coming
  
 פרטי המתנדבות:
-* {volunteer_name} - {volunteer_phone}
-* {volunteer_name} - {volunteer_phone}
-* {volunteer_name} - {volunteer_phone}
+* volunteer_name - volunteer_phone
+* volunteer_name -volunteer_phone
+* volunteer_name - volunteer_phone
  
 אחראית מהממ"ט: כרמית 0584125124
  
