@@ -28,22 +28,18 @@ namespace gui.Models
         // Files path
         // General
         string VolunteerInviteBody;
-        //string AssignCompleteVol;
-        string FeedBack;
+        string feedbackVolunteer;
         string CancelWorkshop;
 
         // Company
         string SchoolInviteBody;
-        //string executeVolunteersInCompany;
-        // string executeSchoolInCompany;
-        //string executeCompany;
+        string AssignCompleteCompany;
 
         // School
         string AssignCompleteSchool;
         string PrepareBody;
-        //string executeVolunteersInSchool;
-        //string executeSchoolInSchool;
-    
+        string feedbackTeacher;
+   
 
 
     /// <summary>
@@ -53,11 +49,11 @@ namespace gui.Models
 
             db = new DB();
             db.IsConnect();
-            signature_path = System.Web.Hosting.HostingEnvironment.MapPath("~/Contact/Signature.txt");
-            SchoolInviteBody = System.Web.Hosting.HostingEnvironment.MapPath("~/Contact/SchoolInviteMailBody.txt");
-            VolunteerInviteBody = System.Web.Hosting.HostingEnvironment.MapPath("~/Contact/VolunteerInviteBody.txt");
-            AssignCompleteSchool = System.Web.Hosting.HostingEnvironment.MapPath("~/Contact/AssignCompleteSchool.txt");
-            PrepareBody = System.Web.Hosting.HostingEnvironment.MapPath("~/Contact/PrepareBody.txt");
+            signature_path = System.Web.Hosting.HostingEnvironment.MapPath("~/EmailMessages/Signature.txt");
+            SchoolInviteBody = System.Web.Hosting.HostingEnvironment.MapPath("~/EmailMessages/CompanyWorkshop/SchoolInviteMailBody.txt");
+            VolunteerInviteBody = System.Web.Hosting.HostingEnvironment.MapPath("~/EmailMessages/General/VolunteerInviteBody.txt");
+            AssignCompleteSchool = System.Web.Hosting.HostingEnvironment.MapPath("~/EmailMessages/SchoolWorkshop/AssignCompleteSchool.txt");
+            PrepareBody = System.Web.Hosting.HostingEnvironment.MapPath("~/EmailMessages/SchoolWorkshop/PrepareBody.txt");
 
            
        

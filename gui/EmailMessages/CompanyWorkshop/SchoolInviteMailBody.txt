@@ -16,3 +16,8 @@
 לרישום יש להיכנס לכתובת הבאה
 <a href="http://34.208.42.137/gui/school/schoolSelectWorkshopFromIndustry.aspx">לינק</a>
 </div>
+
+שלום [school_contact_name],‏
+מתקיימות סדנאות בתעשייה המתאימות לאזור בי"ס. לחצו על הקישור כדי לעבור לעמוד השיבוץ. ‏
+
+לעמוד השיבוץ

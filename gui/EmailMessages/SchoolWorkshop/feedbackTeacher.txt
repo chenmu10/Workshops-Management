@@ -5,8 +5,6 @@
 {0}
 נשמח אם תמלאי משוב על הסדנא שהשתתפת בה בתאריך
 {1}
-בבית הספר
-{2}
 
 <a href="http://34.208.42.137/Gui/Documents/FeedbackTeacher.aspx?workshopID={3}">קישור</a>
 
