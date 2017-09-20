@@ -33,22 +33,8 @@
 
                 <label class="control-label" for="WorkShopDate">מועד קיום: </label>
                 <asp:Label runat="server" ID="WorkShopDate"></asp:Label>
-                <div class="form-inline">
-
-                    <br />
-                    <label class="control-label" for="selectpicker">שינוי סטטוס: </label>
-                    <asp:DropDownList runat="server" ID="selectpicker" CssClass="form-control" Width="150px">
-                        <asp:ListItem Value="1">לבדיקת תאריכים</asp:ListItem>
-                        <asp:ListItem Value="2">לשיבוץ מתנדבות</asp:ListItem>
-                        <asp:ListItem Value="3">לשיבוץ הושלם</asp:ListItem>
-                        <asp:ListItem Value="4">להכנה</asp:ListItem>
-                        <asp:ListItem Value="5">לביצוע</asp:ListItem>
-                        <asp:ListItem Value="6">למישוב</asp:ListItem>
-                        <asp:ListItem Value="7">לסגור</asp:ListItem>
-                    </asp:DropDownList>
-                    <asp:Button runat="server" OnClick="updateStatus_Click" ID="updateStatus" Text="אישור שינוי" class="btn btn-link" />
-                </div>
-                <br />
+                   <br />
+               
                 <asp:Label runat="server" ID="PrepareFormCreate" Text="נוצר טופס הכנה, ניתן לראות ב'פרטי הכנה'"></asp:Label>
                 <br />
                 <br />
@@ -75,7 +61,20 @@
 
                 </ul>
             </div>
-
+             <div class="form-inline">
+                    <label class="control-label" for="selectpicker">שינוי סטטוס: </label>
+                    <asp:DropDownList runat="server" ID="selectpicker" CssClass="form-control" Width="150px">
+                        <asp:ListItem Value="1">לבדיקת תאריכים</asp:ListItem>
+                        <asp:ListItem Value="2">לשיבוץ מתנדבות</asp:ListItem>
+                        <asp:ListItem Value="3">לשיבוץ הושלם</asp:ListItem>
+                        <asp:ListItem Value="4">להכנה</asp:ListItem>
+                        <asp:ListItem Value="5">לביצוע</asp:ListItem>
+                        <asp:ListItem Value="6">למישוב</asp:ListItem>
+                        <asp:ListItem Value="7">לסגור</asp:ListItem>
+                    </asp:DropDownList>
+                    <asp:Button runat="server" OnClick="updateStatus_Click" ID="updateStatus" Text="אישור שינוי" class="btn btn-link" />
+                </div>
+                <br />
 
             <div class="row">
 
@@ -109,7 +108,7 @@
                                     <div class="form-inline">
                                         <asp:TextBox ID="schoolname" Enabled="false"
                                             required="required"
-                                            CssClass="form-control"
+                                            class="form-control"
                                             oninvalid="setCustomValidity('יש להזין שם בית ספר')"
                                             onchange="try{setCustomValidity('')}catch(e){}"
                                             runat="server" Width="220px">
@@ -187,9 +186,7 @@
                             <%--  TAB 2 - VOLUNTEER ASSIGN--%>
                             <div class="tab-pane fade" id="volunteers">
                                 <div class="col-md-6">
-                                    <label class="control-label" for="volEmailNum">אימיילים נשלחו אל: </label>
-                                    <asp:Label runat="server" ID="volEmailNum"></asp:Label>
-                                    <br />
+                                   
                                     <label class="control-label" for="volunteercount">מס' מתנדבות נוכחי: </label>
                                     <asp:Label runat="server" ID="volunteercount"></asp:Label>
                                     <br />

@@ -58,24 +58,6 @@ namespace gui.Gui.Workshop {
         protected global::System.Web.UI.WebControls.Label WorkShopDate;
         
         /// <summary>
-        /// selectpicker control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList selectpicker;
-        
-        /// <summary>
-        /// Button2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button2;
-        
-        /// <summary>
         /// cancelWorkshop control.
         /// </summary>
         /// <remarks>
@@ -148,6 +130,24 @@ namespace gui.Gui.Workshop {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl bar8;
         
         /// <summary>
+        /// selectpicker control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList selectpicker;
+        
+        /// <summary>
+        /// Button2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Button2;
+        
+        /// <summary>
         /// companyDetails control.
         /// </summary>
         /// <remarks>
@@ -218,24 +218,6 @@ namespace gui.Gui.Workshop {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox dateTime;
-        
-        /// <summary>
-        /// minutes control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox minutes;
-        
-        /// <summary>
-        /// hour control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox hour;
         
         /// <summary>
         /// schoolname control.
