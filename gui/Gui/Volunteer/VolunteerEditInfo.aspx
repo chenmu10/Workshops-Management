@@ -23,11 +23,18 @@
                     <hr />
 
                      <!-- Automatic-->
-                    <label class="control-label" for="doneWorkshops">השתתפות בסדנאות: </label>
-                    <asp:Label runat="server" Text="טקסט" ID="doneWorkshops"><span class="label label-primary">5</span></asp:Label>
+                     <label class="control-label" for="id">ID: </label>
+                    <asp:Label runat="server" ID="id"><span class="label label-primary"></span></asp:Label>
                     <br />
-                      <label class="control-label" for="doneWorkshops">סטטוס: </label>
-                    <asp:Label runat="server" Text="טקסט" ID="Label1"><span class="label label-info">ללא הכשרה</span></asp:Label>
+                      <label class="control-label" for="status">סטטוס: </label>
+                    <asp:Label runat="server" ID="status"><span class="label label-info"></span></asp:Label>
+                    <asp:LinkButton runat="server" ID="updateStatus" OnClick="UpdateStatus_Click">עדכון סטטוס</asp:LinkButton>
+                    
+                    <br />
+                    <label class="control-label" for="doneWorkshops">השתתפות בסדנאות: </label>
+                    <asp:Label runat="server" ID="doneWorkshops"><span class="label label-primary"></span></asp:Label>
+                    <br />  <br />
+                    
                     <!-- Hebrew First & Last Name-->
                     <div>
                         <label class="control-label">שם בעברית:</label>
@@ -146,18 +153,22 @@
                     <div>
                         <label class="control-label" for="CheckBoxListAreas">אזור פעילות מועדף: </label>
                         <!--AreaErrorMsg-->
-                        <asp:Label ID="AreaErrorMsg" runat="server" Font-Bold="True" ForeColor="Red"></asp:Label>
-                        <asp:CheckBoxList ID="CheckBoxListAreas" runat="server" required="required"></asp:CheckBoxList>
+                       <%-- <asp:Label ID="AreaErrorMsg" runat="server" Font-Bold="True" ForeColor="Red"></asp:Label>
+                        <asp:TextBox runat="server" id="ListAreas"></asp:TextBox>--%>
+                    <asp:Label runat="server" ID="areasBox"></asp:Label>
+
+                        <%--<asp:CheckBoxList ID="CheckBoxListAreas" runat="server" required="required"></asp:CheckBoxList>--%>
                     </div>
                     <br />
 
                     <!--ListTraining-->
                     <div>
                         <label class="control-label" for="DropDownListTraining">אזור מועדף להכשרה:</label>
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="DropDownListTraining" ErrorMessage="יש לבחור" InitialValue="בחרי" Font-Bold="True" ForeColor="Red"></asp:RequiredFieldValidator>
+                       <%-- <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="DropDownListTraining" ErrorMessage="יש לבחור" InitialValue="בחרי" Font-Bold="True" ForeColor="Red"></asp:RequiredFieldValidator>
                         <asp:DropDownList class="form-control" ID="DropDownListTraining" runat="server" required="required">
-                            <asp:ListItem Value="0" Text="בחרי"></asp:ListItem>
-                        </asp:DropDownList>
+                            
+                        </asp:DropDownList>--%>
+                    <asp:Label runat="server" ID="Training"></asp:Label>
 
                     </div>
                     <br />

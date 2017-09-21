@@ -41,7 +41,7 @@ namespace gui.Gui
                 Email.Text = volunteer.Volunteer_Email;
                 TableCell Phone = new TableCell();
                 Phone.Text = volunteer.Volunteer_phone;
-                string activityAreas = string.Empty;
+                string activityAreas = string.Empty; 
                 DropDownList DropListAreas = new DropDownList();
                 foreach (int VolunterrArea in volunteer.Volunteer_Area_Activity)
                 {
@@ -65,6 +65,7 @@ namespace gui.Gui
                 Editbtn.Click += new EventHandler(Edit_Click);
                 Buttons.Add(Editbtn);
                 Editbtn.Text = "צפייה";
+                Editbtn.Attributes.Add("VolunteerID",volunteer.Volunteer_ID.ToString());
                 Editbtn.CssClass = "btn btn-default";
                 Edit.Controls.Add(Editbtn);
 
@@ -106,12 +107,12 @@ namespace gui.Gui
 
         protected void Edit_Click(object sender, EventArgs e)
         {
-
-            EditMode = !EditMode;
-            int btnID = int.Parse(((Button)sender).ID);
-            Volunteer SelectedVolunteer = Volunteers.Find(x => x.Volunteer_ID == btnID);
-            Session["SelectedVolunteer"] = btnID;
+            //Volunteer SelectedVolunteer = Volunteers.Find(x => x.Volunteer_ID == btnID);
+            Button selectedButton = (Button)sender;
+            string VolunteerID = selectedButton.Attributes["VolunteerID"].ToString();
+            Session["VolunteerID"] = VolunteerID;
             Response.Redirect("VolunteerEditInfo.aspx", false);
+           
 
         }
 

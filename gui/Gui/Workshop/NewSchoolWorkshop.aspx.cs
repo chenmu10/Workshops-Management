@@ -231,7 +231,7 @@ namespace gui
             return year + "-" + mounth + "-"+day+" "+hour+":"+ min + ":"+"00";
         }
 
-        protected void calendar_DayRender(object sender,DayRenderEventArgs e)
+        protected void calendar_DayRender(object sender, DayRenderEventArgs e)
         {
 
             if (e.Day.Date.CompareTo(DateTime.Today) < 0 || e.Day.Date.DayOfWeek == DayOfWeek.Saturday || e.Day.Date == DateTime.Today)
@@ -239,6 +239,11 @@ namespace gui
                 e.Day.IsSelectable = false;
                 e.Cell.ForeColor = System.Drawing.Color.Gray;
             }
+        }
+
+        protected void Calendar3_DayRender(object sender, DayRenderEventArgs e)
+        {
+
         }
     }
 }

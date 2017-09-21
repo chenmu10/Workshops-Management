@@ -227,7 +227,7 @@
 
                     <div class="col-md-4">
                         <label for="Calendar1">אפשרות 1 : </label>
-                        <asp:Calendar FirstDayOfWeek="Sunday" ID="Calendar1" runat="server" DayNameFormat="Shortest" Width="200px" OnDayRender="calendar_DayRender">
+                        <asp:Calendar FirstDayOfWeek="Sunday" ID="Calendar1" runat="server" DayNameFormat="Shortest" Width="200px"  OnDayRender="calendar_DayRender">
                             <TodayDayStyle BackColor="wheat"></TodayDayStyle>
                         </asp:Calendar>
                         <br />
@@ -247,7 +247,7 @@
 
                     <div class="col-md-4">
                         <label for="Calendar2">אפשרות 2 : </label>
-                        <asp:Calendar FirstDayOfWeek="Sunday" ID="Calendar2" runat="server" DayNameFormat="Shortest" Width="200px" OnDayRender="calendar_DayRender">
+                        <asp:Calendar FirstDayOfWeek="Sunday" ID="Calendar2" runat="server" DayNameFormat="Shortest" Width="200px"  OnDayRender="calendar_DayRender">
                             <TodayDayStyle BackColor="wheat"></TodayDayStyle>
                         </asp:Calendar>
                         <br />
