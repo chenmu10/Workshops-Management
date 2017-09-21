@@ -17,12 +17,12 @@
     <form id="form1" runat="server">
 
         <div class="container">
-             <div class="jumbotron">
-                 <h2>פניה לתיאום סדנת מהממ"ט</h2>
-                  מורים? מנהלי בית ספר? אם אתם רוצים שנגיע אליכם, נשמח אם תמלאו את הטופס המצורף.<br />
+            <div class="jumbotron">
+                <h2>פניה לתיאום סדנת מהממ"ט</h2>
+                מורים? מנהלי בית ספר? אם אתם רוצים שנגיע אליכם, נשמח אם תמלאו את הטופס המצורף.<br />
                 *כל השדות חובה
             </div>
-          
+
 
             <asp:Label runat="server" ID="DateError"></asp:Label>
             <!-- column 1-->
@@ -226,45 +226,62 @@
                     <legend>תאריכים אופציונליים לקיום סדנא (בחרו שלוש אפשרויות, עדיפות ליום שישי בבוקר)<small> *משך הסדנא 3 שעות.</small></legend>
 
                     <div class="col-md-4">
-                        <label for="wantedWorkshopDate">אפשרות 1 : </label>
-                        <asp:Calendar ID="Calendar1"
-                            onchange=""
-                            runat="server"></asp:Calendar>
+                        <label for="Calendar1">אפשרות 1 : </label>
+                        <asp:Calendar FirstDayOfWeek="Sunday" ID="Calendar1" runat="server" DayNameFormat="Shortest" Width="200px" OnDayRender="calendar_DayRender">
+                            <TodayDayStyle BackColor="wheat"></TodayDayStyle>
+                        </asp:Calendar>
                         <br />
-                        <b>שעה</b>
-                        <asp:TextBox ID="mm1"
-                            type="number" min="0" max="60" runat="server" Width="13%" placeholder="MM" required="required">
-                        </asp:TextBox>
+                        <b>שעה:</b>
+                       
+                        <!-- Minutes -->
+                        <asp:TextBox ID="mm1" type="number" min="0" max="50" step="10"                          
+                            Text="0" Width="13%" placeholder="MM" required="required"
+                            runat="server"></asp:TextBox>
                         <b>:</b>
+                        <!-- Hour -->
+                        <asp:Label runat="server" Style="float: right;">:</asp:Label>
                         <asp:TextBox ID="hh1"
-                            type="number" min="0" max="24" runat="server" Width="13%" placeholder="HH" required="required">
-                        </asp:TextBox>
+                            type="number" min="7" max="23" runat="server" Text="8"
+                           Width="13%" placeholder="HH" required="required"></asp:TextBox>
                     </div>
+
                     <div class="col-md-4">
                         <label for="Calendar2">אפשרות 2 : </label>
-                        <asp:Calendar ID="Calendar2" runat="server" CssClass="auto-style32"></asp:Calendar>
+                        <asp:Calendar FirstDayOfWeek="Sunday" ID="Calendar2" runat="server" DayNameFormat="Shortest" Width="200px" OnDayRender="calendar_DayRender">
+                            <TodayDayStyle BackColor="wheat"></TodayDayStyle>
+                        </asp:Calendar>
                         <br />
-                        <b>שעה</b>
-                        <asp:TextBox ID="mm2"
-                            type="number" min="0" max="60" runat="server" Width="13%" placeholder="MM">
-                        </asp:TextBox>
+                        <b>שעה:</b>
+                       
+                        <!-- Minutes -->
+                        <asp:TextBox ID="mm2" type="number" min="0" max="50" step="10"                          
+                            Text="0" Width="13%" placeholder="MM" required="required"
+                            runat="server"></asp:TextBox>
                         <b>:</b>
+                        <!-- Hour -->
+                        <asp:Label runat="server" Style="float: right;">:</asp:Label>
                         <asp:TextBox ID="hh2"
-                            type="number" min="0" max="24" runat="server" Width="13%" placeholder="HH">
-                        </asp:TextBox>
+                            type="number" min="7" max="23" runat="server" Text="8"
+                           Width="13%" placeholder="HH" required="required"></asp:TextBox>
                     </div>
                     <div class="col-md-4">
                         <label class="control-label" for="Calendar3">אפשרות 3 : </label>
-                        <asp:Calendar ID="Calendar3" runat="server" CssClass="yui" PopupButtonID="btnYui" Format="MMMM d, yyyy" TargetControlID="txtYui"></asp:Calendar>
+                        <asp:Calendar FirstDayOfWeek="Sunday" ID="Calendar3" runat="server" DayNameFormat="Shortest" Width="200px" OnDayRender="calendar_DayRender">
+                            <TodayDayStyle BackColor="wheat"></TodayDayStyle>
+                        </asp:Calendar>
                         <br />
-                        <b>שעה</b>
-                        <asp:TextBox ID="mm3"
-                            type="number" min="0" max="60" runat="server" Width="13%" placeholder="MM">
-                        </asp:TextBox>
+                        <b>שעה:</b>
+                       
+                        <!-- Minutes -->
+                        <asp:TextBox ID="mm3" type="number" min="0" max="50" step="10"                          
+                            Text="0" Width="13%" placeholder="MM" required="required"
+                            runat="server"></asp:TextBox>
                         <b>:</b>
+                        <!-- Hour -->
+                        <asp:Label runat="server" Style="float: right;">:</asp:Label>
                         <asp:TextBox ID="hh3"
-                            type="number" min="0" max="24" runat="server" Width="13%" placeholder="HH">
-                        </asp:TextBox>
+                            type="number" min="7" max="23" runat="server" Text="8"
+                           Width="13%" placeholder="HH" required="required"></asp:TextBox>
                         <br />
                         <br />
                     </div>
@@ -273,9 +290,9 @@
             <div class="col-md-10">
             </div>
             <div class="col-md-2">
-                <!-- <button type="button" onclick="submit1()">submit</button>       -->
+            
                 <asp:Button ID="Buttonsen" class="btn btn-primary" runat="server" OnClick="ButtonSubmit_Click" Text="שליחה" />
-                <!--  <input type=submit runat=server id=cmdSubmit value=Submit>-->
+              
                 <br />
             </div>
         </div>

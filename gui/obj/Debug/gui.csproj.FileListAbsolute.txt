@@ -117,3 +117,13 @@ C:\Users\Avi\Desktop\MMT\gui\obj\Debug\gui.dll
 C:\Users\Avi\Desktop\MMT\gui\obj\Debug\gui.pdb
 C:\Users\Avi\Desktop\MMT\gui\obj\Debug\gui.csprojResolveAssemblyReference.cache
 C:\Users\Chen\Projects\MMT\gui\obj\Debug\gui.csproj.CoreCompileInputs.cache
+C:\Users\Chen\Projects\MMT\gui\bin\Google.Apis.Auth.dll
+C:\Users\Chen\Projects\MMT\gui\bin\Google.Apis.Auth.PlatformServices.dll
+C:\Users\Chen\Projects\MMT\gui\bin\Google.Apis.Calendar.v3.dll
+C:\Users\Chen\Projects\MMT\gui\bin\Google.Apis.Core.dll
+C:\Users\Chen\Projects\MMT\gui\bin\Google.Apis.dll
+C:\Users\Chen\Projects\MMT\gui\bin\Google.Apis.PlatformServices.dll
+C:\Users\Chen\Projects\MMT\gui\bin\Google.Apis.xml
+C:\Users\Chen\Projects\MMT\gui\bin\Google.Apis.Auth.xml
+C:\Users\Chen\Projects\MMT\gui\bin\Google.Apis.Calendar.v3.xml
+C:\Users\Chen\Projects\MMT\gui\bin\Google.Apis.Core.xml

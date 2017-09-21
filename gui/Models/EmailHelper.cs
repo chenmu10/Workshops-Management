@@ -1,13 +1,16 @@
-﻿using Google.Maps;
+﻿using Google.Apis.Auth.OAuth2;
+using Google.Apis.Calendar.v3;
+using Google.Apis.Calendar.v3.Data;
+using Google.Apis.Services;
+using Google.Maps;
 using Google.Maps.StaticMaps;
 using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.IO;
 using System.Net;
 using System.Net.Mail;
-using System.Web;
-using System.IO;
 using System.Text;
+using System.Threading;
 using System.Web.UI.WebControls;
 
 namespace gui.Models
@@ -199,9 +202,10 @@ namespace gui.Models
             School selectedSchool = allSchool.Find(x => x.School_ID == s.WorkShop_School_ID);
             var mail = new MailMessage();
             mail.From = new MailAddress(fromAddress, EmailTitle);
+           
 
-                //Read Files
-                sendBody = File.ReadAllText(AssignCompleteSchool, Encoding.UTF8);
+            //Read Files
+            sendBody = File.ReadAllText(AssignCompleteSchool, Encoding.UTF8);
                 signature = File.ReadAllText(signature_path, Encoding.UTF8);
 
                 //Subject & Body information
@@ -223,7 +227,7 @@ namespace gui.Models
             //Body information replace by values
             // Replace {0},{1},{2}....
             sendBody = string.Format(sendBody,
-                    s.getSelectedDate().Split(' ')[0], 
+                    s.getSelectedDate(), 
                     selectedSchool.School_Name,
                     addressAndCity,
                     name1,
@@ -233,17 +237,25 @@ namespace gui.Models
                     map
                 );
 
-                mail.Subject = subject;
-                sendBody = sendBody.Replace("\n", "<br>");
-                mail.Body = sendBody + signature;
-                mail.IsBodyHtml = true;
+            mail.Subject = subject;
+            sendBody = sendBody.Replace("\n", "<br>");
+            mail.Body = sendBody + signature;
+            mail.IsBodyHtml = true;
 
+            DateTime startTime = Convert.ToDateTime(s.SchoolWorkShopDate1); // רק להגשה- אין בדיקה איזה תאריך נבחר
+            DateTime endTime = startTime.AddHours(4);
+            MakeAppointment(new List<string>() { TestMail }, addressAndCity, startTime, endTime);
 
-                //Try to send mail
-                try
-                {
-                    if (IsTestMode)
-                        mail.To.Add(new MailAddress(TestMail));
+            //Try to send mail
+            try
+            {
+                if (IsTestMode) {
+                    mail.To.Add(new MailAddress(TestMail));
+                    MakeAppointment(new List<string>() { TestMail }, addressAndCity, startTime, endTime);
+
+                }
+                   
+         
                     else
                 {
                     mail.To.Add(new MailAddress(email1));
@@ -251,6 +263,7 @@ namespace gui.Models
                     mail.To.Add(new MailAddress(email3));
                     mail.To.Add(new MailAddress(selectedSchool.School_Contact_Email));
                     mail.To.Add(new MailAddress(ManagerMail));
+                    
                 }
                        
 
@@ -334,6 +347,53 @@ namespace gui.Models
             return imgTagSrc.ToString();
         }
 
+        public static void MakeAppointment(List<string> emails, string address, DateTime start, DateTime end)
+        {
+            List<EventAttendee> event_attendees = new List<EventAttendee>();
+            foreach (string email in emails)
+            {
+                EventAttendee attendee = new EventAttendee();
+                attendee.Email = email;
+                event_attendees.Add(attendee);
+            }
 
+            Event new_event = new Event();
+
+            new_event.Summary = "סדנת תכנות מהממט";
+            new_event.Description = "סדנת תכנות מהממט";
+
+            new_event.Location = address;
+
+            new_event.Start = new EventDateTime();
+            //new_event.Start.DateTime = new DateTime(2017, 09, 20, 15, 0, 0);
+            new_event.Start.DateTime = start;
+
+            new_event.End = new EventDateTime();
+            //new_event.End.DateTime = new DateTime(2017, 09, 20, 15, 30, 0);
+            new_event.End.DateTime = end;
+            new_event.Attendees = event_attendees;
+
+            UserCredential credential = GoogleWebAuthorizationBroker.AuthorizeAsync(
+                new ClientSecrets
+                {
+                    ClientId = "664988269501-vbi6h41b6gdj9rs9c1ua74th8e26sfub.apps.googleusercontent.com",
+                    ClientSecret = "LdNA4Vz16JO5fUkZJyW2G3gh",
+                },
+                new[] { CalendarService.Scope.Calendar },
+                "user",
+                CancellationToken.None).Result;
+
+            // Create the service.
+            var service = new CalendarService(new BaseClientService.Initializer()
+            {
+                HttpClientInitializer = credential,
+                ApplicationName = "Calendar API Sample",
+            });
+
+
+            EventsResource.InsertRequest request = service.Events.Insert(new_event, "chenmu10@gmail.com");
+            request.SendNotifications = true;
+            Event createdEvent = request.Execute();
+        }
     }
 }

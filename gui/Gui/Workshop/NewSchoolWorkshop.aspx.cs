@@ -231,5 +231,14 @@ namespace gui
             return year + "-" + mounth + "-"+day+" "+hour+":"+ min + ":"+"00";
         }
 
+        protected void calendar_DayRender(object sender,DayRenderEventArgs e)
+        {
+
+            if (e.Day.Date.CompareTo(DateTime.Today) < 0 || e.Day.Date.DayOfWeek == DayOfWeek.Saturday || e.Day.Date == DateTime.Today)
+            {
+                e.Day.IsSelectable = false;
+                e.Cell.ForeColor = System.Drawing.Color.Gray;
+            }
+        }
     }
 }
