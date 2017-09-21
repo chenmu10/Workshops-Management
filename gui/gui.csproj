@@ -96,15 +96,16 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Contact\feedbackTeacher.txt" />
-    <Content Include="Contact\homepic.PNG" />
-    <Content Include="Contact\feedbackVolunteer.txt" />
-    <Content Include="Contact\CancelWorkshop.txt" />
-    <Content Include="Contact\PrepareBody.txt" />
-    <Content Include="Contact\SchoolInviteMailBody.txt" />
-    <Content Include="Contact\Signature.txt" />
-    <Content Include="Contact\AssignCompleteSchool.txt" />
-    <Content Include="Contact\VolunteerInviteBody.txt" />
+    <Content Include="EmailMessages\CompanyWorkshop\AssignCompleteCompany.txt" />
+    <Content Include="EmailMessages\SchoolWorkshop\feedbackTeacher.txt" />
+    <Content Include="EmailMessages\homepic.PNG" />
+    <Content Include="EmailMessages\General\feedbackVolunteer.txt" />
+    <Content Include="EmailMessages\General\CancelWorkshop.txt" />
+    <Content Include="EmailMessages\SchoolWorkshop\PrepareBody.txt" />
+    <Content Include="EmailMessages\CompanyWorkshop\SchoolInviteMailBody.txt" />
+    <Content Include="EmailMessages\Signature.txt" />
+    <Content Include="EmailMessages\SchoolWorkshop\AssignCompleteSchool.txt" />
+    <Content Include="EmailMessages\General\VolunteerInviteBody.txt" />
     <Content Include="css\bootstrap-rtl.min.css" />
     <Content Include="Gui\Documents\FeedbackTeacher.aspx" />
     <Content Include="Gui\Documents\FeedbackVolunteer.aspx" />
@@ -358,7 +359,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="EmailMessages\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
