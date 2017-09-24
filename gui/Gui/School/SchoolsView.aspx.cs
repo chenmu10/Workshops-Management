@@ -52,7 +52,8 @@ namespace gui.Gui
                 Button Editbtn = new Button();
                 Editbtn.Text = "צפייה";
                 Editbtn.CssClass = "btn btn-default";
-                Editbtn.ID = School.School_ID.ToString();
+                Editbtn.Attributes.Add("SchoolID", School.School_ID.ToString());
+         
                 Editbtn.Click += new EventHandler(MoreInfo_button);
                 Edit.Controls.Add(Editbtn);
 
@@ -75,13 +76,17 @@ namespace gui.Gui
 
         protected void MoreInfo_button(object sender, EventArgs e)
         {
-
             
-            int btnID = int.Parse(((Button)sender).ID);
-            School SelectedSchool = Schools.Find(x => x.School_ID == btnID);
-            Session["SelectedSchool"] = btnID;
-            Response.Redirect("SchoolEditInfo.aspx", false);
+            //int btnID = int.Parse(((Button)sender).ID);
+            //School SelectedSchool = Schools.Find(x => x.School_ID == btnID);
+            //Session["SelectedSchool"] = btnID;
+            //Response.Redirect("SchoolEditInfo.aspx", false);
 
+
+            Button selectedButton = (Button)sender;
+            string SelectedSchool = selectedButton.Attributes["SchoolID"].ToString();
+            Session["SchoolID"] = SelectedSchool;
+            Response.Redirect("SchoolEditInfo.aspx", false);
         }
 
      

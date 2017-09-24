@@ -22,6 +22,23 @@ namespace gui
             db = new DB();
             db.IsConnect();
             GetAreasFromDB();
+
+            bool check = false;
+
+            if (check)
+            {
+                Firstname.Text = "חן";
+                Lastname.Text = "מו";
+                Firstnameeng.Text = "chen";
+                Lastnameeng.Text = "mu";
+                Email.Text = "chenmu10@gmail.com";
+                Phone.Text = "050-0000000";
+                Employer.Text = "google";
+                otherRef.Text = "";
+                DropDownListOccupation.SelectedIndex = 2; // occupation
+                DropDownListReference.SelectedIndex = 2; // reference
+
+            }
         }
 
         protected void Page_Load(object sender, EventArgs e)
@@ -45,8 +62,8 @@ namespace gui
             {
                 for (int i = 0; i < Areas.Count; i++)
                 {
-                    CheckBoxListAreas.Items.Add(Areas[i]);
-                    DropDownListTraining.Items.Add(Areas[i]);
+                    CheckBoxListAreas.Items.Add(new ListItem(Areas[i].Text, i.ToString()));
+                    DropDownListTraining.Items.Add(new ListItem(Areas[i].Text, i.ToString()));
 
                 }
 
@@ -90,7 +107,7 @@ namespace gui
             string phonevalue = Phone.Text.ToString();
             string employervalue = Employer.Text.ToString();
             string occupation = DropDownListOccupation.SelectedValue.ToString();
-            int trainingArea = Convert.ToInt32(DropDownListTraining.SelectedValue);
+            int trainingArea = Convert.ToInt32(DropDownListTraining.SelectedValue)+1;
             string reference;
 
             // check "other" field
@@ -109,7 +126,7 @@ namespace gui
             {
                 if (item.Selected)
                 {
-                    SelectedAreas.Add(int.Parse(item.Value) );
+                    SelectedAreas.Add(int.Parse(item.Value)+1);
                 }
             }
 
@@ -122,12 +139,13 @@ namespace gui
             else if (db.InsertNewVolunteer(NewVolunteer))
             {
                 Response.Write("<script>alert('נוספת בהצלחה למאגר');</script>");
+
             }
             else
             {
                 Response.Write("<script>alert('שגיאה בגישה למאגר');</script>");
             }
-            
+
         }
 
         private bool CheckAreaCheckList()
@@ -144,7 +162,7 @@ namespace gui
             return result;
         }
 
-       
+
         private bool IsEmptyFields()
         {
             if (string.IsNullOrWhiteSpace(Firstname.Text) ||
@@ -153,10 +171,15 @@ namespace gui
                  string.IsNullOrWhiteSpace(Phone.Text) ||
                  DropDownListOccupation.SelectedIndex == 0 ||
                  string.IsNullOrWhiteSpace(Employer.Text) ||
-                 DropDownListReference.SelectedIndex == 0 ||
-                 DropDownListTraining.SelectedIndex == 0)
+                 DropDownListReference.SelectedIndex == 0)
             {
                 Response.Write("<script>alert('נא למלא את כל השדות');</script>");
+                return true;
+            }
+
+            if (DropDownListTraining.SelectedValue == "x")
+            {
+                Response.Write("<script>alert('בעיה עם הכשרה');</script>");
                 return true;
             }
 
@@ -193,20 +216,20 @@ namespace gui
 
         protected void Send_Click(object sender, EventArgs e)
         {
-            if(!IsEmptyFields())
+            if (!IsEmptyFields())
             {
                 Volunteer NewVolunteer = new Volunteer();
-                NewVolunteer.Volunteer_First_Name= Firstname.Text.ToString();
+                NewVolunteer.Volunteer_First_Name = Firstname.Text.ToString();
                 NewVolunteer.Volunteer_Last_Name = Lastname.Text.ToString();
                 NewVolunteer.Volunteer_First_Name_Eng = Firstnameeng.Text.ToString();
-                NewVolunteer.Volunteer_Last_Name_Eng= Lastnameeng.Text.ToString();
+                NewVolunteer.Volunteer_Last_Name_Eng = Lastnameeng.Text.ToString();
                 NewVolunteer.Volunteer_Email = Email.Text.ToString();
-                NewVolunteer.Volunteer_phone= Phone.Text.ToString();
+                NewVolunteer.Volunteer_phone = Phone.Text.ToString();
                 NewVolunteer.Volunteer_Employer = Employer.Text.ToString();
-                NewVolunteer.Volunteer_Occupation= DropDownListOccupation.SelectedValue.ToString();
-                NewVolunteer.Volunteer_prefer_traning_area = Convert.ToInt32(DropDownListTraining.SelectedValue) ;
-
+                NewVolunteer.Volunteer_Occupation = DropDownListOccupation.SelectedValue.ToString();
+                NewVolunteer.Volunteer_prefer_traning_area = Convert.ToInt32(DropDownListTraining.SelectedValue) + 1;
               
+
                 // check "other" field
                 if (DropDownListReference.SelectedValue == "אחר")
                 {
@@ -223,7 +246,7 @@ namespace gui
                 {
                     if (item.Selected)
                     {
-                        SelectedAreas.Add(int.Parse(item.Value) );
+                        SelectedAreas.Add(int.Parse(item.Value)+1);
                     }
                 }
 
@@ -250,8 +273,7 @@ namespace gui
 }
 
 
-   
 
 
 
-   
+

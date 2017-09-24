@@ -20,7 +20,7 @@
 
             <h2>הוספת סדנאות בחברה</h2>
             <hr />
-            <asp:Label runat="server" ID="Msg" Font-Italic="true"></asp:Label>
+         
             <!-- Choose Company By Name -->
             <label class="control-label" for="dropDownCompanyName">בחירת חברה: </label>
             <div>

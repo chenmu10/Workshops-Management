@@ -173,7 +173,7 @@
                         <label class="control-label" for="DropDownListTraining">אזור מועדף להכשרה:</label>
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="DropDownListTraining" ErrorMessage="יש לבחור" InitialValue="בחרי" Font-Bold="True" ForeColor="Red"></asp:RequiredFieldValidator>
                         <asp:DropDownList class="form-control" ID="DropDownListTraining" runat="server" required="required">
-                            <asp:ListItem Value="0" Text="בחרי"></asp:ListItem>
+                           <asp:ListItem Value="x" Text="בחרי"></asp:ListItem>
                         </asp:DropDownList>
 
                     </div>

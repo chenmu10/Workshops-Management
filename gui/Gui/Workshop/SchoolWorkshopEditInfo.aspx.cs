@@ -147,6 +147,7 @@ namespace gui.Gui.Workshop
                         /*  לבדיקת תאריכים*/
                         dateselecting.Visible = true;
                         dateselector.Visible = true;
+                        dateselector.CssClass = "select-control";
                         dateselector.Items[1].Text = schoolWorkshop.SchoolWorkShopDate1.ToString();
                         dateselector.Items[2].Text = schoolWorkshop.SchoolWorkShopDate2.ToString();
                         dateselector.Items[3].Text = schoolWorkshop.SchoolWorkShopDate3.ToString();
