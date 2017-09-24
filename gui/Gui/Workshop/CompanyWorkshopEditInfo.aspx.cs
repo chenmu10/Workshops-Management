@@ -46,7 +46,7 @@ namespace gui.Gui.Workshop
                 companyName.Text = WorkshopToView.Company_Name;
                 selectedCompany = allCompany.Find(x => x.Company_ID == CompanyWorkshop.CompanyID);
                 address.Text = selectedCompany.Company_Address;
-                possibleStudentsNum.Text = CompanyWorkshop.WorkShop_Number_Of_StudentPredicted.ToString();
+                //possibleStudentsNum.Text = CompanyWorkshop.WorkShop_Number_Of_StudentPredicted.ToString();
                 companyComments.Text = CompanyWorkshop.CompanyWorkShopComments;
                 dateTime.Text = CompanyWorkshop.CompanyWorkShopDate;
 
