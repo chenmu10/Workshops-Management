@@ -73,15 +73,27 @@ namespace gui
                     SchoolWorkShop NewSchoolWorkShop = new SchoolWorkShop(Date1, Date2, Date3, StudentCount, ComputerCount, FormComment,
                     ContactName, ContactPhone, ContactEmail, isAMTStudent, newSchool.School_ID);
                     if (db.InsertNewSchoolWorkShop(NewSchoolWorkShop))
+                    {
+                        
+                        Response.Write("<script>alert('בית ספר חדש וסדנא חדשה נוספו בהצלחה');</script>");
                         Response.Redirect("../Documents/SuccessForm.aspx", false);
+
+                    }
+                        
                 }
                 else
                 {
                     SchoolWorkShop NewSchoolWorkShop = new SchoolWorkShop(Date1, Date2, Date3, StudentCount, ComputerCount, FormComment,
                     ContactName, ContactPhone, ContactEmail, isAMTStudent, Schools.Find(y =>y.School_Serial_Number== SchoolSymbol).School_ID);
                     if (db.InsertNewSchoolWorkShop(NewSchoolWorkShop))
+                    {
+                        Response.Write("<script>alert('סדנא נוצרה בהצלחה');</script>");
                         Response.Redirect("../Documents/SuccessForm.aspx", false);
+                    }
+                       
+                    
                 }
+                
                 
 
             }
@@ -105,7 +117,7 @@ namespace gui
             inputsNotFull = inputsNotFull || city.Text.ToString().Equals("");
 
             inputsNotFull = inputsNotFull || studentpredict.Text.ToString().Equals("");
-            //inputsNotFull = inputsNotFull || numberofcumputers.Text.ToString().Equals("");
+            inputsNotFull = inputsNotFull || numberofcumputers.Text.ToString().Equals("");
             inputsNotFull = inputsNotFull || isDateEmpty();
             return !inputsNotFull;
         }
@@ -159,6 +171,9 @@ namespace gui
             computercontactphone.Text = "";
             SchoolArea.SelectedIndex = 0;
         }
+
+      
+
         public void EnableEdit()
         {
             schoolname.Enabled = true;
@@ -188,8 +203,8 @@ namespace gui
         {
             if (isDateEmpty())
             {
-                DateError.Text = "נא לבחור 3 תאריכים אפשריים";
-
+                // DateError.Text = "נא לבחור 3 תאריכים אפשריים";
+                Response.Write("<script>alert('נא לסמן 3 תאריכים');</script>");
                 //string script = "alert('please select a date');";
                 //ClientScript.RegisterClientScriptBlock(this.GetType(), "Alert", script, true);
             }

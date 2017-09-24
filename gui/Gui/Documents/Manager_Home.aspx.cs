@@ -12,29 +12,39 @@ namespace gui.Gui
     public partial class Manager_Home : System.Web.UI.Page
     {
         DB db;
+        public List<string> results = new List<string>();
 
         override protected void OnInit(EventArgs e)
         {
             this.Load += new System.EventHandler(this.Page_Load);
+            db = new DB();
+            db.IsConnect();
             InitializeForm();
-            //EmailHelper.MakeAppointment(new List<string>() { "chenmu10@gmail.com" }, "Tel Aviv", new DateTime(2017, 09, 27, 10, 00, 0), new DateTime(2017, 09, 27, 13, 00, 0));
-            
-
-
         }
 
         private void InitializeForm()
         {
             db = new DB();
             db.IsConnect();
+
+            results = db.getManagerDashBoard();
+            newSchoolWorkshops.Text = results[0];
+            newCompanyWorkshops.Text = results[1];
+            assignVolunteers.Text = results[2];
+            prepare.Text = results[3];
+            execute.Text = results[4];
+            feedback.Text = results[5];
+            closed.Text = results[6];
+            newVolunteers.Text = results[7];
         }
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
-    
+            //if (db.IsManager(Session["Manager"]))
+            //    user.Text = "משתמש:מנהל";
         }
 
-       
+
+
     }
 }

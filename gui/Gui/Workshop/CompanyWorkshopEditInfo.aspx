@@ -49,7 +49,7 @@
                     <li runat="server" id="bar8">סגור</li>
                 </ul>
             </div>
-             <div class="form-inline">
+             <div class="form-inline"  style="margin-top:150px;">
                 <label class="control-label" for="selectpicker">שינוי סטטוס: </label>
                 <asp:DropDownList runat="server" ID="selectpicker" CssClass="form-control" Width="150px">
                     <asp:ListItem Value="1">לשיבוץ מתנדבות</asp:ListItem>

@@ -27,7 +27,7 @@
                 <h3>מעקב פעילות</h3>
                 <br />
 
-                <table class="table table-hover">
+               <table class="table table-hover">
                     <thead>
                         <tr>
                             <th>סוג</th>
@@ -38,45 +38,45 @@
                     <tbody>
                         <tr>
                             <th scope="row">בקשות בתי ספר לקיום סדנא</th>
-                            <td> <asp:Label runat="server" ID="newSchoolWorkshops"><span class="badge">5</span></asp:Label></td>
+                            <td> <asp:Label runat="server" ID="newSchoolWorkshops" class="badge"> </asp:Label></td>
 
                         </tr>
                         <tr>
                             <th scope="row">סדנאות בחברות לשיבוץ בתי ספר</th>
-                            <td> <asp:Label runat="server" ID="newCompanyWorkshops"><span class="badge">5</span></asp:Label></td>
+                            <td> <asp:Label runat="server" ID="newCompanyWorkshops" class="badge"> </asp:Label></td>
                            
                         </tr>
                         <tr>
                             <th scope="row">סדנאות לשיבוץ מתנדבות</th>
-                            <td><asp:Label runat="server" ID="assignVolunteers"><span class="badge">5</span></asp:Label></td>
+                            <td><asp:Label runat="server" ID="assignVolunteers" class="badge"> </asp:Label></td>
                 
 
 
                         </tr>
                         <tr>
                             <th scope="row">סדנאות בשיבוץ הושלם להכנה</th>
-                            <td colspan="2"><asp:Label runat="server" ID="prepare"><span class="badge">5</span></asp:Label></td>
+                            <td colspan="2"><asp:Label runat="server" ID="prepare" class="badge"> </asp:Label></td>
 
                         </tr>
                        
                         <tr>
                             <th scope="row">סדנאות לביצוע</th>
-                              <td colspan="2"><asp:Label runat="server" ID="execute"><span class="badge">5</span></asp:Label></td>
+                              <td colspan="2"><asp:Label runat="server" ID="execute" class="badge"> </asp:Label></td>
 
                         </tr>
                         <tr>
                             <th scope="row">סדנאות למישוב</th>
-                              <td colspan="2"><asp:Label runat="server" ID="feedback"><span class="badge">5</span></asp:Label></td>
+                              <td colspan="2"><asp:Label runat="server" ID="feedback" class="badge"> </asp:Label></td>
 
                         </tr>
                          <tr>
                             <th scope="row">סדנאות סגורות</th>
-                            <td colspan="2"><asp:Label runat="server" ID="closed"><span class="badge">5</span></asp:Label></td>
+                            <td colspan="2"><asp:Label runat="server" ID="closed" class="badge"> </asp:Label></td>
 
                         </tr>
                         <tr>
                             <th scope="row">מתנדבות חדשות לאישור</th>
-                            <td colspan="2"><asp:Label runat="server" ID="newVolunteers"><span class="badge">5</span></asp:Label></td>
+                            <td colspan="2"><asp:Label runat="server" ID="newVolunteers" class="badge"> </asp:Label></td>
 
                         </tr>
                     </tbody>

@@ -241,8 +241,8 @@
                         <!-- Hour -->
                         <asp:Label runat="server" Style="float: right;">:</asp:Label>
                         <asp:TextBox ID="hh1"
-                            type="number" min="7" max="23" runat="server" Text="8"
-                           Width="13%" placeholder="HH" required="required"></asp:TextBox>
+                            type="number" min="7" max="23" runat="server" 
+                           Width="13%" placeholder="H" required="required"></asp:TextBox>
                     </div>
 
                     <div class="col-md-4">
@@ -261,8 +261,8 @@
                         <!-- Hour -->
                         <asp:Label runat="server" Style="float: right;">:</asp:Label>
                         <asp:TextBox ID="hh2"
-                            type="number" min="7" max="23" runat="server" Text="8"
-                           Width="13%" placeholder="HH" required="required"></asp:TextBox>
+                            type="number" min="7" max="23" runat="server" 
+                           Width="13%" placeholder="H" required="required"></asp:TextBox>
                     </div>
                     <div class="col-md-4">
                         <label class="control-label" for="Calendar3">אפשרות 3 : </label>
@@ -280,8 +280,8 @@
                         <!-- Hour -->
                         <asp:Label runat="server" Style="float: right;">:</asp:Label>
                         <asp:TextBox ID="hh3"
-                            type="number" min="7" max="23" runat="server" Text="8"
-                           Width="13%" placeholder="HH" required="required"></asp:TextBox>
+                            type="number" min="7" max="23" runat="server" 
+                           Width="13%" placeholder="H" required="required"></asp:TextBox>
                         <br />
                         <br />
                     </div>
