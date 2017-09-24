@@ -33,8 +33,8 @@
 
                 <label class="control-label" for="WorkShopDate">מועד קיום: </label>
                 <asp:Label runat="server" ID="WorkShopDate"></asp:Label>
-                   <br />
-               
+                <br />
+
                 <asp:Label runat="server" ID="PrepareFormCreate" Text="נוצר טופס הכנה, ניתן לראות ב'פרטי הכנה'"></asp:Label>
                 <br />
                 <br />
@@ -42,11 +42,11 @@
                 <br />
                 <asp:Button runat="server" ID="yesToVolunteerFinished" Text="כן" class="btn btn-success" OnClick="yesToVolunteerFinished_Click" />
                 <asp:Button runat="server" ID="noToVolunteerFinished" Text="לא" class="btn btn-danger" />
-                <button id="cancelWorkshop" class="btn btn-danger">ביטול סדנא</button>
+               <%-- <button id="cancelWorkshop" class="btn btn-danger">ביטול סדנא</button>--%>
 
             </div>
 
-            <div class="checkout-wrap" >
+            <div class="checkout-wrap">
 
                 <ul class="checkout-bar">
 
@@ -60,21 +60,21 @@
                     <li runat="server" id="bar8">סגור</li>
 
                 </ul>
-            </div> 
-             <div class="form-inline" style="margin-top:150px;">
-                    <label class="control-label" for="selectpicker">שינוי סטטוס: </label>
-                    <asp:DropDownList runat="server" ID="selectpicker" CssClass="form-control" Width="150px">
-                        <asp:ListItem Value="1">לבדיקת תאריכים</asp:ListItem>
-                        <asp:ListItem Value="2">לשיבוץ מתנדבות</asp:ListItem>
-                        <asp:ListItem Value="3">לשיבוץ הושלם</asp:ListItem>
-                        <asp:ListItem Value="4">להכנה</asp:ListItem>
-                        <asp:ListItem Value="5">לביצוע</asp:ListItem>
-                        <asp:ListItem Value="6">למישוב</asp:ListItem>
-                        <asp:ListItem Value="7">לסגור</asp:ListItem>
-                    </asp:DropDownList>
-                    <asp:Button runat="server" OnClick="updateStatus_Click" ID="updateStatus" Text="אישור שינוי" class="btn btn-link" />
-                </div>
-                <br />
+            </div>
+            <div class="form-inline" style="margin-top: 150px;">
+                <label class="control-label" for="selectpicker">שינוי סטטוס: </label>
+                <asp:DropDownList runat="server" ID="selectpicker" CssClass="form-control" Width="150px">
+                    <asp:ListItem Value="1">לבדיקת תאריכים</asp:ListItem>
+                    <asp:ListItem Value="2">לשיבוץ מתנדבות</asp:ListItem>
+                    <asp:ListItem Value="3">לשיבוץ הושלם</asp:ListItem>
+                    <asp:ListItem Value="4">להכנה</asp:ListItem>
+                    <asp:ListItem Value="5">לביצוע</asp:ListItem>
+                    <asp:ListItem Value="6">למישוב</asp:ListItem>
+                    <asp:ListItem Value="7">לסגור</asp:ListItem>
+                </asp:DropDownList>
+                <asp:Button runat="server" OnClick="updateStatus_Click" ID="updateStatus" Text="אישור שינוי" class="btn btn-link" />
+            </div>
+            <br />
 
             <div class="row">
 
@@ -96,8 +96,8 @@
                             <%--  TAB 1 - SCHOOL REQUEST--%>
                             <div class="tab-pane fade in active" id="school">
                                 <div class="col-md-6">
-                                
-                                    <a class="btn btn-link" href="../School/SchoolEditInfo.aspx">פרטי בית הספר</a>
+                                    <asp:LinkButton ID="GoToshcool" runat="server" OnClick="GoToshcool_Click">פרטי בי ספר</asp:LinkButton>
+                                   <%-- <a class="btn btn-link" href="../School/SchoolEditInfo.aspx">פרטי בית הספר</a>--%>
 
                                     <br />
                                     <br />
@@ -107,10 +107,7 @@
                                     </label>
                                     <div class="form-inline">
                                         <asp:TextBox ID="schoolname" Enabled="false"
-                                            required="required"
                                             class="form-control"
-                                            oninvalid="setCustomValidity('יש להזין שם בית ספר')"
-                                            onchange="try{setCustomValidity('')}catch(e){}"
                                             runat="server" Width="220px">
                                         </asp:TextBox>
                                     </div>
@@ -122,9 +119,6 @@
                                             type="number"
                                             class="form-control"
                                             min="0"
-                                            required="required"
-                                            oninvalid="setCustomValidity('יש להזין מס' מחשבים תקינים')"
-                                            onchange="try{setCustomValidity('')}catch(e){}"
                                             runat="server" Width="220px"></asp:TextBox>
                                     </div>
                                     <br />
@@ -134,9 +128,6 @@
                                             type="number"
                                             class="form-control"
                                             min="0"
-                                            required="required"
-                                            oninvalid="setCustomValidity('יש להזין מס' משתתפות צפוי')"
-                                            onchange="try{setCustomValidity('')}catch(e){}"
                                             runat="server" Width="220px"></asp:TextBox>
                                     </div>
                                     <br />
@@ -186,12 +177,12 @@
                             <%--  TAB 2 - VOLUNTEER ASSIGN--%>
                             <div class="tab-pane fade" id="volunteers">
                                 <div class="col-md-6">
-                                   
+
                                     <label class="control-label" for="volunteercount">מס' מתנדבות נוכחי: </label>
                                     <asp:Label runat="server" ID="volunteercount"></asp:Label>
                                     <br />
-                                    <%--<asp:LinkButton runat="server" ID="LinkVolunteerAssign" Text="מעבר לעמוד שיבוץ"></asp:LinkButton>--%>
-                                    <a href="../Volunteer/VolunteerAssignWorkshops.aspx" class="btn btn-link">מעבר לעמוד שיבוץ</a>
+                                  
+                                    <a href="../Volunteer/VolunteerAssignWorkshops.aspx" class="btn btn-link" target="_blank">מעבר לעמוד שיבוץ</a>
                                     <br />
 
                                     <br />
@@ -201,6 +192,7 @@
                                         <legend>פרטי מתנדבות משובצות</legend>
                                         <label class="control-label" for="VolunteerName1">מתנדבת 1: </label>
                                         <asp:Label runat="server" ID="VolunteerName1"></asp:Label>
+                                       
                                         <br />
                                         <label class="control-label" for="VolunteerName2">מתנדבת 2: </label>
                                         <asp:Label runat="server" ID="VolunteerName2"></asp:Label>
@@ -211,7 +203,7 @@
                                     </fieldset>
                                 </div>
 
-                                <asp:Button runat="server" ID="backToDates" Text="חזור לסטטוס בחירת תאריך" class="btn btn-danger" />
+                              <%--  <asp:Button runat="server" ID="backToDates" Text="חזור לסטטוס בחירת תאריך" class="btn btn-danger" />--%>
 
 
                             </div>
@@ -376,7 +368,7 @@
                                     <asp:LinkButton runat="server" ID="LinkButton4" Text="משוב"></asp:LinkButton>
                                 </fieldset>
                                 <br />
-                               
+
                             </div>
 
                         </div>

@@ -33,9 +33,9 @@ namespace gui.Gui
                     row.Cells.Add(lineNumber);
                    
 
-                    TableCell workshopID = new TableCell();
-                    workshopID.Text = t.WorkShop_ID;
-                    row.Cells.Add(workshopID);
+                    //TableCell workshopID = new TableCell();
+                    //workshopID.Text = t.WorkShop_ID;
+                    //row.Cells.Add(workshopID);
 
                     TableCell Date = new TableCell();
                     Date.Text = t.WorkShop_Date;

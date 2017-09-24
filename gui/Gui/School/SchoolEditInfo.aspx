@@ -27,7 +27,7 @@
                     <fieldset id="schoolDetails" runat="server">
                         <legend>פרטי מוסד חינוכי</legend>
 
-                         <label class="control-label" for="id">סמל מוסד:</label>
+                         <label class="control-label" for="id">ID:</label>
                         <asp:Label runat="server" ID="id"></asp:Label>
                         <br />
                         <label class="control-label" for="schoolSymbol">סמל מוסד:</label>

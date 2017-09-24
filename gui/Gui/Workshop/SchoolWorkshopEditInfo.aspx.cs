@@ -290,16 +290,36 @@ namespace gui.Gui.Workshop
                         School school = allSchool.Find(x => x.School_ID == schoolWorkshop.WorkShop_School_ID) ;
                         allVolunteer=allVolunteer.FindAll(x => x.Volunteer_Area_Activity.Contains(school.School_Area));
 
-                        if (!db.SchoolWorkShopUpdateDate(schoolWorkshop.SchoolWorkShopID, dateSelected)) ErrorMsg(1);
-                        if (!db.SchoolWorkShopUpdatestatus(schoolWorkshop.SchoolWorkShopID, 1)) ErrorMsg(1);
-                        if (!Email.SendInivetsToVolunteers(allVolunteer, school.School_Area, dateselector.SelectedItem.Text))
+                        if(db.SchoolWorkShopUpdateDate(schoolWorkshop.SchoolWorkShopID, dateSelected) && db.SchoolWorkShopUpdatestatus(schoolWorkshop.SchoolWorkShopID, 1))
                         {
-                            ErrorMsg(2);
-                        }
+                                if(Email.SendInivetsToVolunteers(allVolunteer, school.School_Area, dateselector.SelectedItem.Text))
+                                {
+                                    
+                                    Response.Write("<script>alert('איימילים נשלחו למתנדבות באזור'); window.location.href = ''; </script>");
+                                }
+                                else
+                                {
+                                    ErrorMsg(2);
+                                }
+                         }
                         else
                         {
-                            Response.Write("<script>alert('איימילים נשלחו למתנדבות באזור'); window.location.href = '';</script>");
+                            ErrorMsg(1);
                         }
+
+                        Response.Write("<script>alert('אימיילים נשלחו למתנדבות באזור'); window.location.href = ''; </script>");
+
+
+                        //if (!db.SchoolWorkShopUpdateDate(schoolWorkshop.SchoolWorkShopID, dateSelected)) ErrorMsg(1);
+                        //if (!db.SchoolWorkShopUpdatestatus(schoolWorkshop.SchoolWorkShopID, 1)) ErrorMsg(1);
+                        //if (!Email.SendInivetsToVolunteers(allVolunteer, school.School_Area, dateselector.SelectedItem.Text))
+                        //{
+                        //    ErrorMsg(2);
+                        //}
+                        //else
+                        //{
+                        //    Response.Write("<script>alert('איימילים נשלחו למתנדבות באזור'); window.location.href = '';</script>");
+                        //}
 
                         Response.Redirect(Request.RawUrl);
                     }                    
@@ -382,77 +402,7 @@ namespace gui.Gui.Workshop
             db.SchoolWorkShopUpdatestatus(schoolWorkshop.SchoolWorkShopID, 4);
         }
 
-        private void VolunteerInviteEmail() // בקשה להשתבצות מתנדבות
-        {
-            int volunteerCount = 0;
-            List<Volunteer> allVolunteers = db.GetAllVolunteersWithTraining(true);
-
-            EmailTemplate mail = new EmailTemplate(EmailTemplate.PREDEFINED_TEMPLATES_GENERAL[EmailTemplate.GeneralByType.VolunteerInvite]);
-
-            foreach (Volunteer currentVolunteer in allVolunteers)
-            {
-                // TODO get the school area
-                //if (currentVolunteer.Volunteer_Area_Activity == selectedSchool.school_activity_area)
-                //    {
-                //        string volunteerEmail = currentVolunteer.Volunteer_Email;
-                //        string volunteertName = currentVolunteer.Volunteer_First_Name;
-                //        mail.Send(volunteerEmail, volunteertName, "http://MMT.co.il/volunteerAssign.aspx?area=" , getStaticMap(schoolAddress));
-                //        volunteerCount++;
-                //    }
-                //}
-
-                //Msg.Text = "נשלחו בקשות אל " + volunteerCount + "מתנדבות";
-
-            }
-        }
-
-
-        private void AssignCompleteEmail() // הודעת שיבוץ הושלם
-        {
-            EmailTemplate mail = new EmailTemplate(EmailTemplate.PREDEFINED_TEMPLATES_GENERAL[EmailTemplate.GeneralByType.AssignComplete]);
-            // צריך לשלוח את הנתונים הבאים לפונקצית המייל:
-            //mail.Send(volunteer1Email, volunteer1tName);
-            //mail.Send(volunteer2Email, volunteer2tName);
-            //mail.Send(volunteer3Email, volunteer3tName);
-            //mail.Send(schoolContactEmail, schoolContactName);
-        }
-
-        private void PrepareEmail() // להכנה
-        {
-            EmailTemplate mail = new EmailTemplate(EmailTemplate.PREDEFINED_TEMPLATES_SCHOOL[EmailTemplate.SchoolByType.SchoolPrepare]);
-            //mail.Send(schoolContactEmail, schoolContactName, more..);
-        }
-
-        private void ExecuteEmail() // יומיים לפני קיום הסדנא
-        {
-            EmailTemplate mailToSchool = new EmailTemplate(EmailTemplate.PREDEFINED_TEMPLATES_SCHOOL[EmailTemplate.SchoolByType.executeSchool]);
-            //mail.Send(schoolContactEmail, schoolContactName, more..);
-
-            EmailTemplate mailToVolunteer = new EmailTemplate(EmailTemplate.PREDEFINED_TEMPLATES_SCHOOL[EmailTemplate.SchoolByType.executeVolunteers]);
-            //mail.Send(volunteer1Email, volunteer1tName, more..);
-        }
-
-        private void FeedBackEmail()
-        {
-            EmailTemplate mail = new EmailTemplate(EmailTemplate.PREDEFINED_TEMPLATES_GENERAL[EmailTemplate.GeneralByType.FeedBack]);
-            //mail.Send(volunteer1Email, volunteer1tName, more..);
-            //mail.Send(volunteer2Email, volunteer2tName, more..);
-            //mail.Send(volunteer3Email, volunteer3tName, more..);
-            //mail.Send(teacherEmail, teacherName, more..);
-
-        }
-
-
-        private void CancelWorkshopEmail()
-        {
-            EmailTemplate mail = new EmailTemplate(EmailTemplate.PREDEFINED_TEMPLATES_GENERAL[EmailTemplate.GeneralByType.CancelWorkshop]);
-            //mail.Send(volunteer1Email, volunteer1tName, workshopDate);
-            //mail.Send(volunteer2Email, volunteer2tName, workshopDate);
-            //mail.Send(volunteer3Email, volunteer3tName, workshopDate);
-            //mail.Send(schoolContactEmail, schoolContactName, workshopDate);
-
-        }
-
+      
        
         public void ErrorMsg(int type)
         {
@@ -477,5 +427,9 @@ namespace gui.Gui.Workshop
             
         }
 
+        protected void GoToshcool_Click(object sender, EventArgs e)
+        {
+            // TODO
+        }
     }
 }

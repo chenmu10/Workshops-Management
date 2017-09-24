@@ -13,19 +13,19 @@
 <body>
     <form id="form1" runat="server">
         <div class="container">
-
+            <div class="jumbotron">
                 <h2>סדנאות: שיבוץ מתנדבות</h2>
+            </div>
+              
 
             <!-- Workshops Table-->
             <h3>בחרי סדנא עבור שיבוץ:</h3>
             <asp:Table ID="workshopTable" class="table table-striped" runat="server">
                 <asp:TableHeaderRow>
                     <asp:TableHeaderCell>
-                        שורה
+                         #
                     </asp:TableHeaderCell>
-                    <asp:TableHeaderCell>
-                        מס מזהה
-                    </asp:TableHeaderCell>
+                   
                     <asp:TableHeaderCell>
                         מועד
                     </asp:TableHeaderCell>
