@@ -17,7 +17,7 @@ namespace gui.Models
 {
     public class EmailHelper
     {
-        string fromAddress = "chenitunes@gmail.com"; // temporary - personal email..
+        string fromAddress = "mmt.send@gmail.com"; // temporary - personal email..
         string fromPassword = "mmtproject";
         string TestMail = "chenmu10@gmail.com";
         string EmailTitle = "MMT";
@@ -240,14 +240,14 @@ namespace gui.Models
 
             DateTime startTime = Convert.ToDateTime(s.SchoolWorkShopDate1); // רק להגשה- אין בדיקה איזה תאריך נבחר
             DateTime endTime = startTime.AddHours(4);
-            MakeAppointment(new List<string>() { TestMail }, addressAndCity, startTime, endTime);
-
+           
+            
             //Try to send mail
             try
             {
                 if (IsTestMode) {
                     mail.To.Add(new MailAddress(TestMail));
-                    MakeAppointment(new List<string>() { TestMail }, addressAndCity, startTime, endTime);
+                    EmailHelper.MakeAppointment(new List<string>() { "chenmu10@gmail.com" }, addressAndCity, startTime, endTime);
 
                 }
                    
@@ -355,25 +355,25 @@ namespace gui.Models
 
             Event new_event = new Event();
 
-            new_event.Summary = "סדנת תכנות מהממט";
-            new_event.Description = "סדנת תכנות מהממט";
-
+            new_event.Summary = "סדנת מהממט";
+            //new_event.Description = "מידע על סדנא";
             new_event.Location = address;
 
             new_event.Start = new EventDateTime();
-            //new_event.Start.DateTime = new DateTime(2017, 09, 20, 15, 0, 0);
+            //new_event.Start.DateTime = new DateTime(2017, 09, 26, 15, 0, 0);
             new_event.Start.DateTime = start;
 
             new_event.End = new EventDateTime();
-            //new_event.End.DateTime = new DateTime(2017, 09, 20, 15, 30, 0);
+            //new_event.End.DateTime = new DateTime(2017, 09, 26, 15, 30, 0);
             new_event.End.DateTime = end;
             new_event.Attendees = event_attendees;
 
             UserCredential credential = GoogleWebAuthorizationBroker.AuthorizeAsync(
                 new ClientSecrets
                 {
-                    ClientId = "664988269501-vbi6h41b6gdj9rs9c1ua74th8e26sfub.apps.googleusercontent.com",
-                    ClientSecret = "LdNA4Vz16JO5fUkZJyW2G3gh",
+                    //mmt.send
+                    ClientId = "757049045443-rn00q79rdiprdv2dgj1kd8652chtk4ud.apps.googleusercontent.com",
+                    ClientSecret = "BLHLOKQewOa_cgycBktWZyzQ",
                 },
                 new[] { CalendarService.Scope.Calendar },
                 "user",
@@ -387,7 +387,7 @@ namespace gui.Models
             });
 
 
-            EventsResource.InsertRequest request = service.Events.Insert(new_event, "chenmu10@gmail.com");
+            EventsResource.InsertRequest request = service.Events.Insert(new_event, "mmt.send@gmail.com");
             request.SendNotifications = true;
             Event createdEvent = request.Execute();
         }

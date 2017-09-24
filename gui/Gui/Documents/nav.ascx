@@ -38,9 +38,10 @@
             </ul>
             <ul class="nav navbar-nav navbar-right flip">
                <li><a href="../documents/ExternalForms.aspx">טפסים</a></li>
-						<li><a href="emails.html">הודעות</a></li>
+
+						<%--<li><a href="emails.html">הודעות</a></li>
 						<li><a href="reports.html">דוחות</a></li>
-						<li><a href="manager.html">ניהול<span class="sr-only"></span></a></li>
+						<li><a href="manager.html">ניהול<span class="sr-only"></span></a></li>--%>
             </ul>
         </div>
         <!--/.nav-collapse -->

@@ -22,7 +22,7 @@
       
         <div class="container">
             <br />
-          <asp:Image ID="Image2" runat="server" Height="107px" ImageUrl="~/Contact/homepic.PNG" Width="208px" />
+          <asp:Image ID="Image2" runat="server" Height="107px" ImageUrl="~/EmailMessages/homepic.PNG" Width="208px" />
             <div class="jumbotron">
                 <h3>מעקב פעילות</h3>
                 <br />

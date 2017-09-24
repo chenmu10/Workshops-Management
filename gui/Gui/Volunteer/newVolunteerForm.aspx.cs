@@ -23,7 +23,7 @@ namespace gui
             db.IsConnect();
             GetAreasFromDB();
 
-            bool check = true;
+            bool check = false;
 
             if (check)
             {
