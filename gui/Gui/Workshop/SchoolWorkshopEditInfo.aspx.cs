@@ -7,7 +7,6 @@ namespace gui.Gui.Workshop
 {
     public partial class SchoolWorkshopEditInfo : System.Web.UI.Page
     {
-        // TODO get the school area
 
         DB db;
         WorkshopJoin WorkshopToView = new WorkshopJoin();
@@ -18,7 +17,6 @@ namespace gui.Gui.Workshop
             db = new DB();
             db.IsConnect();
             FormClear();
-            if(!Page.IsPostBack)
                 init();
         }
         private void init()
@@ -29,6 +27,21 @@ namespace gui.Gui.Workshop
                 yesToVolunteerFinished.Visible = false;
                 noToVolunteerFinished.Visible = false;
                 PrepareFormCreate.Visible = false;
+
+                finalParticipants.Text = "";
+                numOfCompWithEmulator.Text = "";
+
+                //PrePare Form
+                RadioButtonListDidPrepareLabel.Visible = false;
+                RadioButtonListDidPrepare.Visible = false;
+                RadioButtonListProjectOrControlLabel.Visible = false;
+                RadioButtonListProjectOrControl.Visible = false;
+                RadioButtonListSeniorsLabel.Visible = false;
+                RadioButtonListSeniors.Visible = false;
+                RadioButtonListShowVideoLabel.Visible = false;
+                RadioButtonListShowVideo.Visible = false;
+                prepareComments.Text = "";
+                PrepareFormReadey.Text = "טופס הכנה עוד לא קיים";
 
                 int ID = int.Parse(Session["WorkshopID"].ToString());
                 WorkshopToView = db.GetJoinWorkShopByID(ID);
@@ -61,11 +74,41 @@ namespace gui.Gui.Workshop
                 if (schoolWorkshop.SchoolWorkShopVolunteerID2 != 0) count++;
                 if (schoolWorkshop.SchoolWorkShopVolunteerID3 != 0) count++;
                 volunteercount.Text = count.ToString();
-               // volnteercount2.Text = count.ToString();
+                // volnteercount2.Text = count.ToString();
                 /* ---------------------*/
+                PrepareForm pf = db.getPrePareFormByWorkshopID(int.Parse(WorkShopID.Text));
+                if (pf != null && pf.WorkShop_Number_Of_Final_Student!=0)
+                {
+                    RadioButtonListDidPrepareLabel.Visible = true;
+                    RadioButtonListDidPrepare.Visible = true;
+                    RadioButtonListProjectOrControlLabel.Visible = true;
+                    RadioButtonListProjectOrControl.Visible = true;
+                    RadioButtonListSeniorsLabel.Visible = true;
+                    RadioButtonListSeniors.Visible = true;
+                    RadioButtonListShowVideoLabel.Visible = true;
+                    RadioButtonListShowVideo.Visible = true;
+                    PrepareFormReadey.Text = "";
+
+                    finalParticipants.Text = pf.WorkShop_Number_Of_Final_Student.ToString();
+                    RadioButtonListProjectOrControl.SelectedValue = pf.WorkShop_Is_Projector.ToString();
+                    RadioButtonListSeniors.Text = pf.WorkShop_Is_Seniors_Coming.ToString();
+                    RadioButtonListDidPrepare.SelectedValue = pf.WorkShop_Did_Preparation.ToString();
+                    RadioButtonListShowVideo.Text = pf.WorkShop_Is_Video_possible.ToString();
+                    numOfCompWithEmulator.Text = pf.WorkShop_Number_Of_emulator_Computer.ToString();
+                    teacherName.Text = pf.WorkShop_Teacher_Name;
+                    teacherEmail.Text = pf.WorkShop_Teacher_Email;
+                    teacherPhone.Text = pf.WorkShop_Teacher_phone;
+                    prepareComments.Text = pf.WorkShop_Comments;
+                    WorkShopStatus.Text = WorkshopToView.Status_Description.ToString();
+                }
+
+
+
 
                 int status = schoolWorkshop.SchoolWorkShopStatus;
                 SetStatusBar(status);
+
+
                 int dateIndex = int.Parse(schoolWorkshop.SchoolWorkShopSelectedDate.ToString());
                     switch (dateIndex)
                     {
@@ -104,7 +147,6 @@ namespace gui.Gui.Workshop
                         /*  לבדיקת תאריכים*/
                         dateselecting.Visible = true;
                         dateselector.Visible = true;
-                        dateselector.CssClass = "select-control";
                         dateselector.Items[1].Text = schoolWorkshop.SchoolWorkShopDate1.ToString();
                         dateselector.Items[2].Text = schoolWorkshop.SchoolWorkShopDate2.ToString();
                         dateselector.Items[3].Text = schoolWorkshop.SchoolWorkShopDate3.ToString();
@@ -113,26 +155,7 @@ namespace gui.Gui.Workshop
                     case 6:
                         /*  להכנה*/ 
                       
-                        PrepareForm pf = db.getPrePareFormByWorkshopID(Convert.ToInt32(WorkShopID.Text));
-                        if (pf != null)
-                       {
-                            finalParticipants.Text = pf.WorkShop_Number_Of_Final_Student.ToString();
-                            RadioButtonListProjectOrControl.SelectedValue = pf.WorkShop_Is_Projector.ToString();
-                            RadioButtonListSeniors.Text = pf.WorkShop_Is_Seniors_Coming.ToString();
-                            RadioButtonListDidPrepare.SelectedValue = pf.WorkShop_Did_Preparation.ToString();
-                            RadioButtonListShowVideo.Text = pf.WorkShop_Is_Video_possible.ToString();
-                            numOfCompWithEmulator.Text = pf.WorkShop_Number_Of_emulator_Computer.ToString();
-                            teacherName.Text = pf.WorkShop_Teacher_Name;
-                            teacherEmail.Text = pf.WorkShop_Teacher_Email;
-                            teacherPhone.Text = pf.WorkShop_Teacher_phone;
-                            prepareComments.Text = pf.WorkShop_Comments;
-                            WorkShopStatus.Text = WorkshopToView.Status_Description.ToString();
-                            break;
-
-                        }
-                        else {
-                            break;
-                        }
+                  
                        
                     case 7:
                         WorkShopID.Text = WorkshopToView.WorkShop_ID.ToString();
@@ -347,8 +370,15 @@ namespace gui.Gui.Workshop
                     break;
                 case 5:
                     //לביצוע
-                    db.SchoolWorkShopUpdatestatus(schoolWorkshop.SchoolWorkShopID, 7);
-                    SetStatusBar(7);
+
+                    PrepareForm pf = db.getPrePareFormByWorkshopID(int.Parse(WorkShopID.Text));
+                    if (pf != null && pf.WorkShop_Number_Of_Final_Student != 0)
+                    {
+                        db.SchoolWorkShopUpdatestatus(schoolWorkshop.SchoolWorkShopID, 7);
+                        SetStatusBar(7);
+                    }
+                    else
+                        ErrorMsg(5);
 
                     break;
                 case 6:
@@ -380,78 +410,10 @@ namespace gui.Gui.Workshop
         protected void yesToVolunteerFinished_Click(object sender, EventArgs e)
         {
             db.SchoolWorkShopUpdatestatus(schoolWorkshop.SchoolWorkShopID, 4);
-        }
-
-        private void VolunteerInviteEmail() // בקשה להשתבצות מתנדבות
-        {
-            int volunteerCount = 0;
-            List<Volunteer> allVolunteers = db.GetAllVolunteersWithTraining(true);
-
-            EmailTemplate mail = new EmailTemplate(EmailTemplate.PREDEFINED_TEMPLATES_GENERAL[EmailTemplate.GeneralByType.VolunteerInvite]);
-
-            foreach (Volunteer currentVolunteer in allVolunteers)
-            {
-                // TODO get the school area
-                //if (currentVolunteer.Volunteer_Area_Activity == selectedSchool.school_activity_area)
-                //    {
-                //        string volunteerEmail = currentVolunteer.Volunteer_Email;
-                //        string volunteertName = currentVolunteer.Volunteer_First_Name;
-                //        mail.Send(volunteerEmail, volunteertName, "http://MMT.co.il/volunteerAssign.aspx?area=" , getStaticMap(schoolAddress));
-                //        volunteerCount++;
-                //    }
-                //}
-
-                //Msg.Text = "נשלחו בקשות אל " + volunteerCount + "מתנדבות";
-
-            }
+            Response.Redirect(Request.RawUrl);
         }
 
 
-        private void AssignCompleteEmail() // הודעת שיבוץ הושלם
-        {
-            EmailTemplate mail = new EmailTemplate(EmailTemplate.PREDEFINED_TEMPLATES_GENERAL[EmailTemplate.GeneralByType.AssignComplete]);
-            // צריך לשלוח את הנתונים הבאים לפונקצית המייל:
-            //mail.Send(volunteer1Email, volunteer1tName);
-            //mail.Send(volunteer2Email, volunteer2tName);
-            //mail.Send(volunteer3Email, volunteer3tName);
-            //mail.Send(schoolContactEmail, schoolContactName);
-        }
-
-        private void PrepareEmail() // להכנה
-        {
-            EmailTemplate mail = new EmailTemplate(EmailTemplate.PREDEFINED_TEMPLATES_SCHOOL[EmailTemplate.SchoolByType.SchoolPrepare]);
-            //mail.Send(schoolContactEmail, schoolContactName, more..);
-        }
-
-        private void ExecuteEmail() // יומיים לפני קיום הסדנא
-        {
-            EmailTemplate mailToSchool = new EmailTemplate(EmailTemplate.PREDEFINED_TEMPLATES_SCHOOL[EmailTemplate.SchoolByType.executeSchool]);
-            //mail.Send(schoolContactEmail, schoolContactName, more..);
-
-            EmailTemplate mailToVolunteer = new EmailTemplate(EmailTemplate.PREDEFINED_TEMPLATES_SCHOOL[EmailTemplate.SchoolByType.executeVolunteers]);
-            //mail.Send(volunteer1Email, volunteer1tName, more..);
-        }
-
-        private void FeedBackEmail()
-        {
-            EmailTemplate mail = new EmailTemplate(EmailTemplate.PREDEFINED_TEMPLATES_GENERAL[EmailTemplate.GeneralByType.FeedBack]);
-            //mail.Send(volunteer1Email, volunteer1tName, more..);
-            //mail.Send(volunteer2Email, volunteer2tName, more..);
-            //mail.Send(volunteer3Email, volunteer3tName, more..);
-            //mail.Send(teacherEmail, teacherName, more..);
-
-        }
-
-
-        private void CancelWorkshopEmail()
-        {
-            EmailTemplate mail = new EmailTemplate(EmailTemplate.PREDEFINED_TEMPLATES_GENERAL[EmailTemplate.GeneralByType.CancelWorkshop]);
-            //mail.Send(volunteer1Email, volunteer1tName, workshopDate);
-            //mail.Send(volunteer2Email, volunteer2tName, workshopDate);
-            //mail.Send(volunteer3Email, volunteer3tName, workshopDate);
-            //mail.Send(schoolContactEmail, schoolContactName, workshopDate);
-
-        }
 
        
         public void ErrorMsg(int type)
@@ -472,9 +434,13 @@ namespace gui.Gui.Workshop
                     string str1 = "על מנת לעבור סטטוס יש לבחור סטטוס רצוי";
                     Response.Write("<script>alert('" + str1 + "'); window.location.href = ''; </script>");
                     break;
-               
+                case 5:
+                    string str2 = "על מנת לעבור לסטטוס לביצוע, יש למלא טופס הכנה";
+                    Response.Write("<script>alert('" + str2 + "'); window.location.href = ''; </script>");
+                    break;
+
             }
-            
+
         }
 
     }

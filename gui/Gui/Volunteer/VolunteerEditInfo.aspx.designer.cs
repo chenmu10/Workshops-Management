@@ -31,33 +31,6 @@ namespace gui.Gui {
         protected global::gui.Gui.Documents.nav nav1;
         
         /// <summary>
-        /// id control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label id;
-        
-        /// <summary>
-        /// status control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label status;
-        
-        /// <summary>
-        /// updateStatus control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton updateStatus;
-        
-        /// <summary>
         /// doneWorkshops control.
         /// </summary>
         /// <remarks>
@@ -65,6 +38,15 @@ namespace gui.Gui {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label doneWorkshops;
+        
+        /// <summary>
+        /// Status control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Status;
         
         /// <summary>
         /// Firstname control.
@@ -175,21 +157,57 @@ namespace gui.Gui {
         protected global::System.Web.UI.WebControls.TextBox otherRef;
         
         /// <summary>
-        /// areasBox control.
+        /// AreaErrorMsg control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label areasBox;
+        protected global::System.Web.UI.WebControls.Label AreaErrorMsg;
         
         /// <summary>
-        /// Training control.
+        /// CheckBoxListAreas control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Training;
+        protected global::System.Web.UI.WebControls.CheckBoxList CheckBoxListAreas;
+        
+        /// <summary>
+        /// DropDownListTraining control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList DropDownListTraining;
+        
+        /// <summary>
+        /// statuschangeLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label statuschangeLabel;
+        
+        /// <summary>
+        /// statuschange control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList statuschange;
+        
+        /// <summary>
+        /// update control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button update;
     }
 }

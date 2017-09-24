@@ -5,11 +5,16 @@
 
 
 <!DOCTYPE html>
-
 <html>
 <head runat="server">
     <title>MMT Project </title>
-   
+   <style>
+       body{
+           background-image: url("../../../Content/photo_bg.jpg");
+           background-size: cover;
+       }
+
+   </style>
 </head>
 
 <body>
@@ -22,12 +27,15 @@
       
         <div class="container">
             <br />
-          <asp:Image ID="Image2" runat="server" Height="107px" ImageUrl="~/EmailMessages/homepic.PNG" Width="208px" />
-            <div class="jumbotron">
+          <asp:Image ID="Image2" runat="server" Height="107px" ImageUrl="../../../Content/homepic.PNG" AlternateText="Picture not found" Width="208px" />
+            <br />
+            <asp:Label runat="server" ID="user"></asp:Label>
+            <br />
+            <div class="jumbotron" style="background-color:rgba(255, 255, 255,0.8); width:75%; height:80%; margin:auto;">
                 <h3>מעקב פעילות</h3>
                 <br />
 
-               <table class="table table-hover">
+                <table class="table table-hover">
                     <thead>
                         <tr>
                             <th>סוג</th>
@@ -84,7 +92,8 @@
                 <a class="btn btn-lg btn-primary" href="../workshop/workshopsview.aspx" role="button">כל הסדנאות  &raquo;</a>
 
             </div>
-
+            <br />
+            <br />
 
 
 

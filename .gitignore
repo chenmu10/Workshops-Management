@@ -37,3 +37,4 @@ _ReSharper*/
 packages/
 /gui/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
 /.vs/MMT/v15/.suo
+/.vs/config/applicationhost.config

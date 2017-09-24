@@ -38,7 +38,7 @@ namespace gui.Gui
             if (workshopID != null){
                 // check if prepare form exist
                 selectedPrePare = db.getPrePareFormByWorkshopID(int.Parse(workshopID));
-                if (selectedPrePare.Workshop_School_Workshop_ID != 0)
+                if (selectedPrePare != null)
                 {
                     // yes
                     WorkshopJoin workshopInfo = db.GetJoinWorkShopByID(selectedPrePare.Workshop_School_Workshop_ID);
@@ -50,16 +50,20 @@ namespace gui.Gui
                     _schoolAddress.Text = school.School_Address;
                     // TODO db.updateSchoolParkingBySchoolID
                 }
-
                 else
                 {
-
+                    Response.Write("<script>alert('הטופס הכנה אינו זמין כרגע');</script>");
                     //PrePare Form not created!
                 }
+
             }
 
+            else
+            {
+                Response.Write("<script>alert('הטופס הכנה אינו זמין כרגע');</script>");
+                //PrePare Form not created!
+            }
 
-           
         }
 
         private bool IsFormValid()
@@ -102,7 +106,9 @@ namespace gui.Gui
 
         protected void UpdatePrepareToWorkshop(object sender, EventArgs e)
         {
-            if (IsFormValid())
+
+
+            if (IsFormValid() && Request.QueryString["workshopID"]!=null)
             {
                 LastPostRequest = DateTime.Now;
 
@@ -121,16 +127,16 @@ namespace gui.Gui
 
                 string schoolparkingValue = schoolparking.Text.ToString(); // MISSING db.update school parking by schoolID
 
-                msg.InnerText = "עוד לא בוצע update";
+                //msg.InnerText = "עוד לא בוצע update";
 
-                //if (db.UpdatePrepare(prepareInfo)) 
-                //{
-                //    Response.Redirect("SuccessForm.aspx", false);
-                //}
-                //else
-                //{
-                //    Response.Write("<script>alert('שגיאה בהכנסה ל-DB');</script>");
-                //}
+                if (db.UpdatePrepare(prepareInfo)) 
+                {
+                    Response.Write("<script>alert('טופס הכנה עודכן בהצלחה!');</script>");
+                }
+                else
+                {
+                    Response.Write("<script>alert('טופס הכנה לא עודכן ');</script>");
+                }
             }
         }
     }

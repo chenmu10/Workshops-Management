@@ -20,10 +20,11 @@ namespace gui.Models
         public string WorkShop_Teacher_phone;
         public string WorkShop_Teacher_Email;
         public int Workshop_School_Workshop_ID;
+        public string WorkShop_Parking;
         public PrepareForm() { }
         public PrepareForm(DataRow row)
         {
-            Prepare_School_WorkShop_ID = row["Prepare_School_WorkShop_ID"].ToString().Equals("") ? 0 : int.Parse(row["Prepare_School_WorkShop_ID"].ToString());
+            Prepare_School_WorkShop_ID = row["Prepare_ID"].ToString().Equals("") ? 0 : int.Parse(row["Prepare_ID"].ToString());
             WorkShop_Number_Of_Final_Student = row["WorkShop_Number_Of_Final_Student"].ToString().Equals("") ? 0 : int.Parse(row["WorkShop_Number_Of_Final_Student"].ToString());
             WorkShop_Number_Of_emulator_Computer = row["WorkShop_Number_Of_emulator_Computer"].ToString().Equals("") ? 0 : int.Parse(row["WorkShop_Number_Of_emulator_Computer"].ToString());
 
@@ -37,7 +38,7 @@ namespace gui.Models
             WorkShop_Teacher_phone = row["WorkShop_Teacher_phone"].ToString().Equals("") ? "" : row["WorkShop_Teacher_phone"].ToString();
             WorkShop_Teacher_Email = row["WorkShop_Teacher_Email"].ToString().Equals("") ? "" : row["WorkShop_Teacher_Email"].ToString();
             Workshop_School_Workshop_ID = row["Workshop_School_Workshop_ID"].ToString().Equals("") ? 0 : int.Parse(row["Workshop_School_Workshop_ID"].ToString());
-
+            WorkShop_Parking = row["WorkShop_Parking"].ToString().Equals("") ? "" : row["WorkShop_Parking"].ToString();
 
         }
     }

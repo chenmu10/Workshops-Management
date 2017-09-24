@@ -1,11 +1,5 @@
-﻿using Google.Apis.Auth.OAuth2;
-using Google.Apis.Calendar.v3;
-using Google.Apis.Calendar.v3.Data;
-using Google.Apis.Services;
-using gui.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Threading;
 
 namespace gui.Gui
 {
@@ -36,15 +30,20 @@ namespace gui.Gui
             feedback.Text = results[5];
             closed.Text = results[6];
             newVolunteers.Text = results[7];
+
+
+
+
+
+
         }
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            //if (db.IsManager(Session["Manager"]))
-            //    user.Text = "משתמש:מנהל";
+            if(db.IsManager(Session["Manager"]))
+                user.Text = "משתמש:מנהל";
         }
 
-
-
+  
     }
 }
