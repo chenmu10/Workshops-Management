@@ -8,7 +8,7 @@
 }
 
 .checkout-wrap {
-  color: rgba(0, 0, 0, 0.2);
+  color: #808080;
   font-family: 'PT Sans Caption', sans-serif;
   margin: 40px auto;
   max-width: 1000px;
@@ -16,7 +16,7 @@
 }
 
 ul.checkout-bar li {
-  color: #000000;
+  color: #808080;
   display: block;
   font-size: 16px;
   font-weight: 600;
@@ -93,27 +93,7 @@ ul.checkout-bar a {
   text-decoration: none;
 }
 
-@media all and (min-width: 800px) {
-  .checkout-bar li.active:after {
-    -webkit-animation: myanimation 3s 0;
-    background-size: 35px 35px;
-    background-color: #8bc53f;
-    background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.2) 75%, transparent 75%, transparent);
-    background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.2) 75%, transparent 75%, transparent);
-    -webkit-box-shadow: inset 2px 2px 2px 0px rgba(0, 0, 0, 0.2);
-    box-shadow: inset 2px 2px 2px 0px rgba(0, 0, 0, 0.2);
-    content: "";
-    height: 15px;
-    width: 100%;
-    left: 50%;
-    position: absolute;
-    top: -50px;
-    z-index: 0;
-  }
 
-  .checkout-wrap {
-   margin-bottom: 150px;
-  }
 
   ul.checkout-bar {
     -webkit-box-shadow: inset 2px 2px 2px 0px rgba(0, 0, 0, 0.2);
@@ -131,7 +111,7 @@ ul.checkout-bar a {
   }
   ul.checkout-bar:before {
     background-size: 35px 35px;
-    background-color: #ddd;
+    background-color: #57aed1;
     background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.2) 75%, transparent 75%, transparent);
     background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.2) 75%, transparent 75%, transparent);
     -webkit-box-shadow: inset 2px 2px 2px 0px rgba(0, 0, 0, 0.2);
@@ -177,4 +157,14 @@ ul.checkout-bar a {
     width: 100%;
     z-index: 99;
   }
+}
+@media screen and (max-width: 480px) {
+    ul.checkout-bar li {
+  color: #808080;
+  display: block;
+  font-size: 5px;
+  font-weight: 600;
+  padding: 14px 20px 14px 80px;
+  position: relative;
+}
 }

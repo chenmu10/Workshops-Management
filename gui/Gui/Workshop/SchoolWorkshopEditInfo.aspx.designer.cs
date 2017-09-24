@@ -319,6 +319,15 @@ namespace gui.Gui.Workshop {
         protected global::System.Web.UI.WebControls.Button backToDates;
         
         /// <summary>
+        /// PrepareFormReadey control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label PrepareFormReadey;
+        
+        /// <summary>
         /// prepareForm control.
         /// </summary>
         /// <remarks>
@@ -346,6 +355,15 @@ namespace gui.Gui.Workshop {
         protected global::System.Web.UI.WebControls.TextBox numOfCompWithEmulator;
         
         /// <summary>
+        /// RadioButtonListDidPrepareLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label RadioButtonListDidPrepareLabel;
+        
+        /// <summary>
         /// RadioButtonListDidPrepare control.
         /// </summary>
         /// <remarks>
@@ -355,13 +373,13 @@ namespace gui.Gui.Workshop {
         protected global::System.Web.UI.WebControls.RadioButtonList RadioButtonListDidPrepare;
         
         /// <summary>
-        /// RequiredFieldValidator1 control.
+        /// RadioButtonListProjectOrControlLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
+        protected global::System.Web.UI.WebControls.Label RadioButtonListProjectOrControlLabel;
         
         /// <summary>
         /// RadioButtonListProjectOrControl control.
@@ -373,13 +391,13 @@ namespace gui.Gui.Workshop {
         protected global::System.Web.UI.WebControls.RadioButtonList RadioButtonListProjectOrControl;
         
         /// <summary>
-        /// RequiredFieldValidator2 control.
+        /// RadioButtonListSeniorsLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator2;
+        protected global::System.Web.UI.WebControls.Label RadioButtonListSeniorsLabel;
         
         /// <summary>
         /// RadioButtonListSeniors control.
@@ -391,6 +409,15 @@ namespace gui.Gui.Workshop {
         protected global::System.Web.UI.WebControls.RadioButtonList RadioButtonListSeniors;
         
         /// <summary>
+        /// RadioButtonListShowVideoLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label RadioButtonListShowVideoLabel;
+        
+        /// <summary>
         /// RadioButtonListShowVideo control.
         /// </summary>
         /// <remarks>
@@ -398,15 +425,6 @@ namespace gui.Gui.Workshop {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RadioButtonList RadioButtonListShowVideo;
-        
-        /// <summary>
-        /// RequiredFieldValidator4 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator4;
         
         /// <summary>
         /// prepareComments control.

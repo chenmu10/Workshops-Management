@@ -16,38 +16,32 @@
         <br />
 
 
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4">
-                    <h2>פרטי מתנדבת</h2>
-                    <hr />
+        <div class="container" style="padding-bottom:50px">
+            <h2> פרטים אישיים של מתנדבת</h2>
+              <hr />
 
                      <!-- Automatic-->
                     <label class="control-label" for="doneWorkshops">השתתפות בסדנאות: </label>
-                    <asp:Label runat="server" Text="טקסט" ID="doneWorkshops"><span class="label label-primary">5</span></asp:Label>
+                    <asp:Label runat="server" Text="טקסט" ID="doneWorkshops" Font-Size="Small" class="label label-primary"></asp:Label>
                     <br />
                       <label class="control-label" for="doneWorkshops">סטטוס: </label>
-                    <asp:Label runat="server" Text="טקסט" ID="Label1"><span class="label label-info">ללא הכשרה</span></asp:Label>
+                    <asp:Label runat="server" Text="טקסט" Font-Size="Small" class="label label-info" ID="Status"></asp:Label>
                     <!-- Hebrew First & Last Name-->
+            <div class="row">
+                <div class="col-md-4">
+                   
+                  
                     <div>
                         <label class="control-label">שם בעברית:</label>
                         <br />
 
                         <asp:TextBox ID="Firstname" class="form-control"
                             type="text"
-                            pattern="[\u0590-\u05FF''-'\s]{1,20}"
-                            oninvalid="setCustomValidity('שם פרטי לא תקין, אנא נסי שם בעיברית')"
-                            onchange="try{setCustomValidity('')}catch(e){}"
-                            required="required" placeholder="שם פרטי"
                             runat="server"></asp:TextBox>
                         <br />
 
                         <asp:TextBox ID="Lastname" class="form-control"
                             type="text"
-                            pattern="[\u0590-\u05FF''-'\s]{1,20}"
-                            oninvalid="setCustomValidity('שם משפחה לא תקין, אנא נסי שם בעיברית ')"
-                            onchange="try{setCustomValidity('')}catch(e){}"
-                            required="required" placeholder="שם משפחה"
                             runat="server"></asp:TextBox>
                     </div>
                     <br />
@@ -56,27 +50,25 @@
                         <label class="control-label">שם באנגלית:</label>
                         <asp:TextBox ID="Firstnameeng" class="form-control"
                             type="text"
-                            pattern="[/^[a-z ,.'-]+$/i]{1,20}"
-                            oninvalid="setCustomValidity('שם באנגלית בבקשה ')"
-                            onchange="try{setCustomValidity('')}catch(e){}"
-                            required="required" placeholder="first name"
                             runat="server"></asp:TextBox>
                         <br />
                         <asp:TextBox ID="Lastnameeng" class="form-control"
                             type="text"
-                            pattern="[/^[a-z ,.'-]+$/i]{1,20}"
-                            oninvalid="setCustomValidity('שם באנגלית בבקשה ')"
-                            onchange="try{setCustomValidity('')}catch(e){}"
-                            required="required" placeholder="last name"
                             runat="server"></asp:TextBox>
                     </div>
                     <br />
                     <!-- Email-->
                     <div>
                         <label class="control-label" for="email">אימייל:</label>
-                        <asp:TextBox class="form-control" runat="server" ID="Email" placeholder="name@email.com" type="email" required="required" />
+                        <asp:TextBox class="form-control" runat="server" ID="Email"  type="email"  />
                     </div>
                     <br />
+                    
+
+
+
+                </div>
+                <div class="col-md-4">
                     <!--Phone-->
                     <div>
                         <label class="control-label" for="phone">
@@ -84,11 +76,6 @@
                         </label>
                         <asp:TextBox class="form-control" ID="Phone"
                             type="tel"
-                            pattern="[0-9]{3}-[0-9]{7}"
-                            required="required"
-                            oninvalid="setCustomValidity('05X-XXXXXXX  הכנסי את הטלפון לפי הפורמט')"
-                            onchange="try{setCustomValidity('')}catch(e){}"
-                            placeholder="05X-XXXXXXX "
                             runat="server"></asp:TextBox>
                     </div>
                     <br />
@@ -110,13 +97,10 @@
                         <label class="control-label" for="employer">מעסיק או מוסד אקדמי נוכחי: </label>
                         <asp:TextBox class="form-control" ID="Employer"
                             type="text"
-                            pattern="([A-z\u0590-\u05FF0-9\s]){2,}"
-                            oninvalid="setCustomValidity('קלט לא תקין')"
-                            onchange="try{setCustomValidity('')}catch(e){}"
-                            required="required" runat="server"></asp:TextBox>
+                            runat="server"></asp:TextBox>
                     </div>
                     <br />
-                    <!--Reference-->
+                   <!--Reference-->
                     <div>
                         <label class="control-label" for="DropDownListReference">איך הגעת אלינו: </label>
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="DropDownListReference" ErrorMessage="יש לבחור" InitialValue="בחרי" Font-Bold="True" ForeColor="Red"></asp:RequiredFieldValidator>
@@ -132,14 +116,16 @@
                             <asp:Label for="otherRef" runat="server">פרטי אם סימנת "אחר":</asp:Label>
                             <asp:TextBox class="form-control" ID="otherRef"
                                 type="text"
-                                pattern="([A-z\u0590-\u05FF0-9\s]){2,}"
-                                oninvalid="setCustomValidity('שדה חובה')"
-                                onchange="try{setCustomValidity('')}catch(e){}"
                                 runat="server"></asp:TextBox>
                         </div>
 
                     </div>
                     <br />
+                 
+                    <br />
+                    </div>
+                <div class="col-md-4">
+                     
 
 
                     <!--ListAreas-->
@@ -147,29 +133,30 @@
                         <label class="control-label" for="CheckBoxListAreas">אזור פעילות מועדף: </label>
                         <!--AreaErrorMsg-->
                         <asp:Label ID="AreaErrorMsg" runat="server" Font-Bold="True" ForeColor="Red"></asp:Label>
-                        <asp:CheckBoxList ID="CheckBoxListAreas" runat="server" required="required"></asp:CheckBoxList>
+                        <asp:CheckBoxList ID="CheckBoxListAreas" runat="server" ></asp:CheckBoxList>
                     </div>
                     <br />
 
                     <!--ListTraining-->
                     <div>
-                        <label class="control-label" for="DropDownListTraining">אזור מועדף להכשרה:</label>
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="DropDownListTraining" ErrorMessage="יש לבחור" InitialValue="בחרי" Font-Bold="True" ForeColor="Red"></asp:RequiredFieldValidator>
-                        <asp:DropDownList class="form-control" ID="DropDownListTraining" runat="server" required="required">
-                            <asp:ListItem Value="0" Text="בחרי"></asp:ListItem>
+                        <label class="control-label" for="DropDownListTraining" >אזור מועדף להכשרה:</label>
+                        <asp:DropDownList class="form-control" ID="DropDownListTraining" runat="server"  >
                         </asp:DropDownList>
 
                     </div>
                     <br />
-
-
-                    <a href="#" onclick="history.go(-1)" class="btn btn-default">חזור</a>
-
-
-
+                    <div>
+                        <asp:Label  class="control-label" runat="server" ID="statuschangeLabel">סטטוס</asp:Label>
+                        <asp:DropDownList class="form-control" ID="statuschange" runat="server"  >
+  
+                        </asp:DropDownList>
+                    </div>
 
                 </div>
+                   
             </div>
+            <a href="#" onclick="history.go(-1)" class="btn btn-default">חזור</a>
+            <asp:Button runat="server" ID="update" Text="עדכני" />
         </div>
 
 

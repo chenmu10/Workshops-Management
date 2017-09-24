@@ -33,7 +33,11 @@
             <label class="control-label" for="WorkShopDate">מועד קיום: </label>
             <asp:Label runat="server" ID="WorkShopDate"></asp:Label>
             <br />
-           
+             <asp:Label runat="server" ID="volunteerfinishedlabel" Text="יש כמות קטנה של מתנדבות,האם להמשיך?"></asp:Label>
+                <br />
+                <asp:Button runat="server" ID="yesToVolunteerFinished" Text="כן" class="btn btn-success" OnClick="yesToVolunteerFinished_Click" />
+                <asp:Button runat="server" ID="noToVolunteerFinished" Text="לא" class="btn btn-danger" />
+            <br />
             <asp:Button runat="server" ID="cancelWorkshop" Text="ביטול סדנא" class="btn btn-danger" />
 
 
@@ -44,21 +48,26 @@
                     <li runat="server" id="bar2">בי"ס שובץ</li>
                     <li runat="server" id="bar3">שיבוץ מתנדבות</li>
                     <li runat="server" id="bar4">מתנדבות שובצו</li>
-                    <li runat="server" id="bar6">ביצוע</li>
-                    <li runat="server" id="bar7">מישוב</li>
-                    <li runat="server" id="bar8">סגור</li>
+                    <li runat="server" id="bar5">ביצוע</li>
+                    <li runat="server" id="bar6">מישוב</li>
+                    <li runat="server" id="bar7">סגור</li>
                 </ul>
             </div>
-             <div class="form-inline">
+           
+             <div class="form-inline" style="padding-top:100px;">
                 <label class="control-label" for="selectpicker">שינוי סטטוס: </label>
                 <asp:DropDownList runat="server" ID="selectpicker" CssClass="form-control" Width="150px">
                     <asp:ListItem Value="1">לשיבוץ מתנדבות</asp:ListItem>
-                    <asp:ListItem Value="7">לביצוע</asp:ListItem>
-                    <asp:ListItem Value="8">למישוב</asp:ListItem>
-                    <asp:ListItem Value="9">לסגור</asp:ListItem>
+                    <asp:ListItem Value="2">למתנדבות שובצו</asp:ListItem>
+                    <asp:ListItem Value="3">לביצוע</asp:ListItem>
+                    <asp:ListItem Value="4">למישוב</asp:ListItem>
+                    <asp:ListItem Value="5">לסגור</asp:ListItem>
                 </asp:DropDownList>
-                <asp:Button runat="server" ID="Button2" Text="אישור שינוי" class="btn btn-link" />
+                <asp:Button runat="server" ID="Button2" Text="אישור שינוי" class="btn btn-link" OnClick="updateStatus_Click" />
             </div>
+
+
+
             <br />
             <div class="row">
                 <div class="panel with-nav-tabs panel-default">
@@ -113,7 +122,7 @@
                                 <div class="col-md-6">
                                     <fieldset id="workshopDetails" runat="server">
                                         <legend>פרטי סדנא</legend>
-                                        <label class="control-label" for="possibleStudentsNum">מס' משתתפות אפשרי: </label>
+                                        <label class="control-label"  for="possibleStudentsNum">מס' משתתפות אפשרי: </label>
                                         <div class="form-inline">
                                             <asp:TextBox ID="possibleStudentsNum" Enabled="false"
                                                 type="number"
@@ -262,10 +271,13 @@
 
 
             </div>
+          
             <!--/row-->
 
         </div>
         <!--/container-->
+          <br />
+            <br />
     </form>
 </body>
 </html>

@@ -77,6 +77,12 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\back1.jpg" />
+    <Content Include="Content\homepic.PNG" />
+    <Content Include="Content\photo_bg.jpg" />
+    <Content Include="css\animate.css" />
+    <Content Include="css\Loginstyle.css" />
+    <Content Include="css\StatusBar.css" />
     <Content Include="EmailMessages\CompanyWorkshop\AssignCompleteCompany.txt" />
     <Content Include="EmailMessages\SchoolWorkshop\feedbackTeacher.txt" />
     <Content Include="EmailMessages\homepic.PNG" />
@@ -90,6 +96,7 @@
     <Content Include="css\bootstrap-rtl.min.css" />
     <Content Include="Gui\Documents\FeedbackTeacher.aspx" />
     <Content Include="Gui\Documents\FeedbackVolunteer.aspx" />
+    <Content Include="Gui\Documents\LoginManager.aspx" />
     <Content Include="Gui\Documents\nav.ascx" />
     <Content Include="Gui\Documents\ExternalForms.aspx" />
     <Content Include="Gui\School\SchoolEditInfo.aspx" />
@@ -126,6 +133,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="Site.Master" />
     <Content Include="css\bootstrap-rtl.css.map" />
+    <None Include="Properties\PublishProfiles\mmt.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -161,6 +169,13 @@
     </Compile>
     <Compile Include="Gui\Documents\FeedbackVolunteer.aspx.designer.cs">
       <DependentUpon>FeedbackVolunteer.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Gui\Documents\LoginManager.aspx.cs">
+      <DependentUpon>LoginManager.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Gui\Documents\LoginManager.aspx.designer.cs">
+      <DependentUpon>LoginManager.aspx</DependentUpon>
     </Compile>
     <Compile Include="Gui\Documents\nav.ascx.cs">
       <DependentUpon>nav.ascx</DependentUpon>

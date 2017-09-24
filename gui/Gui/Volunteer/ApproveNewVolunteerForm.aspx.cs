@@ -25,24 +25,34 @@ namespace gui.Gui
             Volunteers = db.GetAllVolunteers();
             Areas = db.GetAreaActivity();
             ListStatus = db.GetVolunteerStatus();
+            Volunteers = Volunteers.Where(x => x.Volunteer_Practice == 1).ToList();
             InsertToVolunterTable(Volunteers);
             FillFilterDropdowns();
         }
 
         private void InsertToVolunterTable(List<Volunteer> Volunteers)
         {
+            bool managerOk = false;
+            if (db.IsManager(Session["Manager"]))
+            {
+                managerOk = true;
+            }
+
             foreach (Volunteer volunteer in Volunteers)
             {
                 TableCell Name = new TableCell();
                 Name.Text = volunteer.Volunteer_First_Name + "  " + volunteer.Volunteer_Last_Name;
                 TableCell Status = new TableCell();
                 Status.Text = ListStatus[volunteer.Volunteer_Practice];
+                Status.Width = 120;
                 TableCell Occupation = new TableCell();
                 Occupation.Text = volunteer.Volunteer_Occupation;
                 TableCell Email = new TableCell();
                 Email.Text = volunteer.Volunteer_Email;
+                Email.Width = 150;
                 TableCell Phone = new TableCell();
                 Phone.Text = volunteer.Volunteer_phone;
+                Phone.Width = 120;
                 string activityAreas = string.Empty;
                 DropDownList DropListAreas = new DropDownList();
                 foreach (int VolunterrArea in volunteer.Volunteer_Area_Activity)
@@ -61,7 +71,9 @@ namespace gui.Gui
                 // Area.Text = Areas[volunteer.Volunteer_Area_Activity];
                 TableCell ActiviesNumber = new TableCell();
                 ActiviesNumber.Text = volunteer.Volunteer_Number_Of_Activities.ToString();
+
                 TableCell Edit = new TableCell();
+                Edit.Width = 200;
                 Button Editbtn = new Button();
                 Editbtn.ID = volunteer.Volunteer_ID.ToString();
                 Editbtn.Click += new EventHandler(Edit_Click);
@@ -69,6 +81,16 @@ namespace gui.Gui
                 Editbtn.Text = "צפייה";
                 Editbtn.CssClass = "btn btn-default";
                 Edit.Controls.Add(Editbtn);
+
+                if (managerOk)
+                {
+                    Button EditbtnManager = new Button();
+                    EditbtnManager.ID = volunteer.Volunteer_ID.ToString() + "s";
+                    EditbtnManager.Click += new EventHandler(Edit_Click);
+                    EditbtnManager.Text = "עריכה";
+                    EditbtnManager.CssClass = "btn btn-default";
+                    Edit.Controls.Add(EditbtnManager);
+                }
 
                 TableRow TableRow = new TableRow();
                 TableRow.HorizontalAlign = HorizontalAlign.Right;
@@ -105,12 +127,9 @@ namespace gui.Gui
 
         protected void Edit_Click(object sender, EventArgs e)
         {
-
-            EditMode = !EditMode;
-            int btnID = int.Parse(((Button)sender).ID);
-            Volunteer SelectedVolunteer = Volunteers.Find(x => x.Volunteer_ID == btnID);
-            Session["SelectedVolunteer"] = btnID;
-            Response.Redirect("VolunteerViewInformation.aspx", false);
+            string key = ((Button)sender).ID.ToString(); ;
+            Session["SelectedVolunteer"] = key;
+            Response.Redirect("VolunteerEditInfo.aspx", false);
 
         }
 

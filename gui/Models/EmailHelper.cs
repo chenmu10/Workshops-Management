@@ -16,7 +16,7 @@ namespace gui.Models
     {
         string fromAddress = "chenitunes@gmail.com"; // temporary - personal email..
         string fromPassword = "mmtproject";
-        string TestMail = "chenmu10@gmail.com";
+        string TestMail = "avi8rubin@gmail.com";
         string EmailTitle = "MMT";
         string ManagerMail = "chenmu10@gmail.com";
         string signature, signature_path, sendBody;

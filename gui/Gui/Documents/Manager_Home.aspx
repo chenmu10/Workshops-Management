@@ -5,11 +5,16 @@
 
 
 <!DOCTYPE html>
-
 <html>
 <head runat="server">
     <title>MMT Project </title>
-   
+   <style>
+       body{
+           background-image: url("../../../Content/photo_bg.jpg");
+           background-size: cover;
+       }
+
+   </style>
 </head>
 
 <body>
@@ -22,8 +27,11 @@
       
         <div class="container">
             <br />
-          <asp:Image ID="Image2" runat="server" Height="107px" ImageUrl="~/Contact/homepic.PNG" Width="208px" />
-            <div class="jumbotron">
+          <asp:Image ID="Image2" runat="server" Height="107px" ImageUrl="../../../Content/homepic.PNG" AlternateText="Picture not found" Width="208px" />
+            <br />
+            <asp:Label runat="server" ID="user"></asp:Label>
+            <br />
+            <div class="jumbotron" style="background-color:rgba(255, 255, 255,0.8); width:75%; height:80%; margin:auto;">
                 <h3>מעקב פעילות</h3>
                 <br />
 
@@ -38,45 +46,45 @@
                     <tbody>
                         <tr>
                             <th scope="row">בקשות בתי ספר לקיום סדנא</th>
-                            <td> <asp:Label runat="server" ID="newSchoolWorkshops"><span class="badge">5</span></asp:Label></td>
+                            <td> <asp:Label runat="server" ID="newSchoolWorkshops" class="badge"> </asp:Label></td>
 
                         </tr>
                         <tr>
                             <th scope="row">סדנאות בחברות לשיבוץ בתי ספר</th>
-                            <td> <asp:Label runat="server" ID="newCompanyWorkshops"><span class="badge">5</span></asp:Label></td>
+                            <td> <asp:Label runat="server" ID="newCompanyWorkshops" class="badge"> </asp:Label></td>
                            
                         </tr>
                         <tr>
                             <th scope="row">סדנאות לשיבוץ מתנדבות</th>
-                            <td><asp:Label runat="server" ID="assignVolunteers"><span class="badge">5</span></asp:Label></td>
+                            <td><asp:Label runat="server" ID="assignVolunteers" class="badge"> </asp:Label></td>
                 
 
 
                         </tr>
                         <tr>
                             <th scope="row">סדנאות בשיבוץ הושלם להכנה</th>
-                            <td colspan="2"><asp:Label runat="server" ID="prepare"><span class="badge">5</span></asp:Label></td>
+                            <td colspan="2"><asp:Label runat="server" ID="prepare" class="badge"> </asp:Label></td>
 
                         </tr>
                        
                         <tr>
                             <th scope="row">סדנאות לביצוע</th>
-                              <td colspan="2"><asp:Label runat="server" ID="execute"><span class="badge">5</span></asp:Label></td>
+                              <td colspan="2"><asp:Label runat="server" ID="execute" class="badge"> </asp:Label></td>
 
                         </tr>
                         <tr>
                             <th scope="row">סדנאות למישוב</th>
-                              <td colspan="2"><asp:Label runat="server" ID="feedback"><span class="badge">5</span></asp:Label></td>
+                              <td colspan="2"><asp:Label runat="server" ID="feedback" class="badge"> </asp:Label></td>
 
                         </tr>
                          <tr>
                             <th scope="row">סדנאות סגורות</th>
-                            <td colspan="2"><asp:Label runat="server" ID="closed"><span class="badge">5</span></asp:Label></td>
+                            <td colspan="2"><asp:Label runat="server" ID="closed" class="badge"> </asp:Label></td>
 
                         </tr>
                         <tr>
                             <th scope="row">מתנדבות חדשות לאישור</th>
-                            <td colspan="2"><asp:Label runat="server" ID="newVolunteers"><span class="badge">5</span></asp:Label></td>
+                            <td colspan="2"><asp:Label runat="server" ID="newVolunteers" class="badge"> </asp:Label></td>
 
                         </tr>
                     </tbody>
@@ -84,7 +92,8 @@
                 <a class="btn btn-lg btn-primary" href="../workshop/workshopsview.aspx" role="button">כל הסדנאות  &raquo;</a>
 
             </div>
-
+            <br />
+            <br />
 
 
 

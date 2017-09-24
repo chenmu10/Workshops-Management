@@ -58,6 +58,33 @@ namespace gui.Gui.Workshop {
         protected global::System.Web.UI.WebControls.Label WorkShopDate;
         
         /// <summary>
+        /// volunteerfinishedlabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label volunteerfinishedlabel;
+        
+        /// <summary>
+        /// yesToVolunteerFinished control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button yesToVolunteerFinished;
+        
+        /// <summary>
+        /// noToVolunteerFinished control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button noToVolunteerFinished;
+        
+        /// <summary>
         /// cancelWorkshop control.
         /// </summary>
         /// <remarks>
@@ -103,6 +130,15 @@ namespace gui.Gui.Workshop {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl bar4;
         
         /// <summary>
+        /// bar5 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl bar5;
+        
+        /// <summary>
         /// bar6 control.
         /// </summary>
         /// <remarks>
@@ -119,15 +155,6 @@ namespace gui.Gui.Workshop {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl bar7;
-        
-        /// <summary>
-        /// bar8 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl bar8;
         
         /// <summary>
         /// selectpicker control.
