@@ -397,7 +397,7 @@ namespace gui
         {
             query = string.Format(@"
             UPDATE companyworkshop SET 
-            WorkShop_School_ID={0}, WorkShop_School_Comments={1}, WorkShop_Number_Of_Final_Student={2},WorkShop_Status={3} WHERE WorkShop_ID={4};
+            WorkShop_School_ID={0}, WorkShop_School_Comments='{1}', WorkShop_Number_Of_Final_Student={2},WorkShop_Status={3} WHERE WorkShop_ID={4};
                 ", SchoolID, comments, finalParticipants, 4, WorkshopID);
             return Update(query);
         }
@@ -612,8 +612,8 @@ namespace gui
             p.WorkShop_Comments,
             p.WorkShop_Teacher_Name,
             p.WorkShop_Teacher_phone,
-            p.WorkShop_Teacher_Email
-            //p.WorkShop_Parking
+            p.WorkShop_Teacher_Email,
+            p.WorkShop_Parking
             );
             return Update(query);
         }
@@ -1010,6 +1010,7 @@ namespace gui
                 catch (MySqlException e)
                 {
                     Console.WriteLine(e);
+                    result = false;
                 }
 
             }

@@ -7,7 +7,6 @@ namespace gui.Gui.Workshop
 {
     public partial class SchoolWorkshopEditInfo : System.Web.UI.Page
     {
-        // TODO get the school area
 
         DB db;
         WorkshopJoin WorkshopToView = new WorkshopJoin();
@@ -304,7 +303,7 @@ namespace gui.Gui.Workshop
                          }
                         else
                         {
-                            ErrorMsg(1);
+                            Response.Write("<script>alert('איימילים נשלחו למתנדבות באזור'); window.location.href = '';</script>");
                         }
 
                         Response.Write("<script>alert('אימיילים נשלחו למתנדבות באזור'); window.location.href = ''; </script>");
@@ -367,8 +366,15 @@ namespace gui.Gui.Workshop
                     break;
                 case 5:
                     //לביצוע
-                    db.SchoolWorkShopUpdatestatus(schoolWorkshop.SchoolWorkShopID, 7);
-                    SetStatusBar(7);
+
+                    PrepareForm pf = db.getPrePareFormByWorkshopID(int.Parse(WorkShopID.Text));
+                    if (pf != null && pf.WorkShop_Number_Of_Final_Student != 0)
+                    {
+                        db.SchoolWorkShopUpdatestatus(schoolWorkshop.SchoolWorkShopID, 7);
+                        SetStatusBar(7);
+                    }
+                    else
+                        ErrorMsg(5);
 
                     break;
                 case 6:
@@ -400,6 +406,7 @@ namespace gui.Gui.Workshop
         protected void yesToVolunteerFinished_Click(object sender, EventArgs e)
         {
             db.SchoolWorkShopUpdatestatus(schoolWorkshop.SchoolWorkShopID, 4);
+            Response.Redirect(Request.RawUrl);
         }
 
       
@@ -422,9 +429,13 @@ namespace gui.Gui.Workshop
                     string str1 = "על מנת לעבור סטטוס יש לבחור סטטוס רצוי";
                     Response.Write("<script>alert('" + str1 + "'); window.location.href = ''; </script>");
                     break;
-               
+                case 5:
+                    string str2 = "על מנת לעבור לסטטוס לביצוע, יש למלא טופס הכנה";
+                    Response.Write("<script>alert('" + str2 + "'); window.location.href = ''; </script>");
+                    break;
+
             }
-            
+
         }
 
         protected void GoToshcool_Click(object sender, EventArgs e)

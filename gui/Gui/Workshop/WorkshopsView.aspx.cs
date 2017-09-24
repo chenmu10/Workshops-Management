@@ -12,18 +12,23 @@ namespace gui.Gui.Workshop
     {
         List<WorkshopJoin> WorkshopsJoin = new List<WorkshopJoin>();
         DB db;
-        protected void Page_Load(object sender, EventArgs e)
+        override protected void OnInit(EventArgs e)
         {
             this.Load += new System.EventHandler(this.Page_Load);
             db = new DB();
             db.IsConnect();
-
             GetAreasFromDB();
             GetSchoolFromDB();
             GetCompanyFromDB();
 
             WorkshopsJoin = db.GetAllWorkshopsByJoin();
-            FillTable(WorkshopsJoin);
+           FillTable(WorkshopsJoin);
+
+               
+        }
+        protected void Page_Load(object sender, EventArgs e)
+        {
+           
         }
         public void GetAreasFromDB()
         {
@@ -61,11 +66,10 @@ namespace gui.Gui.Workshop
         private void FillTable(List<WorkshopJoin> CompanyWorkshopsJoin)
         {
 
-
             TableRow Headers =  workshopTable.Rows[0];
             workshopTable.Rows.Clear();
             workshopTable.Rows.Add(Headers);
-
+            int index = 0;
             /* Company Workshops*/
             foreach (WorkshopJoin t in CompanyWorkshopsJoin)
             {
@@ -119,7 +123,9 @@ namespace gui.Gui.Workshop
 
                 TableCell Edit = new TableCell();
                 Button Editbtn = new Button();
-                Editbtn.Click += MoreInfo_button;
+          
+                Editbtn.Click += new EventHandler(MoreInfo_button12);
+                Editbtn.ID = (index++).ToString();
                 Editbtn.Text = "צפייה";
                 Editbtn.Attributes.Add("WorkshopID", t.WorkShop_ID.ToString());
                 Editbtn.Attributes.Add("IsCompany", t.Is_company.ToString());
@@ -137,15 +143,23 @@ namespace gui.Gui.Workshop
         {
             Response.Redirect("../Workshop/newCompanyWorkshop.aspx", false);
         }
-        protected void MoreInfo_button(object sender, EventArgs e)
+        protected void MoreInfo_button12(object sender, EventArgs e)
         {
             Button selectedButton = (Button)sender;
-            string IsCompany = selectedButton.Attributes["IsCompany"].ToString();
-            string WorkshopID = selectedButton.Attributes["WorkshopID"].ToString();
+        
+            List < WorkshopJoin > Table = Filter_Click_View();
+
+            WorkshopJoin selectedWorkshop = Table[int.Parse(selectedButton.ID)];
+            string IsCompany = selectedWorkshop.Is_company.ToString();
+            string WorkshopID = selectedWorkshop.WorkShop_ID.ToString();
+
             Session["IsCompany"] = IsCompany;
             Session["WorkshopID"] = WorkshopID;
+
+
             if (bool.Parse(IsCompany))
             {
+                //Response.Write("<script> window.location.href = '../Workshop/CompanyWorkshopEditInfo.aspx'; </script>");
                 Response.Redirect("../Workshop/CompanyWorkshopEditInfo.aspx", false);
             }
             else
@@ -153,6 +167,56 @@ namespace gui.Gui.Workshop
                 Response.Redirect("../Workshop/SchoolWorkshopEditInfo.aspx", false);
             }
 
+
+        }
+        public List<WorkshopJoin> Filter_Click_View()
+        {
+            List<WorkshopJoin> result = db.GetAllWorkshopsByJoin();
+            List<CompanyWorkshop> companies = db.GetAllCompanyWorshops();
+            List<SchoolWorkShop> Schools = db.GetAllSchoolWorkShops();
+
+            int status = DropDownListStatus.SelectedIndex;
+            int type = DropDownListType.SelectedIndex;
+            int area = DropDownListAreas.SelectedIndex;
+            int shcool = DropDownListSchool.SelectedIndex;
+            int company = DropDownListCompany.SelectedIndex;
+            string start_date = from_Date.Text; //YYYY-MM-DD
+            string end_date = to_Date.Text;
+
+            if (status != 0)
+            {
+                result = result.FindAll(x => x.Status == status);
+            }
+            if (type != 0)
+                result = result.FindAll(x => x.Is_company == (type == 1));
+            if (area != 0)
+                result = result.FindAll(x => x.Area == area);
+            if (shcool != 0)
+                result = result.FindAll(x => x.SchoolID == shcool);
+            if (company != 0)
+                result = result.FindAll(x => x.CompanyID == company);
+            if (!start_date.Equals("") && !end_date.Equals(""))
+            {
+                //DateBetween 
+                DateTime start = TimeReplace(start_date, false);
+                DateTime end = TimeReplace(end_date, false);
+                DateTime WorkshopDate = DateTime.Now;
+                List<WorkshopJoin> removeable = new List<WorkshopJoin>();
+
+                foreach (WorkshopJoin j in result)
+                {
+                    WorkshopDate = TimeReplace(j.WorkShop_Date, true);
+                    if (!(WorkshopDate >= start && WorkshopDate <= end))
+                    {
+                        // not in between remove from the list
+                        removeable.Add(j);
+                    }
+                }
+                foreach (WorkshopJoin j in removeable)
+                    result.Remove(j);
+            }
+
+            return result;
 
         }
         protected void Filter_Click(object sender, EventArgs e)
@@ -201,9 +265,6 @@ namespace gui.Gui.Workshop
                 foreach(WorkshopJoin j in removeable)
                     result.Remove(j);                
             }
-
-
-
 
                 FillTable(result);
 

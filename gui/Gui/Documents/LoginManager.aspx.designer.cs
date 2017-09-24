@@ -7,19 +7,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace gui.Gui {
+namespace gui.Gui.Documents {
     
     
-    public partial class Manager_Home {
-        
-        /// <summary>
-        /// form1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
+    public partial class LoginManager {
         
         /// <summary>
         /// nav1 control.
@@ -31,93 +22,66 @@ namespace gui.Gui {
         protected global::gui.Gui.Documents.nav nav1;
         
         /// <summary>
-        /// Image2 control.
+        /// divBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image Image2;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divBox;
         
         /// <summary>
-        /// user control.
+        /// usernameLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label user;
+        protected global::System.Web.UI.WebControls.Label usernameLabel;
         
         /// <summary>
-        /// newSchoolWorkshops control.
+        /// username control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label newSchoolWorkshops;
+        protected global::System.Web.UI.WebControls.TextBox username;
         
         /// <summary>
-        /// newCompanyWorkshops control.
+        /// passwordLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label newCompanyWorkshops;
+        protected global::System.Web.UI.WebControls.Label passwordLabel;
         
         /// <summary>
-        /// assignVolunteers control.
+        /// password control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label assignVolunteers;
+        protected global::System.Web.UI.WebControls.TextBox password;
         
         /// <summary>
-        /// prepare control.
+        /// submitButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label prepare;
+        protected global::System.Web.UI.WebControls.Button submitButton;
         
         /// <summary>
-        /// execute control.
+        /// msg control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label execute;
-        
-        /// <summary>
-        /// feedback control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label feedback;
-        
-        /// <summary>
-        /// closed control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label closed;
-        
-        /// <summary>
-        /// newVolunteers control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label newVolunteers;
+        protected global::System.Web.UI.WebControls.Label msg;
     }
 }

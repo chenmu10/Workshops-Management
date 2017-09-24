@@ -63,6 +63,7 @@ namespace gui.Gui.Workshop
                     if(SendInvitesToSchools(newcw))
                     {
                         Response.Write("<script>alert('אימיילים נשלחו אל בתי ספר רלוונטים');</script>");
+                        Msg.Text = "אימיילים נשלחו אל בתי ספר רלוונטים";
                     }
                     else 
                     {
@@ -103,13 +104,11 @@ namespace gui.Gui.Workshop
                 Response.Write("<script>alert('לא נבחרה חברה');</script>");
                 return true;
             }
-           
-            if (datetimePicker.Text.Equals("") || PredictedStudentsNum.Text.Equals(""))
-            {
-                Response.Write("<script>alert('שדות חובה חסרים');</script>");
-                return true;
-            }
-           
+            //else if (PredictedStudentsNum.Text.Equals("") || hour.Text.Equals("") || minutes.Text.Equals(""))
+            //{
+            //    Response.Write("<script>alert('שדות חובה חסרים');</script>");
+            //    return true;
+            //}
             //else if (calendar.SelectedDate.Date.ToString().Equals("01/01/0001 00:00:00") || calendar.SelectedDate == null || calendar.SelectedDate == DateTime.Now)
             //{
             //    Response.Write("<script>alert('לא נבחר תאריך');</script>");

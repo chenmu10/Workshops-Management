@@ -33,8 +33,8 @@
 
                 <label class="control-label" for="WorkShopDate">מועד קיום: </label>
                 <asp:Label runat="server" ID="WorkShopDate"></asp:Label>
-                <br />
-
+                   <br />
+               
                 <asp:Label runat="server" ID="PrepareFormCreate" Text="נוצר טופס הכנה, ניתן לראות ב'פרטי הכנה'"></asp:Label>
                 <br />
                 <br />
@@ -46,7 +46,7 @@
 
             </div>
 
-            <div class="checkout-wrap">
+            <div class="checkout-wrap" >
 
                 <ul class="checkout-bar">
 
@@ -61,7 +61,8 @@
 
                 </ul>
             </div>
-            <div class="form-inline" style="margin-top: 150px;">
+             <div class="form-inline" style="margin-top:150px;">
+             <div class="form-inline" style="padding-top:100px;">
                 <label class="control-label" for="selectpicker">שינוי סטטוס: </label>
                 <asp:DropDownList runat="server" ID="selectpicker" CssClass="form-control" Width="150px">
                     <asp:ListItem Value="1">לבדיקת תאריכים</asp:ListItem>
@@ -107,6 +108,7 @@
                                     </label>
                                     <div class="form-inline">
                                         <asp:TextBox ID="schoolname" Enabled="false"
+                                            required="required"
                                             class="form-control"
                                             runat="server" Width="220px">
                                         </asp:TextBox>
@@ -221,9 +223,6 @@
                                         <asp:TextBox ID="finalParticipants" Width="20%" Enabled="false"
                                             type="number"
                                             class="form-control"
-                                            min="0"
-                                            oninvalid="setCustomValidity('יש להזין מס' משתתפות')"
-                                            onchange="try{setCustomValidity('')}catch(e){}"
                                             runat="server"></asp:TextBox>
                                     </div>
                                     <br />
@@ -234,50 +233,43 @@
                                         <asp:TextBox ID="numOfCompWithEmulator" Width="20%" Enabled="false"
                                             type="number"
                                             class="form-control"
-                                            min="0"
-                                            oninvalid="setCustomValidity('יש להזין מס' מחשבים')"
-                                            onchange="try{setCustomValidity('')}catch(e){}"
                                             runat="server"></asp:TextBox>
                                     </div>
                                     <br />
 
                                     <!--DidPrepare PDF yes/no-->
-                                    <label class="control-label" for="RadioButtonListDidPrepare">בוצעו הוראות PDF:</label>
+                                    <asp:label runat="server" class="control-label" ID="RadioButtonListDidPrepareLabel"  for="RadioButtonListDidPrepare">בוצעו הוראות PDF:</asp:label>
 
                                     <asp:RadioButtonList ID="RadioButtonListDidPrepare" runat="server">
                                         <asp:ListItem Value="True" Text="כן"></asp:ListItem>
                                         <asp:ListItem Value="False" Text="לא"></asp:ListItem>
                                     </asp:RadioButtonList>
-                                    <!--<asp:RequiredFieldValidator ID="RequiredFieldValidator1" ControlToValidate="RadioButtonListDidPrepare" runat="server" ErrorMessage="יש לבחור" ForeColor="Red"></asp:RequiredFieldValidator>-->
                                     <br />
 
                                     <!--Projector\contorl program yes/no -->
-                                    <label class="control-label" for="RadioButtonListProjectOrControl">קיום מקרן/תוכנת השתלטות</label>
+                                    <asp:label runat="server" ID="RadioButtonListProjectOrControlLabel"  idclass="control-label" for="RadioButtonListProjectOrControl">קיום מקרן/תוכנת השתלטות</asp:label>
 
                                     <asp:RadioButtonList ID="RadioButtonListProjectOrControl" runat="server">
                                         <asp:ListItem Value="True"> כן</asp:ListItem>
                                         <asp:ListItem Value="False">לא </asp:ListItem>
                                     </asp:RadioButtonList>
-                                    <!-- <asp:RequiredFieldValidator ID="RequiredFieldValidator2" ControlToValidate="RadioButtonListProjectOrControl" runat="server" ErrorMessage="יש לבחור" ForeColor="Red"></asp:RequiredFieldValidator>-->
                                     <br />
 
                                     <!--Seniors coming yes/no -->
-                                    <label class="control-label" for="RadioButtonListSeniors">מגיעות בוגרות מגמה:</label>
+                                    <asp:label runat="server" ID="RadioButtonListSeniorsLabel" class="control-label" for="RadioButtonListSeniors">מגיעות בוגרות מגמה:</asp:label>
 
                                     <asp:RadioButtonList ID="RadioButtonListSeniors" runat="server">
                                         <asp:ListItem Value="True">כן </asp:ListItem>
                                         <asp:ListItem Value="False">לא </asp:ListItem>
                                     </asp:RadioButtonList>
-                                    <%--<asp:RequiredFieldValidator ID="RequiredFieldValidator3" ControlToValidate="RadioButtonListSeniors" runat="server" ErrorMessage="יש לבחור" ForeColor="Red"></asp:RequiredFieldValidator>--%>
                                     <br />
 
                                     <!--Show video yes/no -->
-                                    <label class="control-label" for="RadioButtonListShowVideo">אפשר להראות וידאו</label>
+                                    <asp:label runat="server" ID="RadioButtonListShowVideoLabel" class="control-label" for="RadioButtonListShowVideo">אפשר להראות וידאו</asp:label>
                                     <asp:RadioButtonList ID="RadioButtonListShowVideo" runat="server">
                                         <asp:ListItem Value="True">כן</asp:ListItem>
                                         <asp:ListItem Value="False">לא</asp:ListItem>
                                     </asp:RadioButtonList>
-                                    <!--<asp:RequiredFieldValidator ID="RequiredFieldValidator4" ControlToValidate="RadioButtonListShowVideo" runat="server" ErrorMessage="יש לבחור" ForeColor="Red"></asp:RequiredFieldValidator>-->
                                     <br />
 
                                     <label class="control-label" for="prepareComments">הערות: </label>
@@ -300,27 +292,18 @@
                                             <br />
                                             <asp:TextBox ID="teacherName" class="form-control" Width="40%"
                                                 type="text" Enabled="false"
-                                                pattern="[\u0590-\u05FF''-'\s]{1,20}"
-                                                oninvalid="setCustomValidity('שם פרטי לא תקין, אנא נסי שם בעברית')"
-                                                onchange="try{setCustomValidity('')}catch(e){}"
-                                                required="required" placeholder="שם מלא"
                                                 runat="server"></asp:TextBox>
                                             <br />
                                             <!-- Email-->
                                             <label class="control-label" for="teacherEmail">אימייל:</label>
                                             <br />
-                                            <asp:TextBox Enabled="false" class="form-control" runat="server" Width="40%" ID="teacherEmail" placeholder="example@gmail.com" type="email" required="required" />
+                                            <asp:TextBox Enabled="false" class="form-control" runat="server" Width="40%" ID="teacherEmail" type="email" required="required" />
                                             <br />
                                             <!--Phone-->
                                             <label class="control-label" for="teacherPhone">טלפון:</label>
                                             <br />
                                             <asp:TextBox Enabled="false" class="form-control" ID="teacherPhone" Width="40%"
                                                 type="tel"
-                                                pattern="[0-9]{3}-[0-9]{7}"
-                                                required="required"
-                                                oninvalid="setCustomValidity('05X-XXXXXXX  הכניסי את הטלפון לפי הפורמט')"
-                                                onchange="try{setCustomValidity('')}catch(e){}"
-                                                placeholder="05X-XXXXXXX"
                                                 runat="server"></asp:TextBox>
                                         </fieldset>
                                     </div>

@@ -28,7 +28,7 @@
                         <legend>פרטי מוסד חינוכי</legend>
 
                          <label class="control-label" for="id">ID:</label>
-                        <asp:Label runat="server" ID="id"></asp:Label>
+                        <asp:Label runat="server" Text="טקסט" ID="id"></asp:Label>
                         <br />
                         <label class="control-label" for="schoolSymbol">סמל מוסד:</label>
                         <asp:Label runat="server" Text="טקסט" ID="schoolSymbol"></asp:Label>

@@ -95,8 +95,32 @@ namespace gui.Gui
             if (bool.Parse(isCompany))
             {
                 // Company Workshop 
-                CompanyWorkshop selectedWorkshop = db.getCompanyWorkshopByID(int.Parse(workshopId));
-            }
+                CompanyWorkshop SelectedWorkshop = db.getCompanyWorkshopByID(int.Parse(workshopId));
+
+                if (!(SelectedWorkshop.CompanyWorkShopVolunteerID1.Equals("") || SelectedWorkshop.CompanyWorkShopVolunteerID1.Equals("0")))
+                {
+                    volnteer1 = Volunteers.Find(x => x.Volunteer_ID == SelectedWorkshop.CompanyWorkShopVolunteerID1);
+                }
+                if (!(SelectedWorkshop.CompanyWorkShopVolunteerID2.Equals("") || SelectedWorkshop.CompanyWorkShopVolunteerID2.Equals("0")))
+                {
+                    volnteer2 = Volunteers.Find(x => x.Volunteer_ID == SelectedWorkshop.CompanyWorkShopVolunteerID2);
+                }
+                if (!(SelectedWorkshop.CompanyWorkShopVolunteerID3.Equals("") || SelectedWorkshop.CompanyWorkShopVolunteerID3.Equals("0")))
+                {
+                    volnteer3 = Volunteers.Find(x => x.Volunteer_ID == SelectedWorkshop.CompanyWorkShopVolunteerID3);
+                }
+            InitializeVoluntter1(volnteer1, Volunteers);
+            InitializeVoluntter2(volnteer2, Volunteers);
+            InitializeVoluntter3(volnteer3, Volunteers);
+
+            InitializeVoluntterRide(volnteer1, volnteer2, volnteer3, int.Parse(workshopId), bool.Parse(isCompany));
+            //Remove Duplicated Volunteers
+            RemoveDup(volnteer1, volnteer2, volnteer3);
+
+
+
+
+        }
             else
             {
                 //School workshop
@@ -135,7 +159,24 @@ namespace gui.Gui
             volunteer3Ride.Enabled = true;
             if (isCompany)
             {
-
+                if (volnteer1 != null)
+                {
+                    Ride1 = db.getVolunteerCompanyRide(volnteer1.Volunteer_ID, workshopId);
+                    volunteer1Ride.Enabled = false;
+                    if (Ride1.Equals("")) Ride1 = " ";
+                }
+                if (volnteer2 != null)
+                {
+                    Ride2 = db.getVolunteerCompanyRide(volnteer2.Volunteer_ID, workshopId);
+                    volunteer2Ride.Enabled = false;
+                    if (Ride2.Equals("")) Ride2 = " ";
+                }
+                if (volnteer3 != null)
+                {
+                    Ride3 = db.getVolunteerCompanyRide(volnteer3.Volunteer_ID, workshopId);
+                    volunteer3Ride.Enabled = false;
+                    if (Ride3.Equals("")) Ride3 = " ";
+                }
             }
             else
             {
@@ -423,6 +464,23 @@ namespace gui.Gui
                 {
                     // Company Workshop 
                     CompanyWorkshop selectedWorkshop = db.getCompanyWorkshopByID(int.Parse(workshopId));
+                    //School workshop
+                    //Check if was change
+                    if (ID1 != selectedWorkshop.CompanyWorkShopVolunteerID1 ||
+                       ID2 != selectedWorkshop.CompanyWorkShopVolunteerID2 ||
+                       ID3 != selectedWorkshop.CompanyWorkShopVolunteerID3)
+                    {
+                        //Update DB
+                        if (db.updateSchoolWorkshopVolunteer(selectedWorkshop.CompanyWorkShopID, ID1, ID2, ID3,
+                            volunteer1Ride.Text, volunteer2Ride.Text, volunteer3Ride.Text))
+                        {
+                            succsess.Visible = true;
+                        }
+                    }
+                    else
+                    {
+                        nonSelected.Visible = true;
+                    }
                 }
                 else
                 {
