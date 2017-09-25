@@ -77,7 +77,12 @@ namespace gui.Gui.Workshop
                     v = allVolunteer.Find(x => x.Volunteer_ID == CompanyWorkshop.CompanyWorkShopVolunteerID3);
                     VolunteerName3.Text = v.Volunteer_First_Name + " " + v.Volunteer_Last_Name;
                 }
-
+                /* --- volunteer count --*/
+                int count = 0;
+                if (CompanyWorkshop.CompanyWorkShopVolunteerID1 != 0) count++;
+                if (CompanyWorkshop.CompanyWorkShopVolunteerID2 != 0) count++;
+                if (CompanyWorkshop.CompanyWorkShopVolunteerID3 != 0) count++;
+                volunteercount.Text = count.ToString();
 
                 SetStatusBar(status);
 
@@ -237,7 +242,7 @@ namespace gui.Gui.Workshop
                         // else if (!Email.SendAssignComplete(CompanyWorkshop)) ErrorMsg(2);
                         //else
                         //{
-                        //    Response.Write("<script>alert('איימילים נשלחו לבית הספר והמתנדבות הרשומות'); window.location.href = ''; </script>");
+                        //    Response.Write("<script>alert('אימיילים נשלחו לבית הספר והמתנדבות הרשומות'); window.location.href = ''; </script>");
                         //    SetStatusBar(5);
                         //}
                     }
@@ -278,7 +283,7 @@ namespace gui.Gui.Workshop
                     //            }
                     //            else
                     //            {
-                    //                Response.Write("<script>alert('איימילים נשלחו למתנדבות באזור'); window.location.href = '';</script>");
+                    //                Response.Write("<script>alert('אימיילים נשלחו למתנדבות באזור'); window.location.href = '';</script>");
                     //            }
 
                     //            Response.Redirect(Request.RawUrl);
@@ -306,7 +311,7 @@ namespace gui.Gui.Workshop
                     //            else if (!Email.SendAssignComplete(schoolWorkshop)) ErrorMsg(2);
                     //            else
                     //            {
-                    //                Response.Write("<script>alert('איימילים נשלחו לבית הספר והמתנדבות הרשומות'); window.location.href = ''; </script>");
+                    //                Response.Write("<script>alert('אימיילים נשלחו לבית הספר והמתנדבות הרשומות'); window.location.href = ''; </script>");
                     //                SetStatusBar(5);
                     //            }
                     //        }
@@ -435,7 +440,7 @@ namespace gui.Gui.Workshop
                     Response.Write("<script>alert('שגיאה ברישום למסד נתונים'); window.location.href = ''; </script>");
                     break;
                 case 2:
-                    Response.Write("<script>alert('שגיאה בשליחת איימיל'); window.location.href = ''; </script>");
+                    Response.Write("<script>alert('שגיאה בשליחת אימייל'); window.location.href = ''; </script>");
                     break;
                 case 3:
                     string str = "על מנת לעבור סטטוס לשיבוץ מתנדבות,יש לחכות לשיבוץ בית ספר";
@@ -450,5 +455,6 @@ namespace gui.Gui.Workshop
 
         }
 
+      
     }
 }

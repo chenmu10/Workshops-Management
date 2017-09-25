@@ -76,7 +76,7 @@
                             <li class="active"><a href="#companyWorkshop" data-toggle="tab">פרטי סדנא בחברה</a></li>
                             <li><a href="#school" data-toggle="tab">פרטי שיבוץ בי"ס</a></li>
                             <li><a href="#volunteers" data-toggle="tab">פרטי שיבוץ מתנדבות</a></li>
-                            <li><a href="#execute" data-toggle="tab">פרטי ביצוע</a></li>
+                          <%--  <li><a href="#execute" data-toggle="tab">פרטי ביצוע</a></li>--%>
                             <li><a href="#feedback" data-toggle="tab">משובים</a></li>
                         </ul>
                     </div>
@@ -167,8 +167,9 @@
                                         onchange="try{setCustomValidity('')}catch(e){}"
                                         runat="server">
                                     </asp:TextBox>
+                                <asp:LinkButton runat="server" ID="goToSchool">פרטי בי"ס</asp:LinkButton>
 
-                                    <asp:LinkButton runat="server" ID="goToSchool" class="btn btn-link">מעבר לפרטי בי"ס</asp:LinkButton>
+                                   
                                 </div>
 
                                 <br />
@@ -204,7 +205,7 @@
                                     <label class="control-label" for="volunteercount">מס' מתנדבות נוכחי: </label>
                                     <asp:Label runat="server" ID="volunteercount"></asp:Label>
                                     <br />
-                                    <asp:LinkButton runat="server" ID="LinkVolunteerAssign" Text="מעבר לעמוד שיבוץ"></asp:LinkButton>
+                                        <a class="btn btn-link" href="../Volunteer/VolunteerAssignWorkshops.aspx" target="_blank">מעבר לטופס שיבוץ מתנדבות</a>
                                     <br />
 
                                     <br />
@@ -224,21 +225,17 @@
                                     </fieldset>
                                 </div>
 
-                                <asp:Button runat="server" ID="backToSchoolAssign" Text="חזרי לסטטוס שיבוץ בית ספר" class="btn btn-danger" />
+                               <%-- <asp:Button runat="server" ID="backToSchoolAssign" Text="חזרי לסטטוס שיבוץ בית ספר" class="btn btn-danger" />--%>
 
 
                             </div>
 
                             <%--  TAB 4 - execute--%>
-                            <div class="tab-pane fade" id="execute">
+                            <%--<div class="tab-pane fade" id="execute">
                                 <asp:Label runat="server" ID="Label1" Text="תאריך הסדנא לא הגיע/תאריך הסדנא עבר."></asp:Label>
                                 <br />
                                 <br />
-
-
-
-
-                            </div>
+                            </div>--%>
 
                             <%--  TAB 5 - FEEDBACK--%>
                             <div class="tab-pane fade" id="feedback">

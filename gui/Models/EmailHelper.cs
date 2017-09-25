@@ -17,13 +17,13 @@ namespace gui.Models
 {
     public class EmailHelper
     {
-        string fromAddress = "mmt.send@gmail.com"; // temporary - personal email..
+        string fromAddress = "chenitunes@gmail.com"; // temporary - personal email..
         string fromPassword = "mmtproject";
-        string TestMail = "chenmu10@gmail.com";
+        string TestMail = "mmt.send@gmail.com";
         string EmailTitle = "MMT";
         string ManagerMail = "chenmu10@gmail.com";
         string signature, signature_path, sendBody;
-        bool IsTestMode = true;
+        bool IsTestMode = false;
         SmtpClient smtp;
         DB db;
 
@@ -31,17 +31,17 @@ namespace gui.Models
         // Files path
         // General
         string VolunteerInviteBody;
-        string feedbackVolunteer;
-        string CancelWorkshop;
+        //string feedbackVolunteer;
+        //string CancelWorkshop;
 
         // Company
         string SchoolInviteBody;
-        string AssignCompleteCompany;
+        //string AssignCompleteCompany;
 
         // School
         string AssignCompleteSchool;
         string PrepareBody;
-        string feedbackTeacher;
+        //string feedbackTeacher;
    
 
 
@@ -240,7 +240,7 @@ namespace gui.Models
 
             DateTime startTime = Convert.ToDateTime(s.SchoolWorkShopDate1); // רק להגשה- אין בדיקה איזה תאריך נבחר
             DateTime endTime = startTime.AddHours(4);
-            //MakeAppointment(new List<string>() { "chenmu10@gmail.com" }, addressAndCity, startTime, endTime);
+            MakeAppointment(new List<string>() { "chenmu10@gmail.com" }, addressAndCity, startTime, endTime);
 
             //Try to send mail
             try

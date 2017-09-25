@@ -41,7 +41,7 @@ namespace gui.Gui.Workshop
                 RadioButtonListShowVideoLabel.Visible = false;
                 RadioButtonListShowVideo.Visible = false;
                 prepareComments.Text = "";
-                PrepareFormReadey.Text = "טופס הכנה עוד לא קיים";
+                PrepareFormReadey.Text = "בית ספר עוד לא מילא טופס הכנה";
 
                 int ID = int.Parse(Session["WorkshopID"].ToString());
                 WorkshopToView = db.GetJoinWorkShopByID(ID);
@@ -317,7 +317,7 @@ namespace gui.Gui.Workshop
                         if (!db.SchoolWorkShopUpdatestatus(schoolWorkshop.SchoolWorkShopID, 1)) ErrorMsg(1);
                         if (Email.SendInivetsToVolunteers(allVolunteer, school.School_Area, dateselector.SelectedItem.Text)) 
                         {
-                            Response.Write("<script>alert('איימילים נשלחו למתנדבות באזור'); window.location.href = '';</script>");
+                            Response.Write("<script>alert('אימיילים נשלחו למתנדבות באזור'); window.location.href = '';</script>");
                            
                         }
                         else
@@ -359,7 +359,7 @@ namespace gui.Gui.Workshop
                         else if (!Email.SendAssignComplete(schoolWorkshop)) ErrorMsg(2);
                         else
                         {
-                            Response.Write("<script>alert('איימילים נשלחו לבית הספר והמתנדבות הרשומות'); window.location.href = ''; </script>");
+                            Response.Write("<script>alert('אימיילים נשלחו לבית הספר והמתנדבות הרשומות'); window.location.href = ''; </script>");
                             SetStatusBar(5);
                         }
                     }
@@ -434,7 +434,7 @@ namespace gui.Gui.Workshop
                     Response.Write("<script>alert('שגיאה ברישום למסד נתונים'); window.location.href = ''; </script>");
                     break;
                 case 2:
-                    Response.Write("<script>alert('שגיאה בשליחת איימיל'); window.location.href = ''; </script>");
+                    Response.Write("<script>alert('שגיאה בשליחת אימייל'); window.location.href = ''; </script>");
                     break;
                 case 3:
                     string str = "על מנת לעבור סטטוס לשיבוץ מתנדבות,צריך לבחור תאריך";
@@ -453,5 +453,11 @@ namespace gui.Gui.Workshop
 
         }
 
+       
+       
+
+            
+
+       
     }
 }

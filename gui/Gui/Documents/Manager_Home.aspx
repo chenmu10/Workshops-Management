@@ -9,10 +9,11 @@
 <head runat="server">
     <title>MMT Project </title>
    <style>
-       body{
+       /*body{
            background-image: url("../../../Content/photo_bg.jpg");
            background-size: cover;
-       }
+       }*/
+      
 
    </style>
 </head>
@@ -31,8 +32,9 @@
             <br />
             <asp:Label runat="server" ID="user"></asp:Label>
             <br />
-            <div class="jumbotron" style="background-color:rgba(255, 255, 255,0.8); width:75%; height:80%; margin:auto;">
-                <h3>מעקב פעילות</h3>
+            <%--<div class="jumbotron" style="background-color:rgba(255, 255, 255,0.8); width:75%; height:80%; margin:auto;">--%>
+            <div class="jumbotron">
+                <h2>מעקב פעילות</h2>
                 <br />
 
                 <table class="table table-hover">
