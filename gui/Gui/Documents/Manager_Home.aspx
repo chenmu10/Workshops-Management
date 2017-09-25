@@ -54,6 +54,13 @@
                             <td> <asp:Label runat="server" ID="newCompanyWorkshops" class="badge"> </asp:Label></td>
                            
                         </tr>
+                         <tr>
+                            <th scope="row">סדנאות בחברות בי"ס שובץ</th>
+                            <td><asp:Label runat="server" ID="schoolAssigned" class="badge"> </asp:Label></td>
+                
+
+
+                        </tr>
                         <tr>
                             <th scope="row">סדנאות לשיבוץ מתנדבות</th>
                             <td><asp:Label runat="server" ID="assignVolunteers" class="badge"> </asp:Label></td>
@@ -62,7 +69,7 @@
 
                         </tr>
                         <tr>
-                            <th scope="row">סדנאות בשיבוץ הושלם להכנה</th>
+                            <th scope="row">סדנאות בבי"ס בשיבוץ הושלם להכנה</th>
                             <td colspan="2"><asp:Label runat="server" ID="prepare" class="badge"> </asp:Label></td>
 
                         </tr>

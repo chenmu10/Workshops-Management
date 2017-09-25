@@ -88,9 +88,10 @@
                     <div class="form-inline">
                         <asp:DropDownList ID="SchoolArea" runat="server"
                             required="required"
-                            class="form-control custom-select"
+                            class="form-control custom-select"  Width="220px"
                             oninvalid="setCustomValidity('יש לבחור איזור פעילות')"
                             onchange="try{setCustomValidity('')}catch(e){}">
+
                         </asp:DropDownList>
                     </div>
                     <br />

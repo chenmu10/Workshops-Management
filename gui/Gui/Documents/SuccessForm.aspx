@@ -18,22 +18,23 @@
 <body>
     <form id="form1" runat="server">
 
-        <div class="container-fluid">
-            <div class="row">
-                <div class="jumbotron">
-                    <h2>סדנאות מהממ"ט</h2>
-                </div>
+        <div class="container">
+            <div class="jumbotron">
+                <h2>פניה לתיאום סדנת מהממ"ט</h2>
+                מורים? מנהלי בית ספר? אם אתם רוצים שנגיע אליכם, נשמח אם תמלאו את הטופס המצורף.<br />
+                *כל השדות חובה
+            </div>
 
-                <hr />
-                <div class="text-center">
-                    <em>
-                        <asp:Label ID="Msg" Style="text-align: center" runat="server" CssClass="auto-style1">ההרשמה התבצעה בהצלחה!</asp:Label>
-                    </em>
-                </div>
 
+            <div class="text-center">
+                <em>
+                    <asp:Label ID="Msg" Style="text-align: center" runat="server" CssClass="auto-style1">ההרשמה התבצעה בהצלחה!</asp:Label>
+                </em>
             </div>
 
         </div>
+
+
 
     </form>
 </body>

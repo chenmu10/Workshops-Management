@@ -63,7 +63,7 @@ namespace gui.Gui.Workshop
                     if(SendInvitesToSchools(newcw))
                     {
                         Response.Write("<script>alert('אימיילים נשלחו אל בתי ספר רלוונטים');</script>");
-                        Msg.Text = "אימיילים נשלחו אל בתי ספר רלוונטים";
+                    
                     }
                     else 
                     {

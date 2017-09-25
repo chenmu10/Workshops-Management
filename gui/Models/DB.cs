@@ -717,6 +717,8 @@ namespace gui
                 DataRow dr = dt.Rows[0];
                 result.Add(dr["result"].ToString());
             }
+
+          
             //סדנאות לשיבוץ מתנדבות
             int count = 0;
             query = "SELECT COUNT(*) as result FROM mmt_db.companyworkshop WHERE WorkShop_Status = 1;";
@@ -813,9 +815,19 @@ namespace gui
                 DataRow dr = dt.Rows[0];
                 result.Add(dr["result"].ToString());
             }
+            //סדנאות בחברות לשיבוץ בתי ספר
+            query = "SELECT COUNT(*) as result FROM mmt_db.companyworkshop WHERE WorkShop_Status = 4;";
+            dt = Select(query);
+            if (dt != null)
+            {
+                DataRow dr = dt.Rows[0];
+                result.Add(dr["result"].ToString());
+            }
 
             return result;
         }
+
+
 
         public Dictionary<int, string> GetVolunteerStatus()
         {

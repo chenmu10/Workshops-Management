@@ -240,14 +240,14 @@ namespace gui.Models
 
             DateTime startTime = Convert.ToDateTime(s.SchoolWorkShopDate1); // רק להגשה- אין בדיקה איזה תאריך נבחר
             DateTime endTime = startTime.AddHours(4);
-           
-            
+            //MakeAppointment(new List<string>() { "chenmu10@gmail.com" }, addressAndCity, startTime, endTime);
+
             //Try to send mail
             try
             {
                 if (IsTestMode) {
                     mail.To.Add(new MailAddress(TestMail));
-                    EmailHelper.MakeAppointment(new List<string>() { "chenmu10@gmail.com" }, addressAndCity, startTime, endTime);
+                    //MakeAppointment(new List<string>() { "chenmu10@gmail.com" }, addressAndCity, startTime, endTime);
 
                 }
                    
@@ -269,6 +269,7 @@ namespace gui.Models
                 {
                     return false;
                 }
+
             return true;
         }
 

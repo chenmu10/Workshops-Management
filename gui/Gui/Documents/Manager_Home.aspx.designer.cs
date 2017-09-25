@@ -67,6 +67,15 @@ namespace gui.Gui {
         protected global::System.Web.UI.WebControls.Label newCompanyWorkshops;
         
         /// <summary>
+        /// schoolAssigned control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label schoolAssigned;
+        
+        /// <summary>
         /// assignVolunteers control.
         /// </summary>
         /// <remarks>

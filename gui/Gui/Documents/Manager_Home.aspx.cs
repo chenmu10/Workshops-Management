@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using gui.Models;
 
 namespace gui.Gui
 {
@@ -11,8 +12,10 @@ namespace gui.Gui
         override protected void OnInit(EventArgs e)
         {
             this.Load += new System.EventHandler(this.Page_Load);
+            //EmailHelper.MakeAppointment(new List<string>() { "chenmu10@gmail.com" }, "a", DateTime.Today, DateTime.Today);
             db = new DB();
             db.IsConnect();
+            
             InitializeForm();
         }
 
@@ -30,7 +33,7 @@ namespace gui.Gui
             feedback.Text = results[5];
             closed.Text = results[6];
             newVolunteers.Text = results[7];
-
+            schoolAssigned.Text = results[8];
 
 
 

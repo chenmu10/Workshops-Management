@@ -27,7 +27,7 @@ namespace gui.Gui.Workshop
                 yesToVolunteerFinished.Visible = false;
                 noToVolunteerFinished.Visible = false;
                 PrepareFormCreate.Visible = false;
-
+               
                 finalParticipants.Text = "";
                 numOfCompWithEmulator.Text = "";
 
@@ -315,16 +315,26 @@ namespace gui.Gui.Workshop
 
                         if (!db.SchoolWorkShopUpdateDate(schoolWorkshop.SchoolWorkShopID, dateSelected)) ErrorMsg(1);
                         if (!db.SchoolWorkShopUpdatestatus(schoolWorkshop.SchoolWorkShopID, 1)) ErrorMsg(1);
-                        if (!Email.SendInivetsToVolunteers(allVolunteer, school.School_Area, dateselector.SelectedItem.Text))
+                        if (Email.SendInivetsToVolunteers(allVolunteer, school.School_Area, dateselector.SelectedItem.Text)) 
                         {
-                            ErrorMsg(2);
+                            Response.Write("<script>alert('איימילים נשלחו למתנדבות באזור'); window.location.href = '';</script>");
+                           
                         }
                         else
                         {
-                            Response.Write("<script>alert('איימילים נשלחו למתנדבות באזור'); window.location.href = '';</script>");
+                            ErrorMsg(2);
                         }
+                        //if (!Email.SendInivetsToVolunteers(allVolunteer, school.School_Area, dateselector.SelectedItem.Text))
+                        //{
+                           
+                        //}
+                        //else
+                        //{
+                           
+                            
+                        //}
 
-                        Response.Redirect(Request.RawUrl);
+                       // Response.Redirect(Request.RawUrl);
                     }                    
                     break;
                 case 3:

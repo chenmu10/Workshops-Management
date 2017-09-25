@@ -34,6 +34,7 @@
                 <label class="control-label" for="WorkShopDate">מועד קיום: </label>
                 <asp:Label runat="server" ID="WorkShopDate"></asp:Label>
                    <br />
+              
                
                 <asp:Label runat="server" ID="PrepareFormCreate" Text="נוצר טופס הכנה, ניתן לראות ב'פרטי הכנה'"></asp:Label>
                 <br />
@@ -42,7 +43,7 @@
                 <br />
                 <asp:Button runat="server" ID="yesToVolunteerFinished" Text="כן" class="btn btn-success" OnClick="yesToVolunteerFinished_Click" />
                 <asp:Button runat="server" ID="noToVolunteerFinished" Text="לא" class="btn btn-danger" />
-                <button id="cancelWorkshop" class="btn btn-danger">ביטול סדנא</button>
+                <%--<button id="cancelWorkshop" class="btn btn-danger">ביטול סדנא</button>--%>
 
             </div>
 
@@ -76,7 +77,9 @@
                     <asp:Button runat="server" OnClick="updateStatus_Click" ID="updateStatus" Text="אישור שינוי" class="btn btn-link" />
                 </div>
                 <br />
+             <asp:Label runat="server" ForeColor="Red" ID="msg"></asp:Label>
 
+                <br />
             <div class="row">
 
 
@@ -171,7 +174,7 @@
                                         <asp:Label runat="server" ID="date3"></asp:Label>
                                         <br />
                                         <asp:Label class="control-label" runat="server" ID="dateselecting">בחרי תאריך רצוי </asp:Label>
-                                        <asp:DropDownList runat="server" ID="dateselector">
+                                        <asp:DropDownList runat="server" ID="dateselector" CssClass="form-control" Width="220px">
                                             <asp:ListItem Value="0" Text="בחרי תאריך"></asp:ListItem>
                                             <asp:ListItem Value="1"></asp:ListItem>
                                             <asp:ListItem Value="2"></asp:ListItem>
@@ -191,8 +194,8 @@
                                     <label class="control-label" for="volunteercount">מס' מתנדבות נוכחי: </label>
                                     <asp:Label runat="server" ID="volunteercount"></asp:Label>
                                     <br />
-                                    <%--<asp:LinkButton runat="server" ID="LinkVolunteerAssign" Text="מעבר לעמוד שיבוץ"></asp:LinkButton>--%>
-                                    <a href="../Volunteer/VolunteerAssignWorkshops.aspx" class="btn btn-link">מעבר לעמוד שיבוץ</a>
+                               
+                                    <a href="../Volunteer/VolunteerAssignWorkshops.aspx" class="btn btn-link" target="_blank">מעבר לעמוד שיבוץ</a>
                                     <br />
 
                                     <br />
@@ -212,7 +215,7 @@
                                     </fieldset>
                                 </div>
 
-                                <asp:Button runat="server" ID="backToDates" Text="חזור לסטטוס בחירת תאריך" class="btn btn-danger" />
+                                <%--<asp:Button runat="server" ID="backToDates" Text="חזור לסטטוס בחירת תאריך" class="btn btn-danger" />--%>
 
 
                             </div>
