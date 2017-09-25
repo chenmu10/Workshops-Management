@@ -17,7 +17,6 @@ namespace gui.Gui.Workshop
             db = new DB();
             db.IsConnect();
             FormClear();
-            if(!Page.IsPostBack)
                 init();
         }
         private void init()
@@ -28,6 +27,21 @@ namespace gui.Gui.Workshop
                 yesToVolunteerFinished.Visible = false;
                 noToVolunteerFinished.Visible = false;
                 PrepareFormCreate.Visible = false;
+
+                finalParticipants.Text = "";
+                numOfCompWithEmulator.Text = "";
+
+                //PrePare Form
+                RadioButtonListDidPrepareLabel.Visible = false;
+                RadioButtonListDidPrepare.Visible = false;
+                RadioButtonListProjectOrControlLabel.Visible = false;
+                RadioButtonListProjectOrControl.Visible = false;
+                RadioButtonListSeniorsLabel.Visible = false;
+                RadioButtonListSeniors.Visible = false;
+                RadioButtonListShowVideoLabel.Visible = false;
+                RadioButtonListShowVideo.Visible = false;
+                prepareComments.Text = "";
+                PrepareFormReadey.Text = "טופס הכנה עוד לא קיים";
 
                 int ID = int.Parse(Session["WorkshopID"].ToString());
                 WorkshopToView = db.GetJoinWorkShopByID(ID);
@@ -60,11 +74,41 @@ namespace gui.Gui.Workshop
                 if (schoolWorkshop.SchoolWorkShopVolunteerID2 != 0) count++;
                 if (schoolWorkshop.SchoolWorkShopVolunteerID3 != 0) count++;
                 volunteercount.Text = count.ToString();
-               // volnteercount2.Text = count.ToString();
+                // volnteercount2.Text = count.ToString();
                 /* ---------------------*/
+                PrepareForm pf = db.getPrePareFormByWorkshopID(int.Parse(WorkShopID.Text));
+                if (pf != null && pf.WorkShop_Number_Of_Final_Student!=0)
+                {
+                    RadioButtonListDidPrepareLabel.Visible = true;
+                    RadioButtonListDidPrepare.Visible = true;
+                    RadioButtonListProjectOrControlLabel.Visible = true;
+                    RadioButtonListProjectOrControl.Visible = true;
+                    RadioButtonListSeniorsLabel.Visible = true;
+                    RadioButtonListSeniors.Visible = true;
+                    RadioButtonListShowVideoLabel.Visible = true;
+                    RadioButtonListShowVideo.Visible = true;
+                    PrepareFormReadey.Text = "";
+
+                    finalParticipants.Text = pf.WorkShop_Number_Of_Final_Student.ToString();
+                    RadioButtonListProjectOrControl.SelectedValue = pf.WorkShop_Is_Projector.ToString();
+                    RadioButtonListSeniors.Text = pf.WorkShop_Is_Seniors_Coming.ToString();
+                    RadioButtonListDidPrepare.SelectedValue = pf.WorkShop_Did_Preparation.ToString();
+                    RadioButtonListShowVideo.Text = pf.WorkShop_Is_Video_possible.ToString();
+                    numOfCompWithEmulator.Text = pf.WorkShop_Number_Of_emulator_Computer.ToString();
+                    teacherName.Text = pf.WorkShop_Teacher_Name;
+                    teacherEmail.Text = pf.WorkShop_Teacher_Email;
+                    teacherPhone.Text = pf.WorkShop_Teacher_phone;
+                    prepareComments.Text = pf.WorkShop_Comments;
+                    WorkShopStatus.Text = WorkshopToView.Status_Description.ToString();
+                }
+
+
+
 
                 int status = schoolWorkshop.SchoolWorkShopStatus;
                 SetStatusBar(status);
+
+
                 int dateIndex = int.Parse(schoolWorkshop.SchoolWorkShopSelectedDate.ToString());
                     switch (dateIndex)
                     {
@@ -103,7 +147,6 @@ namespace gui.Gui.Workshop
                         /*  לבדיקת תאריכים*/
                         dateselecting.Visible = true;
                         dateselector.Visible = true;
-                        dateselector.CssClass = "select-control";
                         dateselector.Items[1].Text = schoolWorkshop.SchoolWorkShopDate1.ToString();
                         dateselector.Items[2].Text = schoolWorkshop.SchoolWorkShopDate2.ToString();
                         dateselector.Items[3].Text = schoolWorkshop.SchoolWorkShopDate3.ToString();
@@ -112,26 +155,7 @@ namespace gui.Gui.Workshop
                     case 6:
                         /*  להכנה*/ 
                       
-                        PrepareForm pf = db.getPrePareFormByWorkshopID(Convert.ToInt32(WorkShopID.Text));
-                        if (pf != null)
-                       {
-                            finalParticipants.Text = pf.WorkShop_Number_Of_Final_Student.ToString();
-                            RadioButtonListProjectOrControl.SelectedValue = pf.WorkShop_Is_Projector.ToString();
-                            RadioButtonListSeniors.Text = pf.WorkShop_Is_Seniors_Coming.ToString();
-                            RadioButtonListDidPrepare.SelectedValue = pf.WorkShop_Did_Preparation.ToString();
-                            RadioButtonListShowVideo.Text = pf.WorkShop_Is_Video_possible.ToString();
-                            numOfCompWithEmulator.Text = pf.WorkShop_Number_Of_emulator_Computer.ToString();
-                            teacherName.Text = pf.WorkShop_Teacher_Name;
-                            teacherEmail.Text = pf.WorkShop_Teacher_Email;
-                            teacherPhone.Text = pf.WorkShop_Teacher_phone;
-                            prepareComments.Text = pf.WorkShop_Comments;
-                            WorkShopStatus.Text = WorkshopToView.Status_Description.ToString();
-                            break;
-
-                        }
-                        else {
-                            break;
-                        }
+                  
                        
                     case 7:
                         WorkShopID.Text = WorkshopToView.WorkShop_ID.ToString();
@@ -289,36 +313,16 @@ namespace gui.Gui.Workshop
                         School school = allSchool.Find(x => x.School_ID == schoolWorkshop.WorkShop_School_ID) ;
                         allVolunteer=allVolunteer.FindAll(x => x.Volunteer_Area_Activity.Contains(school.School_Area));
 
-                        if(db.SchoolWorkShopUpdateDate(schoolWorkshop.SchoolWorkShopID, dateSelected) && db.SchoolWorkShopUpdatestatus(schoolWorkshop.SchoolWorkShopID, 1))
+                        if (!db.SchoolWorkShopUpdateDate(schoolWorkshop.SchoolWorkShopID, dateSelected)) ErrorMsg(1);
+                        if (!db.SchoolWorkShopUpdatestatus(schoolWorkshop.SchoolWorkShopID, 1)) ErrorMsg(1);
+                        if (!Email.SendInivetsToVolunteers(allVolunteer, school.School_Area, dateselector.SelectedItem.Text))
                         {
-                                if(Email.SendInivetsToVolunteers(allVolunteer, school.School_Area, dateselector.SelectedItem.Text))
-                                {
-                                    
-                                    Response.Write("<script>alert('איימילים נשלחו למתנדבות באזור'); window.location.href = ''; </script>");
-                                }
-                                else
-                                {
-                                    ErrorMsg(2);
-                                }
-                         }
+                            ErrorMsg(2);
+                        }
                         else
                         {
                             Response.Write("<script>alert('איימילים נשלחו למתנדבות באזור'); window.location.href = '';</script>");
                         }
-
-                        Response.Write("<script>alert('אימיילים נשלחו למתנדבות באזור'); window.location.href = ''; </script>");
-
-
-                        //if (!db.SchoolWorkShopUpdateDate(schoolWorkshop.SchoolWorkShopID, dateSelected)) ErrorMsg(1);
-                        //if (!db.SchoolWorkShopUpdatestatus(schoolWorkshop.SchoolWorkShopID, 1)) ErrorMsg(1);
-                        //if (!Email.SendInivetsToVolunteers(allVolunteer, school.School_Area, dateselector.SelectedItem.Text))
-                        //{
-                        //    ErrorMsg(2);
-                        //}
-                        //else
-                        //{
-                        //    Response.Write("<script>alert('איימילים נשלחו למתנדבות באזור'); window.location.href = '';</script>");
-                        //}
 
                         Response.Redirect(Request.RawUrl);
                     }                    
@@ -409,7 +413,8 @@ namespace gui.Gui.Workshop
             Response.Redirect(Request.RawUrl);
         }
 
-      
+
+
        
         public void ErrorMsg(int type)
         {
@@ -438,9 +443,5 @@ namespace gui.Gui.Workshop
 
         }
 
-        protected void GoToshcool_Click(object sender, EventArgs e)
-        {
-            // TODO
-        }
     }
 }
