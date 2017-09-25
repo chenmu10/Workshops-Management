@@ -43,14 +43,14 @@
                         <h4 class="list-group-item-heading">משוב לסדנא (מורה)</h4>
                         <p class="list-group-item-text">לאחר סדנא בבית ספר, המורה מקבלת טופס מילוי משוב.</p>
                     </a>
-                    <a href="../Volunteer/volunteerAssignWorkshops.aspx" class="list-group-item" target="_blank">
+                   <%-- <a href="../Volunteer/volunteerAssignWorkshops.aspx" class="list-group-item" target="_blank">
                         <h4 class="list-group-item-heading">שיבוץ מתנדבות לסדנא</h4>
                         <p class="list-group-item-text">קישור לעמוד השיבוץ נשלח אוטומטית למתנדבות הנמצאות באותו אזור של הסדנא.</p>
                     </a>
                     <a href="../school/schoolSelectWorkshopFromIndustry.aspx" class="list-group-item" target="_blank">
                         <h4 class="list-group-item-heading">שיבוץ בית ספר לסדנה בחברה</h4>
                         <p class="list-group-item-text">קישור לעמוד השיבוץ נשלח אוטומטית לכל בתי הספר במאגר שנמצאים באזור הסדנא.</p>
-                    </a>
+                    </a>--%>
                 </div>
 
             </div>

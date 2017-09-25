@@ -220,13 +220,13 @@ namespace gui.Gui.Workshop {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl workshopDetails;
         
         /// <summary>
-        /// possibleStudentsNum control.
+        /// studentsPredictedNum control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox possibleStudentsNum;
+        protected global::System.Web.UI.WebControls.TextBox studentsPredictedNum;
         
         /// <summary>
         /// companyComments control.
@@ -265,13 +265,13 @@ namespace gui.Gui.Workshop {
         protected global::System.Web.UI.WebControls.LinkButton goToSchool;
         
         /// <summary>
-        /// studentsPredictedNum control.
+        /// FinalStudentsNum control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox studentsPredictedNum;
+        protected global::System.Web.UI.WebControls.TextBox FinalStudentsNum;
         
         /// <summary>
         /// schoolComments control.

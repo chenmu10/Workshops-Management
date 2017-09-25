@@ -40,17 +40,18 @@ namespace gui.Gui.Workshop
                 CompanyWorkshop = db.getCompanyWorkshopByID(ID);
                 allVolunteer = db.GetAllVolunteers();
                 allCompany = db.GetAllComapny();
+
                 schoolname.Text = WorkshopToView.School_Name;
-                studentsPredictedNum.Text = CompanyWorkshop.WorkShop_Number_Of_StudentPredicted.ToString();
                 schoolComments.Text = CompanyWorkshop.WorkShop_School_Comment.Equals("") ? "" : CompanyWorkshop.WorkShop_School_Comment;
+                FinalStudentsNum.Text = CompanyWorkshop.WorkShop_Number_Of_Final_Student.Equals(0) ? "" : CompanyWorkshop.WorkShop_Number_Of_Final_Student.ToString();
+                
+
                 companyName.Text = WorkshopToView.Company_Name;
                 selectedCompany = allCompany.Find(x => x.Company_ID == CompanyWorkshop.CompanyID);
                 address.Text = selectedCompany.Company_Address;
-                //possibleStudentsNum.Text = CompanyWorkshop.WorkShop_Number_Of_StudentPredicted.ToString();
                 companyComments.Text = CompanyWorkshop.CompanyWorkShopComments;
                 dateTime.Text = CompanyWorkshop.CompanyWorkShopDate;
-
-
+                studentsPredictedNum.Text = CompanyWorkshop.WorkShop_Number_Of_StudentPredicted.ToString();
                 WorkShopID.Text = WorkshopToView.WorkShop_ID.ToString();
 
 

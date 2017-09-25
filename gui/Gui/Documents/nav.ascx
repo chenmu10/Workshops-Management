@@ -38,8 +38,8 @@
             </ul>
             <ul class="nav navbar-nav navbar-right flip">
                <li><a href="../documents/ExternalForms.aspx">טפסים</a></li>
-				<li><a href="emails.html">הודעות</a></li>
-				<li><a href="reports.html">דוחות</a></li>
+				<li><a href="../documents/AssignForms.aspx">שיבוצים</a></li>
+				<%--<li><a href="reports.html">דוחות</a></li>--%>
 				<li><a href="../Documents/LoginManager.aspx">ניהול<span class="sr-only"></span></a></li>
             </ul>
         </div>

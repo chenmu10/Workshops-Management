@@ -40,7 +40,7 @@ namespace gui.Gui
                 Areas = db.GetAreaActivity();
 
 
-                id.Text = school.School_ID.ToString();
+                schoolid.Text = school.School_ID.ToString();
                 schoolSymbol.Text = school.School_Serial_Number.ToString() ;
                 schoolName.Text =school.School_Name;
                 schooladdress.Text = school.School_Address;

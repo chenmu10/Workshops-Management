@@ -112,6 +112,7 @@
     <Content Include="EmailMessages\SchoolWorkshop\AssignCompleteSchool.txt" />
     <Content Include="EmailMessages\General\VolunteerInviteBody.txt" />
     <Content Include="css\bootstrap-rtl.min.css" />
+    <Content Include="Gui\Documents\AssignForms.aspx" />
     <Content Include="Gui\Documents\FeedbackTeacher.aspx" />
     <Content Include="Gui\Documents\FeedbackVolunteer.aspx" />
     <Content Include="Gui\Documents\LoginManager.aspx" />
@@ -174,6 +175,13 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Gui\Documents\AssignForms.aspx.cs">
+      <DependentUpon>AssignForms.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Gui\Documents\AssignForms.aspx.designer.cs">
+      <DependentUpon>AssignForms.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Gui\Documents\FeedbackTeacher.aspx.cs">
       <DependentUpon>FeedbackTeacher.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

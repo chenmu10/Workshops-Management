@@ -122,9 +122,9 @@
                                 <div class="col-md-6">
                                     <fieldset id="workshopDetails" runat="server">
                                         <legend>פרטי סדנא</legend>
-                                        <label class="control-label"  for="possibleStudentsNum">מס' משתתפות אפשרי: </label>
+                                        <label class="control-label"  for="studentsPredictedNum">מס' משתתפות אפשרי: </label>
                                         <div class="form-inline">
-                                            <asp:TextBox ID="possibleStudentsNum" Enabled="false"
+                                            <asp:TextBox ID="studentsPredictedNum" Enabled="false"
                                                 type="number"
                                                 class="form-control"
                                                 min="0"
@@ -173,9 +173,9 @@
 
                                 <br />
 
-                                <label class="control-label" for="studentsPredictedNum">מספר בנות צפויות מבי"ס: </label>
+                                <label class="control-label" for="FinalStudentsNum">מספר בנות צפויות מבי"ס: </label>
                                 <div>
-                                    <asp:TextBox ID="studentsPredictedNum" Enabled="false"
+                                    <asp:TextBox ID="FinalStudentsNum" Enabled="false"
                                         type="number"
                                         class="form-control"
                                         min="0"
