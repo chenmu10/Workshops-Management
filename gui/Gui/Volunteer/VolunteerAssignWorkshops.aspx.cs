@@ -27,15 +27,16 @@ namespace gui.Gui
                 if (t.Status_Description.Equals(" לשיבוץ מתנדבות"))
                 {
                     TableRow row = new TableRow();
+
                     countLines++;
                     TableCell lineNumber = new TableCell();
                     lineNumber.Text = countLines.ToString();
                     row.Cells.Add(lineNumber);
                    
 
-                    //TableCell workshopID = new TableCell();
-                    //workshopID.Text = t.WorkShop_ID;
-                    //row.Cells.Add(workshopID);
+                    TableCell workshopID = new TableCell();
+                    workshopID.Text = t.WorkShop_ID;
+                    row.Cells.Add(workshopID);
 
                     TableCell Date = new TableCell();
                     Date.Text = t.WorkShop_Date;
