@@ -8,5 +8,5 @@
 במועד
 {2}
 לרישום יש להיכנס לכתובת הבאה
-<a href="http://34.208.42.137/gui/Volunteer/volunteerAssignWorkshops.aspx">לינק</a>
+<a href="http://localhost:34659/gui/Volunteer/volunteerAssignWorkshops.aspx">לינק</a>
 </div>

@@ -287,14 +287,14 @@ namespace gui.Models
             //Subject & Body information
             string subject = sendBody.Split('%')[0].Replace("\n", "").Replace("\r", "");
             sendBody = sendBody.Split('%')[1];
-
+            
             //Body information replace by values
             // Replace {0},{1},{2}....
             sendBody = string.Format(sendBody,
                     s.getSelectedDate().Split(' ')[0],
                     selectedSchool.School_Name,
                     selectedSchool.School_Address,
-                    selectedSchool.School_ID
+                    s.SchoolWorkShopID
                 );
 
             mail.Subject = subject;
