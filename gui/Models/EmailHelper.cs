@@ -23,7 +23,7 @@ namespace gui.Models
         string EmailTitle = "MMT";
         string ManagerMail = "chenmu10@gmail.com";
         string signature, signature_path, sendBody;
-        bool IsTestMode = true;
+        bool IsTestMode = false;
         SmtpClient smtp;
         DB db;
 
@@ -97,7 +97,7 @@ namespace gui.Models
                 string subject = sendBody.Split('%')[0].Replace("\n", "").Replace("\r", "");
                 sendBody = sendBody.Split('%')[1];
                 company = allCompany.Find(x => x.Company_ID == selectedWorkshop.CompanyID);
-                string Area = Areas[company.Company_Area_Activity].Text;
+                string Area = Areas[company.Company_Area_Activity-1].Text;
 
             
                 //Body information replace by values
@@ -294,7 +294,7 @@ namespace gui.Models
                     s.getSelectedDate().Split(' ')[0],
                     selectedSchool.School_Name,
                     selectedSchool.School_Address,
-                    selectedSchool.School_ID
+                    s.SchoolWorkShopID
                 );
 
             mail.Subject = subject;

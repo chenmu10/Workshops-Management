@@ -89,7 +89,7 @@
                             <li class="active"><a href="#school" data-toggle="tab">פרטי פניית בי"ס</a></li>
                             <li><a href="#volunteers" data-toggle="tab">פרטי שיבוץ מתנדבות</a></li>
                             <li><a href="#prepare" data-toggle="tab">פרטי הכנה</a></li>
-                            <li><a href="#execute" data-toggle="tab">פרטי ביצוע</a></li>
+                          <%--  <li><a href="#execute" data-toggle="tab">פרטי ביצוע</a></li>--%>
                             <li><a href="#feedback" data-toggle="tab">משובים</a></li>
 
                         </ul>
@@ -329,14 +329,14 @@
 
 
                             <%--  TAB 4 - execute--%>
-                            <div class="tab-pane fade" id="execute">
+                      <%--      <div class="tab-pane fade" id="execute">
                                 <asp:Label runat="server" ID="Label1" Text="תאריך הסדנא לא הגיע/תאריך הסדנא עבר."></asp:Label>
                                 <br />
 
 
 
 
-                            </div>
+                            </div>--%>
 
 
 

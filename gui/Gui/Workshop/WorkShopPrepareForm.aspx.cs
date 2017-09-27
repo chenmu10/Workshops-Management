@@ -42,7 +42,7 @@ namespace gui.Gui
                 {
                     // yes
                     WorkshopJoin workshopInfo = db.GetJoinWorkShopByID(selectedPrePare.Workshop_School_Workshop_ID);
-                    School school = db.GetSchoolByID(int.Parse(workshopID));
+                    School school = db.GetSchoolByID(workshopInfo.SchoolID);
                     //PrePare Form Is Ok 
                     _workshopID.Text = workshopID;
                     _schoolName.Text = workshopInfo.School_Name;

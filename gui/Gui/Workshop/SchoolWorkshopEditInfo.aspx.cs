@@ -41,7 +41,7 @@ namespace gui.Gui.Workshop
                 RadioButtonListShowVideoLabel.Visible = false;
                 RadioButtonListShowVideo.Visible = false;
                 prepareComments.Text = "";
-                PrepareFormReadey.Text = "טופס הכנה עוד לא קיים";
+                PrepareFormReadey.Text = "עוד לא מילאו טופס הכנה";
 
                 int ID = int.Parse(Session["WorkshopID"].ToString());
                 WorkshopToView = db.GetJoinWorkShopByID(ID);

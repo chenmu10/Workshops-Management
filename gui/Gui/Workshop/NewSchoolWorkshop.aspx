@@ -228,12 +228,13 @@
 
                     <div class="col-md-4">
                         <label for="Calendar1">אפשרות 1 : </label>
-                        <asp:Calendar FirstDayOfWeek="Sunday" ID="Calendar1" runat="server" DayNameFormat="Shortest" Width="200px"  OnDayRender="calendar_DayRender">
+                         <asp:TextBox type="datetime-local" runat="server" ID="datetimePicker1"  CssClass="form-control" width="220px" ></asp:TextBox>
+                      <%--  <asp:Calendar FirstDayOfWeek="Sunday" ID="Calendar1" runat="server" DayNameFormat="Shortest" Width="200px"  OnDayRender="calendar_DayRender">
                             <TodayDayStyle BackColor="wheat"></TodayDayStyle>
                         </asp:Calendar>
                         <br />
                         <b>שעה:</b>
-                       
+                       <asp:TextBox TextMode="Time" format="HH:mm" runat="server" ID="time1"></asp:TextBox>
                         <!-- Minutes -->
                         <asp:TextBox ID="mm1" type="number" min="0" max="50" step="10"                          
                             Text="0" Width="13%" placeholder="MM" required="required"
@@ -243,17 +244,18 @@
                         <asp:Label runat="server" Style="float: right;">:</asp:Label>
                         <asp:TextBox ID="hh1"
                             type="number" min="7" max="23" runat="server" 
-                           Width="13%" placeholder="H" required="required"></asp:TextBox>
+                           Width="13%" placeholder="H" required="required"></asp:TextBox>--%>
                     </div>
 
                     <div class="col-md-4">
                         <label for="Calendar2">אפשרות 2 : </label>
-                        <asp:Calendar FirstDayOfWeek="Sunday" ID="Calendar2" runat="server" DayNameFormat="Shortest" Width="200px"  OnDayRender="calendar_DayRender">
+                        <asp:TextBox type="datetime-local" runat="server" ID="datetimePicker2" CssClass="form-control" width="220px"></asp:TextBox>
+                    <%--    <asp:Calendar FirstDayOfWeek="Sunday" ID="Calendar2" runat="server" DayNameFormat="Shortest" Width="200px"  OnDayRender="calendar_DayRender">
                             <TodayDayStyle BackColor="wheat"></TodayDayStyle>
                         </asp:Calendar>
                         <br />
                         <b>שעה:</b>
-                       
+                        <asp:TextBox TextMode="Time" format="HH:mm" runat="server" ID="time2"></asp:TextBox>
                         <!-- Minutes -->
                         <asp:TextBox ID="mm2" type="number" min="0" max="50" step="10"                          
                             Text="0" Width="13%" placeholder="MM" required="required"
@@ -263,16 +265,17 @@
                         <asp:Label runat="server" Style="float: right;">:</asp:Label>
                         <asp:TextBox ID="hh2"
                             type="number" min="7" max="23" runat="server" 
-                           Width="13%" placeholder="H" required="required"></asp:TextBox>
+                           Width="13%" placeholder="H" required="required"></asp:TextBox>--%>
                     </div>
                     <div class="col-md-4">
                         <label class="control-label" for="Calendar3">אפשרות 3 : </label>
-                        <asp:Calendar FirstDayOfWeek="Sunday" ID="Calendar3" runat="server" DayNameFormat="Shortest" Width="200px" OnDayRender="calendar_DayRender">
+                        <asp:TextBox type="datetime-local" runat="server" ID="datetimePicker3"  CssClass="form-control" width="220px"></asp:TextBox>
+                      <%--  <asp:Calendar FirstDayOfWeek="Sunday" ID="Calendar3" runat="server" DayNameFormat="Shortest" Width="200px" OnDayRender="calendar_DayRender">
                             <TodayDayStyle BackColor="wheat"></TodayDayStyle>
                         </asp:Calendar>
                         <br />
                         <b>שעה:</b>
-                       
+                         <asp:TextBox TextMode="Time" format="HH:mm" runat="server" ID="time3"></asp:TextBox>
                         <!-- Minutes -->
                         <asp:TextBox ID="mm3" type="number" min="0" max="50" step="10"                          
                             Text="0" Width="13%" placeholder="MM" required="required"
@@ -282,7 +285,7 @@
                         <asp:Label runat="server" Style="float: right;">:</asp:Label>
                         <asp:TextBox ID="hh3"
                             type="number" min="7" max="23" runat="server" 
-                           Width="13%" placeholder="H" required="required"></asp:TextBox>
+                           Width="13%" placeholder="H" required="required"></asp:TextBox>--%>
                         <br />
                         <br />
                     </div>

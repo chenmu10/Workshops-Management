@@ -76,7 +76,7 @@
                             <li class="active"><a href="#companyWorkshop" data-toggle="tab">פרטי סדנא בחברה</a></li>
                             <li><a href="#school" data-toggle="tab">פרטי שיבוץ בי"ס</a></li>
                             <li><a href="#volunteers" data-toggle="tab">פרטי שיבוץ מתנדבות</a></li>
-                            <li><a href="#execute" data-toggle="tab">פרטי ביצוע</a></li>
+                         <%--   <li><a href="#execute" data-toggle="tab">פרטי ביצוע</a></li>--%>
                             <li><a href="#feedback" data-toggle="tab">משובים</a></li>
                         </ul>
                     </div>
@@ -230,7 +230,7 @@
                             </div>
 
                             <%--  TAB 4 - execute--%>
-                            <div class="tab-pane fade" id="execute">
+                          <%--  <div class="tab-pane fade" id="execute">
                                 <asp:Label runat="server" ID="Label1" Text="תאריך הסדנא לא הגיע/תאריך הסדנא עבר."></asp:Label>
                                 <br />
                                 <br />
@@ -238,7 +238,7 @@
 
 
 
-                            </div>
+                            </div>--%>
 
                             <%--  TAB 5 - FEEDBACK--%>
                             <div class="tab-pane fade" id="feedback">
