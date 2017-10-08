@@ -472,7 +472,7 @@ namespace gui.Gui
                        ID3 != selectedWorkshop.CompanyWorkShopVolunteerID3)
                     {
                         //Update DB
-                        if (db.updateSchoolWorkshopVolunteer(selectedWorkshop.CompanyWorkShopID, ID1, ID2, ID3,
+                        if (db.updateCompanyWorkshopVolunteer(selectedWorkshop.CompanyWorkShopID, ID1, ID2, ID3,
                             volunteer1Ride.Text, volunteer2Ride.Text, volunteer3Ride.Text))
                         {
                             succsess.Visible = true;

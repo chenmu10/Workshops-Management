@@ -7,7 +7,12 @@
 <html>
 <head runat="server">
     <title>Volunteers Table</title>
-  
+  <style>
+      .table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
+          font-size: 12px;
+      }
+
+  </style>
 </head>
 <body>
     <form id="form1" runat="server">

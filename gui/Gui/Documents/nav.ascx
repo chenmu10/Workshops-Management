@@ -8,8 +8,9 @@
     .navbar-default .navbar-nav > li > a {
         font-size:18px;
     }
-  
-}
+  /*body {
+       font-size:18px;
+  }*/
 </style>
 <!--Img -->
 <%--<div>

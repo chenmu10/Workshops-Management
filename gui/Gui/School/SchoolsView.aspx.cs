@@ -79,7 +79,7 @@ namespace gui.Gui
             
             int btnID = int.Parse(((Button)sender).ID);
             School SelectedSchool = Schools.Find(x => x.School_ID == btnID);
-            Session["SelectedSchool"] = btnID;
+            Session["SchoolID"] = btnID;
             Response.Redirect("SchoolEditInfo.aspx", false);
 
         }

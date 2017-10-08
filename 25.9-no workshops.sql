@@ -104,13 +104,13 @@ CREATE TABLE IF NOT EXISTS Volunteer (
     FOREIGN KEY (Volunteer_prefer_traning_area) references Area_Activity(Area_Activity_ID),
     UNIQUE (Volunteer_Email)
 );
-INSERT INTO Volunteer VALUES(null,1,'נועה','Noa','רובין','Rubin','a@gmail.com','052-5465468','סטודנטית','פייסבוק','google',0,True,1);
-INSERT INTO Volunteer VALUES(null,1,'אביה','Avia','רובין','Rubin','b@gmail.com','052-5465468','סטודנטית','פייסבוק','facebook',0,True,2);
-INSERT INTO Volunteer VALUES(null,1,'חן','Chen','יהלום','Yhlon','c@gmail.com','052-5465468','אקדמאית','מכרים','HP',0,True,3);
-INSERT INTO Volunteer VALUES(null,2,'דודית','Duduit','ניצן','Nizhan','cd@gmail.com','052-5465468','אקדמאית','מכרים','google',0,True,4);
-INSERT INTO Volunteer VALUES(null,2,'בת','Bat','בן','Ben','e@gmail.com','052-5465468','עובדת בתעשייה','עבודה','intel',1,True,5);
-INSERT INTO Volunteer VALUES(null,3,'חדווה','Chedva','מתמטיקת','Math','f@gmail.com','052-5465468','עובדת בתעשייה','עבודה','intel',2,True,6);
-INSERT INTO Volunteer VALUES(null,3,'דניאל','New volunteer','מתמטיקת','Math','g@gmail.com','052-5465468','עובדת בתעשייה','עבודה','microsoft',3,True,7);
+INSERT INTO Volunteer VALUES(null,1,'נועה','Noa','רובין','Rubin','noa@gmail.com','052-5465468','סטודנטית','פייסבוק','google',0,True,1);
+INSERT INTO Volunteer VALUES(null,1,'אביה','Avia','כהן','Cohen','avia@gmail.com','052-5465468','סטודנטית','פייסבוק','facebook',0,True,2);
+INSERT INTO Volunteer VALUES(null,1,'חן','Chen','יהלום','Yhlom','chen@gmail.com','052-5465468','אקדמאית','מכרים','HP',0,True,3);
+INSERT INTO Volunteer VALUES(null,2,'נופר','Nofar','ניצן','Nizhan','nizan@gmail.com','052-5465468','אקדמאית','מכרים','google',0,True,4);
+INSERT INTO Volunteer VALUES(null,2,'מור','Mor','אלעזר','Elazar','mor@gmail.com','052-5465468','עובדת בתעשייה','עבודה','intel',1,True,5);
+INSERT INTO Volunteer VALUES(null,3,'פרח','Perah','כהן','Cohen','perah@gmail.com','052-5465468','עובדת בתעשייה','עבודה','intel',2,True,6);
+INSERT INTO Volunteer VALUES(null,3,'דניאל','Daniel','מלמד','Melamed','daniel@gmail.com','052-5465468','עובדת בתעשייה','עבודה','microsoft',3,True,7);
 
 CREATE TABLE IF NOT EXISTS VolunteerToAreas(
 VolunteerToAreas_ID INTEGER NOT NULL AUTO_INCREMENT,
@@ -158,15 +158,7 @@ CREATE TABLE IF NOT EXISTS CompanyWorkShop(
     FOREIGN KEY (WorkShop_Volunteer3) references Volunteer(Volunteer_ID),
     FOREIGN KEY (WorkShop_Volunteer4) references Volunteer(Volunteer_ID)
 );
-INSERT INTO CompanyWorkShop VALUES(null,2,'2017-1-1 08:00:00',null,null,null,null,20,'הערות חברה ביצירת סדנא',null,1,null,null);
-INSERT INTO CompanyWorkShop VALUES(null,2,'2017-1-1 08:00:00',null,null,null,null,30,'הערות חברה ביצירת סדנא',null,2,null,null);
-INSERT INTO CompanyWorkShop VALUES(null,2,'2017-1-1 08:00:00',null,null,null,null,40,'הערות חברה ביצירת סדנא',null,3,null,null);
-INSERT INTO CompanyWorkShop VALUES(null,4,'2017-8-8 09:00:00',null,null,null,null,10,'הערות חברה ביצירת סדנא',3,2,12,'הערת בית ספר');
-INSERT INTO CompanyWorkShop VALUES(null,1,'2017-9-9 10:00:00',null,null,null,null,30,'הערות חברה ביצירת סדנא',2,3,30,'הערת בית ספר');
-INSERT INTO CompanyWorkShop VALUES(null,1,'2017-9-27 08:00:00',1,null,null,null,50,'הערות חברה ביצירת סדנא',1,1,50,'הערת בית ספר');
-INSERT INTO CompanyWorkShop VALUES(null,1,'2017-9-27 08:00:00',1,null,4,null,60,'הערות חברה ביצירת סדנא',1,2,60,'הערת בית ספר');
-INSERT INTO CompanyWorkShop VALUES(null,3,'2017-9-27 08:00:00',3,4,6,null,70,'הערות חברה ביצירת סדנא',1,3,70,'הערת בית ספר');
-INSERT INTO CompanyWorkShop VALUES(null,3,'2017-9-27 08:00:00',5,2,7,null,80,'הערות חברה ביצירת סדנא',1,1,80,'הערת בית ספר');
+
 
 
 
@@ -198,12 +190,6 @@ CREATE TABLE IF NOT EXISTS SchoolWorkShop(
     FOREIGN KEY (WorkShop_Volunteer4) references Volunteer(Volunteer_ID),
     FOREIGN KEY (WorkShop_School_ID) references School(School_ID)
 );
-INSERT INTO SchoolWorkShop VALUES(null,5,'2017-1-1 12:12:00','2017-1-1 12:12:00','2017-1-12 12:12:00',null,null,null,null,null,20,10,'סדנא אוטומטית',null,null,null,false,1);
-INSERT INTO SchoolWorkShop VALUES(null,5,'2017-2-1 12:12:00','2017-5-1 12:12:00','2017-2-15 12:12:00',null,null,null,null,null,30,20,'סדנא אוטומטית',null,null,null,true,2);
-INSERT INTO SchoolWorkShop VALUES(null,1,'2017-3-1 12:12:00','2017-6-1 12:12:00','2017-3-1 12:12:00',2,null,null,null,null,20,20,'סדנא אוטומטית',null,null,null,false,3);
-INSERT INTO SchoolWorkShop VALUES(null,1,'2017-4-20 12:12:00','2017-7-1 12:12:00','2017-7-1 12:12:00',1,1,2,null,null,20,20,'סדנא אוטומטית',null,null,null,false,4);
-INSERT INTO SchoolWorkShop VALUES(null,6,'2017-4-20 12:12:00','2017-7-1 12:12:00','2017-7-1 12:12:00',3,1,2,6,null,20,20,'סדנא אוטומטית',null,null,null,true,5);
-
 
 
 CREATE TABLE IF NOT EXISTS Prepare_School_WorkShop (
@@ -224,7 +210,7 @@ CREATE TABLE IF NOT EXISTS Prepare_School_WorkShop (
     PRIMARY KEY (Prepare_ID),
     FOREIGN KEY (Workshop_School_Workshop_ID) references SchoolWorkShop(WorkShop_ID)
 );
-INSERT INTO prepare_school_workshop	VALUES(null,55,55,true,	true,true,true,	'הערות מטופס הכנה','רינה המורה','052-5465468','chenmu10@gmail.com','חנייה בתשלום', 5);
+
 
 CREATE TABLE IF NOT EXISTS School_WorkShop_Ride (
 	School_WorkShop_Ride_ID INTEGER NOT NULL AUTO_INCREMENT,
@@ -234,7 +220,7 @@ CREATE TABLE IF NOT EXISTS School_WorkShop_Ride (
     FOREIGN KEY (School_WorkShop_Ride_ID) references SchoolWorkShop(WorkShop_ID),
     FOREIGN KEY (School_WorkShop_Ride_Volunteer) references Volunteer(Volunteer_ID)
 );
-INSERT INTO School_WorkShop_Ride VALUES(1,1,'לנסוע ביחד מירשולים');
+
 
 CREATE TABLE IF NOT EXISTS Company_WorkShop_Ride (
 	Company_WorkShop_Ride_ID INTEGER NOT NULL AUTO_INCREMENT,
@@ -244,7 +230,7 @@ CREATE TABLE IF NOT EXISTS Company_WorkShop_Ride (
     FOREIGN KEY (Company_WorkShop_Ride_ID) references CompanyWorkShop(WorkShop_ID),
     FOREIGN KEY (Company_WorkShop_Ride_Volunteer) references Volunteer(Volunteer_ID)
 );
-INSERT INTO Company_WorkShop_Ride VALUES(1,1,'לנסוע ביחד מירשולים');
+
 
 
 
