@@ -1,6 +1,7 @@
 ﻿using gui.Models;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Web.UI;
 
 namespace gui.Gui.Workshop
@@ -13,6 +14,7 @@ namespace gui.Gui.Workshop
         SchoolWorkShop schoolWorkshop = new SchoolWorkShop();
         protected void Page_Load(object sender, EventArgs e)
         {
+            System.Threading.Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("he-IL");
             this.Load += new System.EventHandler(this.Page_Load);
             db = new DB();
             db.IsConnect();

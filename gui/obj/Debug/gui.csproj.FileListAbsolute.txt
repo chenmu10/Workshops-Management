@@ -126,3 +126,5 @@ C:\Users\Chen\Projects\MMT\gui\bin\Google.Apis.xml
 C:\Users\Chen\Projects\MMT\gui\bin\Google.Apis.Auth.xml
 C:\Users\Chen\Projects\MMT\gui\bin\Google.Apis.Calendar.v3.xml
 C:\Users\Chen\Projects\MMT\gui\bin\Google.Apis.Core.xml
+C:\Users\chen\Projects\MMT\gui\obj\Debug\gui.Properties.Resources.resources
+C:\Users\chen\Projects\MMT\gui\obj\Debug\gui.csproj.GenerateResource.Cache
