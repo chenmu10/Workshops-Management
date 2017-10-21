@@ -228,14 +228,14 @@
 
                     <div class="col-md-4">
                         <label for="Calendar1">אפשרות 1 : </label>
-                         <asp:TextBox type="datetime-local" runat="server" ID="datetimePicker1"  CssClass="form-control" width="220px" ></asp:TextBox>
-                      <%--  <asp:Calendar FirstDayOfWeek="Sunday" ID="Calendar1" runat="server" DayNameFormat="Shortest" Width="200px"  OnDayRender="calendar_DayRender">
+                        <%-- <asp:TextBox type="date" runat="server" ID="datetimePicker1"  CssClass="form-control" width="220px" ></asp:TextBox>--%>
+                        <asp:Calendar FirstDayOfWeek="Sunday" ID="Calendar1" runat="server" DayNameFormat="Shortest" Width="200px"  OnDayRender="calendar_DayRender">
                             <TodayDayStyle BackColor="wheat"></TodayDayStyle>
                         </asp:Calendar>
                         <br />
                         <b>שעה:</b>
                        <asp:TextBox TextMode="Time" format="HH:mm" runat="server" ID="time1"></asp:TextBox>
-                        <!-- Minutes -->
+                       <%-- <!-- Minutes -->
                         <asp:TextBox ID="mm1" type="number" min="0" max="50" step="10"                          
                             Text="0" Width="13%" placeholder="MM" required="required"
                             runat="server"></asp:TextBox>
@@ -249,7 +249,7 @@
 
                     <div class="col-md-4">
                         <label for="Calendar2">אפשרות 2 : </label>
-                        <asp:TextBox type="datetime-local" runat="server" ID="datetimePicker2" CssClass="form-control" width="220px"></asp:TextBox>
+                        <asp:TextBox type="datetime-local" format="dd/mm/yyyy" runat="server" ID="datetimePicker2" CssClass="form-control" width="220px"></asp:TextBox>
                     <%--    <asp:Calendar FirstDayOfWeek="Sunday" ID="Calendar2" runat="server" DayNameFormat="Shortest" Width="200px"  OnDayRender="calendar_DayRender">
                             <TodayDayStyle BackColor="wheat"></TodayDayStyle>
                         </asp:Calendar>

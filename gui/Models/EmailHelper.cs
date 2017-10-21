@@ -16,9 +16,9 @@ namespace gui.Models
 {
     public class EmailHelper
     {
-        string fromAddress = "mmt.send@gmail.com"; // temporary - personal email..
+        string fromAddress = "chenitunes@gmail.com"; // temporary - personal email..
         string fromPassword = "mmtproject";
-        string TestMail = "chenmu10@gmail.com";
+        string TestMail = "mmt.send@gmail.com";
         string EmailTitle = "MMT";
         string ManagerMail = "chenmu10@gmail.com";
         string signature, signature_path, sendBody;
@@ -30,17 +30,17 @@ namespace gui.Models
         // Files path
         // General
         string VolunteerInviteBody;
-        string feedbackVolunteer;
-        string CancelWorkshop;
+        //string feedbackVolunteer;
+        //string CancelWorkshop;
 
         // Company
         string SchoolInviteBody;
-        string AssignCompleteCompany;
+        //string AssignCompleteCompany;
 
         // School
         string AssignCompleteSchool;
         string PrepareBody;
-        string feedbackTeacher;
+        //string feedbackTeacher;
    
 
 
@@ -239,7 +239,7 @@ namespace gui.Models
 
             DateTime startTime = Convert.ToDateTime(s.SchoolWorkShopDate1); // רק להגשה- אין בדיקה איזה תאריך נבחר
             DateTime endTime = startTime.AddHours(4);
-            //MakeAppointment(new List<string>() { "chenmu10@gmail.com" }, addressAndCity, startTime, endTime);
+            MakeAppointment(new List<string>() { "chenmu10@gmail.com", email1 , email2 , email3 , selectedSchool.School_Contact_Email }, addressAndCity, startTime, endTime);
 
             //Try to send mail
             try
@@ -286,7 +286,7 @@ namespace gui.Models
             //Subject & Body information
             string subject = sendBody.Split('%')[0].Replace("\n", "").Replace("\r", "");
             sendBody = sendBody.Split('%')[1];
-
+            
             //Body information replace by values
             // Replace {0},{1},{2}....
             sendBody = string.Format(sendBody,
