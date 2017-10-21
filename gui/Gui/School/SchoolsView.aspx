@@ -62,7 +62,7 @@
                             <span class="glyphicon glyphicon-sort"></span>
                         </asp:LinkButton>
                     </asp:TableCell>
-                   <%-- <asp:TableCell Font-Bold="true"> סמל מוסד</asp:TableCell>--%>
+                    <asp:TableCell Font-Bold="true"> סמל מוסד</asp:TableCell>
                     <asp:TableCell Font-Bold="true"> איזור </asp:TableCell>
                     <asp:TableCell Font-Bold="true"> כתובת</asp:TableCell>
                     <asp:TableCell Font-Bold="true"> שם איש קשר</asp:TableCell>

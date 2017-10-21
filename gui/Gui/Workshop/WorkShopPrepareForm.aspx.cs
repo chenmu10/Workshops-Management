@@ -70,11 +70,13 @@ namespace gui.Gui
         {
             if (estimatedParticipants == null ||
                 numOfCompWithEmulator == null ||
-                String.IsNullOrWhiteSpace(schoolparking.Text) ||
                 RadioButtonListDidPrepare.SelectedIndex == -1 ||
+                RadioButtonListAnswer_PerWorkshop.SelectedIndex == -1 ||
+                RadioButtonListStudent_Gmail.SelectedIndex == -1 ||
                 RadioButtonListProjectOrControl.SelectedIndex == -1 ||
                 RadioButtonListSeniors.SelectedIndex == -1 ||
                 RadioButtonListShowVideo.SelectedIndex == -1 ||
+                 String.IsNullOrWhiteSpace(compManagerPhone.Text) ||
                 String.IsNullOrWhiteSpace(teacherName.Text) ||
                 String.IsNullOrWhiteSpace(teacherEmail.Text) ||
                 String.IsNullOrWhiteSpace(teacherPhone.Text))
@@ -96,9 +98,12 @@ namespace gui.Gui
             numOfCompWithEmulator.Text = String.Empty;
             schoolparking.Text = String.Empty;
             RadioButtonListDidPrepare.SelectedIndex = -1;
+            RadioButtonListStudent_Gmail.SelectedIndex = -1;
+            RadioButtonListAnswer_PerWorkshop.SelectedIndex = -1;
             RadioButtonListProjectOrControl.SelectedIndex = -1;
             RadioButtonListSeniors.SelectedIndex = -1;
             RadioButtonListShowVideo.SelectedIndex = -1;
+            compManagerPhone.Text = String.Empty;
             teacherName.Text = String.Empty;
             teacherEmail.Text = String.Empty;
             teacherPhone.Text = String.Empty;
@@ -118,13 +123,15 @@ namespace gui.Gui
                 prepareInfo.WorkShop_Is_Projector = Convert.ToBoolean(RadioButtonListProjectOrControl.SelectedValue);
                 prepareInfo.WorkShop_Is_Seniors_Coming = Convert.ToBoolean(RadioButtonListSeniors.SelectedValue);
                 prepareInfo.WorkShop_Did_Preparation = Convert.ToBoolean(RadioButtonListDidPrepare.SelectedValue);
+                prepareInfo.Workshop_Is_All_Student_Answer_PerWorkshop = Convert.ToBoolean(RadioButtonListAnswer_PerWorkshop.SelectedValue);
+                prepareInfo.Workshop_Is_All_Student_Gmail = Convert.ToBoolean(RadioButtonListStudent_Gmail.SelectedValue);
                 prepareInfo.WorkShop_Teacher_Name = teacherName.Text.ToString();
                 prepareInfo.WorkShop_Teacher_Email = teacherEmail.Text.ToString();
                 prepareInfo.WorkShop_Teacher_phone = teacherPhone.Text.ToString();
                 prepareInfo.WorkShop_Comments = prepareComment.Text;
                 prepareInfo.WorkShop_Is_Video_possible = Convert.ToBoolean(RadioButtonListShowVideo.SelectedValue);
                 prepareInfo.WorkShop_Number_Of_emulator_Computer = Convert.ToInt32(numOfCompWithEmulator.Text.ToString());
-
+                prepareInfo.WorkShop_Computer_Manager_Phone= compManagerPhone.Text.ToString();
                 string schoolparkingValue = schoolparking.Text.ToString(); // MISSING db.update school parking by schoolID
 
                 //msg.InnerText = "עוד לא בוצע update";
@@ -132,6 +139,7 @@ namespace gui.Gui
                 if (db.UpdatePrepare(prepareInfo)) 
                 {
                     Response.Write("<script>alert('טופס הכנה עודכן בהצלחה!');</script>");
+                    ClearForm();
                 }
                 else
                 {

@@ -70,7 +70,7 @@
             <ul class="nav navbar-nav navbar-right flip">
                <li><asp:LinkButton runat="server" ID="forms" href="../documents/ExternalForms.aspx">טפסים</asp:LinkButton></li>
 				<li><asp:LinkButton runat="server" ID="shobech" href="../documents/AssignForms.aspx">שיבוצים</asp:LinkButton></li>
-				<%--<li><a href="reports.html">דוחות</a></li>--%>
+				<li><a href="../school/NewSchoolForm.aspx">דוחות</a></li>
 				<li><asp:LinkButton runat="server" ID="manager" href="../Documents/LoginManager.aspx">ניהול<span class="sr-only"></span></asp:LinkButton></li>
             </ul>
         </div>

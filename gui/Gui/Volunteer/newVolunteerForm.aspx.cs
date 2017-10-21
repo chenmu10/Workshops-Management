@@ -24,12 +24,12 @@ namespace gui
             db.IsConnect();
             GetAreasFromDB();
 
-            bool check = false;
+            bool check = true;
 
             if (check)
             {
                 Firstname.Text = "חן";
-                Lastname.Text = "מו";
+                Lastname.Text = "מ";
                 Firstnameeng.Text = "chen";
                 Lastnameeng.Text = "mu";
                 Email.Text = "chenmu10@gmail.com";
@@ -143,7 +143,7 @@ namespace gui
                 //Response.Write("<script>alert('נוספת בהצלחה למאגר'); window.location.href = '../Documents/SuccessNewVolunteer.aspx'; </script>");
                 Response.Write("<script>alert('נוספת בהצלחה למאגר');</script>");
                 //Thread.Sleep(50);
-                //Response.Redirect("../Documents/SuccessNewVolunteer.aspx", false);
+                Response.Redirect("../Documents/SuccessNewVolunteer.aspx", false);
             }
             else
             {

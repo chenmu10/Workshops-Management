@@ -20,6 +20,7 @@ namespace gui.Gui
             db.IsConnect();
             companies = db.GetAllComapny();
             Areas = db.GetAreaActivity();
+            FillFilterDropdowns();
 
             foreach (Company company in companies)
             {
@@ -98,6 +99,16 @@ namespace gui.Gui
             {
                 return;
             }          
+        }
+
+        public void FillFilterDropdowns()
+        {
+            List<ListItem> Areas = db.GetAllAreas();
+            for (int i = 0; i < Areas.Count; i++)
+            {
+                DropDownListAreas.Items.Add(new ListItem(Areas[i].Text, i.ToString()));
+            }
+
         }
     }
 }

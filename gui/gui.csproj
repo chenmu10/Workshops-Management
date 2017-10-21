@@ -122,6 +122,7 @@
     <Content Include="Gui\Documents\nav.ascx" />
     <Content Include="Gui\Documents\ExternalForms.aspx" />
     <Content Include="Gui\Documents\SuccessNewVolunteer.aspx" />
+    <Content Include="Gui\School\NewSchoolForm.aspx" />
     <Content Include="Gui\School\SchoolEditInfo.aspx" />
     <Content Include="Gui\Volunteer\ApproveNewVolunteerForm.aspx" />
     <Content Include="Gui\Company\CompanyView.aspx" />
@@ -227,6 +228,13 @@
     </Compile>
     <Compile Include="Gui\Documents\SuccessNewVolunteer.aspx.designer.cs">
       <DependentUpon>SuccessNewVolunteer.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Gui\School\NewSchoolForm.aspx.cs">
+      <DependentUpon>NewSchoolForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Gui\School\NewSchoolForm.aspx.designer.cs">
+      <DependentUpon>NewSchoolForm.aspx</DependentUpon>
     </Compile>
     <Compile Include="Gui\School\SchoolEditInfo.aspx.cs">
       <DependentUpon>SchoolEditInfo.aspx</DependentUpon>

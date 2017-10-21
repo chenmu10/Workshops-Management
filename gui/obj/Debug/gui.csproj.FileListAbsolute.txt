@@ -33,7 +33,6 @@ C:\Users\chen\Projects\MMT\gui\bin\MySql.Data.dll
 C:\Users\chen\Projects\MMT\gui\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 C:\Users\chen\Projects\MMT\gui\obj\Debug\gui.dll
 C:\Users\chen\Projects\MMT\gui\obj\Debug\gui.pdb
-C:\Users\chen\Projects\MMT\gui\obj\Debug\gui.csprojResolveAssemblyReference.cache
 C:\Users\Chen\Projects\MMT_git\gui\bin\roslyn\csc.exe
 C:\Users\Chen\Projects\MMT_git\gui\bin\roslyn\csc.exe.config
 C:\Users\Chen\Projects\MMT_git\gui\bin\roslyn\csc.rsp
@@ -178,3 +177,4 @@ C:\Users\Avi\Desktop\v4.2\MMT\gui\bin\ExcelDataReader.xml
 C:\Users\Chen\Projects\MMT\gui\bin\ExcelDataReader.dll
 C:\Users\Chen\Projects\MMT\gui\bin\ExcelDataReader.xml
 C:\Users\Chen\Projects\MMT\gui\obj\Debug\gui.csproj.ResolveComReference.cache
+C:\Users\Chen\Projects\MMT\gui\obj\Debug\gui.csprojResolveAssemblyReference.cache

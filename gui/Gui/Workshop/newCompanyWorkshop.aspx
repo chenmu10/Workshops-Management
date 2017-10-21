@@ -20,7 +20,7 @@
 
             <h2>הוספת סדנאות בחברה</h2>
             <hr />
-          
+
             <!-- Choose Company By Name -->
             <label class="control-label" for="dropDownCompanyName">בחירת חברה: </label>
             <div>
@@ -41,17 +41,17 @@
                     <!-- Company ID -->
                     <label class="control-label" for="companyID">מספר מזהה:</label>
                     <br />
-                    <asp:TextBox ID="companyID" runat="server" type="number" Enabled="false" class="form-control"></asp:TextBox>
+                    <asp:TextBox ID="companyID" runat="server" type="number" Enabled="false" CssClass="form-control disabled" Width="220px"></asp:TextBox>
                     <br />
                     <!-- Company Address -->
                     <label class="control-label" for="address">כתובת:</label>
                     <br />
-                    <asp:TextBox ID="address" runat="server" Enabled="false" class="form-control"></asp:TextBox>
+                    <asp:TextBox ID="address" runat="server" Enabled="false" CssClass="form-control disabled" Width="220px"></asp:TextBox>
                     <br />
                     <!-- Company Area -->
                     <label class="control-label" for="area">אזור:</label>
                     <br />
-                    <asp:TextBox ID="area" runat="server" Enabled="false" class="form-control"></asp:TextBox>
+                    <asp:TextBox ID="area" runat="server" Enabled="false" CssClass="form-control disabled" Width="220px"></asp:TextBox>
                 </fieldset>
             </div>
 
@@ -84,33 +84,23 @@
                     <!-- Date -->
                     <asp:Label runat="server" ID="DateError" Font-Bold="True" Font-Size="Large" ForeColor="Red"></asp:Label>
                     <label for="calendar">תאריך : </label>
-                      <br />
-                    <asp:TextBox type="datetime-local" runat="server" ID="datetimePicker" ></asp:TextBox>
                     <br />
-                 
-                    
-                    
-                    <%-- <asp:Calendar FirstDayOfWeek="Sunday" ID="calendar" runat="server" DayNameFormat="Shortest" Width="200px" OnDayRender="calendar_DayRender">
-                        <TodayDayStyle BackColor="Blue" ForeColor="Yellow"></TodayDayStyle>
+                    <asp:TextBox type="date" runat="server" ID="datePicker" CssClass="form-control" Width="220px"></asp:TextBox>
+                    <br />
+                  
+                    <div class="form-inline">
+                        <b>שעה:</b>
+                        <!-- Minutes -->
+                        <asp:TextBox ID="minutes" type="number" min="0" max="50" step="10" CssClass="form-control"
+                            Text="0" Width="60px" required="required"
+                            runat="server"></asp:TextBox>
+                        <b>:</b>
+                        <!-- Hour -->
+                        <asp:TextBox ID="hour"
+                            type="number" min="7" max="23" runat="server" CssClass="form-control"
+                            Width="60px" placeholder="H" required="required"></asp:TextBox>
+                    </div>
 
-                    </asp:Calendar>--%>
-
-                    <!-- Time -->
-                  <%--  <b>שעה:</b>
-                  --%>
-                   <%-- <!-- Minutes -->
-                    <asp:TextBox ID="minutes"
-                        type="number" min="0" max="50" step="10"
-                        class="form-control"
-                        Text="0"
-                        runat="server" CssClass="pull-right"></asp:TextBox>
-
-                    <!-- Hour -->
-                    <asp:Label runat="server" Style="float: right;">:</asp:Label>
-                    <asp:TextBox ID="hour"
-                        type="number" min="7" max="23" runat="server" Text="8"
-                        class="form-control"
-                        CssClass="pull-right"></asp:TextBox>--%>
 
 
                 </fieldset>

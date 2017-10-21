@@ -43,6 +43,9 @@ namespace gui.Gui.Workshop
             companyID.Text = selectedComp.Company_ID.ToString();
             address.Text = selectedComp.Company_Address;
             area.Text = Areas[selectedComp.Company_Area_Activity].Text.ToString();
+            area.CssClass = "form-control disabled";
+            address.CssClass = "form-control disabled";
+            companyID.CssClass = "form-control disabled";
         }
 
 
@@ -54,7 +57,7 @@ namespace gui.Gui.Workshop
                 newcw.CompanyWorkShopComments = comments.Text;
                 newcw.WorkShop_Number_Of_StudentPredicted = Convert.ToInt32(PredictedStudentsNum.Text);
                 newcw.CompanyID = Convert.ToInt32(companyID.Text);
-                newcw.CompanyWorkShopDate = datetimePicker.Text;
+                newcw.CompanyWorkShopDate = datePicker.Text + Convert2Time(hour.Text, minutes.Text);
 
                 if (db.InsertNewCompanyWorkShop(newcw))
                 {
@@ -125,9 +128,10 @@ namespace gui.Gui.Workshop
         private void ClearWorkshopDetails()
         {
             PredictedStudentsNum.Text = "";
-            //hour.Text = "";
-            //minutes.Text = "";
+            hour.Text = "";
+            minutes.Text = "";
             comments.Text = "";
+            datePicker.Text = "";
             //calendar.SelectedDate = DateTime.Now;
         }
 
@@ -146,6 +150,15 @@ namespace gui.Gui.Workshop
                 e.Day.IsSelectable = false;
                 e.Cell.ForeColor = System.Drawing.Color.Gray;
             }
+        }
+
+        public string Convert2Time(string hour, string min)
+        {
+           
+            if (int.Parse(hour) < 10) hour = "0" + hour;
+            if (int.Parse(min) < 10) min = "0" + min;
+            return " " + hour + ":" + min + ":" + "00";
+            
         }
     }
 }

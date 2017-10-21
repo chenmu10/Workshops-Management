@@ -13,14 +13,18 @@ namespace gui.Gui
         List<School> Schools = new List<School>();
         Dictionary<int, string> Areas = new Dictionary<int, string>();
         Dictionary<int, string> ListStatus = new Dictionary<int, string>();
+        DB db;
+
         override protected void OnInit(EventArgs e)
         {
             this.Load += new System.EventHandler(this.Page_Load);
-            DB db = new DB();
+            db = new DB();
             db.IsConnect();
             Schools = db.GetAllSchools();
             Areas = db.GetAreaActivity();
             ListStatus = db.GetVolunteerStatus();
+            FillFilterDropdowns();
+
             foreach (School School in Schools)
             {
                 TableCell id = new TableCell();
@@ -30,8 +34,8 @@ namespace gui.Gui
                 TableCell Name = new TableCell();
                 Name.Text = School.School_Name;
 
-                //TableCell Symbol = new TableCell();
-                //Symbol.Text = School.School_Serial_Number.ToString(); ;
+                TableCell Symbol = new TableCell();
+                Symbol.Text = School.School_Serial_Number.ToString(); ;
 
                 TableCell Area = new TableCell();
                 Area.Text = Areas[School.School_Area];
@@ -60,7 +64,7 @@ namespace gui.Gui
           
                 TableRow.Cells.Add(id);
                 TableRow.Cells.Add(Name);
-                //TableRow.Cells.Add(Symbol);
+                TableRow.Cells.Add(Symbol);
                 TableRow.Cells.Add(Area);
                 TableRow.Cells.Add(Address);
                 TableRow.Cells.Add(ContectName);
@@ -84,7 +88,15 @@ namespace gui.Gui
 
         }
 
-     
+        public void FillFilterDropdowns()
+        {
+            List<ListItem> Areas = db.GetAllAreas();
+            for (int i = 0; i < Areas.Count; i++)
+            {
+                DropDownListAreas.Items.Add(new ListItem(Areas[i].Text, i.ToString()));
+            }
+
+        }
 
 
         protected void Page_Load(object sender, EventArgs e)

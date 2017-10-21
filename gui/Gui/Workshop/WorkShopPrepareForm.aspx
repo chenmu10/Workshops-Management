@@ -18,6 +18,7 @@
             <div class="row">
                 <div class="col-sm-6">
                     <div class="page-header">
+                        <asp:Image runat="server" Height="107px" Width="402px" ImageUrl="../../../Content/mmtlogo.png" AlternateText="Picture not found" />
                         <h3>הכנה לסדנת מהממ"ט בבי"ס<br />
                         </h3>
                         מס' סדנא: <span id="workshopID" runat="server">
@@ -39,13 +40,10 @@
                     </div>
 
 
+                 
+                  
                     <br />
-
-                 <br />    
-             <label class="control-label" for="estimatedParticipants">להוסיף 3 שאלות חדשות</label>
- <br />
- <br />
- <br />
+                    <br />
                     <!--Participants number-->
                     <label class="control-label" for="estimatedParticipants">מספר התלמידות הסופי שיקחו חלק בסדנה: </label>
 
@@ -81,24 +79,22 @@
                     <div>
                         <asp:TextBox ID="schoolparking"
                             type="text"
-                            required="required"
                             class="form-control"
-                            oninvalid="setCustomValidity('יש להזין חנייה')"
-                            onchange="try{setCustomValidity('')}catch(e){}"
                             placeholder="לדוג' חנייה ברחוב X בתשלום 20 ליום.."
                             runat="server"></asp:TextBox>
                     </div>
                     <br />
 
                     <label class="control-label" for="prepareComment">הערות: </label>
-                                        <div class="form-inline">
-                                            <asp:TextBox ID="prepareComment"
-                                                runat="server" Width="220px"
-                                                class="form-control"
-                                                TextMode="MultiLine"
-                                                Rows="5" Style="resize: none;"></asp:TextBox>
-                                        </div>
+                    <div class="form-inline">
+                        <asp:TextBox ID="prepareComment"
+                            runat="server" Width="220px"
+                            class="form-control"
+                            TextMode="MultiLine"
+                            Rows="5" Style="resize: none;"></asp:TextBox>
+                    </div>
                     <br />
+
 
                     <!--DidPrepare PDF yes/no-->
                     <label class="control-label" for="RadioButtonListDidPrepare">בוצעו כלל הוראות מסמך ההכנה?</label>
@@ -107,6 +103,26 @@
                         <asp:ListItem Value="False" Text="לא"></asp:ListItem>
                     </asp:RadioButtonList>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ControlToValidate="RadioButtonListDidPrepare" runat="server" ErrorMessage="יש לבחור" ForeColor="Red"></asp:RequiredFieldValidator>
+                    <br />
+
+                    <!--Answer_PerWorkshop yes/no-->
+                    <label class="control-label" for="RadioButtonListAnswer_PerWorkshop">
+                        האם כל התלמידות ענו על השאלון המקדים לסדנה? השאלון נמצא ב:
+                         https://docs.google.com/forms/d/17vFUdE_wN4RuuGp4J1OC_Au5zK_DqIKqXExwVeaYCa8/viewform</label>
+                    <asp:RadioButtonList ID="RadioButtonListAnswer_PerWorkshop" runat="server">
+                        <asp:ListItem Value="True" Text="כן"></asp:ListItem>
+                        <asp:ListItem Value="False" Text="לא"></asp:ListItem>
+                    </asp:RadioButtonList>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator5" ControlToValidate="RadioButtonListAnswer_PerWorkshop" runat="server" ErrorMessage="יש לבחור" ForeColor="Red"></asp:RequiredFieldValidator>
+                    <br />
+
+                    <!--Student_Gmail yes/no-->
+                    <label class="control-label" for="RadioButtonListStudent_Gmail">האם לכל התלמידות נפתח חשבון ג'ימייל (והן זוכרות את הסיסמה)? זה הכרחי לפעילות.</label>
+                    <asp:RadioButtonList ID="RadioButtonListStudent_Gmail" runat="server">
+                        <asp:ListItem Value="True" Text="כן"></asp:ListItem>
+                        <asp:ListItem Value="False" Text="לא"></asp:ListItem>
+                    </asp:RadioButtonList>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator6" ControlToValidate="RadioButtonListStudent_Gmail" runat="server" ErrorMessage="יש לבחור" ForeColor="Red"></asp:RequiredFieldValidator>
                     <br />
 
                     <!--Projector\contorl program yes/no -->
@@ -136,7 +152,17 @@
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator4" ControlToValidate="RadioButtonListShowVideo" runat="server" ErrorMessage="יש לבחור" ForeColor="Red"></asp:RequiredFieldValidator>
                     <br />
 
-
+                     <!--Phone Computer Person-->
+                            <label class="control-label" for="compManagerPhone">מהו מס' הטלפון של אחראי/ת המחשבים?</label>
+                            <asp:TextBox class="form-control" ID="compManagerPhone"
+                                type="tel"
+                                pattern="[0-9]{3}-[0-9]{7}"
+                                required="required"
+                                oninvalid="setCustomValidity('05X-XXXXXXX  הכניסי את הטלפון לפי הפורמט')"
+                                onchange="try{setCustomValidity('')}catch(e){}"
+                                placeholder="05X-XXXXXXX" Width="40%"
+                                runat="server"></asp:TextBox>
+                          <br />
                     <!-- Teacher Details-->
                     <div>
                         <fieldset>
@@ -152,12 +178,12 @@
                                 pattern="[\u0590-\u05FF''-'\s]{1,20}"
                                 oninvalid="setCustomValidity('שם פרטי לא תקין, אנא נסי שם בעברית')"
                                 onchange="try{setCustomValidity('')}catch(e){}"
-                                required="required" placeholder="שם מלא"
+                                required="required" placeholder="שם מלא" Width="40%"
                                 runat="server"></asp:TextBox>
                             <br />
                             <!-- Email-->
                             <label class="control-label" for="teacherEmail">אימייל:</label>
-                            <asp:TextBox class="form-control" runat="server" ID="teacherEmail" placeholder="example@gmail.com" type="email" required="required" />
+                            <asp:TextBox class="form-control" runat="server" ID="teacherEmail" placeholder="example@gmail.com" type="email" required="required" Width="40%" />
                             <br />
                             <!--Phone-->
                             <label class="control-label" for="teacherPhone">טלפון:</label>
@@ -167,7 +193,7 @@
                                 required="required"
                                 oninvalid="setCustomValidity('05X-XXXXXXX  הכניסי את הטלפון לפי הפורמט')"
                                 onchange="try{setCustomValidity('')}catch(e){}"
-                                placeholder="05X-XXXXXXX"
+                                placeholder="05X-XXXXXXX" Width="40%"
                                 runat="server"></asp:TextBox>
                         </fieldset>
                     </div>
@@ -175,7 +201,7 @@
                     <br />
 
                     <asp:Button runat="server" CssClass="btn btn-success center-block" Text="שליחה" OnClick="UpdatePrepareToWorkshop" />
-               
+
                     <span id="msg" style="font-style: italic" runat="server"></span>
 
                 </div>

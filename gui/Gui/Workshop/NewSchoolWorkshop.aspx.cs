@@ -52,12 +52,12 @@ namespace gui
                 // workshop data
                 string StudentPredict = studentpredict.Text.ToString();
 
-                //string Date1 = Convert2Date(Calendar1.SelectedDate.Date.ToString(),hh1.Text.ToString(),mm1.Text.ToString());
-                //string Date2 = Convert2Date(Calendar2.SelectedDate.Date.ToString(), hh2.Text.ToString(), mm2.Text.ToString());
-                //string Date3 = Convert2Date(Calendar3.SelectedDate.Date.ToString(), hh2.Text.ToString(), mm3.Text.ToString());
-                string Date1 = datetimePicker1.Text;
-                string Date2 = datetimePicker2.Text;
-                string Date3 = datetimePicker3.Text;
+                string Date1 = Convert2Date(datePicker1.Text, hh1.Text.ToString(), mm1.Text.ToString());
+                string Date2 = Convert2Date(datePicker2.Text, hh2.Text.ToString(), mm2.Text.ToString());
+                string Date3 = Convert2Date(datePicker3.Text, hh2.Text.ToString(), mm3.Text.ToString());
+                //string Date1 = datetimePicker1.Text;
+                //string Date2 = datetimePicker2.Text;
+                //string Date3 = datetimePicker3.Text;
                 int StudentCount = int.Parse(studentpredict.Text.ToString());
                 int ComputerCount = int.Parse(numberofcumputers.Text.ToString());
                 string FormComment = comments.Text.ToString();
@@ -192,13 +192,17 @@ namespace gui
         {
             schoolname.Enabled = false;
             schooladdress.Enabled = false;
-            contactname.Enabled = false;
-            contactphone.Enabled = false;
-            contactemail.Enabled = false;
+            //contactname.Enabled = false;
+            //contactphone.Enabled = false;
+            //contactemail.Enabled = false;
             city.Enabled = false;
             SchoolArea.Enabled = false;
-            computercontact.Enabled = false;
-            computercontactphone.Enabled = false;
+            //computercontact.Enabled = false;
+            //computercontactphone.Enabled = false;
+            schoolname.CssClass = "form-control disabled";
+            schooladdress.CssClass = "form-control disabled";
+            SchoolArea.CssClass = "form-control disabled";
+            city.CssClass = "form-control disabled";
         }
 
         protected void ButtonSubmit_Click(object sender, EventArgs e)
@@ -222,7 +226,7 @@ namespace gui
             //return( Calendar1.SelectedDate.Date == DateTime.MinValue ||
             //        Calendar2.SelectedDate.Date == DateTime.MinValue ||
             //        Calendar3.SelectedDate.Date == DateTime.MinValue);
-            return (String.IsNullOrEmpty(datetimePicker1.Text)|| String.IsNullOrEmpty(datetimePicker2.Text) || String.IsNullOrEmpty(datetimePicker3.Text));
+            return (String.IsNullOrEmpty(datePicker1.Text)|| String.IsNullOrEmpty(datePicker2.Text) || String.IsNullOrEmpty(datePicker3.Text));
         }
         public void InitializeForm()
         {
@@ -239,13 +243,14 @@ namespace gui
 
         public string Convert2Date(string date,string hour,string min)
         {
-            string[] dateFormat = date.Split('/');
-            string year = dateFormat[2].Split(' ')[0];
-            string mounth = dateFormat[1];
-            string day = dateFormat[0];
+            //string[] dateFormat = date.Split('/');
+            //string year = dateFormat[2].Split(' ')[0];
+            //string mounth = dateFormat[1];
+            //string day = dateFormat[0];
             if (int.Parse(hour) < 10) hour = "0" + hour;
             if (int.Parse(min) < 10) min = "0" + min;
-            return year + "-" + mounth + "-"+day+" "+hour+":"+ min + ":"+"00";
+            return date + " " + hour + ":" + min + ":" + "00";
+            //return year + "-" + mounth + "-"+day+" "+hour+":"+ min + ":"+"00";
         }
 
         protected void calendar_DayRender(object sender, DayRenderEventArgs e)

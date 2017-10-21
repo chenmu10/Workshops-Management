@@ -16,10 +16,13 @@
 
 </head>
 <body>
-    <form id="form1" runat="server">
+  
 
         <div class="container">
             <div class="jumbotron">
+                    <asp:Image ID="Image2" runat="server" Height="107px" ImageUrl="../../../Content/mmtlogo.png" AlternateText="Picture not found" Width="402px" />
+
+
                 <h2>פניה לתיאום סדנת מהממ"ט</h2>
                 מורים? מנהלי בית ספר? אם אתם רוצים שנגיע אליכם, נשמח אם תמלאו את הטופס המצורף.<br />
                 *כל השדות חובה
@@ -27,16 +30,16 @@
 
 
             <div class="text-center">
-                <em>
-                    <asp:Label ID="Msg" Style="text-align: center" runat="server" CssClass="auto-style1">ההרשמה התבצעה בהצלחה!</asp:Label>
-                </em>
+              
+                    <h4 class="text-center">ההרשמה התבצעה בהצלחה!</h4>
+               
             </div>
 
         </div>
 
 
 
-    </form>
+   
 </body>
 </html>
 

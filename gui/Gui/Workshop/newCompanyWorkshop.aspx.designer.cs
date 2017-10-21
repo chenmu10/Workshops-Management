@@ -112,13 +112,31 @@ namespace gui.Gui.Workshop {
         protected global::System.Web.UI.WebControls.Label DateError;
         
         /// <summary>
-        /// datetimePicker control.
+        /// datePicker control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox datetimePicker;
+        protected global::System.Web.UI.WebControls.TextBox datePicker;
+        
+        /// <summary>
+        /// minutes control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox minutes;
+        
+        /// <summary>
+        /// hour control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox hour;
         
         /// <summary>
         /// Button1 control.
