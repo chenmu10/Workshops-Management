@@ -51,7 +51,6 @@
             <!-- Table-->
             <asp:Table ID="companyTable" runat="server" CssClass="table table-hover">
                 <asp:TableRow>
-                    <asp:TableCell Font-Bold="true">#</asp:TableCell>
                     <asp:TableCell Font-Bold="true">שם החברה</asp:TableCell>
                     <asp:TableCell Font-Bold="true">כתובת</asp:TableCell>
                     <asp:TableCell Font-Bold="true">
@@ -65,6 +64,7 @@
                     <asp:TableCell Font-Bold="true">פעולות</asp:TableCell>
                 </asp:TableRow>
             </asp:Table>
+            <asp:Label runat="server" ID="Sum"></asp:Label>
         </div>
     </form>
     <script>   $(" .navbar a:contains('חברות')").parent().addClass('active');</script>

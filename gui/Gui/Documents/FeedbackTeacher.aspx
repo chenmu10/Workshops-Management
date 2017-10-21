@@ -21,17 +21,15 @@
                     <h3>משוב עבור סדנת מהממ"ט-מורה
                         <br />
                         <small>*-דרוש</small></h3>
-                    מזהה סדנא: <span id="workshopID" runat="server"></span>
+                        מזהה סדנא: <asp:Label id="workshopIDLabel" runat="server"></asp:Label>
                     <br />
-                    שם בי"ס: <span id="schoolName" runat="server"></span>
+                        שם בי"ס: <asp:Label id="schoolNameLabel" runat="server"></asp:Label>
                     <br />
-                    שם חברה: <span id="companyName" runat="server"></span>
+                        כתובת: <asp:Label id="addressLabel" runat="server"></asp:Label>
                     <br />
-                    כתובת: <span id="address" runat="server"></span>
+                        מועד: <asp:Label id="dateLabel" runat="server"></asp:Label>
                     <br />
-                    מועד: <span id="date" runat="server"></span>
-                    <br />
-                    מורה: <span id="volName" runat="server"></span>
+                        מורה: <asp:Label id="TeacherNameLabel" runat="server"></asp:Label>
                     <br />
                 </div>
                 <br />

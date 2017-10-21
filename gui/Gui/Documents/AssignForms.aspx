@@ -38,7 +38,5 @@
         </div>
 
     </form>
-
-   <script>   $(" .navbar a:contains('טפסים')").parent().addClass('active');</script>
 </body>
 </html>

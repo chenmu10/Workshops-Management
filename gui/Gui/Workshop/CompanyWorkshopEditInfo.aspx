@@ -11,6 +11,43 @@
     <link href="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.9/themes/start/jquery-ui.css" rel="stylesheet" type="text/css" />
     <link href="../../css/StatusBar.css" rel="stylesheet" type="text/css" />
 </head>
+       <style>
+    .tabs
+  {
+  
+      padding-right: 40px;
+      width:600px;
+  }
+      .tab
+  {
+     padding-right: 40px;
+     
+  }
+    .selected{
+        border-style: solid;
+        background-color:white ;
+        color:gray;
+             
+    }
+    #Menu1 a.static{
+        padding-left:40px;
+        height:50px;
+        display: table-cell;
+        vertical-align: middle;
+        text-align:center;
+  
+    }
+    #Menu1 a.static.selected{
+    border-top-style: solid;
+    border-top-left-radius:5px;
+    border-top-right-radius:5px;
+    border-right-style: solid;
+    border-bottom-style: none;
+    border-left-style: solid;
+    border-color:lightgray;
+  
+    }
+    </style>
 <body>
     <form id="form1" runat="server">
 
@@ -38,7 +75,10 @@
                 <asp:Button runat="server" ID="yesToVolunteerFinished" Text="כן" class="btn btn-success" OnClick="yesToVolunteerFinished_Click" />
                 <asp:Button runat="server" ID="noToVolunteerFinished" Text="לא" class="btn btn-danger" />
             <br />
-            <asp:Button runat="server" ID="cancelWorkshop" Text="ביטול סדנא" class="btn btn-danger" />
+            <asp:Button runat="server" ID="cancelWorkshop" Text="ביטול סדנא" class="btn btn-danger"  OnClientClick="return confirm('האם למחוק את הסנא ? ');" OnClick="cancelWorkshop_Click"/>
+            <br />
+            <asp:Button runat="server" ID="backToSchoolAssign" Text="חזרה לשיבוץ בית ספר\איפוס סדנא" OnClientClick="return confirm('האם לאפס את הסנא ? ');" class="btn " OnClick="backToSchoolAssign_Click"/>
+
 
 
             <hr />
@@ -64,30 +104,34 @@
                     <asp:ListItem Value="5">לסגור</asp:ListItem>
                 </asp:DropDownList>
                 <asp:Button runat="server" ID="Button2" Text="אישור שינוי" class="btn btn-link" OnClick="updateStatus_Click" />
+
             </div>
 
-
-
-            <br />
-            <div class="row">
-                <div class="panel with-nav-tabs panel-default">
-                    <div class="panel-heading">
-                        <ul class="nav nav-tabs">
-                            <li class="active"><a href="#companyWorkshop" data-toggle="tab">פרטי סדנא בחברה</a></li>
-                            <li><a href="#school" data-toggle="tab">פרטי שיבוץ בי"ס</a></li>
-                            <li><a href="#volunteers" data-toggle="tab">פרטי שיבוץ מתנדבות</a></li>
-                         <%--   <li><a href="#execute" data-toggle="tab">פרטי ביצוע</a></li>--%>
-                            <li><a href="#feedback" data-toggle="tab">משובים</a></li>
-                        </ul>
-                    </div>
-
-                    <div class="panel-body">
-                        <div class="tab-content">
-
-                            <%--TAB 1-Company Details--%>
-                            <div class="tab-pane fade in active" id="companyWorkshop">
-
-                                <!-- column 1-->
+<div dir="rtl" style="padding-top:20px"> 
+      <asp:Menu
+        id="Menu1"
+        Orientation="Horizontal"
+        StaticSelectedStyle-CssClass="selectedTab"
+        CssClass="tabs"
+        OnMenuItemClick="Menu1_MenuItemClick"
+        Runat="server">
+        <Items>
+        <asp:MenuItem   Text="פרטי סדנא בחברה" Value="0" Selected="true" />
+        <asp:MenuItem Text="פרטי שיבוץ בית ספר" Value="1" />
+        <asp:MenuItem Text="פרטי שיבוץ מתנדבות" Value="2" />
+         <asp:MenuItem Text="משובים" Value="3" />
+        </Items>   
+        <StaticSelectedStyle CssClass="selectedItem" />
+          <StaticMenuItemStyle CssClass="tab" />
+    </asp:Menu>
+    </div>
+    <div class="tabContents">
+    <asp:MultiView
+        id="MultiView1"
+        ActiveViewIndex="0"
+        Runat="server">
+        <asp:View ID="View1" runat="server">
+           <!-- column 1-->
                                 <div class="col-md-6">
                                     <fieldset id="companyDetails" runat="server">
                                         <legend>פרטי חברה</legend>
@@ -153,10 +197,9 @@
                                      
                                     </fieldset>
                                 </div>
-                            </div>
-
-                            <%--TAB 2-School Details--%>
-                            <div class="tab-pane fade" id="school">
+        </asp:View>        
+        <asp:View ID="View2" runat="server">
+         <div class="tab-pane" id="school">
 
                                 <label class="control-label" for="schoolName">שם בי"ס :</label>
                                 <div class="form-inline">
@@ -168,7 +211,7 @@
                                         runat="server">
                                     </asp:TextBox>
 
-                                    <asp:LinkButton runat="server" ID="goToSchool" class="btn btn-link">מעבר לפרטי בי"ס</asp:LinkButton>
+                                    <asp:LinkButton runat="server" ID="goToSchool" OnClick="goToSchool_Click" class="btn btn-link">מעבר לפרטי בי"ס</asp:LinkButton>
                                 </div>
 
                                 <br />
@@ -196,81 +239,135 @@
 
 
 
-                            </div>
+                            </div>                    
+        </asp:View>        
+        <asp:View ID="View3" runat="server">
+         <div class="" id="volunteers">
 
-                            <%--  TAB 3 - VOLUNTEER ASSIGN--%>
-                            <div class="tab-pane fade" id="volunteers">
-                                <div class="col-md-6">
+                               <div class="col-md-12">
+                                   
                                     <label class="control-label" for="volunteercount">מס' מתנדבות נוכחי: </label>
-                                    <asp:Label runat="server" ID="volunteercount"></asp:Label>
+                                    <asp:Label runat="server" ID="Label1"></asp:Label>
                                     <br />
-                                    <asp:LinkButton runat="server" ID="LinkVolunteerAssign" Text="מעבר לעמוד שיבוץ"></asp:LinkButton>
+                               
+                                    <a href="../Volunteer/VolunteerAssignWorkshops.aspx" class="btn btn-link" target="_blank">מעבר לעמוד שיבוץ</a>
                                     <br />
 
-                                    <br />
-                                </div>
-                                <div class="col-md-6">
                                     <fieldset>
-                                        <legend>פרטי מתנדבות</legend>
-                                        <label class="control-label" for="VolunteerName1">מתנדבת 1: </label>
-                                        <asp:Label runat="server" ID="VolunteerName1"></asp:Label>
-                                        <br />
-                                        <label class="control-label" for="VolunteerName2">מתנדבת 2: </label>
-                                        <asp:Label runat="server" ID="VolunteerName2"></asp:Label>
-                                        <br />
-                                        <label class="control-label" for="VolunteerName3">מתנדבת 3: </label>
-                                        <asp:Label runat="server" ID="VolunteerName3"></asp:Label>
-                                        <br />
+                                         <legend>פרטי מתנדבות משובצות</legend>
+                                         <div class="col-md-4">
+                                            <fieldset id="Volunteer1" runat="server">
+                                                <legend>מתנדבת 1 - ותיקה</legend>
+                                                 <asp:Label runat="server" ID="VolunteerName1" Text="" ></asp:Label>
+                                                <br />
+                                                <asp:DropDownList
+                                                    Width="250px"
+                                                    ID="Voluntter1DropDownList"
+                                                    AutoPostBack="true"
+                                                    OnSelectedIndexChanged="Voluntter1DropDownList_SelectedIndexChanged"
+                                                    runat="server"
+                                                    class="form-control">
+                                                </asp:DropDownList>
+                                               <br />
+                                                <Label  class="control-label" for="Volunteer1Ride">פרטי טרמפ: </Label>
+                                                 <br />   
+                                                <asp:TextBox
+                                                    ID="volunteer1Ride"
+                                                    type="text"
+                                                    class="form-control"
+                                                    placeholder="יציאה+חזרה, מאיפה ומתי"
+                                                    runat="server"
+                                                    Width="250px">
+                                                </asp:TextBox>
+                                            </fieldset>
+                                        </div>
+                                         <div class="col-md-4">
+                                            <fieldset id="Fieldset1" runat="server">
+                                                <legend>מתנדבת 2</legend>
+                                                 <asp:Label runat="server" ID="VolunteerName2" Text="" ></asp:Label>
+                                                <br />
+                                                <asp:DropDownList
+                                                    Width="250px"
+                                                    ID="Voluntter2DropDownList"
+                                                   AutoPostBack="true"
+                                                    OnSelectedIndexChanged="Voluntter2DropDownList_SelectedIndexChanged"
+                                                    runat="server"
+                                                    class="form-control">
+                                                </asp:DropDownList>
+                                               <br />
+                                                <asp:Label runat="server" class="control-label" for="volunteer2Ride">פרטי טרמפ: </asp:Label>
+                                                 <br />   
+                                                <asp:TextBox
+                                                    ID="volunteer2Ride"
+                                                    type="text"
+                                                    class="form-control"
+                                                    placeholder="יציאה+חזרה, מאיפה ומתי"
+                                                    runat="server"
+                                                    Width="250px">
+                                                </asp:TextBox>
+                                            </fieldset>
+                                        </div>
+                                       <div class="col-md-4">
+                                            <fieldset id="Fieldset2" runat="server">
+                                                <legend>מתנדבת 3</legend>
+                                                 <asp:Label runat="server" ID="VolunteerName3" Text="" ></asp:Label>
+                                                <br />
+                                                <asp:DropDownList
+                                                    Width="250px"
+                                                    ID="Voluntter3DropDownList"
+                                                    AutoPostBack="true"
+                                                    OnSelectedIndexChanged="Voluntter3DropDownList_SelectedIndexChanged"
+                                                    runat="server"
+                                                    class="form-control">
+                                                </asp:DropDownList>
+                                               <br />
+                                                <asp:Label runat="server" class="control-label" for="volunteer3Ride">פרטי טרמפ: </asp:Label>
+                                                 <br />   
+                                                <asp:TextBox
+                                                    ID="volunteer3Ride"
+                                                    type="text"
+                                                    class="form-control"
+                                                    placeholder="יציאה+חזרה, מאיפה ומתי"
+                                                    runat="server"
+                                                    Width="250px">
+                                                </asp:TextBox>
+                                            </fieldset>
+                                        </div>
                                     </fieldset>
+                                    <br />
+                                    <asp:Button runat="server" Text="אשרי שינוי" OnClick="submitVolnteers"/>
+                                <asp:Label runat="server" ID="updateVolunteerLabel" Text="העדכון התבצע בהצלחה" Visible="false"></asp:Label>
+
                                 </div>
 
-                                <asp:Button runat="server" ID="backToSchoolAssign" Text="חזרי לסטטוס שיבוץ בית ספר" class="btn btn-danger" />
 
 
                             </div>
-
-                            <%--  TAB 4 - execute--%>
-                          <%--  <div class="tab-pane fade" id="execute">
-                                <asp:Label runat="server" ID="Label1" Text="תאריך הסדנא לא הגיע/תאריך הסדנא עבר."></asp:Label>
-                                <br />
-                                <br />
-
-
-
-
-                            </div>--%>
-
-                            <%--  TAB 5 - FEEDBACK--%>
-                            <div class="tab-pane fade" id="feedback">
-
-                                <fieldset>
+        </asp:View>    
+        <asp:View ID="View4" runat="server">
+                  <fieldset>
                                     <label class="control-label" for="VolunteerName1">מתנדבת 1: </label>
-                                    <asp:Label runat="server" ID="Label2"></asp:Label>
-                                    <asp:LinkButton runat="server" ID="LinkButton1" Text="משוב"></asp:LinkButton>
+                                    <asp:Label runat="server" ID="Name1FeedBack"></asp:Label>
+                                    <asp:LinkButton runat="server" OnClick="FeedBack1_Click" ID="FeedBack1" Text="משוב"></asp:LinkButton>
                                     <br />
                                     <label class="control-label" for="VolunteerName2">מתנדבת 2: </label>
-                                    <asp:Label runat="server" ID="Label3"></asp:Label>
-                                    <asp:LinkButton runat="server" ID="LinkButton2" Text="משוב"></asp:LinkButton>
+                                    <asp:Label runat="server" ID="Name2FeedBack"></asp:Label>
+                                    <asp:LinkButton runat="server" OnClick="FeedBack2_Click" ID="FeedBack2" Text="משוב"></asp:LinkButton>
                                     <br />
                                     <label class="control-label" for="VolunteerName3">מתנדבת 3: </label>
-                                    <asp:Label runat="server" ID="Label4"></asp:Label>
-                                    <asp:LinkButton runat="server" ID="LinkButton3" Text="משוב"></asp:LinkButton>
+                                    <asp:Label runat="server" ID="Name3FeedBack"></asp:Label>
+                                    <asp:LinkButton runat="server" OnClick="FeedBack3_Click" ID="FeedBack3" Text="משוב"></asp:LinkButton>
                                     <br />
+
 
 
 
                                 </fieldset>
-                            </div>
+        </asp:View>      
+    </asp:MultiView>
+    </div>
 
-                        </div>
-
-                    </div>
-
-
-                </div>
-
-
-            </div>
+            <br />
           
             <!--/row-->
 

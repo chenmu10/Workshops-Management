@@ -12,10 +12,11 @@ namespace gui.Gui
     {
         List<Company> companies = new List<Company>();
         Dictionary<int, string> Areas = new Dictionary<int, string>();
+        DB db;
         override protected void OnInit(EventArgs e)
         {
             this.Load += new System.EventHandler(this.Page_Load);
-            DB db = new DB();
+            db = new DB();
             db.IsConnect();
             companies = db.GetAllComapny();
             Areas = db.GetAreaActivity();
@@ -32,7 +33,7 @@ namespace gui.Gui
                 Address.Text = company.Company_Address;
 
                 TableCell Area = new TableCell();
-                Area.Text = Areas[company.Company_Area_Activity]; 
+                Area.Text = Areas[company.Company_Area_Activity];
 
                 TableCell ContectName = new TableCell();
                 ContectName.Text = company.Company_Contact_Name;
@@ -43,14 +44,15 @@ namespace gui.Gui
                 TableCell ContectPhone = new TableCell();
                 ContectPhone.Text = company.Company_Contact_phone;
 
-                TableCell Edit = new TableCell();
+                TableCell Edit = new TableCell();                
                 Button Editbtn = new Button();
+                Editbtn.ID = company.Company_ID.ToString();
+                Editbtn.Click += new EventHandler(MoreInfo_button);
                 Editbtn.Text = "צפייה";
                 Editbtn.CssClass = "btn btn-default";
                 Edit.Controls.Add(Editbtn);
 
                 TableRow TableRow = new TableRow();
-                TableRow.Cells.Add(id);
                 TableRow.Cells.Add(Name);
                 TableRow.Cells.Add(Address);
                 TableRow.Cells.Add(Area);
@@ -62,6 +64,9 @@ namespace gui.Gui
 
                 companyTable.Rows.Add(TableRow);
             }
+            Sum.Text = "";
+            Sum.Text = "כמות : ";
+            Sum.Text += string.Format("{0}",companies.Count());
         }
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -72,6 +77,27 @@ namespace gui.Gui
         {
             Response.Redirect("NewCompanyForm.aspx", false);
         }
-        
+        public List<Company> Filter_Click_View()
+        {
+            List<Company> result = db.GetAllComapny();
+            
+
+            return result;
+
+        }
+        protected void MoreInfo_button(object sender, EventArgs e)
+        {
+            Button selectedButton = (Button)sender;
+            try
+            {
+                int ID = int.Parse(selectedButton.ID);
+                Session["SelectedCompany"] = ID;
+                Response.Redirect("../Company/CompanyEditInformation.aspx", false);
+            }
+            catch(Exception exp)
+            {
+                return;
+            }          
+        }
     }
 }

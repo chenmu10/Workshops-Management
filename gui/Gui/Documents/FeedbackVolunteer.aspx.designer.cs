@@ -22,58 +22,58 @@ namespace gui.Gui.Documents {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// workshopID control.
+        /// workshopIDLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl workshopID;
+        protected global::System.Web.UI.WebControls.Label workshopIDLabel;
         
         /// <summary>
-        /// schoolName control.
+        /// schoolNameLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl schoolName;
+        protected global::System.Web.UI.WebControls.Label schoolNameLabel;
         
         /// <summary>
-        /// companyName control.
+        /// companyNameLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl companyName;
+        protected global::System.Web.UI.WebControls.Label companyNameLabel;
         
         /// <summary>
-        /// address control.
+        /// addressLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl address;
+        protected global::System.Web.UI.WebControls.Label addressLabel;
         
         /// <summary>
-        /// date control.
+        /// dateLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl date;
+        protected global::System.Web.UI.WebControls.Label dateLabel;
         
         /// <summary>
-        /// volName control.
+        /// volNameLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl volName;
+        protected global::System.Web.UI.WebControls.Label volNameLabel;
         
         /// <summary>
         /// RequiredFieldValidator3 control.
@@ -173,5 +173,14 @@ namespace gui.Gui.Documents {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label msg;
+        
+        /// <summary>
+        /// Send control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Send;
     }
 }

@@ -22,58 +22,49 @@ namespace gui.Gui.Documents {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// workshopID control.
+        /// workshopIDLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl workshopID;
+        protected global::System.Web.UI.WebControls.Label workshopIDLabel;
         
         /// <summary>
-        /// schoolName control.
+        /// schoolNameLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl schoolName;
+        protected global::System.Web.UI.WebControls.Label schoolNameLabel;
         
         /// <summary>
-        /// companyName control.
+        /// addressLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl companyName;
+        protected global::System.Web.UI.WebControls.Label addressLabel;
         
         /// <summary>
-        /// address control.
+        /// dateLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl address;
+        protected global::System.Web.UI.WebControls.Label dateLabel;
         
         /// <summary>
-        /// date control.
+        /// TeacherNameLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl date;
-        
-        /// <summary>
-        /// volName control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl volName;
+        protected global::System.Web.UI.WebControls.Label TeacherNameLabel;
         
         /// <summary>
         /// RadioButtonListHighschool control.

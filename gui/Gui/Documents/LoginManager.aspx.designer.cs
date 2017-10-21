@@ -76,6 +76,15 @@ namespace gui.Gui.Documents {
         protected global::System.Web.UI.WebControls.Button submitButton;
         
         /// <summary>
+        /// logouwButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button logouwButton;
+        
+        /// <summary>
         /// msg control.
         /// </summary>
         /// <remarks>
