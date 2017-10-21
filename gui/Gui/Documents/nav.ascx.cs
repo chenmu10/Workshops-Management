@@ -9,6 +9,39 @@ namespace gui.Gui.Documents
 {
     public partial class nav : System.Web.UI.UserControl
     {
+        override protected void OnInit(EventArgs e)
+        {
+            this.Load += new System.EventHandler(this.Page_Load);
+            DB db;
+            db = new DB();
+            db.IsConnect();
+
+            if (db.IsManager(Session["Manager"]))
+            {
+                volunter.Visible = false;
+                company.Visible = false;
+                school.Visible = false;
+                workshop.Visible = false;
+                forms.Visible = false;
+                shobech.Visible = false;
+                manager.Visible = false;
+                ManagerLink1.Visible = true;
+            }
+            else
+            { //to be shore
+                volunter.Visible = true;
+                company.Visible = true;
+                school.Visible = true;
+                workshop.Visible = true;
+                forms.Visible = true;
+                shobech.Visible = true;
+                manager.Visible = true;
+            }
+                
+
+                
+            
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
 

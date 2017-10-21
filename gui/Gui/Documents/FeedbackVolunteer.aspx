@@ -20,25 +20,24 @@
                     <h3>משוב עבור סדנת מהממ"ט-מתנדבת
                         <br />
                         <small> *-דרוש</small></h3>
-                        מזהה סדנא: <span id="workshopID" runat="server"></span>
+                        מזהה סדנא: <asp:Label id="workshopIDLabel" runat="server"></asp:Label>
                         <br />
-                        שם בי"ס: <span id="schoolName" runat="server"></span>
+                        שם בי"ס: <asp:Label id="schoolNameLabel" runat="server"></asp:Label>
                         <br />
-                        שם חברה: <span id="companyName" runat="server"></span>
+                        שם חברה: <asp:Label id="companyNameLabel" runat="server"></asp:Label>
                         <br />
-                        כתובת: <span id="address" runat="server"></span>
+                        כתובת: <asp:Label id="addressLabel" runat="server"></asp:Label>
                         <br />
-                        מועד: <span id="date" runat="server"></span>
+                        מועד: <asp:Label id="dateLabel" runat="server"></asp:Label>
                         <br />
-                        מתנדבת: <span id="volName" runat="server"></span>
+                        מתנדבת: <asp:Label id="volNameLabel" runat="server"></asp:Label>
                         <br />
                 </div>
                   <br />
                  <asp:RequiredFieldValidator ID="RequiredFieldValidator3" ControlToValidate="RadioButtonListteachePresent" runat="server" ErrorMessage="יש לבחור נוכחות מורה" ForeColor="Red"></asp:RequiredFieldValidator><br />
                  <asp:RequiredFieldValidator ID="RequiredFieldValidator4" ControlToValidate="RadioButtonListlistenLevel" runat="server" ErrorMessage="יש לבחור רמת שיתוף פעולה" ForeColor="Red"></asp:RequiredFieldValidator>
-
-                  <br />
                 <!--teacher present yes/no-->
+                <br />
                 <label class="control-label" for="RadioButtonListteachePresent">*נוכחות מורה:</label>
                 <asp:RadioButtonList ID="RadioButtonListteachePresent" runat="server">
                     <asp:ListItem Value="כן"></asp:ListItem>
@@ -52,9 +51,6 @@
                     <label class="control-label" for="teacherPresentOther">אם סימנת "אחר", פרטי בבקשה:</label>
                     <asp:TextBox ID="teacherPresentOther" class="form-control"
                         type="text"
-                        pattern="[\u0590-\u05FF''-'\s]{1,20}"
-                        oninvalid="setCustomValidity('לא תקין')"
-                        onchange="try{setCustomValidity('')}catch(e){}"
                         placeholder="מה הייתה זמינות המורה?"
                         runat="server"></asp:TextBox>
                     <br />
@@ -80,9 +76,6 @@
                             TextMode="multiline"
                             Columns="50"
                             Rows="5"
-                            required="required"
-                            oninvalid="setCustomValidity('יש להזין')"
-                            onchange="try{setCustomValidity('')}catch(e){}"
                             runat="server">
                         </asp:TextBox>
                     </div>
@@ -97,9 +90,6 @@
                             TextMode="multiline"
                             Columns="50"
                             Rows="5"
-                            required="required"
-                            oninvalid="setCustomValidity('יש להזין')"
-                            onchange="try{setCustomValidity('')}catch(e){}"
                             runat="server">
                         </asp:TextBox>
                     </div>
@@ -114,16 +104,14 @@
                             TextMode="multiline"
                             Columns="50"
                             Rows="5"
-                            required="required"
-                            oninvalid="setCustomValidity('יש להזין')"
-                            onchange="try{setCustomValidity('')}catch(e){}"
                             runat="server">
                         </asp:TextBox>
                     </div>
                     <br />
                    <asp:Label runat="server" ID="msg" Font-Italic="true" Font-Color="red"></asp:Label>
-                       <button id="submit" class="btn btn-success center-block">שליחה</button>
-                </div>
+                    <asp:Button runat="server" ID="Send" CssClass="btn btn-success center-block" Text="שליחה" OnClick="Send_Click" />
+                    <br />
+                  </div>
             </div>
 
         </div>

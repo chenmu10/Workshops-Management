@@ -1,6 +1,7 @@
 ﻿using gui.Models;
 using System;
 using System.Collections.Generic;
+using System.Threading;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -138,8 +139,11 @@ namespace gui
             }
             else if (db.InsertNewVolunteer(NewVolunteer))
             {
+                ClearForm();
+                //Response.Write("<script>alert('נוספת בהצלחה למאגר'); window.location.href = '../Documents/SuccessNewVolunteer.aspx'; </script>");
                 Response.Write("<script>alert('נוספת בהצלחה למאגר');</script>");
-
+                //Thread.Sleep(50);
+                //Response.Redirect("../Documents/SuccessNewVolunteer.aspx", false);
             }
             else
             {
@@ -214,61 +218,6 @@ namespace gui
             return false;
         }
 
-        protected void Send_Click(object sender, EventArgs e)
-        {
-            if (!IsEmptyFields())
-            {
-                Volunteer NewVolunteer = new Volunteer();
-                NewVolunteer.Volunteer_First_Name = Firstname.Text.ToString();
-                NewVolunteer.Volunteer_Last_Name = Lastname.Text.ToString();
-                NewVolunteer.Volunteer_First_Name_Eng = Firstnameeng.Text.ToString();
-                NewVolunteer.Volunteer_Last_Name_Eng = Lastnameeng.Text.ToString();
-                NewVolunteer.Volunteer_Email = Email.Text.ToString();
-                NewVolunteer.Volunteer_phone = Phone.Text.ToString();
-                NewVolunteer.Volunteer_Employer = Employer.Text.ToString();
-                NewVolunteer.Volunteer_Occupation = DropDownListOccupation.SelectedValue.ToString();
-                NewVolunteer.Volunteer_prefer_traning_area = Convert.ToInt32(DropDownListTraining.SelectedValue) + 1;
-              
-
-                // check "other" field
-                if (DropDownListReference.SelectedValue == "אחר")
-                {
-                    NewVolunteer.Volunteer_Reference = otherRef.Text.ToString();
-                }
-                else
-                {
-                    NewVolunteer.Volunteer_Reference = DropDownListReference.SelectedValue.ToString();
-                }
-
-                // get all selected from checkbox
-                List<int> SelectedAreas = new List<int>();
-                foreach (ListItem item in CheckBoxListAreas.Items)
-                {
-                    if (item.Selected)
-                    {
-                        SelectedAreas.Add(int.Parse(item.Value)+1);
-                    }
-                }
-
-                NewVolunteer.Volunteer_Area_Activity = SelectedAreas;
-                NewVolunteer.Volunteer_Number_Of_Activities = 0;
-
-                if (db.IsVolunteerExist(NewVolunteer))
-                {
-                    Response.Write("<script>alert('מתנדבת קיימת. צרי קשר במקרה של שינוי/בעיה');</script>");
-                }
-                else if (db.InsertNewVolunteer(NewVolunteer))
-                {
-                    Response.Write("<script>alert('נוספת בהצלחה למאגר');</script>");
-                }
-                else
-                {
-                    Response.Write("<script>alert('שגיאה בגישה למאגר');</script>");
-                }
-
-
-            }
-        } // better but doesn't work - not used
     }
 }
 

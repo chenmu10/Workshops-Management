@@ -12,6 +12,7 @@ namespace gui.Gui.Documents
         protected void Page_Load(object sender, EventArgs e)
         {
             msg.Text = "";
+            logouwButton.Visible = false;
             if (Session["Manager"] != null)
             {             
                 string key = Session["Manager"].ToString();
@@ -22,6 +23,7 @@ namespace gui.Gui.Documents
                     submitButton.Visible = false;
                     usernameLabel.Visible = false;
                     passwordLabel.Visible = false;
+                    logouwButton.Visible = true;
                     msg.Text = "משתמש מחובר";
                 }
             }
@@ -57,6 +59,12 @@ namespace gui.Gui.Documents
             {
                 msg.Text = "שם משתמש או סיסמא אינם נכונים";
             }
+        }
+
+        protected void logouwButton_Click(object sender, EventArgs e)
+        {
+            Session["Manager"] = null;
+            Response.Redirect("../Documents/LoginManager.aspx", false);
         }
     }
 }

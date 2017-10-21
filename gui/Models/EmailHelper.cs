@@ -1,6 +1,5 @@
 ﻿using Google.Apis.Auth.OAuth2;
-using Google.Apis.Calendar.v3;
-using Google.Apis.Calendar.v3.Data;
+
 using Google.Apis.Services;
 using Google.Maps;
 using Google.Maps.StaticMaps;
@@ -323,7 +322,14 @@ namespace gui.Models
             }
             return true;
         }
+        public void Test()
+        {
+            /*    SMTP Test    */
 
+
+
+
+        }
        
 
         private static string GetStaticMap(string address)
@@ -344,53 +350,53 @@ namespace gui.Models
             return imgTagSrc.ToString();
         }
 
-        public static void MakeAppointment(List<string> emails, string address, DateTime start, DateTime end)
-        {
-            List<EventAttendee> event_attendees = new List<EventAttendee>();
-            foreach (string email in emails)
-            {
-                EventAttendee attendee = new EventAttendee();
-                attendee.Email = email;
-                event_attendees.Add(attendee);
-            }
+        //public static void MakeAppointment(List<string> emails, string address, DateTime start, DateTime end)
+        //{
+        //    List<EventAttendee> event_attendees = new List<EventAttendee>();
+        //    foreach (string email in emails)
+        //    {
+        //        EventAttendee attendee = new EventAttendee();
+        //        attendee.Email = email;
+        //        event_attendees.Add(attendee);
+        //    }
 
-            Event new_event = new Event();
+        //    Event new_event = new Event();
 
-            new_event.Summary = "סדנת מהממט";
-            //new_event.Description = "מידע על סדנא";
-            new_event.Location = address;
+        //    new_event.Summary = "סדנת מהממט";
+        //    //new_event.Description = "מידע על סדנא";
+        //    new_event.Location = address;
 
-            new_event.Start = new EventDateTime();
-            //new_event.Start.DateTime = new DateTime(2017, 09, 26, 15, 0, 0);
-            new_event.Start.DateTime = start;
+        //    new_event.Start = new EventDateTime();
+        //    //new_event.Start.DateTime = new DateTime(2017, 09, 26, 15, 0, 0);
+        //    new_event.Start.DateTime = start;
 
-            new_event.End = new EventDateTime();
-            //new_event.End.DateTime = new DateTime(2017, 09, 26, 15, 30, 0);
-            new_event.End.DateTime = end;
-            new_event.Attendees = event_attendees;
+        //    new_event.End = new EventDateTime();
+        //    //new_event.End.DateTime = new DateTime(2017, 09, 26, 15, 30, 0);
+        //    new_event.End.DateTime = end;
+        //    new_event.Attendees = event_attendees;
 
-            UserCredential credential = GoogleWebAuthorizationBroker.AuthorizeAsync(
-                new ClientSecrets
-                {
-                    //mmt.send
-                    ClientId = "757049045443-rn00q79rdiprdv2dgj1kd8652chtk4ud.apps.googleusercontent.com",
-                    ClientSecret = "BLHLOKQewOa_cgycBktWZyzQ",
-                },
-                new[] { CalendarService.Scope.Calendar },
-                "user",
-                CancellationToken.None).Result;
+        //    UserCredential credential = GoogleWebAuthorizationBroker.AuthorizeAsync(
+        //        new ClientSecrets
+        //        {
+        //            //mmt.send
+        //            ClientId = "757049045443-rn00q79rdiprdv2dgj1kd8652chtk4ud.apps.googleusercontent.com",
+        //            ClientSecret = "BLHLOKQewOa_cgycBktWZyzQ",
+        //        },
+        //        new[] { CalendarService.Scope.Calendar },
+        //        "user",
+        //        CancellationToken.None).Result;
 
-            // Create the service.
-            var service = new CalendarService(new BaseClientService.Initializer()
-            {
-                HttpClientInitializer = credential,
-                ApplicationName = "Calendar API Sample",
-            });
+        //    // Create the service.
+        //    var service = new CalendarService(new BaseClientService.Initializer()
+        //    {
+        //        HttpClientInitializer = credential,
+        //        ApplicationName = "Calendar API Sample",
+        //    });
 
 
-            EventsResource.InsertRequest request = service.Events.Insert(new_event, "mmt.send@gmail.com");
-            request.SendNotifications = true;
-            Event createdEvent = request.Execute();
-        }
+        //    EventsResource.InsertRequest request = service.Events.Insert(new_event, "mmt.send@gmail.com");
+        //    request.SendNotifications = true;
+        //    Event createdEvent = request.Execute();
+        //}
     }
 }

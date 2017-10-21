@@ -39,6 +39,8 @@
 			<br/>
             <asp:Button runat="server" CssClass="mybtn1212" ID="submitButton" Text="כניסה" OnClick="Login_Click"  ForeColor="White" />
             <br/>
+            <asp:Button runat="server" CssClass="mybtn1212" ID="logouwButton" Text="יציאה" OnClick="logouwButton_Click"  ForeColor="White" />
+            <br/>
            <asp:Label runat="server" ID="msg"></asp:Label>
 			<br/>
 		</div>

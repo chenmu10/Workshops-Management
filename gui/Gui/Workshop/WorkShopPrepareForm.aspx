@@ -41,9 +41,15 @@
 
                     <br />
 
-
+                 <br />    
+             <label class="control-label" for="estimatedParticipants">להוסיף 3 שאלות חדשות</label>
+ <br />
+ <br />
+ <br />
                     <!--Participants number-->
                     <label class="control-label" for="estimatedParticipants">מספר התלמידות הסופי שיקחו חלק בסדנה: </label>
+
+
                     <div>
                         <asp:TextBox ID="estimatedParticipants" Width="20%"
                             type="number"

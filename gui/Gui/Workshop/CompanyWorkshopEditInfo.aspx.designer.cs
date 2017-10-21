@@ -94,6 +94,15 @@ namespace gui.Gui.Workshop {
         protected global::System.Web.UI.WebControls.Button cancelWorkshop;
         
         /// <summary>
+        /// backToSchoolAssign control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button backToSchoolAssign;
+        
+        /// <summary>
         /// bar1 control.
         /// </summary>
         /// <remarks>
@@ -175,6 +184,33 @@ namespace gui.Gui.Workshop {
         protected global::System.Web.UI.WebControls.Button Button2;
         
         /// <summary>
+        /// Menu1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Menu Menu1;
+        
+        /// <summary>
+        /// MultiView1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.MultiView MultiView1;
+        
+        /// <summary>
+        /// View1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.View View1;
+        
+        /// <summary>
         /// companyDetails control.
         /// </summary>
         /// <remarks>
@@ -247,6 +283,15 @@ namespace gui.Gui.Workshop {
         protected global::System.Web.UI.WebControls.TextBox dateTime;
         
         /// <summary>
+        /// View2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.View View2;
+        
+        /// <summary>
         /// schoolname control.
         /// </summary>
         /// <remarks>
@@ -283,22 +328,31 @@ namespace gui.Gui.Workshop {
         protected global::System.Web.UI.WebControls.TextBox schoolComments;
         
         /// <summary>
-        /// volunteercount control.
+        /// View3 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label volunteercount;
+        protected global::System.Web.UI.WebControls.View View3;
         
         /// <summary>
-        /// LinkVolunteerAssign control.
+        /// Label1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkVolunteerAssign;
+        protected global::System.Web.UI.WebControls.Label Label1;
+        
+        /// <summary>
+        /// Volunteer1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Volunteer1;
         
         /// <summary>
         /// VolunteerName1 control.
@@ -310,6 +364,33 @@ namespace gui.Gui.Workshop {
         protected global::System.Web.UI.WebControls.Label VolunteerName1;
         
         /// <summary>
+        /// Voluntter1DropDownList control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList Voluntter1DropDownList;
+        
+        /// <summary>
+        /// volunteer1Ride control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox volunteer1Ride;
+        
+        /// <summary>
+        /// Fieldset1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Fieldset1;
+        
+        /// <summary>
         /// VolunteerName2 control.
         /// </summary>
         /// <remarks>
@@ -317,6 +398,33 @@ namespace gui.Gui.Workshop {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label VolunteerName2;
+        
+        /// <summary>
+        /// Voluntter2DropDownList control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList Voluntter2DropDownList;
+        
+        /// <summary>
+        /// volunteer2Ride control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox volunteer2Ride;
+        
+        /// <summary>
+        /// Fieldset2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Fieldset2;
         
         /// <summary>
         /// VolunteerName3 control.
@@ -328,66 +436,93 @@ namespace gui.Gui.Workshop {
         protected global::System.Web.UI.WebControls.Label VolunteerName3;
         
         /// <summary>
-        /// backToSchoolAssign control.
+        /// Voluntter3DropDownList control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button backToSchoolAssign;
+        protected global::System.Web.UI.WebControls.DropDownList Voluntter3DropDownList;
         
         /// <summary>
-        /// Label2 control.
+        /// volunteer3Ride control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label2;
+        protected global::System.Web.UI.WebControls.TextBox volunteer3Ride;
         
         /// <summary>
-        /// LinkButton1 control.
+        /// updateVolunteerLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkButton1;
+        protected global::System.Web.UI.WebControls.Label updateVolunteerLabel;
         
         /// <summary>
-        /// Label3 control.
+        /// View4 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label3;
+        protected global::System.Web.UI.WebControls.View View4;
         
         /// <summary>
-        /// LinkButton2 control.
+        /// Name1FeedBack control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkButton2;
+        protected global::System.Web.UI.WebControls.Label Name1FeedBack;
         
         /// <summary>
-        /// Label4 control.
+        /// FeedBack1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label4;
+        protected global::System.Web.UI.WebControls.LinkButton FeedBack1;
         
         /// <summary>
-        /// LinkButton3 control.
+        /// Name2FeedBack control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkButton3;
+        protected global::System.Web.UI.WebControls.Label Name2FeedBack;
+        
+        /// <summary>
+        /// FeedBack2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton FeedBack2;
+        
+        /// <summary>
+        /// Name3FeedBack control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Name3FeedBack;
+        
+        /// <summary>
+        /// FeedBack3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton FeedBack3;
     }
 }

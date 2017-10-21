@@ -12,11 +12,16 @@ namespace gui.Gui
         override protected void OnInit(EventArgs e)
         {
             this.Load += new System.EventHandler(this.Page_Load);
-            //EmailHelper.MakeAppointment(new List<string>() { "chenmu10@gmail.com" }, "a", DateTime.Today, DateTime.Today);
             db = new DB();
-            db.IsConnect();
-            
+            db.IsConnect();            
             InitializeForm();
+
+            /*Test For import*/
+           // string volunteerForm = string.Format("c:\\file1.csv");
+           // db.GetVolunteerFromExel(volunteerForm);
+           // string SchoolForm = string.Format("c:\file2.xlsx");
+           // db.GetSchoolFromExel(SchoolForm);
+
         }
 
         private void InitializeForm()
@@ -47,6 +52,10 @@ namespace gui.Gui
                 user.Text = "משתמש:מנהל";
         }
 
-  
+        protected void TestEMail_Click(object sender, EventArgs e)
+        {
+            EmailHelper Email = new EmailHelper();
+            Email.Test();
+        }
     }
 }

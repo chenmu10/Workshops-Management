@@ -10,6 +10,12 @@ namespace gui.Gui
     {
         List<WorkshopJoin> CompanyWorkshopsJoin = new List<WorkshopJoin>();
         DB db;
+
+        override protected void OnInit(EventArgs e)
+        {
+            Workshop_Selected_Visibly_Change(true);
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             this.Load += new System.EventHandler(this.Page_Load);
@@ -32,11 +38,13 @@ namespace gui.Gui
                     TableCell lineNumber = new TableCell();
                     lineNumber.Text = countLines.ToString();
                     row.Cells.Add(lineNumber);
-                   
 
+
+                    /*
                     TableCell workshopID = new TableCell();
                     workshopID.Text = t.WorkShop_ID;
                     row.Cells.Add(workshopID);
+                    */
 
                     TableCell Date = new TableCell();
                     Date.Text = t.WorkShop_Date;
@@ -74,18 +82,41 @@ namespace gui.Gui
                     Edit.Controls.Add(Editbtn);
                     row.Cells.Add(Edit);
                     workshopTable.Rows.Add(row);
+
                 }
+            }
+        }
+
+        protected void Workshop_Selected_Visibly_Change(bool toHide)
+        {
+            if (toHide == true)
+            {
+                VolunteerAssignPlaceHolder.Visible = false;
+            }
+            else
+            {
+                VolunteerAssignPlaceHolder.Visible = true;
+            }
+        }
+
+        protected void Clear_Bold_In_Table()
+        {
+            foreach (TableRow t in workshopTable.Rows)
+            {
+                t.Font.Bold = false;
             }
         }
 
         protected void Select_Click(object sender, EventArgs e)
         {
+            Clear_Bold_In_Table();
             DupLabel.Visible = false;
             succsess.Visible = false;
             nonSelected.Visible = false;
             List<Volunteer> Volunteers = db.GetAllVolunteers();
             Volunteer volnteer1 = new Volunteer(), volnteer2 = new Volunteer(), volnteer3 = new Volunteer();
             Button selectedButton = (Button)sender;
+            workshopTable.Rows[int.Parse(selectedButton.Attributes["CountLine"])].Font.Bold = true;
             string isCompany = selectedButton.Attributes["IsCompany"];
             string workshopId = selectedButton.Attributes["WorkshopID"];
             string CountLine = selectedButton.Attributes["CountLine"];
@@ -110,18 +141,18 @@ namespace gui.Gui
                 {
                     volnteer3 = Volunteers.Find(x => x.Volunteer_ID == SelectedWorkshop.CompanyWorkShopVolunteerID3);
                 }
-            InitializeVoluntter1(volnteer1, Volunteers);
-            InitializeVoluntter2(volnteer2, Volunteers);
-            InitializeVoluntter3(volnteer3, Volunteers);
+                InitializeVoluntter1(volnteer1, Volunteers);
+                InitializeVoluntter2(volnteer2, Volunteers);
+                InitializeVoluntter3(volnteer3, Volunteers);
 
-            InitializeVoluntterRide(volnteer1, volnteer2, volnteer3, int.Parse(workshopId), bool.Parse(isCompany));
-            //Remove Duplicated Volunteers
-            RemoveDup(volnteer1, volnteer2, volnteer3);
+                InitializeVoluntterRide(volnteer1, volnteer2, volnteer3, int.Parse(workshopId), bool.Parse(isCompany));
+                //Remove Duplicated Volunteers
+                RemoveDup(volnteer1, volnteer2, volnteer3);
+                Workshop_Selected_Visibly_Change(false);
 
 
 
-
-        }
+            }
             else
             {
                 //School workshop
@@ -147,7 +178,7 @@ namespace gui.Gui
             InitializeVoluntterRide(volnteer1, volnteer2, volnteer3, int.Parse(workshopId), bool.Parse(isCompany));
             //Remove Duplicated Volunteers
             RemoveDup(volnteer1, volnteer2, volnteer3);
-
+            Workshop_Selected_Visibly_Change(false);
 
 
         }
@@ -457,6 +488,9 @@ namespace gui.Gui
             {
                 string isCompany = Session["LocalisCompany"].ToString();
                 string workshopId = Session["LocalWorkShopID"].ToString();
+                Clear_Bold_In_Table();
+                Workshop_Selected_Visibly_Change(true);
+
                 if (ID1 != 0) ID1 = Volunteers.Find(x => x.Volunteer_Email.Equals(t1.Text.ToString())).Volunteer_ID;
                 if (ID2 != 0) ID2 = Volunteers.Find(x => x.Volunteer_Email.Equals(t2.Text.ToString())).Volunteer_ID;
                 if (ID3 != 0) ID3 = Volunteers.Find(x => x.Volunteer_Email.Equals(t3.Text.ToString())).Volunteer_ID;
@@ -472,10 +506,32 @@ namespace gui.Gui
                        ID3 != selectedWorkshop.CompanyWorkShopVolunteerID3)
                     {
                         //Update DB
-                        if (db.updateSchoolWorkshopVolunteer(selectedWorkshop.CompanyWorkShopID, ID1, ID2, ID3,
+
+                        if (db.updateCompanyWorkshopVolunteer(selectedWorkshop.CompanyWorkShopID, ID1, ID2, ID3,
                             volunteer1Ride.Text, volunteer2Ride.Text, volunteer3Ride.Text))
                         {
                             succsess.Visible = true;
+
+                            Volunteer v1 = null, v2 = null, v3 = null;
+
+                            //Disable droplist
+                            if (ID1 != selectedWorkshop.CompanyWorkShopVolunteerID1)
+                            {
+                                v1 = Volunteers.Find(x => x.Volunteer_ID == ID1);
+                                InitializeVoluntter1(v1, Volunteers);
+                            }
+                            if (ID2 != selectedWorkshop.CompanyWorkShopVolunteerID2)
+                            {
+                                v2 = Volunteers.Find(x => x.Volunteer_ID == ID2);
+                                InitializeVoluntter2(v2, Volunteers);
+                            }
+                            if (ID3 != selectedWorkshop.CompanyWorkShopVolunteerID3)
+                            {
+                                v3 = Volunteers.Find(x => x.Volunteer_ID == ID3);
+                                InitializeVoluntter3(v3, Volunteers);
+                            }
+                            InitializeVoluntterRide(v1, v2, v3, selectedWorkshop.CompanyWorkShopID, true);
+
                         }
                     }
                     else
@@ -497,6 +553,24 @@ namespace gui.Gui
                             volunteer1Ride.Text, volunteer2Ride.Text, volunteer3Ride.Text))
                         {
                             succsess.Visible = true;
+                            Volunteer v1 = null, v2 = null, v3 = null;
+                            //Disable droplist
+                            if (ID1 != SelectedWorkshop.SchoolWorkShopVolunteerID1)
+                            {
+                                v1 = Volunteers.Find(x => x.Volunteer_ID == ID1);
+                                InitializeVoluntter1(v1, Volunteers);
+                            }
+                            if (ID2 != SelectedWorkshop.SchoolWorkShopVolunteerID2)
+                            {
+                                v2 = Volunteers.Find(x => x.Volunteer_ID == ID2);
+                                InitializeVoluntter2(v2, Volunteers);
+                            }
+                            if (ID3 != SelectedWorkshop.SchoolWorkShopVolunteerID1)
+                            {
+                                v3 = Volunteers.Find(x => x.Volunteer_ID == ID3);
+                                InitializeVoluntter3(v3, Volunteers);
+                            }
+                            InitializeVoluntterRide(v1, v2, v3, SelectedWorkshop.SchoolWorkShopID, false);
                         }
                     }
                     else

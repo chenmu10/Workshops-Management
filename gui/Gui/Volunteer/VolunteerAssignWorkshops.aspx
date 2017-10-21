@@ -26,9 +26,6 @@
                         שורה
                     </asp:TableHeaderCell>
                     <asp:TableHeaderCell>
-                        מס מזהה
-                    </asp:TableHeaderCell>
-                    <asp:TableHeaderCell>
                         מועד
                     </asp:TableHeaderCell>
                     <asp:TableHeaderCell>
@@ -47,7 +44,8 @@
             </asp:Table>
             <!-- Volunteers Assignment -->
             <asp:PlaceHolder ID="VolunteerAssignPlaceHolder" runat="server">
-                <h4>סדנא נבחרת:
+           
+				 <h4>סדנא נבחרת:
                     <asp:Label ID="workshopIdLabel" runat="server" class="label label-primary" Font-Size="Large"></asp:Label>   
                 </h4>
                 
@@ -134,10 +132,10 @@
                         </asp:TextBox>
                     </fieldset>
                 </div>               
-            </asp:PlaceHolder>
         </div>           
         <div style="margin-right:50%;margin-top:25px" >
 <asp:Button runat="server"  class="btn btn-success" ID="assign" Text="עדכני" OnClick="assign_Click" />
+</asp:PlaceHolder>
             <asp:Label runat="server" ID="DupLabel" Text="יש כפילות בבחירת המתנדבות,אנא בחרי שנית" Visible="false"></asp:Label>
             <asp:Label runat="server" ID="succsess" Text="ההרשמה הצליחה" Visible="false"></asp:Label>
             <asp:Label runat="server" ID="nonSelected" Text="יש לבחור מתנדבת על מנת לעדכן" Visible="false"></asp:Label>

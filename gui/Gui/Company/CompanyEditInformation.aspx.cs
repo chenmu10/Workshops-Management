@@ -13,7 +13,6 @@ namespace gui.Gui
         // TODO get companyID from session
         //      get num of workshops done at company. 
 
-
         DB db;
 
         override protected void OnInit(EventArgs e)
@@ -23,24 +22,23 @@ namespace gui.Gui
             db.IsConnect();
             GetAreasFromDB();
             DisabledEdit();
-
-            //if (Session["SelectedCompany"] != null)
-            //{
+            
+            if (Session["SelectedCompany"] != null)
+            {
                 List< Company > companies = db.GetAllComapny();
-            int SelectedCompanyID = 1;
-                //int SelectedCompanyID = (int)Session["SelectedCompany"];
+                int SelectedCompanyID = int.Parse(Session["SelectedCompany"].ToString());
                 Company EditCompany = companies.Find(x => x.Company_ID == SelectedCompanyID);
                 companyID.Text = EditCompany.Company_ID.ToString();
                 companyName.Text = EditCompany.Company_Name;
                 companyAddress.Text = EditCompany.Company_Address;
                 int area = EditCompany.Company_Area_Activity;
                 DropDownListArea.SelectedIndex = area - 1;
-                // doneWorkshopsNum- size of companyWorkshop table with companyID
+                DropDownListArea.BackColor = System.Drawing.Color.Gainsboro;
                 contactname.Text = EditCompany.Company_Contact_Name;
                 contactphone.Text = EditCompany.Company_Contact_phone;
                 contactemail.Text = EditCompany.Company_Contact_Email;
 
-            //}
+            }
         }
         protected void DisabledEdit()
         {
@@ -70,5 +68,10 @@ namespace gui.Gui
 
         }
 
+        protected void back_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("../Company/CompanyView.aspx", false);
+
+        }
     }
 }

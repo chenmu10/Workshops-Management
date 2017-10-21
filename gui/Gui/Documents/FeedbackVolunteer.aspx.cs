@@ -8,16 +8,12 @@ using System.Web.UI.WebControls;
 
 namespace gui.Gui.Documents
 {
-        // TODO volunteer id should also appear in url so we can use it here
-        // TODO db.insert new volunteer feedback 
-        // TODO db.isFeedbackExist, db.GetVolNameByID, GetCompanyByID
+
 
         public partial class FeedbackVolunteer : System.Web.UI.Page
         {
             DB db;
             DateTime LastPostRequest;
-
-            int idFromUrl = 2; //test value. change to: Convert.ToInt32(RouteData.Values["id"] + Request.Url.Query);
 
             override protected void OnInit(EventArgs e)
             {
@@ -25,33 +21,18 @@ namespace gui.Gui.Documents
                 this.Load += new System.EventHandler(this.Page_Load);
                 db = new DB();
                 db.IsConnect();
-            }
+                if (IsKeysValid())
+                    FillWorkshopData();
+        }
 
             protected void Page_Load(object sender, EventArgs e)
             {
 
-                FillWorkshopData();
+
 
                 if (Page.IsPostBack && IsFormValid())
                 {
                     LastPostRequest = DateTime.Now;
-
-                    // Feedback newVFeedback = AddValuesToFeedback();
-
-                    //msg.Text = "טופס תקין, פונקצית הכנסה עוד לא הופעלה";
-
-                    //if (db.isFeedbackExist(newVFeedback))
-                    //{
-                    //    Response.Write("<script>alert('משוב קיים. ניתן למלא רק פעם אחת.');</script>");
-                    //}
-                    //else if (db.insertFeedbackToDB(newVFeedback))
-                    //{
-                    //    Response.Redirect("SuccessForm.aspx", false);
-                    //}
-                    //else
-                    //{
-                    //    Response.Write("<script>alert('שגיאה בהכנסה ל-DB');</script>");
-                    //}
 
                 }
 
@@ -60,21 +41,70 @@ namespace gui.Gui.Documents
 
             private void FillWorkshopData()
             {
-                //Workshop ws = db.GetWorkshopByID(idFromUrl);
-                //School sc = db.GetSchoolByID(ws.WorkShop_School_ID);
-                ////Company cm = db.GetCompanyByID(ws.WorkShop_School_ID);
-                ////string volunteerName = db.GetVolNameByID(volIDFromUrl);
-                //workshopID.InnerText = Convert.ToString(ws.WorkShop_ID);
-                //schoolName.InnerText = sc.School_Name;
-                //address.InnerText = sc.School_Address;
-                //date.InnerText = Convert.ToString(ws.WorkShop_Date.ToShortDateString());
-                // volName.InnerText = db.GetVolNameByID(volIDFromUrl);
+            string workshopID = Request.QueryString["workshopID"];
+            string IsCompany = Request.QueryString["IsCompany"];
+            string PersonID = Request.QueryString["UserID"];
 
-                // if it's company workshop:
-                // companyName.InnerText = cm.Company_Name;
-                // address.InnerText = cm.Company_Address;
+            int _workshopID = int.Parse(workshopID);
+            bool _IsCompany= bool.Parse(IsCompany);
+            int _PersonID =int.Parse(PersonID);
+
+            Volunteer v = db.GetVolunteerByID(_PersonID);
+            CompanyWorkshop workshop = db.getCompanyWorkshopByID(_workshopID);
+            SchoolWorkShop Sworkshop = db.GetSchoolWorkshopByID(_workshopID);
+            if (!(workshop.CompanyWorkShopVolunteerID1 == _PersonID || workshop.CompanyWorkShopVolunteerID2 == _PersonID || workshop.CompanyWorkShopVolunteerID3 == _PersonID ||
+                Sworkshop.SchoolWorkShopVolunteerID1 == _PersonID || Sworkshop.SchoolWorkShopVolunteerID2 == _PersonID || Sworkshop.SchoolWorkShopVolunteerID3 == _PersonID
+                ))
+            {
+                ErrorMsg(1);
+            }
+            List<FeedBack> allfeedBack = db.GetAllFeedBackByWorkshopID(_workshopID, _IsCompany);
+            if(_IsCompany)
+            {               
+                School school = db.GetSchoolByID(workshop.CompanySchoolID);
+                Company company = db.getCompanyByID(workshop.CompanyID);
+                workshopIDLabel.Text = _workshopID.ToString();                
+                schoolNameLabel.Text = school.School_Name;
+                companyNameLabel.Text = company.Company_Name;
+                addressLabel.Text = school.School_Address;
+                dateLabel.Text = workshop.CompanyWorkShopDate;
+                if (v != null)
+                    volNameLabel.Text = v.Volunteer_First_Name + " " + v.Volunteer_Last_Name;
+            }
+            else
+            {
+                
+                School school = db.GetSchoolByID(Sworkshop.WorkShop_School_ID);
+                workshopIDLabel.Text = _workshopID.ToString();
+                schoolNameLabel.Text = school.School_Name;
+                companyNameLabel.Text = "-";
+                addressLabel.Text = school.School_Address;
+                dateLabel.Text = workshop.CompanyWorkShopDate;
+                if (v != null)
+                    volNameLabel.Text = v.Volunteer_First_Name + " " + v.Volunteer_Last_Name;
+            }
+            FeedBack selected = allfeedBack.Find(x => (x.WorkShop_ID == _workshopID) && (x.WorkShop_Is_Company == _IsCompany) && (x.WorkShop_Person == _PersonID));
+            if(selected!=null) // Load FeedBack From DB
+            {
+                if(selected.WorkShop_Is_Volunteer==true)
+                {
+                    
+                    RadioButtonListteachePresent.SelectedIndex = selected.WorkShop_Is_Teacher_present-1;
+                    teacherPresentOther.Text = selected.WorkShop_Is_Teacher_present_Comment;
+                    RadioButtonListlistenLevel.SelectedIndex = selected.WorkShop_Level_Of_Listening-1;
+                    difficulties.Text = selected.WorkShop_Main_Issues_Difficulties;
+                    techProblems.Text = selected.WorkShop_Technical_Faults;
+                    comments.Text = selected.WorkShop_General_Comments;
+
+                }
 
             }
+            else // New FeedBack
+            {
+
+            }
+
+        }
 
             private bool IsFormValid()
             {
@@ -93,14 +123,7 @@ namespace gui.Gui.Documents
                 }
 
             }
-
-            //private Feedback AddValuesToFeedback()
-            //{
-            //    //1. create new feedback object
-            //    //2. insert values
-            //    //3. return feedback object
-
-            //}
+            
 
             private void ClearForm()
             {
@@ -111,6 +134,89 @@ namespace gui.Gui.Documents
                 RadioButtonListteachePresent.SelectedIndex = -1;
 
             }
+            private bool IsKeysValid()
+        {
+
+            string workshopID = Request.QueryString["workshopID"];
+            string IsCompany = Request.QueryString["IsCompany"];
+            string PersonID = Request.QueryString["UserID"];
+            try
+            {
+                int.Parse(workshopID);
+                bool.Parse(IsCompany);
+                int.Parse(PersonID);
+            }
+            catch(Exception e)
+            {
+                return false;
+            }
+            return true;
         }
+        public void ErrorMsg(int type)
+        {
+            string str;
+            switch (type)
+            {
+               
+                case 1:
+                    str = "שגיאה במציאת מתנדבת";
+                    //Response.Write("<script>alert('"+ str + "'); window.location.href = ''; </script>");
+                    Response.Write("<script>alert('" + str + "'); </script>");
+                    break;
+                case 2:
+                    str = "המשוב התקבל בהצלחה";
+                    //Response.Write("<script>alert('"+ str + "'); window.location.href = ''; </script>");
+                    Response.Write("<script>alert('" + str + "'); </script>");
+                    break;
+
+                case 3:
+                    str = "שגיאה בהזנת המשוב";
+                    //Response.Write("<script>alert('"+ str + "'); window.location.href = ''; </script>");
+                    Response.Write("<script>alert('" + str + "'); </script>");
+                    break;
+
+
+
+            }
+
+        }
+
+        protected void Send_Click(object sender, EventArgs e)
+        {
+            string workshopID = Request.QueryString["workshopID"];
+            string IsCompany = Request.QueryString["IsCompany"];
+            string PersonID = Request.QueryString["UserID"];
+
+            if (!IsKeysValid()) return;
+            FeedBack f = new FeedBack();
+            f.WorkShop_ID = int.Parse(workshopID);
+            f.WorkShop_Is_Company = bool.Parse(IsCompany);
+            f.WorkShop_Is_Volunteer = true;
+            f.WorkShop_Person = int.Parse(PersonID);
+
+            int TeachPresent = RadioButtonListteachePresent.SelectedIndex +1;
+            string TeacherPresetCom = teacherPresentOther.Text;
+            int Level = RadioButtonListlistenLevel.SelectedIndex+1;
+            string MainIsseDiff= difficulties.Text;
+            string Technical_Faults = techProblems.Text;
+            string General_Comments = comments.Text ;
+
+            f.WorkShop_Is_Teacher_present = TeachPresent;
+            f.WorkShop_Is_Teacher_present_Comment = TeacherPresetCom;
+            f.WorkShop_Level_Of_Listening = Level;
+            f.WorkShop_Main_Issues_Difficulties = MainIsseDiff;
+            f.WorkShop_Technical_Faults = Technical_Faults;
+            f.WorkShop_General_Comments = General_Comments;
+            if (db.UpdateFeedBack(f))
+            {
+                ErrorMsg(2);
+                ClearForm();
+            }
+                
+            else
+                ErrorMsg(3);
+
+        }
+    }
 
     }

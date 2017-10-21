@@ -22,11 +22,20 @@ namespace gui.Gui.Workshop
             this.Load += new System.EventHandler(this.Page_Load);
             db = new DB();
             db.IsConnect();
-            FormClear();
-            init();
+            if (Page.IsPostBack)
+            {
+                if (Session["viewmode"].ToString().Equals("1"))
+                    MultiView1.ActiveViewIndex = 2;
+            }
+            else
+            {
+                FormClear();
+                init();
+            }
         }
         private void init()
         {
+            Session["viewmode"] = "0";
             if (Session["IsCompany"] != null && Session["WorkshopID"] != null)
             {
 
@@ -60,23 +69,7 @@ namespace gui.Gui.Workshop
                 WorkShopDate.Text = WorkshopToView.WorkShop_Date.ToString();
 
                 int status = CompanyWorkshop.CompanyWorkShopStatus;
-                Volunteer v = new Volunteer();
-
-                if(CompanyWorkshop.CompanyWorkShopVolunteerID1!=0)
-                {
-                    v = allVolunteer.Find(x => x.Volunteer_ID == CompanyWorkshop.CompanyWorkShopVolunteerID1);
-                    VolunteerName1.Text = v.Volunteer_First_Name + " " + v.Volunteer_Last_Name;
-                }
-                if (CompanyWorkshop.CompanyWorkShopVolunteerID2 != 0)
-                {
-                    v = allVolunteer.Find(x => x.Volunteer_ID == CompanyWorkshop.CompanyWorkShopVolunteerID2);
-                    VolunteerName2.Text = v.Volunteer_First_Name + " " + v.Volunteer_Last_Name;
-                }
-                if (CompanyWorkshop.CompanyWorkShopVolunteerID3 != 0)
-                {
-                    v = allVolunteer.Find(x => x.Volunteer_ID == CompanyWorkshop.CompanyWorkShopVolunteerID3);
-                    VolunteerName3.Text = v.Volunteer_First_Name + " " + v.Volunteer_Last_Name;
-                }
+                setVolunteer();
 
 
                 SetStatusBar(status);
@@ -179,10 +172,19 @@ namespace gui.Gui.Workshop
                     bar5.Attributes["class"] = "previous visited";
                     bar6.Attributes["class"] = "previous visited";
                     bar7.Attributes["class"] = "previous visited";
+                    disableForm();
                     break;
                 case 10:
                     break;
             }
+        }
+
+        private void disableForm()
+        {
+            selectpicker.Enabled = false;
+            Button2.Visible = false;
+            backToSchoolAssign.Visible = false;
+            cancelWorkshop.Visible = false;
         }
 
         private void FormClear()
@@ -198,7 +200,6 @@ namespace gui.Gui.Workshop
 
             int ID = int.Parse(Session["WorkshopID"].ToString());
             CompanyWorkshop = db.getCompanyWorkshopByID(ID);
-            EmailHelper Email = new EmailHelper();
             int status = int.Parse(selectpicker.SelectedValue);
 
             switch (status)
@@ -229,6 +230,7 @@ namespace gui.Gui.Workshop
                         volunteerfinishedlabel.Visible = true;
                         yesToVolunteerFinished.Visible = true;
                         noToVolunteerFinished.Visible = true;
+                        
                     }
                     else
                     {
@@ -249,110 +251,24 @@ namespace gui.Gui.Workshop
                     Response.Redirect(Request.RawUrl);
                     break;
                 case 4:
+                    //למישוב
                     if (!db.CompanyWorkshopUpdateStatus(CompanyWorkshop.CompanyWorkShopID, 8)) ErrorMsg(1);
-                    Response.Redirect(Request.RawUrl);
+                    ErrorMsg(5);
                     break;
                 case 5:
                     if (!db.CompanyWorkshopUpdateStatus(CompanyWorkshop.CompanyWorkShopID, 9)) ErrorMsg(1);
                     Response.Redirect(Request.RawUrl);
                     break;
             }
-                    //    case 2:
-                    //        //לשיבוץ מתנדבות
-                    //        // בדיקה שתאריך נבחר
-                    //        int dateSelected = dateselector.SelectedIndex;
-                    //        if (dateSelected == 0)
-                    //            ErrorMsg(3);
-                    //        else
-                    //        {
-                    //            List<Volunteer> allVolunteer = db.GetAllVolunteers();
-                    //            List<School> allSchool = db.GetAllSchools();
-                    //            School school = allSchool.Find(x => x.School_ID == schoolWorkshop.WorkShop_School_ID);
-                    //            allVolunteer = allVolunteer.FindAll(x => x.Volunteer_Area_Activity.Contains(school.School_Area));
-
-                    //            if (!db.SchoolWorkShopUpdateDate(schoolWorkshop.SchoolWorkShopID, dateSelected)) ErrorMsg(1);
-                    //            if (!db.SchoolWorkShopUpdatestatus(schoolWorkshop.SchoolWorkShopID, 1)) ErrorMsg(1);
-                    //            if (!Email.SendInivetsToVolunteers(allVolunteer, school.School_Area, dateselector.SelectedItem.Text))
-                    //            {
-                    //                ErrorMsg(2);
-                    //            }
-                    //            else
-                    //            {
-                    //                Response.Write("<script>alert('איימילים נשלחו למתנדבות באזור'); window.location.href = '';</script>");
-                    //            }
-
-                    //            Response.Redirect(Request.RawUrl);
-                    //        }
-                    //        break;
-                    //    case 3:
-                    //        // שיבוץ הושלם
-                    //        int count = 0;
-                    //        if (schoolWorkshop.SchoolWorkShopVolunteerID1 != 0) count++;
-                    //        if (schoolWorkshop.SchoolWorkShopVolunteerID2 != 0) count++;
-                    //        if (schoolWorkshop.SchoolWorkShopVolunteerID3 != 0) count++;
-
-                    //        if (count != 3)
-                    //        {
-                    //            volunteerfinishedlabel.Visible = true;
-                    //            yesToVolunteerFinished.Visible = true;
-                    //            noToVolunteerFinished.Visible = true;
-                    //        }
-
-
-                    //        else
-                    //        {
-
-                    //            if (!db.SchoolWorkShopUpdatestatus(schoolWorkshop.SchoolWorkShopID, 3)) ErrorMsg(1);
-                    //            else if (!Email.SendAssignComplete(schoolWorkshop)) ErrorMsg(2);
-                    //            else
-                    //            {
-                    //                Response.Write("<script>alert('איימילים נשלחו לבית הספר והמתנדבות הרשומות'); window.location.href = ''; </script>");
-                    //                SetStatusBar(5);
-                    //            }
-                    //        }
-                    //        break;
-                    //    case 4:
-                    //        //להכנה
-                    //        db.InsertNewPrePare(ID);
-                    //        if (!db.SchoolWorkShopUpdatestatus(schoolWorkshop.SchoolWorkShopID, 6))
-                    //            ErrorMsg(1);
-                    //        else if (!Email.PrepareMail(schoolWorkshop))
-                    //            ErrorMsg(2);
-                    //        else
-                    //        {
-                    //            PrepareFormCreate.Visible = true;
-                    //            Response.Write("<script>alert('נשלח אימייל לבית ספר');  window.location.href = '';</script>");
-                    //            SetStatusBar(6);
-                    //        }
-                    //        break;
-                    //    case 5:
-                    //        //לביצוע
-                    //        db.SchoolWorkShopUpdatestatus(schoolWorkshop.SchoolWorkShopID, 7);
-                    //        SetStatusBar(7);
-
-                    //        break;
-                    //    case 6:
-                    //        //למישוב
-                    //        db.SchoolWorkShopUpdatestatus(schoolWorkshop.SchoolWorkShopID, 8);
-                    //        SetStatusBar(8);
-                    //        break;
-                    //    case 7:
-                    //        //לסגור
-                    //        db.SchoolWorkShopUpdatestatus(schoolWorkshop.SchoolWorkShopID, 9);
-                    //        SetStatusBar(9);
-                    //        break;
-
-                    //}
-
-                    //WorkshopToView = db.GetJoinWorkShopByID(ID);
-                    //WorkShopStatus.Text = WorkshopToView.Status_Description.ToString();
+                   
             }
 
 
 
         protected void yesToVolunteerFinished_Click(object sender, EventArgs e)
         {
-            if (!db.CompanyWorkshopUpdateStatus(CompanyWorkshop.CompanyWorkShopID, 3)) ErrorMsg(1);
+            int workshopId = int.Parse(Session["WorkshopID"].ToString());
+            if (!db.CompanyWorkshopUpdateStatus(workshopId, 3)) ErrorMsg(1);
             Response.Redirect(Request.RawUrl);
         }
 
@@ -425,7 +341,163 @@ namespace gui.Gui.Workshop
             //mail.Send(schoolContactEmail, schoolContactName, workshopDate);
 
         }
+        protected void Voluntter1DropDownList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Session["viewmode"] = "1";
+            int workshopId = int.Parse(Session["WorkshopID"].ToString());
+            Volunteer v;
+            volunteer1Ride.Text = "";
+            allVolunteer = db.GetAllVolunteers();
+            VolunteerName1.Text = "";
+            int ID = Voluntter1DropDownList.SelectedIndex;
+            if (ID != 0)
+            {
+                v = allVolunteer.Find(x => x.Volunteer_ID == ID);
+                VolunteerName1.Text = v.Volunteer_First_Name + " " + v.Volunteer_Last_Name;
+            }
 
+        }
+
+        protected void Voluntter2DropDownList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Session["viewmode"] = "1";
+            int workshopId = int.Parse(Session["WorkshopID"].ToString());
+            Volunteer v;
+            allVolunteer = db.GetAllVolunteers();
+            VolunteerName2.Text = "";
+            int ID = Voluntter2DropDownList.SelectedIndex;
+            if (ID != 0)
+            {
+                v = allVolunteer.Find(x => x.Volunteer_ID == ID);
+                VolunteerName2.Text = v.Volunteer_First_Name + " " + v.Volunteer_Last_Name;
+                volunteer2Ride.Text = db.getVolunteerSchoolRide(v.Volunteer_ID, workshopId);
+            }
+        }
+
+        protected void Voluntter3DropDownList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Session["viewmode"] = "1";
+            Volunteer v;
+            int workshopId = int.Parse(Session["WorkshopID"].ToString());
+            allVolunteer = db.GetAllVolunteers();
+            VolunteerName3.Text = "";
+            int ID = Voluntter1DropDownList.SelectedIndex;
+            if (ID != 0)
+            {
+                v = allVolunteer.Find(x => x.Volunteer_ID == ID);
+                VolunteerName3.Text = v.Volunteer_First_Name + " " + v.Volunteer_Last_Name;
+                volunteer3Ride.Text = db.getVolunteerSchoolRide(v.Volunteer_ID, workshopId);
+            }
+        }
+        protected void Menu1_MenuItemClick(object sender, MenuEventArgs e)
+        {
+            int index = Int32.Parse(e.Item.Value);
+            MultiView1.ActiveViewIndex = index;
+        }
+        protected void submitVolnteers(object sender, EventArgs e)
+        {
+            int workshopId = int.Parse(Session["WorkshopID"].ToString());
+            Volunteer v1, v2, v3;
+            string Ride1 = "", Ride2 = "", Ride3 = "";
+            allVolunteer = db.GetAllVolunteers();
+            int ID1 = Voluntter1DropDownList.SelectedIndex;
+            int ID2 = Voluntter2DropDownList.SelectedIndex;
+            int ID3 = Voluntter3DropDownList.SelectedIndex;
+            if (ID1 != 0)
+            {
+                v1 = allVolunteer.Find(x => x.Volunteer_ID == ID1);
+                Ride1 = volunteer1Ride.Text;
+            }
+            if (ID2 != 0)
+            {
+                v2 = allVolunteer.Find(x => x.Volunteer_ID == ID2);
+                Ride2 = volunteer2Ride.Text;
+            }
+            if (ID3 != 0)
+            {
+                v3 = allVolunteer.Find(x => x.Volunteer_ID == ID3);
+                Ride3 = volunteer3Ride.Text;
+            }
+
+            if (db.updateCompanyWorkshopVolunteer(workshopId, ID1, ID2, ID3, Ride1, Ride2, Ride3))
+            {
+                updateVolunteerLabel.Visible = true;
+            }
+        }
+        public void setVolunteer()
+        {
+            int workshopId = int.Parse(Session["WorkshopID"].ToString());
+            CompanyWorkshop selectedWorkshop = db.getCompanyWorkshopByID(workshopId);
+            allVolunteer = db.GetAllVolunteers();
+            List<FeedBack> allFeedBack = db.GetAllFeedBackByWorkshopID(workshopId,true);
+            Volunteer v1 = new Volunteer();
+            Volunteer v2 = new Volunteer();
+            Volunteer v3 = new Volunteer();
+            Voluntter1DropDownList.Items.Clear();
+            Voluntter2DropDownList.Items.Clear();
+            Voluntter3DropDownList.Items.Clear();
+            Voluntter1DropDownList.Items.Add(new ListItem("בחרי", "0"));
+            Voluntter2DropDownList.Items.Add(new ListItem("בחרי", "0"));
+            Voluntter3DropDownList.Items.Add(new ListItem("בחרי", "0"));
+            foreach (Volunteer v in allVolunteer)
+            {
+                Voluntter1DropDownList.Items.Add(new ListItem(v.Volunteer_Email, v.Volunteer_ID.ToString()));
+                Voluntter2DropDownList.Items.Add(new ListItem(v.Volunteer_Email, v.Volunteer_ID.ToString()));
+                Voluntter3DropDownList.Items.Add(new ListItem(v.Volunteer_Email, v.Volunteer_ID.ToString()));
+            }
+            if (selectedWorkshop.CompanyWorkShopVolunteerID1 != 0)
+            {
+                v1 = allVolunteer.Find(x => x.Volunteer_ID == selectedWorkshop.CompanyWorkShopVolunteerID1);
+                Voluntter1DropDownList.Items.FindByValue(v1.Volunteer_ID.ToString()).Selected = true;
+                VolunteerName1.Text = v1.Volunteer_First_Name + " " + v1.Volunteer_Last_Name;
+                string Ride1 = db.getVolunteerCompanyRide(v1.Volunteer_ID, workshopId);
+                volunteer1Ride.Text = Ride1;
+                Name1FeedBack.Text = v1.Volunteer_First_Name + " " + v1.Volunteer_Last_Name;
+                FeedBack FeedBackTemp = allFeedBack.Find(x => x.WorkShop_Person == v1.Volunteer_ID);
+                if (FeedBackTemp != null)
+                {
+                    if (FeedBackTemp.WorkShop_Is_Teacher_present != 0)
+                    {
+                        FeedBack1.Font.Bold = true;
+                    }
+                }
+            }
+            if (selectedWorkshop.CompanyWorkShopVolunteerID2 != 0)
+            {
+                v2 = allVolunteer.Find(x => x.Volunteer_ID == selectedWorkshop.CompanyWorkShopVolunteerID2);
+                Voluntter2DropDownList.Items.FindByValue(v2.Volunteer_ID.ToString()).Selected = true;
+                VolunteerName2.Text = v2.Volunteer_First_Name + " " + v2.Volunteer_Last_Name;
+                volunteer2Ride.Text = db.getVolunteerCompanyRide(v2.Volunteer_ID, workshopId);
+                Name2FeedBack.Text = v2.Volunteer_First_Name + " " + v2.Volunteer_Last_Name;
+                FeedBack FeedBackTemp = allFeedBack.Find(x => x.WorkShop_Person == v2.Volunteer_ID);
+                if(FeedBackTemp!=null)
+                {
+                    if (FeedBackTemp.WorkShop_Is_Teacher_present != 0)
+                    {
+                        FeedBack2.Font.Bold = true;
+                    }
+                }
+                
+
+            }
+            if (selectedWorkshop.CompanyWorkShopVolunteerID3 != 0)
+            {
+                v3 = allVolunteer.Find(x => x.Volunteer_ID == selectedWorkshop.CompanyWorkShopVolunteerID3);
+                Voluntter3DropDownList.Items.FindByValue(v3.Volunteer_ID.ToString()).Selected = true;
+                VolunteerName3.Text = v3.Volunteer_First_Name + " " + v3.Volunteer_Last_Name;
+                volunteer3Ride.Text = db.getVolunteerCompanyRide(v3.Volunteer_ID, workshopId);
+                Name3FeedBack.Text = v3.Volunteer_First_Name + " " + v3.Volunteer_Last_Name;
+                FeedBack FeedBackTemp = allFeedBack.Find(x => x.WorkShop_Person == v3.Volunteer_ID);
+                if (FeedBackTemp != null)
+                {
+                    if (FeedBackTemp.WorkShop_Is_Teacher_present != 0)
+                    {
+                        FeedBack3.Font.Bold = true;
+                    }
+                }
+            }
+
+        }
 
         public void ErrorMsg(int type)
         {
@@ -445,10 +517,73 @@ namespace gui.Gui.Workshop
                     string str1 = "על מנת לעבור סטטוס יש לבחור סטטוס רצוי";
                     Response.Write("<script>alert('" + str1 + "'); window.location.href = ''; </script>");
                     break;
+                case 5:
+                    string str2 = "מיילים עם משוב נשלחו למתנדבות ולמורה בבית הספר";
+                    Response.Write("<script>alert('" + str2 + "'); window.location.href = ''; </script>");
+                    break;
 
             }
 
         }
 
+        protected void cancelWorkshop_Click(object sender, EventArgs e)
+        {
+            int workshopId = int.Parse(Session["WorkshopID"].ToString());
+            // Delete Workshop
+            if (db.DeleteCompanyWorkshop(workshopId))
+                Response.Redirect("../Workshop/WorkshopsView.aspx", false);
+            else
+                ErrorMsg(1);
+        }
+
+        protected void backToSchoolAssign_Click(object sender, EventArgs e)
+        {
+            int workshopId = int.Parse(Session["WorkshopID"].ToString());
+            if(db.resetCompany(workshopId))
+                Response.Redirect("../Workshop/WorkshopsView.aspx", false);
+            else
+                ErrorMsg(1);
+        }
+
+        protected void goToSchool_Click(object sender, EventArgs e)
+        {
+            int workshopId = int.Parse(Session["WorkshopID"].ToString());
+            CompanyWorkshop = db.getCompanyWorkshopByID(workshopId); 
+            Session["SchoolID"] = CompanyWorkshop.CompanySchoolID;
+            Response.Redirect("../School/SchoolEditInfo.aspx", false);
+        }
+
+        protected void FeedBack1_Click(object sender, EventArgs e)
+        {
+            int workshopId = int.Parse(Session["WorkshopID"].ToString());
+            CompanyWorkshop select = db.getCompanyWorkshopByID(workshopId);
+            if(select.CompanyWorkShopVolunteerID1!=0)
+            {
+                string url = String.Format("../Documents/FeedbackVolunteer.aspx?workshopID={0}&IsCompany={1}&UserID={2}", workshopId, true, select.CompanyWorkShopVolunteerID1);
+                Response.Write("<script>window.open('"+ url + "','_blank');</script>");
+            }
+               
+        }
+        protected void FeedBack2_Click(object sender, EventArgs e)
+        {
+            int workshopId = int.Parse(Session["WorkshopID"].ToString());
+            CompanyWorkshop select = db.getCompanyWorkshopByID(workshopId);
+            if (select.CompanyWorkShopVolunteerID2 != 0)
+            {
+                string url = String.Format("../Documents/FeedbackVolunteer.aspx?workshopID={0}&IsCompany={1}&UserID={2}", workshopId, true, select.CompanyWorkShopVolunteerID2);
+                Response.Write("<script>window.open('" + url + "','_blank');</script>");
+            }
+        }
+
+        protected void FeedBack3_Click(object sender, EventArgs e)
+        {
+            int workshopId = int.Parse(Session["WorkshopID"].ToString());
+            CompanyWorkshop select = db.getCompanyWorkshopByID(workshopId);
+            if (select.CompanyWorkShopVolunteerID3 != 0)
+            {
+                string url = String.Format("../Documents/FeedbackVolunteer.aspx?workshopID={0}&IsCompany={1}&UserID={2}", workshopId, true, select.CompanyWorkShopVolunteerID3);
+                Response.Write("<script>window.open('" + url + "','_blank');</script>");
+            }
+        }
     }
 }
