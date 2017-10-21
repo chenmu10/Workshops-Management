@@ -103,13 +103,13 @@
              <div class="form-inline" style="padding-top:100px;">
                     <label class="control-label" for="selectpicker">שינוי סטטוס: </label>
                     <asp:DropDownList runat="server" ID="selectpicker" CssClass="form-control" Width="150px">
-                        <asp:ListItem Value="1">בדיקת תאריכים</asp:ListItem>
-                        <asp:ListItem Value="2">שיבוץ מתנדבות</asp:ListItem>
-                        <asp:ListItem Value="3">שיבוץ הושלם</asp:ListItem>
-                        <asp:ListItem Value="4">הכנה</asp:ListItem>
-                        <asp:ListItem Value="5">ביצוע</asp:ListItem>
-                        <asp:ListItem Value="6">מישוב</asp:ListItem>
-                        <asp:ListItem Value="7">סגירה</asp:ListItem>
+                        <asp:ListItem Value="1">לבדיקת תאריכים</asp:ListItem>
+                        <asp:ListItem Value="2">לשיבוץ מתנדבות</asp:ListItem>
+                        <asp:ListItem Value="3">לשיבוץ הושלם</asp:ListItem>
+                        <asp:ListItem Value="4">להכנה</asp:ListItem>
+                        <asp:ListItem Value="5">לביצוע</asp:ListItem>
+                        <asp:ListItem Value="6">למישוב</asp:ListItem>
+                        <asp:ListItem Value="7">לסגור</asp:ListItem>
                     </asp:DropDownList>
                     <asp:Button runat="server" OnClick="updateStatus_Click" ID="updateStatus" Text="אישור שינוי" class="btn btn-link" />
                 </div>

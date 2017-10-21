@@ -42,7 +42,7 @@ namespace gui.Gui.Workshop
             Company selectedComp = Companies[((DropDownList)sender).SelectedIndex - 1];
             companyID.Text = selectedComp.Company_ID.ToString();
             address.Text = selectedComp.Company_Address;
-            area.Text = Areas[selectedComp.Company_Area_Activity-1].Text.ToString();
+            area.Text = Areas[selectedComp.Company_Area_Activity].Text.ToString();
         }
 
 

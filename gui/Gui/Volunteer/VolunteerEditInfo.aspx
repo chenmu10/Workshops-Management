@@ -156,7 +156,7 @@
                    
             </div>
             <a href="#" onclick="history.go(-1)" class="btn btn-default">חזור</a>
-            <asp:Button runat="server" ID="update" Text="עדכני" CssClass="btn btn-success"/>
+            <asp:Button runat="server" ID="update" Text="עדכני" />
         </div>
 
 

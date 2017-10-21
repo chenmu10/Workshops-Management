@@ -118,13 +118,11 @@ C:\Users\Avi\Desktop\MMT\gui\obj\Debug\gui.pdb
 C:\Users\Avi\Desktop\MMT\gui\obj\Debug\gui.csprojResolveAssemblyReference.cache
 C:\Users\Chen\Projects\MMT\gui\bin\Google.Apis.Auth.dll
 C:\Users\Chen\Projects\MMT\gui\bin\Google.Apis.Auth.PlatformServices.dll
-C:\Users\Chen\Projects\MMT\gui\bin\Google.Apis.Calendar.v3.dll
 C:\Users\Chen\Projects\MMT\gui\bin\Google.Apis.Core.dll
 C:\Users\Chen\Projects\MMT\gui\bin\Google.Apis.dll
 C:\Users\Chen\Projects\MMT\gui\bin\Google.Apis.PlatformServices.dll
 C:\Users\Chen\Projects\MMT\gui\bin\Google.Apis.xml
 C:\Users\Chen\Projects\MMT\gui\bin\Google.Apis.Auth.xml
-C:\Users\Chen\Projects\MMT\gui\bin\Google.Apis.Calendar.v3.xml
 C:\Users\Chen\Projects\MMT\gui\bin\Google.Apis.Core.xml
 C:\Users\Chen\Projects\MMT\gui\obj\Debug\gui.csproj.CoreCompileInputs.cache
 C:\Users\Avi\Desktop\v4.2\MMT\gui\bin\roslyn\csc.exe
@@ -177,3 +175,6 @@ C:\Users\Avi\Desktop\v4.2\MMT\gui\obj\Debug\gui.csprojResolveAssemblyReference.c
 C:\Users\Avi\Desktop\v4.2\MMT\gui\obj\Debug\gui.csproj.ResolveComReference.cache
 C:\Users\Avi\Desktop\v4.2\MMT\gui\bin\ExcelDataReader.dll
 C:\Users\Avi\Desktop\v4.2\MMT\gui\bin\ExcelDataReader.xml
+C:\Users\Chen\Projects\MMT\gui\bin\ExcelDataReader.dll
+C:\Users\Chen\Projects\MMT\gui\bin\ExcelDataReader.xml
+C:\Users\Chen\Projects\MMT\gui\obj\Debug\gui.csproj.ResolveComReference.cache
