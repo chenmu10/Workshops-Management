@@ -1,6 +1,7 @@
 ﻿using gui.Models;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -16,6 +17,7 @@ namespace gui
         DB db;
         override protected void OnInit(EventArgs e)
         {
+            System.Threading.Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("he-IL");
             this.Load += new System.EventHandler(this.Page_Load1);
             IsNewSchool = true;
           
@@ -55,7 +57,7 @@ namespace gui
                 //string Date1 = Convert2Date(Calendar1.SelectedDate.Date.ToString(),hh1.Text.ToString(),mm1.Text.ToString());
                 //string Date2 = Convert2Date(Calendar2.SelectedDate.Date.ToString(), hh2.Text.ToString(), mm2.Text.ToString());
                 //string Date3 = Convert2Date(Calendar3.SelectedDate.Date.ToString(), hh2.Text.ToString(), mm3.Text.ToString());
-                string Date1 = datetimePicker1.Text;
+                string Date1 = datetimePicker2.Text;
                 string Date2 = datetimePicker2.Text;
                 string Date3 = datetimePicker3.Text;
                 int StudentCount = int.Parse(studentpredict.Text.ToString());
@@ -222,7 +224,7 @@ namespace gui
             //return( Calendar1.SelectedDate.Date == DateTime.MinValue ||
             //        Calendar2.SelectedDate.Date == DateTime.MinValue ||
             //        Calendar3.SelectedDate.Date == DateTime.MinValue);
-            return (String.IsNullOrEmpty(datetimePicker1.Text)|| String.IsNullOrEmpty(datetimePicker2.Text) || String.IsNullOrEmpty(datetimePicker3.Text));
+            return (String.IsNullOrEmpty(datetimePicker2.Text)|| String.IsNullOrEmpty(datetimePicker2.Text) || String.IsNullOrEmpty(datetimePicker3.Text));
         }
         public void InitializeForm()
         {
@@ -258,9 +260,6 @@ namespace gui
             }
         }
 
-        protected void Calendar3_DayRender(object sender, DayRenderEventArgs e)
-        {
-
-        }
+       
     }
 }
