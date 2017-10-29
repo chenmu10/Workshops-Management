@@ -40,49 +40,49 @@ namespace gui.Gui {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl schoolDetails;
         
         /// <summary>
-        /// schoolid control.
+        /// schoolidText control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label schoolid;
+        protected global::System.Web.UI.WebControls.TextBox schoolidText;
         
         /// <summary>
-        /// schoolSymbol control.
+        /// schoolSymbolText control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label schoolSymbol;
+        protected global::System.Web.UI.WebControls.TextBox schoolSymbolText;
         
         /// <summary>
-        /// schoolName control.
+        /// schoolNameText control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label schoolName;
+        protected global::System.Web.UI.WebControls.TextBox schoolNameText;
         
         /// <summary>
-        /// schooladdress control.
+        /// schooladdressText control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label schooladdress;
+        protected global::System.Web.UI.WebControls.TextBox schooladdressText;
         
         /// <summary>
-        /// schoolCity control.
+        /// schoolCityText control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label schoolCity;
+        protected global::System.Web.UI.WebControls.TextBox schoolCityText;
         
         /// <summary>
         /// schoolArea control.
@@ -94,31 +94,31 @@ namespace gui.Gui {
         protected global::System.Web.UI.WebControls.Label schoolArea;
         
         /// <summary>
-        /// parking control.
+        /// parkingText control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label parking;
+        protected global::System.Web.UI.WebControls.TextBox parkingText;
         
         /// <summary>
-        /// computercontact control.
+        /// computercontactText control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label computercontact;
+        protected global::System.Web.UI.WebControls.TextBox computercontactText;
         
         /// <summary>
-        /// computercontactphone control.
+        /// computercontactphoneText control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label computercontactphone;
+        protected global::System.Web.UI.WebControls.TextBox computercontactphoneText;
         
         /// <summary>
         /// doneWorkshops control.
@@ -139,30 +139,48 @@ namespace gui.Gui {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl ContactDetails;
         
         /// <summary>
-        /// contactname control.
+        /// contactnameText control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label contactname;
+        protected global::System.Web.UI.WebControls.TextBox contactnameText;
         
         /// <summary>
-        /// contactphone control.
+        /// contactphoneText control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label contactphone;
+        protected global::System.Web.UI.WebControls.TextBox contactphoneText;
         
         /// <summary>
-        /// contactemail control.
+        /// contactemailText control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label contactemail;
+        protected global::System.Web.UI.WebControls.TextBox contactemailText;
+        
+        /// <summary>
+        /// UpdateSchoolBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button UpdateSchoolBtn;
+        
+        /// <summary>
+        /// DeleteBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button DeleteBtn;
     }
 }

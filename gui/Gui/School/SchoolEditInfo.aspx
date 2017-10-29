@@ -28,38 +28,37 @@
                         <legend>פרטי מוסד חינוכי</legend>
 
                           <label class="control-label" for="schoolid">ID:</label>
-                        <asp:Label runat="server" Text="טקסט" ID="schoolid"></asp:Label>
+                        <asp:TextBox runat="server" Text="טקסט" ID="schoolidText" Width="100%"></asp:TextBox>
                         <br />
                         <label class="control-label" for="schoolSymbol">סמל מוסד:</label>
-                        <asp:Label runat="server" Text="טקסט" ID="schoolSymbol"></asp:Label>
+                        <asp:TextBox runat="server" Text="טקסט" ID="schoolSymbolText" Width="100%"></asp:TextBox>
                         <br />
 
                         <label class="control-label" for="schoolName">שם בי"ס :</label>
-                        <asp:Label runat="server" Text="טקסט" ID="schoolName"></asp:Label>
+                        <asp:TextBox runat="server" Text="טקסט" ID="schoolNameText" Width="100%"></asp:TextBox>
 
                         <br />
                         <label class="control-label" for="schooladdress">כתובת: </label>
-                        <asp:Label runat="server" Text="טקסט" ID="schooladdress"></asp:Label>
+                        <asp:TextBox runat="server" Text="טקסט" ID="schooladdressText" Width="100%"></asp:TextBox>
 
                         <br />
-                        <label class="control-label" for="schoolCity">עיר: </label>
-                        <asp:Label runat="server" Text="טקסט" ID="schoolCity"></asp:Label>
+                        <label class="control-label" for="schoolCity">עיר: </label>  <asp:TextBox runat="server"  Text="טקסט" ID="schoolCityText" Width="100%" ></asp:TextBox>                      
 
                         <br />
                         <label class="control-label" for="schoolArea">אזור: </label>
-                        <asp:Label runat="server" Text="טקסט" ID="schoolArea"></asp:Label>
+                        <asp:Label runat="server" Text="טקסט" ID="schoolArea" Width="100%"></asp:Label>
 
                         <br />
                         <label class="control-label" for="parking">חנייה: </label>
-                        <asp:Label runat="server" Text="טקסט" ID="parking"></asp:Label>
+                        <asp:TextBox runat="server" Text="טקסט" ID="parkingText" Width="100%"></asp:TextBox>
 
                         <br />
                         <label class="control-label" for="computercontactname">שם אחראי/ת מחשבים: </label>
-                        <asp:Label runat="server" Text="טקסט" ID="computercontact"></asp:Label>
+                        <asp:TextBox runat="server" Text="טקסט" ID="computercontactText" Width="100%"></asp:TextBox>
 
                         <br />
                         <label class="control-label" for="computercontactphone">טלפון אחראי/ת מחשבים: </label>
-                        <asp:Label runat="server" Text="טקסט" ID="computercontactphone"></asp:Label>
+                        <asp:TextBox runat="server" Text="טקסט" ID="computercontactphoneText" Width="100%"></asp:TextBox>
 
                         <br />
                         <label class="control-label" for="doneWorkshops">מספר סדנאות שהתקיימו: </label>
@@ -72,14 +71,14 @@
                     <fieldset id="ContactDetails" runat="server">
                         <legend>איש/ת קשר/רכז/ת עמ"ט</legend>
                         <label class="control-label" for="contactname">שם : </label>
-                        <asp:Label runat="server" Text="טקסט" ID="contactname"></asp:Label>
+                        <asp:TextBox runat="server" Text="טקסט" ID="contactnameText" Width="100%"></asp:TextBox>
                         <br />
                         <label class="control-label" for="contactphone">טלפון : </label>
-                        <asp:Label runat="server" Text="טקסט" ID="contactphone"></asp:Label>
+                        <asp:TextBox runat="server" Text="טקסט" ID="contactphoneText" Width="100%"></asp:TextBox>
 
                         <br />
                         <label class="control-label" for="contactemail">כתובת אימייל : </label>
-                        <asp:Label runat="server" Text="טקסט" ID="contactemail"></asp:Label>
+                        <asp:TextBox runat="server" Text="טקסט" ID="contactemailText" Width="100%"></asp:TextBox>
 
                         <br />
 
@@ -88,8 +87,16 @@
 
 
             </div>
-            <br />
+         <div class="row">
             <a href="#" onclick="history.go(-1)" class="btn btn-default">חזור</a>
+
+            <asp:Button runat="server" ID="UpdateSchoolBtn" OnClick="UpdateSchool_Click"  class="btn btn-default" Text="עדכני" Visible="false"/>
+            
+            <asp:Button runat="server" ID="DeleteBtn" OnClick="DeleteBtn_Click" class="btn btn-default" Text="מחיקה" Visible="false"/>
+              
+         </div>
+                <br />
+                <br />
         </div>
     </form>
 

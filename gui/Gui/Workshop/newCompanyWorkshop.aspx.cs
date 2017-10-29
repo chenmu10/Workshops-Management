@@ -10,7 +10,7 @@ namespace gui.Gui.Workshop
     public partial class newCompanyWorkshop : System.Web.UI.Page
     {
 
-        List<Company> Companies = new List<Company>();
+        List<Models.Company> Companies = new List<Models.Company>();
         DB db;
 
         override protected void OnInit(EventArgs e)
@@ -39,7 +39,7 @@ namespace gui.Gui.Workshop
         {
             List<ListItem> Areas = db.GetAllAreas();
 
-            Company selectedComp = Companies[((DropDownList)sender).SelectedIndex - 1];
+            Models.Company selectedComp = Companies[((DropDownList)sender).SelectedIndex - 1];
             companyID.Text = selectedComp.Company_ID.ToString();
             address.Text = selectedComp.Company_Address;
             area.Text = Areas[selectedComp.Company_Area_Activity].Text.ToString();
@@ -63,15 +63,15 @@ namespace gui.Gui.Workshop
                 {
                     Response.Write("<script>alert('הסדנא נוספה בהצלחה. ניתן להוסיף עוד סדנאות עבור החברה הנבחרת');</script>");
 
-                    if(SendInvitesToSchools(newcw))
-                    {
-                        Response.Write("<script>alert('אימיילים נשלחו אל בתי ספר רלוונטים');</script>");
+                    //if(SendInvitesToSchools(newcw))
+                    //{
+                    //    Response.Write("<script>alert('אימיילים נשלחו אל בתי ספר רלוונטים');</script>");
                     
-                    }
-                    else 
-                    {
-                        Response.Write("<script>alert('שגיאה בשליחת אימיילים');</script>");
-                    }
+                    //}
+                    //else 
+                    //{
+                    //    Response.Write("<script>alert('שגיאה בשליחת אימיילים');</script>");
+                    //}
                     ClearWorkshopDetails();
                 }
                 else
@@ -90,10 +90,10 @@ namespace gui.Gui.Workshop
         protected bool SendInvitesToSchools(CompanyWorkshop selectedWorkshop)
         {
             List<School> allSchools = db.GetAllSchools();
-            List<Company> allCompany = db.GetAllComapny();
+            List<Models.Company> allCompany = db.GetAllComapny();
 
             int companyID = selectedWorkshop.CompanyID;
-            Company SelectedComapny = allCompany.Find(x => x.Company_ID == companyID);
+            Models.Company SelectedComapny = allCompany.Find(x => x.Company_ID == companyID);
 
             allSchools = allSchools.FindAll(x => x.School_Area == SelectedComapny.Company_Area_Activity);
             EmailHelper email = new EmailHelper();
@@ -127,12 +127,16 @@ namespace gui.Gui.Workshop
 
         private void ClearWorkshopDetails()
         {
+            companyID.Text = "";
+            address.Text = "";
+            area.Text = "";
+            dropDownCompanyName.SelectedIndex = 0;
             PredictedStudentsNum.Text = "";
             hour.Text = "";
             minutes.Text = "";
             comments.Text = "";
             datePicker.Text = "";
-            //calendar.SelectedDate = DateTime.Now;
+           
         }
 
 

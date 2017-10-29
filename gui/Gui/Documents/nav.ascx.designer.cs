@@ -58,6 +58,15 @@ namespace gui.Gui.Documents {
         protected global::System.Web.UI.WebControls.LinkButton LinkButton4;
         
         /// <summary>
+        /// EmailTampL control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton EmailTampL;
+        
+        /// <summary>
         /// volunter control.
         /// </summary>
         /// <remarks>
@@ -110,6 +119,15 @@ namespace gui.Gui.Documents {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton shobech;
+        
+        /// <summary>
+        /// reports control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton reports;
         
         /// <summary>
         /// manager control.

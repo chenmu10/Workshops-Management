@@ -21,12 +21,12 @@
 
     <form id="form1" runat="server">
 
-
+    
 
         <uc1:nav ID="nav1" runat="server" />
         <br />
 
-      
+
         <div class="container">
             <br />
        
@@ -34,10 +34,6 @@
             <asp:Label runat="server" ID="user"></asp:Label>
             <br />
 
-             <div style="margin:auto">
-                    <asp:Button runat="server" ID="TestEMail" OnClick="TestEMail_Click" Text="שלח איימיל בדיקה " />
-
-        </div>
             <div class="jumbotron" style="background-color:rgba(255, 255, 255,0.8); width:75%; height:80%; margin:auto;">
                  
                  <asp:Image ID="Image2" runat="server" Height="107px" ImageUrl="../../../Content/mmtlogo.PNG" AlternateText="Picture not found" Width="402px" CssClass="center-block" />

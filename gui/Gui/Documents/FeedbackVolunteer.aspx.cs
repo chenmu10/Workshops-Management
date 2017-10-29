@@ -62,7 +62,7 @@ namespace gui.Gui.Documents
             if(_IsCompany)
             {               
                 School school = db.GetSchoolByID(workshop.CompanySchoolID);
-                Company company = db.getCompanyByID(workshop.CompanyID);
+                Models.Company company = db.getCompanyByID(workshop.CompanyID);
                 workshopIDLabel.Text = _workshopID.ToString();                
                 schoolNameLabel.Text = school.School_Name;
                 companyNameLabel.Text = company.Company_Name;

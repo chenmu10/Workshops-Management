@@ -17,7 +17,8 @@
 
             <div class="jumbotron">
                 <h2>סדנאות: שיבוץ מתנדבות</h2>
-                לכל שאלה או בעיה מוזמנות לפנות אלינו ל mehamemet@cyber.org.il
+                <b> לכל שאלה או בעיה מוזמנות לפנות אלינו ל mehamemet@cyber.org.il</b>
+             
             </div>
 
 

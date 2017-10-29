@@ -70,7 +70,7 @@ namespace gui.Gui
         private string GetCompanyAddress(int companyID)
         {
             string address;
-            List<Company> companies = db.GetAllComapny();
+            List<Models.Company> companies = db.GetAllComapny();
             address = companies.Find(y => y.Company_ID == companyID).Company_Address;
             return address;
         }
@@ -78,16 +78,18 @@ namespace gui.Gui
         private string GetCompanyName(int companyID)
         {
             string name;
-            List<Company> companies = db.GetAllComapny();
+            List<Models.Company> companies = db.GetAllComapny();
             name = companies.Find(y => y.Company_ID == companyID).Company_Name;
             return name;
         }
 
         protected void Select_Click(object sender, EventArgs e)
         {
+            Clear_Bold_In_Table();
             Button selectedButton = (Button)sender;
             string WorkshopID = selectedButton.Attributes["WorkshopID"].ToString();
             Session["SelectedWorkshopID"] = WorkshopID;
+            workshopTable.Rows[int.Parse(selectedButton.Attributes["CountLine"])].Font.Bold = true;
             workshopIdLabel.Text = WorkshopID;
             ClearForm();
         }
@@ -135,25 +137,43 @@ namespace gui.Gui
 
             if (db.updateCompanyWorkshopSchoolAssign(WorkshopID, selected[0].School_ID, finalParticipants.Text, comments.Text))
             {
-                FillTable();
-                Msg.Text = "הסדנא עודכנה בהצלחה";
-                return;
+                //FillTable();
+                //Msg.Text = "הסדנא עודכנה בהצלחה";
+                //return;
+                Response.Redirect("../Documents/SuccessForm.aspx", false);
             }
             else
             {
                 Msg.Text = "שגיאה - העדכון לא בוצע";
                 return;
             }
-            
-
-
-
-
         }
-        protected void TextBox1_TextChanged(object sender, EventArgs e)
+
+        protected void Workshop_Selected_Visibly_Change(bool toHide)
         {
-
+            if (toHide == true)
+            {
+                SchoolAssignPlaceHolder.Visible = false;
+            }
+            else
+            {
+                SchoolAssignPlaceHolder.Visible = true;
+            }
         }
+
+        protected void Clear_Bold_In_Table()
+        {
+            foreach (TableRow t in workshopTable.Rows)
+            {
+                t.Font.Bold = false;
+            }
+        }
+
+
+
+
+
+
         public void ClearForm()
         {
             schoolSymbol.Text = "";

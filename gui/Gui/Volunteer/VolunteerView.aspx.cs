@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Web.UI.WebControls;
 
 namespace gui.Gui
@@ -33,6 +34,7 @@ namespace gui.Gui
             if (db.IsManager(Session["Manager"]))
             {
                 managerOk = true;
+                expot.Visible = true;
             }
 
             foreach (Volunteer volunteer in Volunteers)
@@ -103,6 +105,9 @@ namespace gui.Gui
 
                 volunteerTable.Rows.Add(TableRow);
             }
+            Sum.Text = "";
+            Sum.Text = "כמות : ";
+            Sum.Text += string.Format("{0}", Volunteers.Count().ToString());
         }
         public void FillFilterDropdowns()
         {
@@ -129,8 +134,7 @@ namespace gui.Gui
         {
             string key = ((Button)sender).ID.ToString();
             Session["SelectedVolunteer"] = key;
-            Response.Redirect("VolunteerEditInfo.aspx", false);
-            
+            Response.Redirect("VolunteerEditInfo.aspx", false);           
 
         }
 
@@ -204,7 +208,97 @@ namespace gui.Gui
 
             InsertToVolunterTable(volunteers);
         }
+        protected void btnExportExcel_Click(object sender, EventArgs e)
+        {
+            List<System.Web.UI.WebControls.ListItem> Areas = db.GetAllAreas();
 
+            string path = Server.MapPath("..\\..\\Content\\Report.csv");
+            try
+            {
+                if (System.IO.File.Exists(path))
+                    System.IO.File.Delete(path);
+                using (System.IO.StreamWriter filewriter = new System.IO.StreamWriter(path, true, Encoding.UTF8))
+                {
+                    filewriter.WriteLine("Volunteer Name, Status, Occupation, Email, Phone, Activity Areas, Traning Area, Activity Numner");
+                    List<Volunteer> Data = new List<Volunteer>();
+                    int status = DropDownListStatus.SelectedIndex;
+                    int area = DropDownListAreas.SelectedIndex;
+                    int traning = DropDownListTraining.SelectedIndex;
+                    string name = nameText.Text.ToString();
+                    string email = emailText.Text.ToString();
+
+                    if (status != 0 || area!=0 || traning!=0)
+                    {
+                        Data = SortByFilterFunc();
+
+                    } // if
+                    else if (!name.Equals("") || !email.Equals(""))
+                    {
+                        if (!name.Equals(""))
+                            Data = Volunteers.Where(x => x.Volunteer_First_Name.Contains(name) || x.Volunteer_First_Name_Eng.Contains(name) ||
+                              x.Volunteer_Last_Name.Contains(name) || x.Volunteer_Last_Name_Eng.Contains(name)).ToList();
+                        if (!email.Equals(""))
+                            Data = Volunteers.Where(x => x.Volunteer_Email.Contains(email)).ToList();
+                    }
+                    else
+                    {
+                        Data = db.GetAllVolunteers();
+                    }
+
+                    foreach (Volunteer com in Data)
+                    {
+                        name = (com.Volunteer_First_Name+" "+com.Volunteer_Last_Name).Replace(',', ' ');
+                        string Vstatus = ListStatus[com.Volunteer_Practice];
+                        string Occupation = com.Volunteer_Occupation.Replace(',', ' ');
+                        string VEmail = com.Volunteer_Email.Replace(',', ' ');
+                        string Vphone = com.Volunteer_phone.Replace(',', ' ');
+                        string activityAreas = string.Empty;
+                        string Traning = Areas[com.Volunteer_prefer_traning_area].ToString().Replace(',', ' ');
+                        string ActivityNum = com.Volunteer_Number_Of_Activities.ToString();
+                        foreach (int VolunterrArea in com.Volunteer_Area_Activity)
+                        {
+                            activityAreas = activityAreas + Areas[VolunterrArea].ToString().Replace(',', ' '); ;
+                            activityAreas = activityAreas + " וגם ";
+                        }
+                       
+                        string str =
+                            String.Format("{0},{1},{2},{3},{4},{5},{6},{7}",
+                            name,
+                            Vstatus,
+                            Occupation,
+                            VEmail,
+                            Vphone,
+                            activityAreas,
+                            Traning,
+                            ActivityNum);
+
+                        filewriter.WriteLine(str);
+                    }
+                }
+                System.IO.FileInfo file = new System.IO.FileInfo(path); //get file object as FileInfo
+                if (file.Exists) //-- if the file exists on the server
+                {
+                    Response.Clear(); //set appropriate headers
+                    Response.AddHeader("Content-Disposition", "attachment; filename=" + file.Name);
+                    Response.AddHeader("Content-Length", file.Length.ToString());
+                    Response.ContentType = "application/....";
+                    Response.WriteFile(file.FullName);
+                    Response.End(); //if file does not exist
+                }
+                else
+                {
+                    Response.Write("This file does not exist.");
+                }
+            }
+            catch (Exception exp)
+            {
+            }
+        }
+
+        protected void Clear_Click(object sender, EventArgs e)
+        {
+            Response.Write("<script>window.location.href = ''; </script>");
+        }
 
         //protected void OccupationSort(object sender, EventArgs e)
         //{

@@ -30,7 +30,7 @@
                             <asp:ListItem>אזור</asp:ListItem>
                         </asp:DropDownList>
 
-                        <asp:Button runat="server" ID="filter" class="btn btn-info" Text="סינון" />
+                        <asp:Button runat="server" ID="filter" class="btn btn-info" OnClick="filter_Click" Text="סינון" />
 
                     </div>
                 </div>
@@ -38,15 +38,22 @@
                 <div class="col-md-8">
                     <div class="form-inline">
 
-                        <asp:TextBox ID="name" runat="server" type="text" class="form-control" placeholder="שם" Width="100px"> </asp:TextBox>
+                        <asp:TextBox ID="NameInput" runat="server" type="text" class="form-control" placeholder="שם" Width="100px"> </asp:TextBox>
 
-                        <asp:Button runat="server" ID="search" class="btn btn-info" Text="חיפוש" />
+                        <asp:Button runat="server" ID="search" OnClick="search_Click" class="btn btn-info" Text="חיפוש" />
+
+                        <asp:Button runat="server" ID="clear" class="btn btn-info" OnClick="clear_Click" Text="ניקוי" />
                     </div>
+
                     <br />
                 </div>
 
             </div>
             <%--end row--%>
+            <br />
+               <asp:Button runat="server" Visible="false" ID="expot"  class="btn btn-info" Text="ייצא לאקסל" OnClick="btnExportExcel_Click" />
+           <br />
+             <asp:Label runat="server" ID="Sum"></asp:Label>
             <br />
             <!-- Table-->
             <asp:Table ID="companyTable" runat="server" CssClass="table table-hover">
@@ -64,7 +71,7 @@
                     <asp:TableCell Font-Bold="true">פעולות</asp:TableCell>
                 </asp:TableRow>
             </asp:Table>
-            <asp:Label runat="server" ID="Sum"></asp:Label>
+         
         </div>
     </form>
     <script>   $(" .navbar a:contains('חברות')").parent().addClass('active');</script>

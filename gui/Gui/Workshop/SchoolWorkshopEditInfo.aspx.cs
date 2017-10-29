@@ -57,6 +57,8 @@ namespace gui.Gui.Workshop
                 RadioButtonListSeniors.Visible = false;
                 RadioButtonListShowVideoLabel.Visible = false;
                 RadioButtonListShowVideo.Visible = false;
+                RadioButtonListAnswer_PerWorkshop.Visible = false;
+                RadioButtonListStudent_Gmail.Visible = false;
                 prepareComments.Text = "";
                 PrepareFormReadey.Text = "עוד לא מילאו טופס הכנה";
 
@@ -106,12 +108,16 @@ namespace gui.Gui.Workshop
                     RadioButtonListSeniors.Visible = true;
                     RadioButtonListShowVideoLabel.Visible = true;
                     RadioButtonListShowVideo.Visible = true;
+                    RadioButtonListAnswer_PerWorkshop.Visible = true;
+                    RadioButtonListStudent_Gmail.Visible = true;
                     PrepareFormReadey.Text = "";
 
                     finalParticipants.Text = pf.WorkShop_Number_Of_Final_Student.ToString();
                     RadioButtonListProjectOrControl.SelectedValue = pf.WorkShop_Is_Projector.ToString();
                     RadioButtonListSeniors.Text = pf.WorkShop_Is_Seniors_Coming.ToString();
                     RadioButtonListDidPrepare.SelectedValue = pf.WorkShop_Did_Preparation.ToString();
+                    RadioButtonListAnswer_PerWorkshop.SelectedValue = pf.Workshop_Is_All_Student_Answer_PerWorkshop.ToString() ;
+                    RadioButtonListStudent_Gmail.SelectedValue = pf.Workshop_Is_All_Student_Gmail.ToString();
                     RadioButtonListShowVideo.Text = pf.WorkShop_Is_Video_possible.ToString();
                     numOfCompWithEmulator.Text = pf.WorkShop_Number_Of_emulator_Computer.ToString();
                     teacherName.Text = pf.WorkShop_Teacher_Name;
@@ -127,28 +133,11 @@ namespace gui.Gui.Workshop
                 int status = schoolWorkshop.SchoolWorkShopStatus;
                 SetStatusBar(status);
 
-
-                int dateIndex = int.Parse(schoolWorkshop.SchoolWorkShopSelectedDate.ToString());
+                
+              
                 if(status!=5)
                 {
-                    switch (dateIndex)
-                    {
-                        case 0:
-                            WorkShopDate.Text = "--";
-                            break;
-                        case 1:
-                            WorkShopDate.Text = schoolWorkshop.SchoolWorkShopDate1.ToString();
-                            date1.Font.Bold = true;
-                            break;
-                        case 2:
-                            WorkShopDate.Text = schoolWorkshop.SchoolWorkShopDate2.ToString();
-                            date2.Font.Bold = true;
-                            break;
-                        case 3:
-                            WorkShopDate.Text = schoolWorkshop.SchoolWorkShopDate3.ToString();
-                            date3.Font.Bold = true;
-                            break;
-                    }
+                    ShowSelectedDate();
                 }
                    
 
@@ -198,6 +187,32 @@ namespace gui.Gui.Workshop
             }
         }
 
+        private void ShowSelectedDate()
+        {
+            int dateIndex = int.Parse(schoolWorkshop.SchoolWorkShopSelectedDate.ToString());
+          
+                switch (dateIndex)
+                {
+                    case 0:
+                        WorkShopDate.Text = "--";
+                        break;
+                    case 1:
+                        WorkShopDate.Text = schoolWorkshop.SchoolWorkShopDate1.ToString();
+                        date1.Font.Bold = true;
+                        break;
+                    case 2:
+                        WorkShopDate.Text = schoolWorkshop.SchoolWorkShopDate2.ToString();
+                        date2.Font.Bold = true;
+                        break;
+                    case 3:
+                        WorkShopDate.Text = schoolWorkshop.SchoolWorkShopDate3.ToString();
+                        date3.Font.Bold = true;
+                        break;
+                }
+           
+
+        }
+
         private void SetStatusBar(int status)
         {
             switch(status)
@@ -240,7 +255,7 @@ namespace gui.Gui.Workshop
 
                     break;
                 case 5:
-                    DateButton.Visible = true;
+                    UpdateWorkshopDate.Visible = true;
                     selectpicker.SelectedIndex = 1;
                     bar1.Attributes["class"] = "previous visited";
                     bar2.Attributes["class"] = "active";
@@ -335,7 +350,7 @@ namespace gui.Gui.Workshop
                     break;
                 case 2:
 
-                    status2function();
+                    status2AssignVolunteers();
 
                  
                     break;
@@ -427,34 +442,39 @@ namespace gui.Gui.Workshop
             db.SchoolWorkShopUpdatestatus(schoolWorkshop.SchoolWorkShopID, 4);
             Response.Redirect(Request.RawUrl);
         }
-        public void status2function()
+        public void status2AssignVolunteers()
         {
             EmailHelper Email = new EmailHelper();
             //לשיבוץ מתנדבות
-            // בדיקה שתאריך נבחר
+            List<Volunteer> allVolunteer = db.GetAllVolunteers();
+            List<School> allSchool = db.GetAllSchools();
+            School school = allSchool.Find(x => x.School_ID == schoolWorkshop.WorkShop_School_ID);
+            allVolunteer = allVolunteer.FindAll(x => x.Volunteer_Area_Activity.Contains(school.School_Area));
+
             int dateSelected = dateselector.SelectedIndex;
+
             if (dateSelected == 0)
-                ErrorMsg(3);
-            else
             {
-                List<Volunteer> allVolunteer = db.GetAllVolunteers();
-                List<School> allSchool = db.GetAllSchools();
-                School school = allSchool.Find(x => x.School_ID == schoolWorkshop.WorkShop_School_ID);
-                allVolunteer = allVolunteer.FindAll(x => x.Volunteer_Area_Activity.Contains(school.School_Area));
+                ErrorMsg(3);
+                return;
+            }
 
-                if (!db.SchoolWorkShopUpdateDate(schoolWorkshop.SchoolWorkShopID, dateSelected)) ErrorMsg(1);
-                if (!db.SchoolWorkShopUpdatestatus(schoolWorkshop.SchoolWorkShopID, 1)) ErrorMsg(1);
-                if (Email.SendInivetsToVolunteers(allVolunteer, school.School_Area, dateselector.SelectedItem.Text))
-                {
-                    //Response.Write("<script>alert('איימילים נשלחו למתנדבות באזור'); window.location.href = '';</script>");
-
-                }
-                else
-                {
-                    ErrorMsg(2);
-                }
+            if (!db.SchoolWorkShopUpdatestatus(schoolWorkshop.SchoolWorkShopID, 1)) ErrorMsg(1);
+            if (Email.SendInivetsToVolunteers(allVolunteer, school.School_Area, dateselector.SelectedItem.Text))
+            {
+                //Response.Write("<script>alert('איימילים נשלחו למתנדבות באזור'); window.location.href = '';</script>");
 
             }
+            if (db.SchoolWorkShopUpdateDate(schoolWorkshop.SchoolWorkShopID, dateSelected))
+            {
+                ShowSelectedDate();
+            }
+            else
+            {
+                ErrorMsg(2);
+            }
+
+
         }
         public void disableForm()
         {
@@ -573,12 +593,33 @@ namespace gui.Gui.Workshop
             }
 
         }
-
         protected void DateButton_Click(object sender, EventArgs e)
         {
             int ID = int.Parse(Session["WorkshopID"].ToString());
             schoolWorkshop = db.GetSchoolWorkshopByID(ID);
-            status2function();
+            status2AssignVolunteers();
+        }
+        protected void UpdateWorkshopDate_Click(object sender, EventArgs e)
+        {
+            int ID = int.Parse(Session["WorkshopID"].ToString());
+            schoolWorkshop = db.GetSchoolWorkshopByID(ID);
+
+            int dateSelected = dateselector.SelectedIndex;
+
+            if (dateSelected == 0) 
+            {
+                ErrorMsg(3); 
+            }
+               
+            if (db.SchoolWorkShopUpdateDate(schoolWorkshop.SchoolWorkShopID, dateSelected))
+            {
+                ShowSelectedDate();
+            }
+            else
+            {
+                ErrorMsg(1);
+            }
+           
         }
         protected void VolunteerClick(object sender, EventArgs e)
         {

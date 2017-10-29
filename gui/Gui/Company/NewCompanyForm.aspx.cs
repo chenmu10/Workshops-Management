@@ -35,7 +35,7 @@ namespace gui.Gui
         {
             if (!IsEmptyFields())
             {
-                Company newComp = new Company();
+                Models.Company newComp = new Models.Company();
                 newComp.Company_Name = companyName.Text;
                 newComp.Company_Address = companyAddress.Text;
                 newComp.Company_Contact_Name = contactname.Text;

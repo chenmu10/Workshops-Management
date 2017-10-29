@@ -15,8 +15,8 @@ namespace gui.Gui.Workshop
         WorkshopJoin WorkshopToView = new WorkshopJoin();
         CompanyWorkshop CompanyWorkshop = new CompanyWorkshop();
         List<Volunteer> allVolunteer = new List<Volunteer>();
-        List<Company> allCompany = new List<Models.Company>();
-        Company selectedCompany = new Company();
+        List<Models.Company> allCompany = new List<Models.Company>();
+        Models.Company selectedCompany = new Models.Company();
         protected void Page_Load(object sender, EventArgs e)
         {
             this.Load += new System.EventHandler(this.Page_Load);
@@ -381,7 +381,7 @@ namespace gui.Gui.Workshop
             int workshopId = int.Parse(Session["WorkshopID"].ToString());
             allVolunteer = db.GetAllVolunteers();
             VolunteerName3.Text = "";
-            int ID = Voluntter1DropDownList.SelectedIndex;
+            int ID = Voluntter3DropDownList.SelectedIndex;
             if (ID != 0)
             {
                 v = allVolunteer.Find(x => x.Volunteer_ID == ID);

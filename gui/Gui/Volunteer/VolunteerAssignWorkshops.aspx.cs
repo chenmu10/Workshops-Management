@@ -77,7 +77,7 @@ namespace gui.Gui
                     */
                     Editbtn.Attributes.Add("IsCompany", t.Is_company.ToString());
                     Editbtn.Click += new EventHandler(Select_Click);
-                    Editbtn.Text = "בחירה";
+                    Editbtn.Text = "הרשמה";
                     Editbtn.CssClass = "btn btn-info";
                     Edit.Controls.Add(Editbtn);
                     row.Cells.Add(Edit);
@@ -411,7 +411,7 @@ namespace gui.Gui
             if (isCompany)
             {
                 List<CompanyWorkshop> TempCompanyWorkshop = db.GetAllCompanyWorshops();
-                List<Company> allCompany = db.GetAllComapny();
+                List<Models.Company> allCompany = db.GetAllComapny();
                 CompanyWorkshop t = TempCompanyWorkshop.Find(x => x.CompanyWorkShopID == workShop_ID);
                 address = allCompany.Find(y => y.Company_ID == t.CompanyID).Company_Address;
             }

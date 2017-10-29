@@ -7,10 +7,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace gui.Gui {
+namespace gui.Gui.Company {
     
     
-    public partial class CompanyViewInformation {
+    public partial class EditInfoForCompan {
         
         /// <summary>
         /// form1 control.
@@ -40,31 +40,31 @@ namespace gui.Gui {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl companyDetails;
         
         /// <summary>
-        /// companyID control.
+        /// companyIDLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox companyID;
+        protected global::System.Web.UI.WebControls.TextBox companyIDLabel;
         
         /// <summary>
-        /// companyName control.
+        /// companyNameLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox companyName;
+        protected global::System.Web.UI.WebControls.TextBox companyNameLabel;
         
         /// <summary>
-        /// companyAddress control.
+        /// companyAddressLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox companyAddress;
+        protected global::System.Web.UI.WebControls.TextBox companyAddressLabel;
         
         /// <summary>
         /// DropDownListArea control.
@@ -101,41 +101,5 @@ namespace gui.Gui {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox contactname;
-        
-        /// <summary>
-        /// contactphone control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox contactphone;
-        
-        /// <summary>
-        /// contactemail control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox contactemail;
-        
-        /// <summary>
-        /// Msg control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Msg;
-        
-        /// <summary>
-        /// back control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button back;
     }
 }

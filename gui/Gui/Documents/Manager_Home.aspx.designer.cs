@@ -40,15 +40,6 @@ namespace gui.Gui {
         protected global::System.Web.UI.WebControls.Label user;
         
         /// <summary>
-        /// TestEMail control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button TestEMail;
-        
-        /// <summary>
         /// Image2 control.
         /// </summary>
         /// <remarks>

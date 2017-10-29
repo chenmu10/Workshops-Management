@@ -58,13 +58,13 @@ namespace gui.Gui {
         protected global::System.Web.UI.WebControls.Button filter;
         
         /// <summary>
-        /// name control.
+        /// NameInput control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox name;
+        protected global::System.Web.UI.WebControls.TextBox NameInput;
         
         /// <summary>
         /// search control.
@@ -74,6 +74,33 @@ namespace gui.Gui {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button search;
+        
+        /// <summary>
+        /// clear control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button clear;
+        
+        /// <summary>
+        /// expot control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button expot;
+        
+        /// <summary>
+        /// Sum control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Sum;
         
         /// <summary>
         /// companyTable control.
@@ -92,14 +119,5 @@ namespace gui.Gui {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton LinkButton1;
-        
-        /// <summary>
-        /// Sum control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Sum;
     }
 }

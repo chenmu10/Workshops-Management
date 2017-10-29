@@ -17,11 +17,7 @@ namespace gui.Gui
         {
             this.Load += new System.EventHandler(this.Page_Load);
             db = new DB();
-            db.IsConnect();
-           
-        
-     
-           
+            db.IsConnect();           
             FillSchoolInfo();
         }
 
@@ -34,65 +30,55 @@ namespace gui.Gui
         private void FillSchoolInfo()
         {
 
-            if (Session["SchoolID"] != null)
+            if (Session["SelectedSchool"] != null)
             {
-                School school = db.GetSchoolByID(int.Parse(Session["SchoolID"].ToString()));
+                School school = db.GetSchoolByID(int.Parse(Session["SelectedSchool"].ToString()));
                 Areas = db.GetAreaActivity();
-
-
-                schoolid.Text = school.School_ID.ToString();
-                schoolSymbol.Text = school.School_Serial_Number.ToString() ;
-                schoolName.Text =school.School_Name;
-                schooladdress.Text = school.School_Address;
-                schoolCity.Text =school.School_City ;
+                schoolidText.Text = school.School_ID.ToString();
+                schoolSymbolText.Text = school.School_Serial_Number.ToString() ;
+                schoolNameText.Text =school.School_Name;
+                schooladdressText.Text = school.School_Address;
+                schoolCityText.Text =school.School_City ;
                 schoolArea.Text = Areas[school.School_Area];
-                parking.Text = school.School_Parking_Info;
-                computercontact.Text = school.School_Supervisor_Name;
-                computercontactphone.Text = school.School_Supervisor_Phone;
-                contactname.Text = school.School_Contact_Name;
-                contactphone.Text = school.Scool_Contact_Phone ;
-                contactemail.Text =school.School_Contact_Email;
-                
-
+                parkingText.Text = school.School_Parking_Info;
+                computercontactText.Text = school.School_Supervisor_Name;
+                computercontactphoneText.Text = school.School_Supervisor_Phone;
+                contactnameText.Text = school.School_Contact_Name;
+                contactphoneText.Text = school.Scool_Contact_Phone ;
+                contactemailText.Text =school.School_Contact_Email;               
             }
 
+            if (db.IsManager(Session["Manager"]))
+                DisableForm(true);
+            else
+                DisableForm(false);
+
         }
-
-
-
-
-        public void DisableForm(ControlCollection ctrls)
+        private void DisableForm(bool mode)
         {
-            foreach (Control ctrl in ctrls)
-            {
-                if (ctrl is TextBox)
-                {
-                    ((TextBox)ctrl).Enabled = false;
-                    ((TextBox)ctrl).CssClass = "form-control disabled";
-                }
-
-                else if (ctrl is DropDownList)
-                {
-                    ((DropDownList)ctrl).Enabled = false;
-                    ((DropDownList)ctrl).CssClass = "form-control disabled";
-                }
-                //else if (ctrl is CheckBox)
-                //{
-                //    ((CheckBox)ctrl).Enabled = false;
-                //    ((CheckBox)ctrl).CssClass = "form-control disabled";
-                //}
-
-                else if (ctrl is RadioButton)
-                {
-                    ((RadioButton)ctrl).Enabled = false;
-                }
-
-
-                DisableForm(ctrl.Controls);
-            }
+            schoolidText.Enabled = mode;
+            schoolSymbolText.Enabled = mode;
+            schoolNameText.Enabled = mode;
+            schooladdressText.Enabled = mode;
+            schoolCityText.Enabled = mode;
+            parkingText.Enabled = mode;
+            computercontactText.Enabled = mode;
+            computercontactphoneText.Enabled = mode;
+            contactnameText.Enabled = mode;
+            contactphoneText.Enabled = mode;
+            contactemailText.Enabled = mode;
+            UpdateSchoolBtn.Visible = mode;
+            DeleteBtn.Visible = mode;
         }
 
+        protected void UpdateSchool_Click(object sender, EventArgs e)
+        {
 
+        }
 
+        protected void DeleteBtn_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -27,6 +27,12 @@
                         <h4 class="list-group-item-heading">רישום מתנדבת</h4>
                         <p class="list-group-item-text">באתר מהממ"ט יהיה קישור שיוביל לדף זה. נרשמת חדשה תהיה בסטטוס "ללא הכשרה"</p>
                     </a>
+
+                    <a href="../school/NewSchoolForm.aspx" class="list-group-item" target="_blank">
+                        <h4 class="list-group-item-heading"  >טופס רישום בי"ס חדש</h4>
+                   <p class="list-group-item-text">באתר יהיה קישור לדף זה. לטופס רישום בית ספר חדש</p>
+                         </a>                      
+                   
                     <a href="../workshop/newSchoolWorkshop.aspx" class="list-group-item" target="_blank">
                         <h4 class="list-group-item-heading">טופס בקשת בית ספר לקיום סדנא</h4>
                         <p class="list-group-item-text">באתר יהיה קישור לדף זה. הוספת סדנא בסטטוס "לבדיקה" עבור בית ספר חדש או קיים</p>

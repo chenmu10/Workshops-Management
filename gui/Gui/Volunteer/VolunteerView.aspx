@@ -63,6 +63,11 @@
 
             </div>
             <%--end row--%>
+           <asp:Button runat="server" Visible="false" ID="expot"  class="btn btn-info" Text="ייצא לאקסל" OnClick="btnExportExcel_Click" />
+           <asp:Button runat="server"  ID="Clear"  class="btn btn-info" Text="ייצא לאקסל" OnClick="Clear_Click" />
+
+            <br />
+             <asp:Label runat="server" ID="Sum"></asp:Label>
             <br />
             <!-- Table-->
             <asp:Table ID="volunteerTable" runat="server" CssClass="table table-hover">
@@ -79,6 +84,7 @@
                 </asp:TableRow>
 
             </asp:Table>
+         
         </div>
 
         <br />

@@ -16,13 +16,15 @@ namespace gui.Models
 {
     public class EmailHelper
     {
-        string fromAddress = "mmt.send@gmail.com"; // temporary - personal email..
-        string fromPassword = "mmtproject";
+        //string fromAddress = "mmt.send@gmail.com"; // temporary - personal email..
+        //string fromPassword = "mmtproject";
+        string fromAddress = "mamemt@cyber.org.il"; // temporary - personal email..
+        string fromPassword = "1234";
         string TestMail = "chenmu10@gmail.com";
         string EmailTitle = "MMT";
         string ManagerMail = "chenmu10@gmail.com";
         string signature, signature_path, sendBody;
-        bool IsTestMode = false;
+        bool IsTestMode = true;
         SmtpClient smtp;
         DB db;
 
@@ -58,19 +60,23 @@ namespace gui.Models
             PrepareBody = System.Web.Hosting.HostingEnvironment.MapPath("~/EmailMessages/SchoolWorkshop/PrepareBody.txt");
 
            
-       
-     
+            smtp = new SmtpClient()
+                    {
+                    //Host = "smtp.gmail.com",
+                    //Port = 587,
+                    //EnableSsl = true,
+                    //DeliveryMethod = SmtpDeliveryMethod.Network,
+                    //UseDefaultCredentials = false,
+                    //Credentials = new NetworkCredential(fromAddress, fromPassword),
+                    //Timeout = 20000
 
-
-    smtp = new SmtpClient()
-            {
-                Host = "smtp.gmail.com",
-                Port = 587,
-                EnableSsl = true,
-                DeliveryMethod = SmtpDeliveryMethod.Network,
-                UseDefaultCredentials = false,
-                Credentials = new NetworkCredential(fromAddress, fromPassword),
-                Timeout = 20000
+                    Host = "localhost",
+                    Port = 25,
+                    EnableSsl = true,
+                    DeliveryMethod = SmtpDeliveryMethod.Network,
+                    UseDefaultCredentials = false,
+                    Credentials = new NetworkCredential(fromAddress, fromPassword),
+                    Timeout = 20000
             };
 
 
@@ -322,13 +328,35 @@ namespace gui.Models
             }
             return true;
         }
-        public void Test()
+        public bool Test(string TestMail)
         {
             /*    SMTP Test    */
 
+            var mail = new MailMessage();
+            mail.From = new MailAddress(fromAddress, EmailTitle);
 
 
+            //Read Files
+            signature = File.ReadAllText(signature_path, Encoding.UTF8);
 
+            //Subject & Body information
+            string subject = "בדיקה";
+            sendBody = "";
+
+
+            mail.Subject = subject;
+            mail.Body = sendBody + signature;
+            mail.IsBodyHtml = true;
+            mail.To.Add(new MailAddress(TestMail));
+            try
+            {
+                smtp.Send(mail);
+            }
+            catch (Exception e)
+            {
+                return false; 
+            }
+            return true;
         }
        
 

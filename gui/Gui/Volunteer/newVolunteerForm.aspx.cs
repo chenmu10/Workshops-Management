@@ -137,7 +137,7 @@ namespace gui
             {
                 Response.Write("<script>alert('מתנדבת קיימת. צרי קשר במקרה של שינוי/בעיה');</script>");
             }
-            else if (db.InsertNewVolunteer(NewVolunteer))
+            else if (db.InsertNewVolunteer(NewVolunteer,false))
             {
                 ClearForm();
                 //Response.Write("<script>alert('נוספת בהצלחה למאגר'); window.location.href = '../Documents/SuccessNewVolunteer.aspx'; </script>");

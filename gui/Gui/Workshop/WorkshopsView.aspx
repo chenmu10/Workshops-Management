@@ -70,12 +70,15 @@
                     </div>
 
                 </div>
-
-
-
                 <br />
-                <br />
-                <br />
+
+                   <asp:Button runat="server" Visible="false" ID="expot"  class="btn btn-info" Text="ייצא לאקסל" OnClick="btnExportExcel_Click" />
+           <asp:Button runat="server"  ID="Clear"  class="btn btn-info" Text="ניקוי" OnClick="Clear_Click" />
+
+            <br />
+             <asp:Label runat="server" ID="Sum"></asp:Label>
+            <br />
+                
                 <%--Table--%>
                 <asp:Table ID="workshopTable" runat="server" CssClass="table table-hover">
                     <asp:TableRow>

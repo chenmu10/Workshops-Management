@@ -1,22 +1,17 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="CompanyEditInformation.aspx.cs" Inherits="gui.Gui.CompanyViewInformation" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="EditInfoForCompany.aspx.cs" Inherits="gui.Gui.Company.EditInfoForCompan" %>
 
-
-<%@ Register Src="../Documents/nav.ascx" TagName="nav" TagPrefix="uc1" %>
+<%@ Register src="../Documents/nav.ascx" tagname="nav" tagprefix="uc1" %>
 
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
-  
-    
-
 </head>
 <body>
     <form id="form1" runat="server">
-        
+    <div>
         <uc1:nav ID="nav1" runat="server" />
-        <br />
 
         <div class="container">
             <div class="jumbotron">
@@ -87,7 +82,7 @@
                         <tr>
                             <td class="auto-style15">שם:</td>
                             <td>
-                    <asp:TextBox ID="contactname"
+                    <asp:TextBox ID="contactnameLabel"
                         Width="200px"
                         type="text"
                         runat="server">
@@ -97,7 +92,7 @@
                         <tr>
                             <td class="auto-style16">טלפון:</td>
                             <td>
-                    <asp:TextBox ID="contactphone"
+                    <asp:TextBox ID="contactphoneLabel"
                         Width="200px"
                         type="tel"
                         pattern="[0-9]{3}-[0-9]{7}"
@@ -109,7 +104,7 @@
                             <td class="auto-style16">אימייל:</td>
                             <td>
                                
-                    <asp:TextBox ID="contactemail"
+                    <asp:TextBox ID="contactemailLabel"
                         Width="200px"
                         type="email"
                         runat="server"></asp:TextBox>
@@ -123,14 +118,11 @@
             <div class="col-md-12 text-center">
                 <asp:Label runat="server" ID="Msg" Font-Italic="true"></asp:Label>
                 <br />
-                <asp:Button ID="back" OnClick="back_Click" class="btn btn-info" runat="server" Text="חזרה" />
+                <asp:Button ID="back" class="btn btn-info" runat="server" Text="חזרה" />
+                 <asp:Button ID="Update" class="btn btn-info" runat="server" Text="עדכון" />
                 <br />
             </div>
-        </div>
-
-
-        <script src="../../js/jquery-3.0.0.min.js"></script>
-        <script src="../../js/bootstrap.min.js"></script>
+        </div>      
     </form>
 </body>
 </html>

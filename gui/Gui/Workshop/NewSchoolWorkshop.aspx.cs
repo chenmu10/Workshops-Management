@@ -78,6 +78,7 @@ namespace gui
                     {
                         
                         Response.Write("<script>alert('בית ספר חדש וסדנא חדשה נוספו בהצלחה');</script>");
+                        ClearForm();
                         Response.Redirect("../Documents/SuccessForm.aspx", false);
 
                     }

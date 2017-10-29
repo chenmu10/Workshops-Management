@@ -19,7 +19,7 @@
 <body>
     <form id="form1" runat="server">
         <div class="container">
-              <asp:Image runat="server" ImageUrl="../../../Content/mmtlogo.png" AlternateText="Picture not found" CssClass="center-block" />
+            <asp:Image runat="server" ImageUrl="../../../Content/mmtlogo.png" AlternateText="Picture not found" CssClass="center-block" />
 
             <div class="jumbotron">
                 <h2>סדנאות בחברות: שיבוץ בתי ספר</h2>
@@ -58,56 +58,59 @@
             <!-- School Assignment -->
             <h4 style="display: inline;">סדנא נבחרת: </h4>
             <asp:Label ID="workshopIdLabel" runat="server" class="label label-primary" Font-Size="Large"></asp:Label>
-            <h3>מלאו פרטי רישום: </h3>
-            <div style="  display: table;
-                        border-spacing: 10px; " class="auto-style1">
 
-            <asp:Label runat="server" ID="schoolName" Visible="true" Text=""></asp:Label>
+            <asp:PlaceHolder ID="SchoolAssignPlaceHolder" runat="server">
+                <h3>מלאו פרטי רישום: </h3>
+                <div style="display: table; border-spacing: 10px;"
+                    class="auto-style1">
 
-            </div>
-            <div style=" display: table-cell;">
-                      <!-- Choose School -->
-            <label class="control-label" for="schoolSymbol">סמל מוסד:</label>
-
-            <asp:TextBox ID="schoolSymbol"
-                class="form-control"
-                type="number"
-                pattern="[0-9]{7}"
-                placeholder="לפי משרד החינוך"
-                width="200px"                
-                OnTextChanged="TextBox1_TextChanged"
-                runat="server">
-            </asp:TextBox>
+                    <asp:Label runat="server" ID="schoolName" Visible="true" Text=""></asp:Label>
 
                 </div>
-            <br />
-             <div style=" display: table-cell;">
-               <asp:Button runat="server" ID="searchSchool" class="btn btn-info" Text="חיפוש סמל" OnClick="searchSchool_Click"/>
-            </div>
-            
-            <br />
+                <div style="display: table-cell;">
+                    <!-- Choose School -->
+                    <label class="control-label" for="schoolSymbol">סמל מוסד:</label>
 
-            <!-- Fill Workshop Details -->
-            <label class="control-label" for="finalParticipants">להערכתך, כמה תלמידות יקחו חלק בסדנא: </label>
+                    <asp:TextBox ID="schoolSymbol"
+                        class="form-control"
+                        type="number"
+                        pattern="[0-9]{7}"
+                        placeholder="לפי משרד החינוך"
+                        Width="200px"
+                    
+                        runat="server">
+                    </asp:TextBox>
 
-            <asp:TextBox ID="finalParticipants"
-                type="number"
-                class="form-control"
-                min="0"
-                width="200px"
-                runat="server"></asp:TextBox>
+                </div>
+                <br />
+                <div style="display: table-cell;">
+                    <asp:Button runat="server" ID="searchSchool" class="btn btn-info" Text="חיפוש סמל" OnClick="searchSchool_Click" />
+                </div>
 
-            <br />
-            <label class="control-label" for="assignComment">הערות: </label>
-            <asp:TextBox ID="comments"
-                runat="server"
-                class="form-control"
-                TextMode="MultiLine"
-                width="200px"
-                Rows="3" Style="resize: none;"></asp:TextBox>
-            <br />
+                <br />
 
-           <asp:Button runat="server" class="btn btn-success" ID="assign" OnClick="Assign_Click" Text="שליחה" />
+                <!-- Fill Workshop Details -->
+                <label class="control-label" for="finalParticipants">להערכתך, כמה תלמידות יקחו חלק בסדנא: </label>
+
+                <asp:TextBox ID="finalParticipants"
+                    type="number"
+                    class="form-control"
+                    min="0"
+                    Width="200px"
+                    runat="server"></asp:TextBox>
+
+                <br />
+                <label class="control-label" for="assignComment">הערות: </label>
+                <asp:TextBox ID="comments"
+                    runat="server"
+                    class="form-control"
+                    TextMode="MultiLine"
+                    Width="200px"
+                    Rows="3" Style="resize: none;"></asp:TextBox>
+                <br />
+
+                <asp:Button runat="server" class="btn btn-success" ID="assign" OnClick="Assign_Click" Text="שליחה" />
+            </asp:PlaceHolder>
         </div>
 
     </form>
