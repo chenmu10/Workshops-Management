@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Web.UI.WebControls;
 
@@ -160,7 +161,7 @@ namespace gui
         public Boolean IsVolunteerExist(Volunteer volunteer)
         {
             Boolean result = false;
-            query = string.Format("SELECT * FROM volunteer where Volunteer_Email = '{0}'", volunteer.Volunteer_Email); // didnt pass traning
+            query = string.Format("SELECT * FROM volunteer where Volunteer_Email = '{0}'", Val(volunteer.Volunteer_Email)); // didnt pass traning
             DataTable dt = Select(query);
             if (dt != null)
             {
@@ -181,18 +182,30 @@ namespace gui
         /// </summary>
         /// <param name="volunteer"></param>
         /// <returns></returns>
-        public Boolean InsertNewVolunteer(Volunteer volunteer)
+        public Boolean InsertNewVolunteer(Volunteer volunteer,bool isActive)
         {
             try
             {
                 query = string.Format(@"INSERT INTO Volunteer 
-                VALUES(null,{0},'{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}',{10},False,{11});",
-                    volunteer.Volunteer_Practice, volunteer.Volunteer_First_Name, volunteer.Volunteer_First_Name_Eng, volunteer.Volunteer_Last_Name,
-                    volunteer.Volunteer_Last_Name_Eng, volunteer.Volunteer_Email, volunteer.Volunteer_phone, volunteer.Volunteer_Occupation, volunteer.Volunteer_Reference,
-                    volunteer.Volunteer_Employer, volunteer.Volunteer_Number_Of_Activities, volunteer.Volunteer_prefer_traning_area);
+                VALUES(null,{0},'{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}',{10},{12},{11});",
+                    volunteer.Volunteer_Practice,
+                    Val(volunteer.Volunteer_First_Name),
+                    Val(volunteer.Volunteer_First_Name_Eng),
+                    Val(volunteer.Volunteer_Last_Name),
+                    Val(volunteer.Volunteer_Last_Name_Eng),
+                    Val(volunteer.Volunteer_Email),
+                    Val(volunteer.Volunteer_phone),
+                    Val(volunteer.Volunteer_Occupation),
+                    Val(volunteer.Volunteer_Reference),
+                    Val(volunteer.Volunteer_Employer), 
+                    volunteer.Volunteer_Number_Of_Activities,
+                    volunteer.Volunteer_prefer_traning_area,
+                    isActive);
+                log(query);
                 query += "SELECT Volunteer_ID FROM mmt_db.volunteer order by Volunteer_ID DESC LIMIT 1;";
                 int row = Insert(query);
-                if (row == 0) return false;
+                if (row == 0)
+                    return false;
 
                 //Get volunteer ID
                 volunteer.Volunteer_ID = row;
@@ -201,6 +214,7 @@ namespace gui
                 foreach (int Area in volunteer.Volunteer_Area_Activity)
                 {
                     query = string.Format(@"INSERT INTO VolunteerToAreas VALUES(null,{0},{1});", volunteer.Volunteer_ID, Area);
+                    log(query);
                     if (!Update(query)) return false;
                 }
             }
@@ -230,15 +244,15 @@ namespace gui
             Volunteer_Practice ={12}
             WHERE Volunteer_ID = {0};",
                 volunteer.Volunteer_ID,
-                volunteer.Volunteer_First_Name,
-                volunteer.Volunteer_First_Name_Eng,
-                volunteer.Volunteer_Last_Name,
-                volunteer.Volunteer_Last_Name_Eng,
-                volunteer.Volunteer_Email,
-                volunteer.Volunteer_phone,
-                volunteer.Volunteer_Occupation,
-                volunteer.Volunteer_Reference,
-                volunteer.Volunteer_Employer,
+                Val(volunteer.Volunteer_First_Name),
+                Val(volunteer.Volunteer_First_Name_Eng),
+                Val(volunteer.Volunteer_Last_Name),
+                Val(volunteer.Volunteer_Last_Name_Eng),
+                Val(volunteer.Volunteer_Email),
+                Val(volunteer.Volunteer_phone),
+                Val(volunteer.Volunteer_Occupation),
+                Val(volunteer.Volunteer_Reference),
+                Val(volunteer.Volunteer_Employer),
                 volunteer.Volunteer_Number_Of_Activities,
                 volunteer.Volunteer_prefer_traning_area,
                 volunteer.Volunteer_Practice
@@ -266,8 +280,10 @@ namespace gui
         }
         public Boolean UpdateVolunteerTraning(Volunteer volunteer, int new_status)
         {
+            bool reuslt;
             query = string.Format(@"UPDATE Volunteer SET Volunteer_Practice = {0} WHERE Volunteer_ID = {1};", new_status, volunteer.Volunteer_ID);
-            return Update(query);
+            reuslt= Update(query);
+            return reuslt;
         }
         /// <summary>
         /// DELETE volunteer by volunter ID
@@ -335,11 +351,11 @@ namespace gui
                 i1 = iD1.ToString();
                 query = string.Format(@"
                  INSERT INTO School_WorkShop_Ride VALUES({0},{1},'{2}');
-                ", schoolWorkShopID, iD1, ride1);
+                ", schoolWorkShopID, iD1, Val(ride1));
                 Insert(query);
                 query = string.Format(@"
                 UPDATE `mmt_db`.`school_workshop_ride` SET `School_WorkShop_Ride_Comment`='{2}' WHERE `School_WorkShop_Ride_ID`={0} and`School_WorkShop_Ride_Volunteer`={1};
-                ", schoolWorkShopID, iD1, ride1);
+                ", schoolWorkShopID, iD1, Val(ride1));
                 Update(query);
             }
             if (iD2 == 0) i2 = "NULL";
@@ -348,11 +364,11 @@ namespace gui
                 i2 = iD2.ToString();
                 query = string.Format(@"
                  INSERT INTO School_WorkShop_Ride VALUES({0},{1},'{2}');
-                ", schoolWorkShopID, iD2, ride2);
+                ", schoolWorkShopID, iD2, Val(ride2));
                 Insert(query);
                 query = string.Format(@"
                 UPDATE `mmt_db`.`school_workshop_ride` SET `School_WorkShop_Ride_Comment`='{2}' WHERE `School_WorkShop_Ride_ID`={0} and`School_WorkShop_Ride_Volunteer`={1};
-                ", schoolWorkShopID, iD2, ride2);
+                ", schoolWorkShopID, iD2, Val(ride2));
                 Update(query);
             }
             if (iD3 == 0) i3 = "NULL";
@@ -361,11 +377,11 @@ namespace gui
                 i3 = iD3.ToString();
                 query = string.Format(@"
                  INSERT INTO School_WorkShop_Ride VALUES({0},{1},'{2}');
-                ", schoolWorkShopID, iD3, ride3);
+                ", schoolWorkShopID, iD3, Val(ride3));
                 Insert(query);
                 query = string.Format(@"
                 UPDATE `mmt_db`.`school_workshop_ride` SET `School_WorkShop_Ride_Comment`='{2}' WHERE `School_WorkShop_Ride_ID`={0} and`School_WorkShop_Ride_Volunteer`={1};
-                ", schoolWorkShopID, iD3, ride3);
+                ", schoolWorkShopID, iD3, Val(ride3));
                 Update(query);
             }
 
@@ -384,11 +400,11 @@ namespace gui
                 i1 = iD1.ToString();
                 query = string.Format(@"
                  INSERT INTO Company_WorkShop_Ride VALUES({0},{1},'{2}');
-                ", companyWorkShopID, iD1, ride1);
+                ", companyWorkShopID, iD1, Val(ride1));
                 Insert(query);
                 query = string.Format(@"
                 UPDATE `mmt_db`.`company_workshop_ride` SET `Company_WorkShop_Ride_Comment`= '{2}' WHERE `Company_WorkShop_Ride_ID`= {0} and`Company_WorkShop_Ride_Volunteer`= {1};
-                ", companyWorkShopID, iD1, ride1);
+                ", companyWorkShopID, iD1, Val(ride1));
                 Update(query);
 
             }
@@ -398,11 +414,11 @@ namespace gui
                 i2 = iD2.ToString();
                 query = string.Format(@"
                  INSERT INTO Company_WorkShop_Ride VALUES({0},{1},'{2}');
-                ", companyWorkShopID, iD2, ride2);
+                ", companyWorkShopID, iD2, Val(ride2));
                 Insert(query);
                 query = string.Format(@"
                 UPDATE `mmt_db`.`company_workshop_ride` SET `Company_WorkShop_Ride_Comment`= '{2}' WHERE `Company_WorkShop_Ride_ID`= {0} and`Company_WorkShop_Ride_Volunteer`= {1};
-                ", companyWorkShopID, iD1, ride1);
+                ", companyWorkShopID, iD1, Val( ride1));
                 Update(query);
             }
             if (iD3 == 0) i3 = "NULL";
@@ -411,11 +427,11 @@ namespace gui
                 i3 = iD3.ToString();
                 query = string.Format(@"
                  INSERT INTO Company_WorkShop_Ride VALUES({0},{1},'{2}');
-                ", companyWorkShopID, iD3, ride3);
+                ", companyWorkShopID, iD3, Val(ride3));
                 Insert(query);
                 query = string.Format(@"
                 UPDATE `mmt_db`.`company_workshop_ride` SET `Company_WorkShop_Ride_Comment`= '{2}' WHERE `Company_WorkShop_Ride_ID`= {0} and`Company_WorkShop_Ride_Volunteer`= {1};
-                ", companyWorkShopID, iD1, ride1);
+                ", companyWorkShopID, iD1, Val(ride1));
                 Update(query);
             }
 
@@ -430,13 +446,29 @@ namespace gui
             query = string.Format(@"
             UPDATE companyworkshop SET 
             WorkShop_School_ID={0}, WorkShop_School_Comments='{1}', WorkShop_Number_Of_Final_Student={2},WorkShop_Status={3} WHERE WorkShop_ID={4};
-                ", SchoolID, comments, finalParticipants, 4, WorkshopID);
+                ", SchoolID, Val(comments), Val(finalParticipants), 4, WorkshopID);
+            return Update(query);
+        }
+        public bool UpdateSchoolDate(int schoolWorkShopID,DateTime time)
+        {
+            //"yyyy-mm-dd hh:mm:ss"
+            string year = time.Year.ToString();
+            string month = time.Month >= 10 ? time.Month.ToString() : "0" + time.Month;
+            string day = time.Day >= 10 ? time.Day.ToString() : "0" + time.Day;
+            string hours = time.Hour >= 10 ? time.Hour.ToString() : "0" + time.Hour;
+            string min = time.Minute >= 10 ? time.Minute.ToString() : "0" + time.Minute;
+
+            string sqlTime = year + "-"+ month + "-"+ day + " "+ hours + ":"+ min + ":" + "00";
+            query = string.Format(@"
+            UPDATE schoolworkshop SET 
+            WorkShop_Date1='{1}' WHERE WorkShop_ID={0};
+                ", schoolWorkShopID, sqlTime);
             return Update(query);
         }
         public List<CompanyWorkshop> GetAllCompanyWorshops()
         {
             List<CompanyWorkshop> result = new List<CompanyWorkshop>();
-            query = string.Format("SELECT * FROM CompanyWorkShop");
+            query = string.Format("SELECT * FROM CompanyWorkShop WHERE Is_Active=1");
             DataTable dt = Select(query);
             if (dt != null)
             {
@@ -451,7 +483,7 @@ namespace gui
         public List<SchoolWorkShop> GetAllSchoolWorkShops()
         {
             List<SchoolWorkShop> result = new List<SchoolWorkShop>();
-            query = string.Format("SELECT * FROM SchoolWorkShop");
+            query = string.Format("SELECT * FROM SchoolWorkShop WHERE Is_Active=1");
             DataTable dt = Select(query);
             if (dt != null)
             {
@@ -471,11 +503,18 @@ namespace gui
             try
             {
                 query = string.Format(@"INSERT INTO SchoolWorkShop 
-                VALUES(null,5,'{0}','{1}','{2}',0,null,null,null,null,{3},{4},'{5}','{6}','{7}','{8}',{9},{10});",
-                NewSchoolWorkShop.SchoolWorkShopDate1, NewSchoolWorkShop.SchoolWorkShopDate2, NewSchoolWorkShop.SchoolWorkShopDate3,
-                NewSchoolWorkShop.SchoolWorkShopStudentCount, NewSchoolWorkShop.SchoolWorkShopComputerCount, NewSchoolWorkShop.SchoolWorkShopComments,
-                NewSchoolWorkShop.WorkShop_AMT_Contact_Name, NewSchoolWorkShop.WorkShop_AMT_Contact_phone, NewSchoolWorkShop.WorkShop_AMT_Contact_Email,
-                NewSchoolWorkShop.WorkShop_For_AMT_students, NewSchoolWorkShop.WorkShop_School_ID
+                VALUES(null,5,'{0}','{1}','{2}',0,null,null,null,null,{3},{4},'{5}','{6}','{7}','{8}',{9},{10},True);",
+                NewSchoolWorkShop.SchoolWorkShopDate1,
+                NewSchoolWorkShop.SchoolWorkShopDate2,
+                NewSchoolWorkShop.SchoolWorkShopDate3,
+                NewSchoolWorkShop.SchoolWorkShopStudentCount,
+                NewSchoolWorkShop.SchoolWorkShopComputerCount,
+                NewSchoolWorkShop.SchoolWorkShopComments,
+                Val(NewSchoolWorkShop.WorkShop_AMT_Contact_Name),
+                Val(NewSchoolWorkShop.WorkShop_AMT_Contact_phone),
+                Val(NewSchoolWorkShop.WorkShop_AMT_Contact_Email),
+                NewSchoolWorkShop.WorkShop_For_AMT_students,
+                NewSchoolWorkShop.WorkShop_School_ID
                 );
                 query += "SELECT WorkShop_ID FROM mmt_db.SchoolWorkShop order by WorkShop_ID DESC LIMIT 1;";
                 int row = Insert(query);
@@ -487,10 +526,33 @@ namespace gui
             }
             return result;
         }
+        public bool InsertNewCompanyWorkShop(CompanyWorkshop workshop)
+        {
+            /*INSERT INTO CompanyWorkShop VALUES(null,1,'2017-1-1 12:12:00',1,1,2,3,20,'להדליק את המזגן לפני',1,1,1,'הערת בית ספר');*/
+            try
+            {
+
+                query = string.Format(@"INSERT INTO CompanyWorkShop 
+                VALUES(null,2,'{0}',null,null,null,null,{1},'{2}',null,{3},null,null,True);",
+                    workshop.CompanyWorkShopDate,
+                    workshop.WorkShop_Number_Of_StudentPredicted,
+                    workshop.CompanyWorkShopComments,
+                    workshop.CompanyID
+                    );
+                query += "SELECT WorkShop_ID FROM mmt_db.CompanyWorkShop order by WorkShop_ID DESC LIMIT 1;";
+                int row = Insert(query);
+                if (row == 0) return false;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+            return true;
+        }
         public List<WorkshopJoin> GetAllWorkshopsByJoin()
         {
             List<WorkshopJoin> result = new List<WorkshopJoin>();
-            query = string.Format("SELECT * FROM Company_Workshops_view");
+            query = string.Format("SELECT * FROM Company_Workshops_view WHERE Is_Active=1");
             DataTable dt = Select(query);
             if (dt != null)
             {
@@ -501,7 +563,7 @@ namespace gui
                     result.Add(t);
                 }
             }
-            query = string.Format("SELECT * FROM school_workshops_view");
+            query = string.Format("SELECT * FROM school_workshops_view WHERE Is_Active=1");
             dt = Select(query);
             if (dt != null)
             {
@@ -515,7 +577,6 @@ namespace gui
             }
             return result;
         }
-
         public SchoolWorkShop GetSchoolWorkShopByJoinID(int ID)
         {
             SchoolWorkShop result = new SchoolWorkShop();
@@ -645,12 +706,12 @@ namespace gui
             p.WorkShop_Did_Preparation == true ? 1 : 0,
             p.WorkShop_Is_Seniors_Coming == true ? 1 : 0,
             p.WorkShop_Is_Video_possible == true ? 1 : 0,
-            p.WorkShop_Comments,
-            p.WorkShop_Teacher_Name,
-            p.WorkShop_Teacher_phone,
-            p.WorkShop_Teacher_Email,
-            p.WorkShop_Parking,
-            p.WorkShop_Computer_Manager_Phone ,
+            Val(p.WorkShop_Comments),
+            Val(p.WorkShop_Teacher_Name),
+            Val(p.WorkShop_Teacher_phone),
+            Val(p.WorkShop_Teacher_Email),
+            Val(p.WorkShop_Parking),
+            Val(p.WorkShop_Computer_Manager_Phone ),
             p.Workshop_Is_All_Student_Answer_PerWorkshop == true ? 1 : 0,
             p.Workshop_Is_All_Student_Gmail == true ? 1 : 0
             );
@@ -702,14 +763,14 @@ namespace gui
         public bool DeleteCompanyWorkshop(int workshopID)
         {                
             //TODO add FeedBack constrain       
-            query = string.Format(@" DELETE FROM `mmt_db`.`company_workshop_ride` WHERE `Company_WorkShop_Ride_ID`= {0};
-            DELETE FROM `mmt_db`.`companyworkshop` WHERE `WorkShop_ID`= {0};", workshopID);
+            query = string.Format(@"
+            UPDATE `mmt_db`.`companyworkshop` SET Is_Active=0 WHERE `WorkShop_ID`= {0};", workshopID);
             return Update(query);
         }
         public bool DeleteSchoolWoshop(int workshopID)
         {
-            query = string.Format(@" DELETE FROM `mmt_db`.`school_workshop_ride` WHERE `School_WorkShop_Ride_ID`= {0};
-            DELETE FROM `mmt_db`.`schoolworkshop` WHERE `WorkShop_ID`= {0};", workshopID);
+            query = string.Format(@" 
+            UPDATE `mmt_db`.`schoolworkshop`  SET Is_Active=0  WHERE `WorkShop_ID`= {0};", workshopID);
             return Update(query);
         }
         public bool resetCompany(int workshopID)
@@ -911,12 +972,23 @@ namespace gui
             try
             {
                 query = string.Format(@"INSERT INTO School VALUES(null,{0},'{1}','{2}','{3}',{4},'{5}','{6}','{7}','{8}','{9}','{10}');",
-                school.School_Serial_Number, school.School_Name, school.School_Address, school.School_City, school.School_Area, school.School_Contact_Name, school.Scool_Contact_Phone,
-                school.School_Contact_Email, school.School_Supervisor_Name, school.School_Supervisor_Phone, school.School_Parking_Info
+                school.School_Serial_Number,
+                Val(school.School_Name),
+                Val(school.School_Address),
+                Val(school.School_City),
+                school.School_Area,
+                Val(school.School_Contact_Name),
+                Val(school.Scool_Contact_Phone),
+                Val(school.School_Contact_Email),
+                Val(school.School_Supervisor_Name),
+                Val(school.School_Supervisor_Phone),
+                Val(school.School_Parking_Info)
                     );
+                log(query);
                 query += "SELECT School_ID FROM mmt_db.School order by School_ID DESC LIMIT 1;";
                 int row = Insert(query);
-                if (row == 0) return false;
+                if (row == 0)
+                    return false;
 
                 //Get volunteer ID
                 school.School_ID = row;
@@ -941,6 +1013,36 @@ namespace gui
                 }
             }
             return result;
+        }
+        public bool updateSchool(School school)
+        {
+            query = string.Format(@"UPDATE `mmt_db`.`school` SET 
+                                    School_Name='{1}',
+                                    School_Address ='{2}',
+                                    School_City ='{3}',
+                                    School_Area_Activity = {4},
+                                    School_Contact_Name = '{5}',
+                                    School_Contact_phone ='{6}',
+                                    School_Contact_Email = '{7}',
+                                    School_Computer_Supervisor_Name = '{8}',
+                                    School_Computer_Supervisor_Phone ='{9}',
+                                    School_Parking_Info = '{10}'
+                                    WHERE `School_ID`={0};
+                                    ",
+                           school.School_ID,
+                           Val(school.School_Name),
+                           Val(school.School_Address),
+                           Val(school.School_City),
+                           school.School_Area,
+                           Val(school.School_Contact_Name),
+                           Val(school.Scool_Contact_Phone),
+                           Val(school.School_Contact_Email),
+                           Val(school.School_Supervisor_Name),
+                           Val(school.School_Supervisor_Phone),
+                           Val(school.School_Parking_Info)
+                           );
+            return Update(query);
+
         }
         #endregion
 
@@ -1001,49 +1103,29 @@ namespace gui
         }
         public Boolean UpdateCompany(Company company)
         {
-            //TODO 
-            return true;
-            // query = string.Format(@"UPDATE Company SET Volunteer_Practice = {0} WHERE Volunteer_ID = {1};", );
-            // return Update(query);
+            query = string.Format(@"UPDATE Company SET Company_Name = '{1}',
+                                    Company_Address = '{2}' , 
+                                    Company_Contact_Name = '{3}',
+                                    Company_Contact_phone = '{4}',
+                                    Company_Contact_Email = '{5}',
+                                    Company_Area_Activity = {6}
+                                    WHERE Company_ID = {0};",
+                company.Company_ID,
+                Val(company.Company_Name),
+                Val(company.Company_Address),
+                Val(company.Company_Contact_Name),
+                Val(company.Company_Contact_phone),
+                Val(company.Company_Contact_Email),
+                company.Company_Area_Activity
+                );
+             return Update(query);
         }
         public Boolean DeleteCompany(Company company)
         {
             query = string.Format(@"DELETE FROM Company WHERE Company_ID = {0};", company.Company_ID);
             return Update(query);
         }
-        public Boolean InsertNewCompanyWorkShop(CompanyWorkshop workshop)
-        {
-            /*INSERT INTO CompanyWorkShop VALUES(null,1,'2017-1-1 12:12:00',1,1,2,3,20,'להדליק את המזגן לפני',1,1,1,'הערת בית ספר');*/
-            try
-            {
-                //string dateCorrect = workshop.CompanyWorkShopDate.ToString();
-                //dateCorrect = dateCorrect.Split(' ')[0];
-                //string[] dateCorrectSplit = dateCorrect.Split('/');
-                //string day = dateCorrectSplit[0];
-                //string month = dateCorrectSplit[1];
-                //string year = dateCorrectSplit[2];
-                //YYYY - MM - DD
-                //string sqlFormt = year + "-" + month + "-" + day;
-
-
-
-                query = string.Format(@"INSERT INTO CompanyWorkShop 
-                VALUES(null,2,'{0}',null,null,null,null,{1},'{2}',null,{3},null,null);",
-                    workshop.CompanyWorkShopDate,
-                    workshop.WorkShop_Number_Of_StudentPredicted,
-                    workshop.CompanyWorkShopComments,
-                    workshop.CompanyID
-                    );
-                query += "SELECT WorkShop_ID FROM mmt_db.CompanyWorkShop order by WorkShop_ID DESC LIMIT 1;";
-                int row = Insert(query);
-                if (row == 0) return false;
-            }
-            catch (Exception e)
-            {
-                return false;
-            }
-            return true;
-        }
+        
         #endregion
 
         #region FeedBack 
@@ -1108,10 +1190,22 @@ namespace gui
                     ({0},{1},{2},{3},{4},'{5}',{6},'{7}','{8}','{9}',{10},{11},'{12}','{13}','{14}',{15});
                     SELECT * FROM WorkShop_FeedBack WHERE WorkShop_ID={0} AND WorkShop_Person={1};
                      ",
-                    f.WorkShop_ID,f.WorkShop_Person,f.WorkShop_Is_Volunteer,f.WorkShop_Is_Company,f.WorkShop_Is_Teacher_present,
-                    f.WorkShop_Is_Teacher_present_Comment,f.WorkShop_Level_Of_Listening,f.WorkShop_Main_Issues_Difficulties,f.WorkShop_Technical_Faults,
-                    f.WorkShop_General_Comments,f.WorkShop_Choosing_technological,f.WorkShop_Activity_Again,f.WorkShop_Opinion,
-                    f.WorkShop_Improves,f.WorkShop_Additional_Comments,f.WorkShop_Post_Feedback
+                    f.WorkShop_ID,
+                    f.WorkShop_Person,
+                    f.WorkShop_Is_Volunteer,
+                    f.WorkShop_Is_Company,
+                    f.WorkShop_Is_Teacher_present,
+                    f.WorkShop_Is_Teacher_present_Comment,
+                    f.WorkShop_Level_Of_Listening,
+                    Val(f.WorkShop_Main_Issues_Difficulties),
+                    Val(f.WorkShop_Technical_Faults),
+                    Val(f.WorkShop_General_Comments),
+                    f.WorkShop_Choosing_technological,
+                    f.WorkShop_Activity_Again,
+                    Val(f.WorkShop_Opinion),
+                    Val(f.WorkShop_Improves),
+                    Val(f.WorkShop_Additional_Comments),
+                    f.WorkShop_Post_Feedback
                     );
                 row = Insert(query);
               
@@ -1142,9 +1236,15 @@ namespace gui
                     WorkShop_Level_Of_Listening={5}, WorkShop_Main_Issues_Difficulties='{6}', WorkShop_Technical_Faults='{7}',
                     WorkShop_General_Comments='{8}'
                     WHERE WorkShop_ID = {0} AND WorkShop_Person={1} AND WorkShop_Is_Company = {2};",
-                                       f.WorkShop_ID, f.WorkShop_Person, f.WorkShop_Is_Company, f.WorkShop_Is_Teacher_present,
-                                       f.WorkShop_Is_Teacher_present_Comment, f.WorkShop_Level_Of_Listening, f.WorkShop_Main_Issues_Difficulties, f.WorkShop_Technical_Faults,
-                                       f.WorkShop_General_Comments);
+                                       f.WorkShop_ID,
+                                       f.WorkShop_Person,
+                                       f.WorkShop_Is_Company,
+                                       f.WorkShop_Is_Teacher_present,
+                                       f.WorkShop_Is_Teacher_present_Comment,
+                                       f.WorkShop_Level_Of_Listening,
+                                       Val(f.WorkShop_Main_Issues_Difficulties),
+                                       Val(f.WorkShop_Technical_Faults),
+                                       Val(f.WorkShop_General_Comments));
                     return Update(query);
                 }
                 else //Teacher
@@ -1161,6 +1261,7 @@ namespace gui
 
         #endregion
 
+        
         #region DB commands
         public DataTable Select(string query)
         {
@@ -1271,43 +1372,171 @@ namespace gui
                         string Heb_last = Heb[1];
                         if (Heb.Length > 2)
                             Heb_last += Heb[2];
-                        
 
-
+                         
 
                         Volunteer v = new Volunteer();
+                        List<int> areas = new List<int>();
+                        areas.Add(4);
+                        Heb_first = Val(Heb_first);
+                        Heb_last = Val(Heb_last);
+                        Eng_first = Val(Eng_first);
+                        Eng_last = Val(Eng_last);
+                        Email = Val(Email);
+
                         v.Volunteer_First_Name = Heb_first;
                         v.Volunteer_Last_Name = Heb_last;
                         v.Volunteer_First_Name_Eng = Eng_first;
                         v.Volunteer_Last_Name_Eng = Eng_last;
                         v.Volunteer_phone = Phone;
                         v.Volunteer_Email = Email;
-                        v.Volunteer_Practice = 1;
+                        v.Volunteer_Practice = 2;
                         v.Volunteer_Occupation = "";
                         v.Volunteer_Number_Of_Activities = 0;
-
+                        v.Volunteer_Area_Activity = areas;
+                        v.Volunteer_Employer = "";
+                        v.Volunteer_prefer_traning_area =1;
+                        
                         if (col[6] != "")
-                            v.Volunteer_Practice = 2;
-
-                        InsertNewVolunteer(v);
+                            v.Volunteer_Practice = 3;
+                        InsertNewVolunteer(v, true);                     
 
                     }
                    
                     index++;
 
+                }        
+            }
+    }
+        public void GetVolunteerFromExel2(string FilePath)
+        {
+            using (var reader = new StreamReader(FilePath, Encoding.Default, true))
+            {
+                int index = 0;
+                while (!reader.EndOfStream)
+                {
+                    string line = reader.ReadLine();
+                    if (index > 0)
+                    {
+                        string[] col = line.Split(',');
+    
+                        string Eng_first = col[0];
+                        string Eng_last = col[2];
+                        string Heb_first = col[1];
+                        string Heb_last = col[3];
+                        string Phone = col[4];
+                        string Email = col[5];
+                        string emplyeer = col[6];
+                        string occuptation = col[7];
+                        string num = col[8];
+                        string refrence = col[9];
+                        List<int> intList = new List<int>();
+                        try
+                        {
+                            intList = num.Select(digit => int.Parse(digit.ToString())).ToList<int>();
+
+                        }
+                        catch (Exception e)
+                        {
+                            string s = "";
+                        }
+                        Volunteer v = new Volunteer();
+                        List<int> areas = intList;
+                        Heb_first = Val(Heb_first);
+                        Heb_last = Val(Heb_last);
+                        Eng_first = Val(Eng_first);
+                        Eng_last = Val(Eng_last);
+                        Email = Val(Email);
+                        emplyeer = Val(emplyeer);
+                        occuptation = Val(occuptation);
+                        refrence = Val(refrence);
+
+                        v.Volunteer_First_Name = Heb_first;
+                        v.Volunteer_Last_Name = Heb_last;
+                        v.Volunteer_First_Name_Eng = Eng_first;
+                        v.Volunteer_Last_Name_Eng = Eng_last;
+                        v.Volunteer_phone = Phone;
+                        v.Volunteer_Email = Email;
+                        v.Volunteer_Practice = 2;
+                        v.Volunteer_Occupation = occuptation;
+                        v.Volunteer_Number_Of_Activities = 0;
+                        v.Volunteer_Area_Activity = areas;
+                        v.Volunteer_Employer = emplyeer;
+                        v.Volunteer_Reference = refrence;
+                        v.Volunteer_prefer_traning_area = int.Parse(col[10]);
+
+                        InsertNewVolunteer(v, true);
+                    }
+                    index++;
                 }
             }
-
-
-
+        }
+        private void log(string s)
+        {
+            //write to log
+            using (System.IO.StreamWriter file = new System.IO.StreamWriter(@"C:\SQLData.txt", true))
+            {
+                file.WriteLine(s);
+            }
 
         }
         public void GetSchoolFromExel(string FilePath)
         {
+            using (var reader = new StreamReader(FilePath, Encoding.Default, true))
+            {
+                int index = 0;
+                while (!reader.EndOfStream)
+                {
+                    string line = reader.ReadLine();
+                    if (index > 0)
+                    {
+                        string[] col = line.Split(',');
 
-          
+                        string ManagerName = col[0];
+                        string ManagerEmail = col[1];
+                        string ManagerPhone = col[2];
+                        string Name = col[3];
+                        string Adress = col[4];
+                        string City = col[5];
+                        int area = int.Parse(col[6]);
+                        string Symbol = col[7];
+
+                        ManagerPhone = Val(ManagerPhone);
+                        Name = Val(Name);
+                        ManagerName = Val(ManagerName);
+                        ManagerEmail = Val(ManagerEmail);
+                        Adress = Val(Adress);
+                        City = Val(City);
+
+
+                        School NewSchool = new School();
+                        NewSchool.School_Contact_Name = ManagerName;
+                        NewSchool.School_Contact_Email = ManagerEmail;
+                        NewSchool.Scool_Contact_Phone = ManagerPhone;
+                        NewSchool.School_Name = Name;
+                        NewSchool.School_Address = Adress;
+                        NewSchool.School_City = City;
+                        NewSchool.School_Area = area;
+                        try
+                        {
+                            NewSchool.School_Serial_Number = int.Parse(Symbol);
+                        }
+                        catch(Exception e)
+                        {
+                            string s = "";
+                        }
+                        
+
+                        InsetNewSchool(NewSchool);
+                    }
+                    index++;
+                }
+
+            }
         }
-        
-
+        public string Val(string s)
+        {
+            return s.Replace('\'', ' ').Replace(';', ' ').Replace('*', ' ').Replace('"', ' ');
+        }
     }
 }

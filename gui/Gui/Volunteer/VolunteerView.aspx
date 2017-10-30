@@ -21,8 +21,7 @@
         <div class="container">
             <h2>מתנדבות</h2>
             <p>
-               <%-- <asp:Button runat="server" id="approve" class="btn btn-link" OnClick="Approve_Click" text="אישור מתנדבות חדשות"/>--%>
-                    <a class="btn btn-link" href="ApproveNewVolunteerForm.aspx">אישור מתנדבות חדשות</a>
+                <asp:Button runat="server" id="approve" Visible="false" class="btn btn-link" OnClick="Approve_Click" text="אישור מתנדבות חדשות"/>
                
             </p>
             <div class="row">
@@ -63,6 +62,10 @@
 
             </div>
             <%--end row--%>
+           <asp:Button runat="server" Visible="false" ID="expot"  class="btn btn-info" Text="ייצא לאקסל" OnClick="btnExportExcel_Click" />
+
+            <br />
+             <asp:Label runat="server" ID="Sum"></asp:Label>
             <br />
             <!-- Table-->
             <asp:Table ID="volunteerTable" runat="server" CssClass="table table-hover">
@@ -79,6 +82,7 @@
                 </asp:TableRow>
 
             </asp:Table>
+         
         </div>
 
         <br />

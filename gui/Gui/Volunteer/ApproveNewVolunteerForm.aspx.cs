@@ -10,7 +10,7 @@ namespace gui.Gui
 {
     public partial class ApproveNewVolunteerForm : System.Web.UI.Page
     {
-        List<Volunteer> Volunteers = new List<Volunteer>();
+        List<Models.Volunteer> Volunteers = new List<Models.Volunteer>();
         Dictionary<int, string> Areas = new Dictionary<int, string>();
         Dictionary<int, string> ListStatus = new Dictionary<int, string>();
         List<Button> Buttons = new List<Button>();
@@ -30,7 +30,7 @@ namespace gui.Gui
             FillFilterDropdowns();
         }
 
-        private void InsertToVolunterTable(List<Volunteer> Volunteers)
+        private void InsertToVolunterTable(List<Models.Volunteer> Volunteers)
         {
             bool managerOk = false;
             if (db.IsManager(Session["Manager"]))
@@ -38,7 +38,7 @@ namespace gui.Gui
                 managerOk = true;
             }
 
-            foreach (Volunteer volunteer in Volunteers)
+            foreach (Models.Volunteer volunteer in Volunteers)
             {
                 TableCell Name = new TableCell();
                 Name.Text = volunteer.Volunteer_First_Name + "  " + volunteer.Volunteer_Last_Name;
@@ -82,18 +82,13 @@ namespace gui.Gui
                 Editbtn.CssClass = "btn btn-default";
                 Edit.Controls.Add(Editbtn);
 
-                if (managerOk)
-                {
-                    Button EditbtnManager = new Button();
-                    EditbtnManager.ID = volunteer.Volunteer_ID.ToString() + "s";
-                    EditbtnManager.Click += new EventHandler(Edit_Click);
-                    EditbtnManager.Text = "עריכה";
-                    EditbtnManager.CssClass = "btn btn-default";
-                    Edit.Controls.Add(EditbtnManager);
-                }
+                TableCell Check = new TableCell();
+                CheckBox box = new CheckBox();
+                Check.Controls.Add(box);
 
                 TableRow TableRow = new TableRow();
                 TableRow.HorizontalAlign = HorizontalAlign.Right;
+                TableRow.Cells.Add(Check);
                 TableRow.Cells.Add(Name);
                 TableRow.Cells.Add(Status);
                 TableRow.Cells.Add(Occupation);
@@ -130,9 +125,13 @@ namespace gui.Gui
             string key = ((Button)sender).ID.ToString(); ;
             Session["SelectedVolunteer"] = key;
             Response.Redirect("VolunteerEditInfo.aspx", false);
-
         }
-
+        protected void pass_one(object sender, EventArgs e)
+        {
+            //string key = ((Button)sender).ID.ToString(); ;
+            //Session["SelectedVolunteer"] = key;
+            //Response.Redirect("VolunteerEditInfo.aspx", false);
+        }
         protected void Search_Click(object sender, EventArgs e)
         {
             Volunteers = db.GetAllVolunteers();
@@ -155,9 +154,9 @@ namespace gui.Gui
 
             InsertToVolunterTable(SortByFilterFunc());
         }
-        public List<Volunteer> SortByFilterFunc()
+        public List<Models.Volunteer> SortByFilterFunc()
         {
-            List<Volunteer> result = new List<Volunteer>();
+            List<Models.Volunteer> result = new List<Models.Volunteer>();
             Volunteers = db.GetAllVolunteers();
             TableRow t = volunteerTable.Rows[0];
             volunteerTable.Rows.Clear();
@@ -181,7 +180,7 @@ namespace gui.Gui
         {
             List<TableRow> rows = new List<TableRow>();
             TableRow t = volunteerTable.Rows[0];
-            List<Volunteer> volunteers = SortByFilterFunc();
+            List<Models.Volunteer> volunteers = SortByFilterFunc();
             volunteers = volunteers.OrderBy(x => x.Volunteer_First_Name.ToString()).ToList();
             volunteerTable.Rows.Clear();
             volunteerTable.Rows.Add(t);
@@ -192,25 +191,37 @@ namespace gui.Gui
         {
             List<TableRow> rows = new List<TableRow>();
             TableRow t = volunteerTable.Rows[0];
-            List<Volunteer> volunteers = SortByFilterFunc();
+            List<Models.Volunteer> volunteers = SortByFilterFunc();
             volunteers = volunteers.OrderBy(x => x.Volunteer_Practice).ToList();
             volunteerTable.Rows.Clear();
             volunteerTable.Rows.Add(t);
-
             InsertToVolunterTable(volunteers);
         }
 
-
-        //protected void OccupationSort(object sender, EventArgs e)
-        //{
-        //    List<TableRow> rows = new List<TableRow>();
-        //    TableRow t = volunteerTable.Rows[0];
-        //    List<Volunteer> volunteers = SortByFilterFunc();
-        //    volunteers = volunteers.OrderBy(x => x.Volunteer_Occupation.ToString()).ToList();
-        //    volunteerTable.Rows.Clear();
-        //    volunteerTable.Rows.Add(t);
-
-        //    InsertToVolunterTable(volunteers);
-        //}
+        protected void pass_all_Click(object sender, EventArgs e)
+        {
+            List<Models.Volunteer> all_volunteer = db.GetAllVolunteers();
+            for( int i=1;i<volunteerTable.Rows.Count;i++)
+            {
+                TableCell cellCheck = volunteerTable.Rows[i].Cells[0];
+                try
+                {
+                    CheckBox Check = (CheckBox)cellCheck.Controls[0];
+                    if(Check.Checked)
+                    {
+                        TableCell Email = volunteerTable.Rows[i].Cells[4];
+                        string VEmail = Email.Text;
+                        Models.Volunteer selectedVolunteer = all_volunteer.Find(x => x.Volunteer_Email == VEmail);
+                        if(!db.UpdateVolunteerTraning(selectedVolunteer, 2))
+                            Response.Write("<script>alert('שגיאה ברישום למסד נתונים'); window.location.href = ''; </script>");
+                    }
+                }catch(Exception exp)
+                {
+                    Response.Write("<script>alert('שגיאה ברישום למסד נתונים'); window.location.href = ''; </script>");
+                }
+              
+            }
+            Response.Write("<script>alert('העדכון התבצעה בהצלחה'); window.location.href = ''; </script>");
+        }
     }
 }

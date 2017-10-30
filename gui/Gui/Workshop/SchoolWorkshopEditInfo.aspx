@@ -10,7 +10,7 @@
     <link href="../../css/StatusBar.css" rel="stylesheet" />
     <link href="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.9/themes/start/jquery-ui.css" rel="stylesheet" type="text/css" />
 </head>
-    
+
 <body>
     <style>
     .tabs
@@ -70,9 +70,9 @@
 
                 <label class="control-label" for="WorkShopDate">מועד קיום: </label>
                 <asp:Label runat="server" ID="WorkShopDate"></asp:Label>
-                   <br />
-              
-               
+                <br />
+
+
                 <asp:Label runat="server" ID="PrepareFormCreate" Text="נוצר טופס הכנה, ניתן לראות ב'פרטי הכנה'"></asp:Label>
                 <br />
                 <br />
@@ -80,7 +80,7 @@
                 <br />
                 <asp:Button runat="server" Visible="false" ID="yesToVolunteerFinished" Text="כן" class="btn btn-success" OnClick="yesToVolunteerFinished_Click" />
                 <asp:Button runat="server" Visible="false" ID="noToVolunteerFinished" Text="לא" class="btn btn-danger" />
-            <asp:Button runat="server" ID="cancelWorkshop" Text="ביטול סדנא" class="btn btn-danger"  OnClientClick="return confirm('האם למחוק את הסנא ? ');" OnClick="cancelWorkshop_Click"/>
+                <asp:Button runat="server" ID="cancelWorkshop" Text="ביטול סדנא" class="btn btn-danger" OnClientClick="return confirm('האם למחוק את הסדנא ? ');" OnClick="cancelWorkshop_Click" />
 
             </div>
 
@@ -99,55 +99,55 @@
 
                 </ul>
             </div>
-           
-             <div class="form-inline" style="padding-top:100px;">
-                    <label class="control-label" for="selectpicker">שינוי סטטוס: </label>
-                    <asp:DropDownList runat="server" ID="selectpicker" CssClass="form-control" Width="150px">
-                        <asp:ListItem Value="1">לבדיקת תאריכים</asp:ListItem>
-                        <asp:ListItem Value="2">לשיבוץ מתנדבות</asp:ListItem>
-                        <asp:ListItem Value="3">לשיבוץ הושלם</asp:ListItem>
-                        <asp:ListItem Value="4">להכנה</asp:ListItem>
-                        <asp:ListItem Value="5">לביצוע</asp:ListItem>
-                        <asp:ListItem Value="6">למישוב</asp:ListItem>
-                        <asp:ListItem Value="7">לסגור</asp:ListItem>
-                    </asp:DropDownList>
-                    <asp:Button runat="server" OnClick="updateStatus_Click" ID="updateStatus" Text="אישור שינוי" class="btn btn-link" />
-                </div>
-                <br />
-             <asp:Label runat="server" ForeColor="Red" ID="msg"></asp:Label>
 
-                <br />
-            <div class="row"  style="padding-bottom:65px;">
+            <div class="form-inline" style="padding-top: 100px;">
+                <label class="control-label" for="selectpicker">שינוי סטטוס: </label>
+                <asp:DropDownList runat="server" ID="selectpicker" CssClass="form-control" Width="150px">
+                    <asp:ListItem Value="1">בדיקת תאריכים</asp:ListItem>
+                    <asp:ListItem Value="2">שיבוץ מתנדבות</asp:ListItem>
+                    <asp:ListItem Value="3">שיבוץ הושלם</asp:ListItem>
+                    <asp:ListItem Value="4">הכנה</asp:ListItem>
+                    <asp:ListItem Value="5">ביצוע</asp:ListItem>
+                    <asp:ListItem Value="6">מישוב</asp:ListItem>
+                    <asp:ListItem Value="7">סגירה</asp:ListItem>
+                </asp:DropDownList>
+                <asp:Button runat="server" OnClick="updateStatus_Click" ID="updateStatus" Text="אישור שינוי" class="btn btn-link" />
+            </div>
+            <br />
+            <asp:Label runat="server" ForeColor="Red" ID="msg"></asp:Label>
+
+            <br />
+            <div class="row" style="padding-bottom: 65px;">
 
 
-                <div class="panel with-nav-tabs panel-default" >
-                
-<div dir="rtl"> 
-      <asp:Menu
-        id="Menu1"
-        Orientation="Horizontal"
-        StaticSelectedStyle-CssClass="selectedTab"
-        CssClass="tabs"
-        OnMenuItemClick="Menu1_MenuItemClick"
-        Runat="server">
-        <Items>
-        <asp:MenuItem   Text="פרטי בית ספר" Value="0" Selected="true" />
-        <asp:MenuItem Text="פרטי שיבוץ מתנדבות" Value="1" />
-        <asp:MenuItem Text="פרטי הכנה" Value="2" />
-         <asp:MenuItem Text="משובים" Value="3" />
-        </Items>   
-        <StaticSelectedStyle CssClass="selectedItem" />
-          <StaticMenuItemStyle CssClass="tab" />
-    </asp:Menu>
-    </div>
-    <div class="tabContents">
-    <asp:MultiView
-        id="MultiView1"
-        ActiveViewIndex="0"
-        Runat="server">
-        <asp:View ID="View1" runat="server">
-            <div class="col-md-6">
-    <asp:LinkButton runat="server" ID="goToSchool" OnClick="goToSchool_Click" class="btn btn-link">מעבר לפרטי בי"ס</asp:LinkButton>
+                <div class="panel with-nav-tabs panel-default">
+
+                    <div dir="rtl">
+                        <asp:Menu
+                            ID="Menu1"
+                            Orientation="Horizontal"
+                            StaticSelectedStyle-CssClass="selectedTab"
+                            CssClass="tabs"
+                            OnMenuItemClick="Menu1_MenuItemClick"
+                            runat="server">
+                            <Items>
+                                <asp:MenuItem Text="פרטי בית ספר" Value="0" Selected="true" />
+                                <asp:MenuItem Text="פרטי שיבוץ מתנדבות" Value="1" />
+                                <asp:MenuItem Text="פרטי הכנה" Value="2" />
+                                <asp:MenuItem Text="משובים" Value="3" />
+                            </Items>
+                            <StaticSelectedStyle CssClass="selectedItem" />
+                            <StaticMenuItemStyle CssClass="tab" />
+                        </asp:Menu>
+                    </div>
+                    <div class="tabContents">
+                        <asp:MultiView
+                            ID="MultiView1"
+                            ActiveViewIndex="0"
+                            runat="server">
+                            <asp:View ID="View1" runat="server">
+                                <div class="col-md-6">
+                                    <asp:LinkButton runat="server" ID="goToSchool" OnClick="goToSchool_Click" class="btn btn-link">מעבר לפרטי בי"ס</asp:LinkButton>
 
                                     <br />
                                     <br />
@@ -213,43 +213,64 @@
                                         <label class="control-label" for="date1">תאריך 1: </label>
                                         <asp:Label runat="server" ID="date1"></asp:Label>
                                         <br />
+                                        
                                         <label class="control-label" for="date2">תאריך 2: </label>
                                         <asp:Label runat="server" ID="date2"></asp:Label>
                                         <br />
                                         <label class="control-label" for="date3">תאריך 3: </label>
                                         <asp:Label runat="server" ID="date3"></asp:Label>
                                         <br />
+                                   
                                         <asp:Label class="control-label" runat="server" ID="dateselecting">בחרי תאריך רצוי </asp:Label>
                                         <div>
-                                        <asp:DropDownList runat="server" ID="dateselector" CssClass="form-control" Width="220px">
-                                            <asp:ListItem Value="0" Text="בחרי תאריך"></asp:ListItem>
-                                            <asp:ListItem Value="1"></asp:ListItem>
-                                            <asp:ListItem Value="2"></asp:ListItem>
-                                            <asp:ListItem Value="3"></asp:ListItem>
-                                        </asp:DropDownList>
-                                        <asp:Button Visible="false" ID="DateButton" runat="server" OnClick="DateButton_Click" Text="בחירה"/>
+                                            <asp:DropDownList runat="server" ID="dateselector"
+                                               
+                                                 CssClass="form-control" Width="220px">
+                                                <asp:ListItem Value="0" Text="בחרי תאריך"></asp:ListItem>
+                                                <asp:ListItem Value="1"></asp:ListItem>
+                                                <asp:ListItem Value="2"></asp:ListItem>
+                                                <asp:ListItem Value="3"></asp:ListItem>
+                                            </asp:DropDownList>
                                         </div>
-                                        
+                                     <asp:Button runat="server" ID="EditDate" OnClick="EditDate_Click" Visible="false" Text="עריכת תאריך חדש"  CssClass="btn btn-info"/>
+                                        <br />
+                                        <asp:Label CssClass="control-label" runat="server" Visible="false" ID="date4"><b>תאריך 4:</b></asp:Label>
+                                        <asp:TextBox runat="server" Visible="false" type="date" ID="date4select"></asp:TextBox>
+                                                    
+                                         <div class="form-inline">    
+                                             <asp:Label CssClass="control-label" runat="server" Visible="false" ID="hour4"><b>שעה:   &nbsp &nbsp &nbsp</b></asp:Label>                       
+                                            <!-- Minutes -->
+                                            <asp:TextBox ID="minutes" type="number" min="0" max="50" step="10" CssClass="form-control"
+                                                Text="0" Width="60px"  Visible="false"
+                                                runat="server"></asp:TextBox>
+                                             <asp:Label CssClass="control-label" runat="server" Visible="false" ID="hour41"><b>  :</b></asp:Label>
+                                            <!-- Hour -->
+                                            <asp:TextBox ID="hour" Visible="false"
+                                                type="number" min="7" max="23" runat="server" CssClass="form-control"
+                                                Width="60px" placeholder="H" ></asp:TextBox>
+                                        </div>
+                                        <asp:Button runat="server" Visible="false" ID="AddNewDate" OnClick="AddNewDate_Click" Text="הוספת תאריך חדש" CssClass="btn btn-danger" />
+                                        <asp:Label runat="server" Visible="false" ID="NewDateError" Text="שגיאה עם התאריך החדש"></asp:Label>
                                     </fieldset>
 
                                 </div>
-        </asp:View>        
-        <asp:View ID="View2" runat="server">
-            <div class="col-md-12">
-                                   
+                            </asp:View>
+                            <asp:View ID="View2" runat="server">
+                                <div class="col-md-12">
+
                                     <label class="control-label" for="volunteercount">מס' מתנדבות נוכחי: </label>
                                     <asp:Label runat="server" ID="volunteercount"></asp:Label>
                                     <br />
-                               
+
                                     <a href="../Volunteer/VolunteerAssignWorkshops.aspx" class="btn btn-link" target="_blank">מעבר לעמוד שיבוץ</a>
                                     <br />
 
                                     <fieldset>
-                                         <legend>פרטי מתנדבות משובצות</legend>
-                                         <div class="col-md-4">
+                                        <legend>פרטי מתנדבות משובצות</legend>
+                                        <div class="col-md-4">
                                             <fieldset id="Volunteer1" runat="server">
                                                 <legend>מתנדבת 1 - ותיקה</legend>
-                                                 <asp:Label runat="server" ID="volunteerName1" Text="" ></asp:Label>
+                                                <asp:Label runat="server" ID="volunteerName1" Text=""></asp:Label>
                                                 <br />
                                                 <asp:DropDownList
                                                     Width="250px"
@@ -259,9 +280,9 @@
                                                     runat="server"
                                                     class="form-control">
                                                 </asp:DropDownList>
-                                               <br />
+                                                <br />
                                                 <label class="control-label" for="volunteer1Ride">פרטי טרמפ: </label>
-                                                 <br />   
+                                                <br />
                                                 <asp:TextBox
                                                     ID="volunteer1Ride"
                                                     type="text"
@@ -272,10 +293,10 @@
                                                 </asp:TextBox>
                                             </fieldset>
                                         </div>
-                                         <div class="col-md-4">
+                                        <div class="col-md-4">
                                             <fieldset id="Fieldset1" runat="server">
                                                 <legend>מתנדבת 2</legend>
-                                                 <asp:Label runat="server" ID="volunteerName2" Text="" ></asp:Label>
+                                                <asp:Label runat="server" ID="volunteerName2" Text=""></asp:Label>
                                                 <br />
                                                 <asp:DropDownList
                                                     Width="250px"
@@ -285,9 +306,9 @@
                                                     runat="server"
                                                     class="form-control">
                                                 </asp:DropDownList>
-                                               <br />
+                                                <br />
                                                 <label class="control-label" for="volunteer1Ride">פרטי טרמפ: </label>
-                                                 <br />   
+                                                <br />
                                                 <asp:TextBox
                                                     ID="volunteer2Ride"
                                                     type="text"
@@ -298,22 +319,22 @@
                                                 </asp:TextBox>
                                             </fieldset>
                                         </div>
-                                       <div class="col-md-4">
+                                        <div class="col-md-4">
                                             <fieldset id="Fieldset2" runat="server">
                                                 <legend>מתנדבת 3</legend>
-                                                 <asp:Label runat="server" ID="volunteerName3" Text="" ></asp:Label>
+                                                <asp:Label runat="server" ID="volunteerName3" Text=""></asp:Label>
                                                 <br />
                                                 <asp:DropDownList
                                                     Width="250px"
                                                     ID="Voluntter3DropDownList"
-                                                     AutoPostBack="true"
+                                                    AutoPostBack="true"
                                                     OnSelectedIndexChanged="Voluntter3DropDownList_SelectedIndexChanged"
                                                     runat="server"
                                                     class="form-control">
                                                 </asp:DropDownList>
-                                               <br />
+                                                <br />
                                                 <label class="control-label" for="volunteer1Ride">פרטי טרמפ: </label>
-                                                 <br />   
+                                                <br />
                                                 <asp:TextBox
                                                     ID="volunteer3Ride"
                                                     type="text"
@@ -326,13 +347,13 @@
                                         </div>
                                     </fieldset>
                                     <br />
-                                    <asp:Button runat="server" Text="אשרי שינוי" OnClick="submitVolnteers"/>
+                                    <asp:Button runat="server" Text="אשרי שינוי" OnClick="submitVolnteers" />
                                     <asp:Label runat="server" ID="updateVolunteerLabel" Text="העדכון התבצע בהצלחה" Visible="false"></asp:Label>
                                 </div>
-        </asp:View>        
-        <asp:View ID="View3" runat="server">
-           <div class="col-md-6">
-                                    <asp:Label runat="server" ID="PrepareFormReadey" ></asp:Label>
+                            </asp:View>
+                            <asp:View ID="View3" runat="server">
+                                <div class="col-md-6">
+                                    <asp:Label runat="server" ID="PrepareFormReadey"></asp:Label>
                                     <br />
                                     <asp:Button CssClass="btn btn-link" runat="server" ID="prepareForm" OnClick="prepareForm_Click" Text="טופס הכנה" />
                                     <br />
@@ -358,7 +379,7 @@
                                     <br />
 
                                     <!--DidPrepare PDF yes/no-->
-                                    <asp:label runat="server" class="control-label" ID="RadioButtonListDidPrepareLabel"  for="RadioButtonListDidPrepare">בוצעו הוראות PDF:</asp:label>
+                                    <asp:Label runat="server" class="control-label" ID="RadioButtonListDidPrepareLabel" for="RadioButtonListDidPrepare">בוצעו הוראות PDF:</asp:Label>
 
                                     <asp:RadioButtonList ID="RadioButtonListDidPrepare" runat="server">
                                         <asp:ListItem Value="True" Text="כן"></asp:ListItem>
@@ -366,8 +387,28 @@
                                     </asp:RadioButtonList>
                                     <br />
 
+                                    <!--Answer_PerWorkshop yes/no-->
+                                    <label class="control-label" for="RadioButtonListAnswer_PerWorkshop">
+                                        האם כל התלמידות ענו על השאלון המקדים לסדנה? השאלון נמצא ב:
+                         https://docs.google.com/forms/d/17vFUdE_wN4RuuGp4J1OC_Au5zK_DqIKqXExwVeaYCa8/viewform</label>
+                                    <asp:RadioButtonList ID="RadioButtonListAnswer_PerWorkshop" runat="server">
+                                        <asp:ListItem Value="True" Text="כן"></asp:ListItem>
+                                        <asp:ListItem Value="False" Text="לא"></asp:ListItem>
+                                    </asp:RadioButtonList>
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator5" ControlToValidate="RadioButtonListAnswer_PerWorkshop" runat="server" ErrorMessage="יש לבחור" ForeColor="Red"></asp:RequiredFieldValidator>
+                                    <br />
+
+                                    <!--Student_Gmail yes/no-->
+                                    <label class="control-label" for="RadioButtonListStudent_Gmail">האם לכל התלמידות נפתח חשבון ג'ימייל (והן זוכרות את הסיסמה)? זה הכרחי לפעילות.</label>
+                                    <asp:RadioButtonList ID="RadioButtonListStudent_Gmail" runat="server">
+                                        <asp:ListItem Value="True" Text="כן"></asp:ListItem>
+                                        <asp:ListItem Value="False" Text="לא"></asp:ListItem>
+                                    </asp:RadioButtonList>
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator6" ControlToValidate="RadioButtonListStudent_Gmail" runat="server" ErrorMessage="יש לבחור" ForeColor="Red"></asp:RequiredFieldValidator>
+                                    <br />
+
                                     <!--Projector\contorl program yes/no -->
-                                    <asp:label runat="server" ID="RadioButtonListProjectOrControlLabel"  idclass="control-label" for="RadioButtonListProjectOrControl">קיום מקרן/תוכנת השתלטות</asp:label>
+                                    <asp:Label runat="server" ID="RadioButtonListProjectOrControlLabel" idclass="control-label" for="RadioButtonListProjectOrControl">קיום מקרן/תוכנת השתלטות</asp:Label>
 
                                     <asp:RadioButtonList ID="RadioButtonListProjectOrControl" runat="server">
                                         <asp:ListItem Value="True"> כן</asp:ListItem>
@@ -376,7 +417,7 @@
                                     <br />
 
                                     <!--Seniors coming yes/no -->
-                                    <asp:label runat="server" ID="RadioButtonListSeniorsLabel" class="control-label" for="RadioButtonListSeniors">מגיעות בוגרות מגמה:</asp:label>
+                                    <asp:Label runat="server" ID="RadioButtonListSeniorsLabel" class="control-label" for="RadioButtonListSeniors">מגיעות בוגרות מגמה:</asp:Label>
 
                                     <asp:RadioButtonList ID="RadioButtonListSeniors" runat="server">
                                         <asp:ListItem Value="True">כן </asp:ListItem>
@@ -385,7 +426,7 @@
                                     <br />
 
                                     <!--Show video yes/no -->
-                                    <asp:label runat="server" ID="RadioButtonListShowVideoLabel" class="control-label" for="RadioButtonListShowVideo">אפשר להראות וידאו</asp:label>
+                                    <asp:Label runat="server" ID="RadioButtonListShowVideoLabel" class="control-label" for="RadioButtonListShowVideo">אפשר להראות וידאו</asp:Label>
                                     <asp:RadioButtonList ID="RadioButtonListShowVideo" runat="server">
                                         <asp:ListItem Value="True">כן</asp:ListItem>
                                         <asp:ListItem Value="False">לא</asp:ListItem>
@@ -431,9 +472,9 @@
                                     <br />
                                 </div>
 
-        </asp:View>    
-        <asp:View ID="View4" runat="server">
-             <fieldset>
+                            </asp:View>
+                            <asp:View ID="View4" runat="server">
+                                <fieldset>
 
                                     <label class="control-label" for="VolunteerName1">מתנדבת 1: </label>
                                     <asp:Label runat="server" ID="Name1FeedBack"></asp:Label>
@@ -452,20 +493,20 @@
                                     <asp:LinkButton runat="server" OnClick="FeedBack4_Click" ID="FeedBack4" Text="משוב"></asp:LinkButton>
                                 </fieldset>
                                 <br />
-        </asp:View>      
-    </asp:MultiView>
-    </div>
-                        
-  
-
-                        </div>
-
+                            </asp:View>
+                        </asp:MultiView>
                     </div>
 
+
+
                 </div>
-                <!--panel with-nav-tabs panel-default-->
 
             </div>
+
+        </div>
+        <!--panel with-nav-tabs panel-default-->
+
+        </div>
             <!--row-->
 
         </div>
@@ -473,7 +514,7 @@
 
     </form>
 </body>
-    
+
 </html>
 <script>
     document.getElementById("home").setAttribute("class", "active")

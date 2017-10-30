@@ -35,13 +35,13 @@ namespace gui.Gui
         {
             if (!IsEmptyFields())
             {
-                Company newComp = new Company();
+                Models.Company newComp = new Models.Company();
                 newComp.Company_Name = companyName.Text;
                 newComp.Company_Address = companyAddress.Text;
                 newComp.Company_Contact_Name = contactname.Text;
                 newComp.Company_Contact_phone = contactphone.Text;
                 newComp.Company_Contact_Email = contactemail.Text;
-                newComp.Company_Area_Activity = Convert.ToInt32(DropDownListArea.SelectedValue);
+                newComp.Company_Area_Activity = Convert.ToInt32(DropDownListArea.SelectedValue + 1);
                 // no check if company exists, no check if email exist
 
                 if (db.InsertNewCompany(newComp))

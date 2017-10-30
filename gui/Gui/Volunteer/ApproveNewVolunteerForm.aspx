@@ -38,7 +38,6 @@
                         </asp:DropDownList>
 
                         <asp:Button runat="server" ID="filter" class="btn btn-info" OnClick="Filter_Click" Text="סינון" />
-
                     </div>
                 </div>
                 <!-- Search-->
@@ -53,13 +52,14 @@
                     </div>
                     <br />
                 </div>
-
+                
             </div>
             <%--end row--%>
             <br />
             <!-- Table-->
             <asp:Table ID="volunteerTable" runat="server" CssClass="table table-hover">
                 <asp:TableRow>
+                     <asp:TableCell Font-Bold="true">סימון </asp:TableCell>
                     <asp:TableCell>
                         <asp:LinkButton OnClick="NameSort" ForeColor="Black" runat="server" ID="NameSortBtn">שם  <span class="glyphicon glyphicon-sort"></span></asp:LinkButton></asp:TableCell>
                     <asp:TableCell>
@@ -74,8 +74,9 @@
                 </asp:TableRow>
 
             </asp:Table>
+            <asp:Button runat="server" ID="pass_all" class="btn btn-success" OnClick="pass_all_Click"  Text="העבר" />
         </div>
-
+        
         <br />
         <br />
     </form>

@@ -24,20 +24,20 @@ namespace gui
             db.IsConnect();
             GetAreasFromDB();
 
-            bool check = true;
+            bool check = false;
 
             if (check)
             {
-                Firstname.Text = "חן";
-                Lastname.Text = "מ";
-                Firstnameeng.Text = "chen";
-                Lastnameeng.Text = "mu";
-                Email.Text = "chenmu10@gmail.com";
-                Phone.Text = "050-0000000";
-                Employer.Text = "google";
+                Firstname.Text = "";
+                Lastname.Text = "";
+                Firstnameeng.Text = "";
+                Lastnameeng.Text = "";
+                Email.Text = "";
+                Phone.Text = "";
+                Employer.Text = "";
                 otherRef.Text = "";
-                DropDownListOccupation.SelectedIndex = 2; // occupation
-                DropDownListReference.SelectedIndex = 2; // reference
+                DropDownListOccupation.SelectedIndex = 0; // occupation
+                DropDownListReference.SelectedIndex = 0; // reference
 
             }
         }
@@ -137,7 +137,7 @@ namespace gui
             {
                 Response.Write("<script>alert('מתנדבת קיימת. צרי קשר במקרה של שינוי/בעיה');</script>");
             }
-            else if (db.InsertNewVolunteer(NewVolunteer))
+            else if (db.InsertNewVolunteer(NewVolunteer,false))
             {
                 ClearForm();
                 //Response.Write("<script>alert('נוספת בהצלחה למאגר'); window.location.href = '../Documents/SuccessNewVolunteer.aspx'; </script>");

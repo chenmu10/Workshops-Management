@@ -20,12 +20,23 @@ namespace gui.Gui
             db = new DB();
             db.IsConnect();
             FillTable();
+
+
+            if (string.IsNullOrEmpty(schoolName.Text))
+            {
+                SchoolAssignPlaceHolder.Visible = false;
+            }
+            else
+            {
+                SchoolAssignPlaceHolder.Visible = true;
+            }
         }
 
         protected void FillTable()
         {
+            int countLines = 0;
             CompanyWorkshops = db.GetAllCompanyWorshops();
-            TableRow Headers =  workshopTable.Rows[0];
+            TableRow Headers = workshopTable.Rows[0];
             workshopTable.Rows.Clear();
             workshopTable.Rows.Add(Headers);
             foreach (CompanyWorkshop t in CompanyWorkshops)
@@ -33,7 +44,7 @@ namespace gui.Gui
                 if (t.CompanyWorkShopStatus == 2) // status "assign school"
                 {
                     TableRow row = new TableRow();
-
+                    countLines++;
                     TableCell workshopID = new TableCell();
                     workshopID.Text = t.CompanyWorkShopID.ToString();
                     row.Cells.Add(workshopID);
@@ -59,6 +70,7 @@ namespace gui.Gui
                     Editbtn.Text = "בחירה";
                     Editbtn.CssClass = "btn btn-info";
                     Editbtn.Attributes.Add("WorkshopID", t.CompanyWorkShopID.ToString());
+                    Editbtn.Attributes.Add("countLine", countLines.ToString());
                     Editbtn.Click += new EventHandler(Select_Click);
                     Edit.Controls.Add(Editbtn);
                     row.Cells.Add(Edit);
@@ -70,7 +82,7 @@ namespace gui.Gui
         private string GetCompanyAddress(int companyID)
         {
             string address;
-            List<Company> companies = db.GetAllComapny();
+            List<Models.Company> companies = db.GetAllComapny();
             address = companies.Find(y => y.Company_ID == companyID).Company_Address;
             return address;
         }
@@ -78,17 +90,20 @@ namespace gui.Gui
         private string GetCompanyName(int companyID)
         {
             string name;
-            List<Company> companies = db.GetAllComapny();
+            List<Models.Company> companies = db.GetAllComapny();
             name = companies.Find(y => y.Company_ID == companyID).Company_Name;
             return name;
         }
 
         protected void Select_Click(object sender, EventArgs e)
         {
+            Clear_Bold_In_Table();
             Button selectedButton = (Button)sender;
             string WorkshopID = selectedButton.Attributes["WorkshopID"].ToString();
             Session["SelectedWorkshopID"] = WorkshopID;
+            workshopTable.Rows[int.Parse(selectedButton.Attributes["CountLine"])].Font.Bold = true;
             workshopIdLabel.Text = WorkshopID;
+            SchoolAssignPlaceHolder.Visible = true;
             ClearForm();
         }
 
@@ -135,25 +150,26 @@ namespace gui.Gui
 
             if (db.updateCompanyWorkshopSchoolAssign(WorkshopID, selected[0].School_ID, finalParticipants.Text, comments.Text))
             {
-                FillTable();
-                Msg.Text = "הסדנא עודכנה בהצלחה";
-                return;
+                //FillTable();
+                //Msg.Text = "הסדנא עודכנה בהצלחה";
+                //return;
+                Response.Redirect("../Documents/SuccessForm.aspx", false);
             }
             else
             {
                 Msg.Text = "שגיאה - העדכון לא בוצע";
                 return;
             }
-            
-
-
-
-
         }
-        protected void TextBox1_TextChanged(object sender, EventArgs e)
+
+        protected void Clear_Bold_In_Table()
         {
-
+            foreach (TableRow t in workshopTable.Rows)
+            {
+                t.Font.Bold = false;
+            }
         }
+
         public void ClearForm()
         {
             schoolSymbol.Text = "";
@@ -190,6 +206,7 @@ namespace gui.Gui
             }
             else
             {
+                SchoolAssignPlaceHolder.Visible = true;
                 schoolName.Text = selected[0].School_Name;
                 finalParticipants.Text = "";
                 comments.Text = "";

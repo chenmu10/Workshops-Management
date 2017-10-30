@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -20,6 +21,11 @@ namespace gui.Gui.Workshop
             GetAreasFromDB();
             GetSchoolFromDB();
             GetCompanyFromDB();
+
+            if (db.IsManager(Session["Manager"]))
+            {
+                expot.Visible = true;
+            }
 
             WorkshopsJoin = db.GetAllWorkshopsByJoin();
            FillTable(WorkshopsJoin);
@@ -54,10 +60,10 @@ namespace gui.Gui.Workshop
         }
         public void GetCompanyFromDB()
         {
-            List<Company> Companies = db.GetAllComapny();
+            List<Models.Company> Companies = db.GetAllComapny();
             if(DropDownListCompany.Items.Count<=1)
             {
-                foreach(Company c in Companies)
+                foreach(Models.Company c in Companies)
                 {
                     DropDownListCompany.Items.Add(new ListItem(c.Company_Name, c.Company_ID.ToString()));
                 }
@@ -136,7 +142,9 @@ namespace gui.Gui.Workshop
               
                 workshopTable.Rows.Add(row);
             }
-
+            Sum.Text = "";
+            Sum.Text = "כמות : ";
+            Sum.Text += string.Format("{0}", CompanyWorkshopsJoin.Count().ToString());
         }
 
         protected void NewComapnyWorkshop_Click(object sender, EventArgs e)
@@ -270,7 +278,6 @@ namespace gui.Gui.Workshop
 
 
         }
-
         public DateTime TimeReplace(string FullDate,bool shortdate)
         {
             string temp = FullDate;
@@ -301,6 +308,87 @@ namespace gui.Gui.Workshop
 
 
         }
-      
+        protected void Clear_Click(object sender, EventArgs e)
+        {
+            Response.Write("<script>window.location.href = ''; </script>");
+        }
+        protected void btnExportExcel_Click(object sender, EventArgs e)
+        {
+            List<System.Web.UI.WebControls.ListItem> Areas = db.GetAllAreas();
+
+            string path = Server.MapPath("..\\..\\Content\\Report.csv");
+            try
+            {
+                if (System.IO.File.Exists(path))
+                    System.IO.File.Delete(path);
+                using (System.IO.StreamWriter filewriter = new System.IO.StreamWriter(path, true, Encoding.UTF8))
+                {
+                    filewriter.WriteLine("Type, status, Date, School, Company, Volunteers Count");
+                    List<WorkshopJoin> Data = new List<WorkshopJoin>();
+                    int status = DropDownListStatus.SelectedIndex;
+                    int type = DropDownListType.SelectedIndex;
+                    int area = DropDownListAreas.SelectedIndex;
+                    int shcool = DropDownListSchool.SelectedIndex;
+                    int company = DropDownListCompany.SelectedIndex;
+
+                    if (status != 0 || type != 0 || area != 0 || shcool!=0 || company!=0)
+                    {
+                        Data = Filter_Click_View();
+
+                    } // if
+                    else
+                    {
+                        Data = db.GetAllWorkshopsByJoin();
+                    }
+
+                    foreach (WorkshopJoin com in Data)
+                    {
+                        string Type;
+                        if (com.Is_company)
+                            Type = "בתעשייה";
+                        else
+                            Type = "בבית ספר";
+                       
+                        string Vstatus =com.Status_Description.Replace(',', ' ');
+                        string Date = com.WorkShop_Date.ToString().Replace(',', ' ');
+                        string VSchool = com.School_Name.ToString().Replace(',', ' ');
+                        string VCompany = com.Company_Name.ToString().Replace(',', ' ');
+                        int count = 0;
+                        if (!com.Volunteer1_Name.Equals("")) count++;
+                        if (!com.Volunteer2_Name.Equals("")) count++;
+                        if (!com.Volunteer3_Name.Equals("")) count++;
+                        if (!com.Volunteer4_Name.Equals("")) count++;
+                        string str =
+                            String.Format("{0},{1},{2},{3},{4}",
+                            Type,
+                            Vstatus,
+                            VSchool,
+                            VCompany,
+                            count
+                            );
+
+                        filewriter.WriteLine(str);
+                    }
+                }
+                System.IO.FileInfo file = new System.IO.FileInfo(path); //get file object as FileInfo
+                if (file.Exists) //-- if the file exists on the server
+                {
+                    Response.Clear(); //set appropriate headers
+                    Response.AddHeader("Content-Disposition", "attachment; filename=" + file.Name);
+                    Response.AddHeader("Content-Length", file.Length.ToString());
+                    Response.ContentType = "application/....";
+                    Response.WriteFile(file.FullName);
+                    Response.End(); //if file does not exist
+                }
+                else
+                {
+                    Response.Write("This file does not exist.");
+                }
+            }
+            catch (Exception exp)
+            {
+            }
+        }
+
     }
 }

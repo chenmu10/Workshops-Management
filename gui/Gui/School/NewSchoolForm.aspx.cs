@@ -64,10 +64,8 @@ namespace gui.Gui
 
                 if (db.InsetNewSchool(newSchool))
                 {
-
-                    Response.Write("<script>alert('בית ספר חדש נוסף בהצלחה');</script>");
-                    Response.Redirect("../Documents/SuccessForm.aspx", false);
-
+                    ClearForm();
+                    Response.Write("<script>alert('בית ספר חדש נוסף בהצלחה');window.location.href = ''; </script>");                  
                 }
                 else
                 {
@@ -104,7 +102,18 @@ namespace gui.Gui
             return false;
         }
 
-
+        public void ClearForm()
+        {
+            schoolname.Text = "";
+            schooladdress.Text = "";
+            contactname.Text = "";
+            contactphone.Text = "";
+            contactemail.Text = "";
+            city.Text = "";
+            computercontact.Text = "";
+            computercontactphone.Text = "";
+            SchoolArea.SelectedIndex = 0;
+        }
 
     }
 }

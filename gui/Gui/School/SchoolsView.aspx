@@ -26,12 +26,13 @@
                 <!-- Filter -->
                 <div class="col-md-4">
                     <div class="form-inline">
-          
+                    
+
                         <asp:DropDownList class="form-control" runat="server" ID="DropDownListAreas">
                             <asp:ListItem>אזור</asp:ListItem>
                         </asp:DropDownList>
 
-                        <asp:Button runat="server" ID="filter" class="btn btn-info" Text="סינון" />
+                        <asp:Button runat="server" ID="filter" OnClick="filter_Click" class="btn btn-info" Text="סינון" />
 
                     </div>
                 </div>
@@ -39,24 +40,28 @@
                 <div class="col-md-8">
                     <div class="form-inline">
    
-                        <asp:TextBox ID="name" runat="server" type="text" class="form-control" placeholder="שם" Width="100px"> </asp:TextBox>
+                        <asp:TextBox ID="nameText" runat="server" type="text" class="form-control" placeholder="שם" Width="200px"></asp:TextBox>
                         או 
-                        <asp:TextBox ID="email" runat="server" type="text" class="form-control" placeholder="סמל מוסד" Width="100px"> </asp:TextBox>
+                        <asp:TextBox ID="symbolText" runat="server"  type="number" class="form-control" placeholder="סמל מוסד"  Width="200px"></asp:TextBox>
 
-                        <asp:Button runat="server" ID="search" class="btn btn-info" Text="חיפוש" />
+                        <asp:Button runat="server" ID="search" class="btn btn-info" OnClick="search_Click" Text="חיפוש" />
+
+                        <asp:Button runat="server" ID="Clear"  OnClick="Clear_Click" class="btn btn-info" Text="ניקוי" />
                     </div>
                     <br />
                 </div>
 
             </div>
             <%--end row--%>
-
-            <br />
-            <br />
             <%--Table--%>
+                <asp:Button runat="server" Visible="false" ID="expot"  class="btn btn-info" Text="ייצא לאקסל" OnClick="btnExportExcel_Click" />
+            <br />
+             <asp:Label runat="server" ID="Sum"></asp:Label>
+              <br />
+
             <asp:Table ID="ScoolsTable" runat="server" CssClass="table table-hover">
                 <asp:TableRow>
-                    <asp:TableCell Font-Bold="true">#</asp:TableCell>
+                    <asp:TableCell Font-Bold="true">מס'</asp:TableCell>
                      <asp:TableCell Font-Bold="true">
                         <asp:LinkButton ForeColor="Black" runat="server" ID="LinkButton1">שם בית ספר 
                             <span class="glyphicon glyphicon-sort"></span>
@@ -71,7 +76,9 @@
                     <asp:TableCell Font-Bold="true"> פעולות</asp:TableCell>
                 </asp:TableRow>
 
-            </asp:Table>
+            </asp:Table>          
+            
+              <br />
         </div>
     </form>
     <script>   $(" .navbar a:contains('בתי ספר')").parent().addClass('active');</script>

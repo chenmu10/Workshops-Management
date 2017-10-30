@@ -8,6 +8,31 @@
     <link href="../../css/bootstrap-rtl.min.css" rel="stylesheet" />
     <script src="../../js/jquery-3.0.0.min.js"></script>
     <script src="../../js/bootstrap.min.js"></script>
+    <script src="../../css/jquery-ui.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#V2Name').autocomplete({
+                source: 'VolunteerHandler.ashx'
+            });
+        })
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#V3Name').autocomplete({
+                source: 'VolunteerHandler.ashx'
+            });
+        })
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#V1Name').autocomplete({
+                source: 'VolunteerHandler2.ashx'
+            });
+        })
+    </script>
+
+    <link href="../../css/jquery-ui.css" rel="stylesheet" />
+
 </head>
 
 <body>
@@ -17,9 +42,17 @@
 
             <div class="jumbotron">
                 <h2>סדנאות: שיבוץ מתנדבות</h2>
-                לכל שאלה או בעיה מוזמנות לפנות אלינו ל mehamemet@cyber.org.il
+                <b> לכל שאלה או בעיה מוזמנות לפנות אלינו ל mehamemet@cyber.org.il</b>
+             
             </div>
+            <div class="row">
+            <asp:DropDownList  runat="server" ID="DropDownListAreas" Width="150px" Height="30px"></asp:DropDownList>
+            <asp:Button runat="server" ID="Select" Text="בחירה" OnClick="Select_Click1"  CssClass="btn btn-success" />
+            <asp:Button runat="server" ID="Clear" Text="ניקוי" OnClick="Clear_Click" CssClass="btn btn-success"  />
 
+            </div>
+          
+            <br />
 
             <!-- Workshops Table-->
             <h3>בחרי סדנא עבור שיבוץ:</h3>
@@ -59,10 +92,12 @@
                 <div class="col-md-4">
                     <fieldset id="Volunteer1" runat="server">
                         <legend>מתנדבת 1 - ותיקה</legend>
+                            <asp:TextBox runat="server" placeholder="אימייל"  Width="250px" ID="V1Name"></asp:TextBox>
                         <asp:Label runat="server" ID="VolunteerName1" Text=""></asp:Label>
                         <br />
                         <asp:DropDownList
                             Width="250px"
+                            Visible="false"
                             ID="Voluntter1DropDownList"
                             AutoPostBack="true"
                             OnSelectedIndexChanged="Voluntter1DropDownList_SelectedIndexChanged"
@@ -86,10 +121,12 @@
                 <div class="col-md-4">
                     <fieldset id="Volunteer2" runat="server">
                         <legend>מתנדבת 2 </legend>
-                        <asp:Label runat="server" ID="VolunteerName2" Text=""></asp:Label>
+                        <asp:TextBox runat="server" placeholder="אימייל" Width="250px"  ID="V2Name"></asp:TextBox>
+                        <asp:Label runat="server" ID="VolunteerName2"  Text=""></asp:Label>
                         <br />
                         <asp:DropDownList ID="Voluntter2DropDownList"
                             AutoPostBack="true"
+                            Visible="false"
                             OnSelectedIndexChanged="Voluntter2DropDownList_SelectedIndexChanged"
                             Width="250px"
                             runat="server"
@@ -113,10 +150,12 @@
                 <div class="col-md-4">
                     <fieldset id="Volunteer3" runat="server">
                         <legend>מתנדבת 3</legend>
+                        <asp:TextBox runat="server" placeholder="אימייל" Width="250px"  ID="V3Name"></asp:TextBox>
                         <asp:Label runat="server" ID="VolunteerName3" Text=""></asp:Label>
                         <br />
                         <asp:DropDownList
                             AutoPostBack="true"
+                            Visible="false"
                             ID="Voluntter3DropDownList" OnSelectedIndexChanged="Voluntter3DropDownList_SelectedIndexChanged"
                             Width="250px"
                             runat="server"
@@ -142,6 +181,7 @@
             <asp:Label runat="server" ID="DupLabel" Text="יש כפילות בבחירת המתנדבות,אנא בחרי שנית" Visible="false"></asp:Label>
             <asp:Label runat="server" ID="succsess" Text="ההרשמה הצליחה" Visible="false"></asp:Label>
             <asp:Label runat="server" ID="nonSelected" Text="יש לבחור מתנדבת על מנת לעדכן" Visible="false"></asp:Label>
+            <asp:Label runat="server" ID="emailerror" Text="שגיאה במייל" Visible="false"></asp:Label>
         </div>
     </form>
 

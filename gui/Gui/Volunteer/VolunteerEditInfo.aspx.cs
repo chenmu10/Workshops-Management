@@ -84,9 +84,9 @@ namespace gui.Gui
         {
             try
             {
-                List<Volunteer> allVolunteer = new List<Volunteer>();
+                List<Models.Volunteer> allVolunteer = new List<Models.Volunteer>();
                 allVolunteer = db.GetAllVolunteers();
-                Volunteer selectVolunteer = allVolunteer.Find(x => x.Volunteer_ID == ID);
+                Models.Volunteer selectVolunteer = allVolunteer.Find(x => x.Volunteer_ID == ID);
                 List<ListItem> Areas = db.GetAllAreas();
                 List<string> statuses = db.getallStatus();
 
@@ -150,9 +150,9 @@ namespace gui.Gui
                     {
                         VolunteerID = int.Parse(key);
                     }
-                    List<Volunteer> allVolunteer = new List<Volunteer>();
+                    List<Models.Volunteer> allVolunteer = new List<Models.Volunteer>();
                     allVolunteer = db.GetAllVolunteers();
-                    Volunteer selectVolunteer = allVolunteer.Find(x => x.Volunteer_ID == VolunteerID);
+                    Models.Volunteer selectVolunteer = allVolunteer.Find(x => x.Volunteer_ID == VolunteerID);
                     List<ListItem> Areas = db.GetAllAreas();
                     List<string> statuses = db.getallStatus();
 

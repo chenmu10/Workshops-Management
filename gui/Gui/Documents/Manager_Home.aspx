@@ -21,30 +21,17 @@
 
     <form id="form1" runat="server">
 
-
+    
 
         <uc1:nav ID="nav1" runat="server" />
         <br />
 
-      
+
         <div class="container">
-            <br />
-       
-            <br />
-            <asp:Label runat="server" ID="user"></asp:Label>
-            <br />
-
-             <div style="margin:auto">
-                    <asp:Button runat="server" ID="TestEMail" OnClick="TestEMail_Click" Text="שלח איימיל בדיקה " />
-
-        </div>
-            <div class="jumbotron" style="background-color:rgba(255, 255, 255,0.8); width:75%; height:80%; margin:auto;">
-                 
+            <asp:Label runat="server" Visible="false" ID="user"></asp:Label>
+            <div class="jumbotron" style="background-color:rgba(255, 255, 255,0.8); width:75%; height:80%; margin:auto;">                 
                  <asp:Image ID="Image2" runat="server" Height="107px" ImageUrl="../../../Content/mmtlogo.PNG" AlternateText="Picture not found" Width="402px" CssClass="center-block" />
-                <br />
                 <h3>מעקב פעילות</h3>
-                <br />
-
                 <table class="table table-hover">
                     <thead>
                         <tr>
@@ -109,16 +96,7 @@
                 <a class="btn btn-lg btn-primary" href="../workshop/workshopsview.aspx" role="button">כל הסדנאות  &raquo;</a>
 
             </div>
-            <br />
-            <br />
-
-
-
-        </div>
-       
+        </div>       
     </form>
-
- 
-
 </body>
 </html>

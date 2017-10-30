@@ -19,8 +19,8 @@ namespace gui.Models
 
 
 
-        private string fromAddress = "chenitunes@gmail.com"; // temporary - personal email..
-        private string fromPassword = "mmtproject";
+        private string fromAddress = "mehamemet@cyber.org.il"; // temporary - personal email..
+        private string fromPassword = "mmtMMT45$";
         private string signature = "בברכה,\nפרויקט מהממט, המרכז לחינוך סייבר";
         private MessageStructure emailInfo;
         private SmtpClient smtp;
@@ -68,7 +68,7 @@ namespace gui.Models
 
             smtp = new SmtpClient()
             {
-                Host = "smtp.gmail.com",
+                Host = "mail.office365.com",
                 Port = 587,
                 EnableSsl = true,
                 DeliveryMethod = SmtpDeliveryMethod.Network,

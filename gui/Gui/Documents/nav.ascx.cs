@@ -15,7 +15,6 @@ namespace gui.Gui.Documents
             DB db;
             db = new DB();
             db.IsConnect();
-
             if (db.IsManager(Session["Manager"]))
             {
                 volunter.Visible = false;
@@ -24,8 +23,10 @@ namespace gui.Gui.Documents
                 workshop.Visible = false;
                 forms.Visible = false;
                 shobech.Visible = false;
-                manager.Visible = false;
+                manager.Visible = true;
                 ManagerLink1.Visible = true;
+                reports.Visible = true;
+                EmailTampL.Visible = true;
             }
             else
             { //to be shore
@@ -36,6 +37,7 @@ namespace gui.Gui.Documents
                 forms.Visible = true;
                 shobech.Visible = true;
                 manager.Visible = true;
+                EmailTampL.Visible = false;
             }
                 
 

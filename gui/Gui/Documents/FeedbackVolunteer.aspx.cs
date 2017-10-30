@@ -49,7 +49,7 @@ namespace gui.Gui.Documents
             bool _IsCompany= bool.Parse(IsCompany);
             int _PersonID =int.Parse(PersonID);
 
-            Volunteer v = db.GetVolunteerByID(_PersonID);
+            Models.Volunteer v = db.GetVolunteerByID(_PersonID);
             CompanyWorkshop workshop = db.getCompanyWorkshopByID(_workshopID);
             SchoolWorkShop Sworkshop = db.GetSchoolWorkshopByID(_workshopID);
             if (!(workshop.CompanyWorkShopVolunteerID1 == _PersonID || workshop.CompanyWorkShopVolunteerID2 == _PersonID || workshop.CompanyWorkShopVolunteerID3 == _PersonID ||
@@ -62,7 +62,7 @@ namespace gui.Gui.Documents
             if(_IsCompany)
             {               
                 School school = db.GetSchoolByID(workshop.CompanySchoolID);
-                Company company = db.getCompanyByID(workshop.CompanyID);
+                Models.Company company = db.getCompanyByID(workshop.CompanyID);
                 workshopIDLabel.Text = _workshopID.ToString();                
                 schoolNameLabel.Text = school.School_Name;
                 companyNameLabel.Text = company.Company_Name;

@@ -31,6 +31,15 @@ namespace gui.Gui {
         protected global::gui.Gui.Documents.nav nav1;
         
         /// <summary>
+        /// approve control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button approve;
+        
+        /// <summary>
         /// DropDownListStatus control.
         /// </summary>
         /// <remarks>
@@ -92,6 +101,24 @@ namespace gui.Gui {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button search;
+        
+        /// <summary>
+        /// expot control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button expot;
+        
+        /// <summary>
+        /// Sum control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Sum;
         
         /// <summary>
         /// volunteerTable control.

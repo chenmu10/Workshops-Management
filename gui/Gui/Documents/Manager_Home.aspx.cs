@@ -16,12 +16,6 @@ namespace gui.Gui
             db.IsConnect();            
             InitializeForm();
 
-            /*Test For import*/
-           // string volunteerForm = string.Format("c:\\file1.csv");
-           // db.GetVolunteerFromExel(volunteerForm);
-           // string SchoolForm = string.Format("c:\file2.xlsx");
-           // db.GetSchoolFromExel(SchoolForm);
-
         }
 
         private void InitializeForm()
@@ -54,8 +48,11 @@ namespace gui.Gui
 
         protected void TestEMail_Click(object sender, EventArgs e)
         {
-            EmailHelper Email = new EmailHelper();
-            Email.Test();
+            //EmailHelper Email = new EmailHelper();
+            ////string email = TestEmailAdd.Text;
+            //if(!Email.Test(email))
+            //    Response.Write("<script>alert('לא הצליח לשלוח מייל');   </script>");
+
         }
     }
 }

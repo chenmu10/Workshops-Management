@@ -19,7 +19,7 @@
             <div class="jumbotron">
                 <h2>רישום בית ספר חדש</h2>
                 <p>
-                    מורים? מנהלי בית ספר? אם אתם רוצים שנגיע אליכם, נשמח אם תמלאו את הטופס המצורף.<br />
+               
                     *כל השדות חובה
                 </p>
             </div>
@@ -36,12 +36,9 @@
                         <asp:TextBox ID="schoolSymbol"
                             class="form-control"
                             type="number"
-                            pattern="[0-9]{7}"
                             required="required"
-                            oninvalid="setCustomValidity('יש להזין סמל בית ספר')"
-                            onchange="try{setCustomValidity('יש להזין סמל מוסד בעל 7 ספרות')}catch(e){}"
                             placeholder="סמל מוסד לפי משרד החינוך"
-                            runat="server" AutoPostBack="True"
+                            runat="server" AutoPostBack="false"
                            Width="220px">
                         </asp:TextBox>
                     </div>
@@ -120,9 +117,13 @@
                             runat="server" Width="220px"></asp:TextBox>
                     </div>
                     <br />
-
+ <asp:Button ID="Buttonsend" class="btn btn-primary pull-left" runat="server" OnClick="Buttonsend_Click"  Text="שליחה"/>
+                    <br />
+                    <br />
                 </fieldset>
+                <br />
             </div>
+
 
             <!-- column 2-->
             <div class="col-md-4">
@@ -165,17 +166,9 @@
                             runat="server" Width="220px"></asp:TextBox>
                     </div>
                     <br />
-                        <asp:Button ID="Buttonsend" class="btn btn-primary pull-left" runat="server" OnClick="Buttonsend_Click"  Text="שליחה"/>
+
                 </fieldset>
             </div>
-
-
-
-          
-
-            
-
-               
         </div>
     </form>
 </body>

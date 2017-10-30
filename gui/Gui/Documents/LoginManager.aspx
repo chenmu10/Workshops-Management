@@ -35,7 +35,7 @@
 			<br/>
 			<asp:label runat="server" ID="passwordLabel"  for="password">סיסמא</asp:label>
 			<br/>
-			<asp:TextBox runat="server" ID="password"></asp:TextBox>
+			<asp:TextBox runat="server" type="password" ID="password"></asp:TextBox>
 			<br/>
             <asp:Button runat="server" CssClass="mybtn1212" ID="submitButton" Text="כניסה" OnClick="Login_Click"  ForeColor="White" />
             <br/>

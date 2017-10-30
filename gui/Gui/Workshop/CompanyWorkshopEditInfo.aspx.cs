@@ -14,9 +14,9 @@ namespace gui.Gui.Workshop
         DB db;
         WorkshopJoin WorkshopToView = new WorkshopJoin();
         CompanyWorkshop CompanyWorkshop = new CompanyWorkshop();
-        List<Volunteer> allVolunteer = new List<Volunteer>();
-        List<Company> allCompany = new List<Models.Company>();
-        Company selectedCompany = new Company();
+        List<Models.Volunteer> allVolunteer = new List<Models.Volunteer>();
+        List<Models.Company> allCompany = new List<Models.Company>();
+        Models.Company selectedCompany = new Models.Company();
         protected void Page_Load(object sender, EventArgs e)
         {
             this.Load += new System.EventHandler(this.Page_Load);
@@ -275,11 +275,11 @@ namespace gui.Gui.Workshop
         private void VolunteerInviteEmail() // בקשה להשתבצות מתנדבות
         {
             int volunteerCount = 0;
-            List<Volunteer> allVolunteers = db.GetAllVolunteersWithTraining(true);
+            List<Models.Volunteer> allVolunteers = db.GetAllVolunteersWithTraining(true);
 
             EmailTemplate mail = new EmailTemplate(EmailTemplate.PREDEFINED_TEMPLATES_GENERAL[EmailTemplate.GeneralByType.VolunteerInvite]);
 
-            foreach (Volunteer currentVolunteer in allVolunteers)
+            foreach (Models.Volunteer currentVolunteer in allVolunteers)
             {
                 // TODO get the school area
                 //if (currentVolunteer.Volunteer_Area_Activity == selectedSchool.school_activity_area)
@@ -345,7 +345,7 @@ namespace gui.Gui.Workshop
         {
             Session["viewmode"] = "1";
             int workshopId = int.Parse(Session["WorkshopID"].ToString());
-            Volunteer v;
+            Models.Volunteer v;
             volunteer1Ride.Text = "";
             allVolunteer = db.GetAllVolunteers();
             VolunteerName1.Text = "";
@@ -362,7 +362,7 @@ namespace gui.Gui.Workshop
         {
             Session["viewmode"] = "1";
             int workshopId = int.Parse(Session["WorkshopID"].ToString());
-            Volunteer v;
+            Models.Volunteer v;
             allVolunteer = db.GetAllVolunteers();
             VolunteerName2.Text = "";
             int ID = Voluntter2DropDownList.SelectedIndex;
@@ -377,11 +377,11 @@ namespace gui.Gui.Workshop
         protected void Voluntter3DropDownList_SelectedIndexChanged(object sender, EventArgs e)
         {
             Session["viewmode"] = "1";
-            Volunteer v;
+            Models.Volunteer v;
             int workshopId = int.Parse(Session["WorkshopID"].ToString());
             allVolunteer = db.GetAllVolunteers();
             VolunteerName3.Text = "";
-            int ID = Voluntter1DropDownList.SelectedIndex;
+            int ID = Voluntter3DropDownList.SelectedIndex;
             if (ID != 0)
             {
                 v = allVolunteer.Find(x => x.Volunteer_ID == ID);
@@ -397,7 +397,7 @@ namespace gui.Gui.Workshop
         protected void submitVolnteers(object sender, EventArgs e)
         {
             int workshopId = int.Parse(Session["WorkshopID"].ToString());
-            Volunteer v1, v2, v3;
+            Models.Volunteer v1, v2, v3;
             string Ride1 = "", Ride2 = "", Ride3 = "";
             allVolunteer = db.GetAllVolunteers();
             int ID1 = Voluntter1DropDownList.SelectedIndex;
@@ -430,16 +430,16 @@ namespace gui.Gui.Workshop
             CompanyWorkshop selectedWorkshop = db.getCompanyWorkshopByID(workshopId);
             allVolunteer = db.GetAllVolunteers();
             List<FeedBack> allFeedBack = db.GetAllFeedBackByWorkshopID(workshopId,true);
-            Volunteer v1 = new Volunteer();
-            Volunteer v2 = new Volunteer();
-            Volunteer v3 = new Volunteer();
+            Models.Volunteer v1 = new Models.Volunteer();
+            Models.Volunteer v2 = new Models.Volunteer();
+            Models.Volunteer v3 = new Models.Volunteer();
             Voluntter1DropDownList.Items.Clear();
             Voluntter2DropDownList.Items.Clear();
             Voluntter3DropDownList.Items.Clear();
             Voluntter1DropDownList.Items.Add(new ListItem("בחרי", "0"));
             Voluntter2DropDownList.Items.Add(new ListItem("בחרי", "0"));
             Voluntter3DropDownList.Items.Add(new ListItem("בחרי", "0"));
-            foreach (Volunteer v in allVolunteer)
+            foreach (Models.Volunteer v in allVolunteer)
             {
                 Voluntter1DropDownList.Items.Add(new ListItem(v.Volunteer_Email, v.Volunteer_ID.ToString()));
                 Voluntter2DropDownList.Items.Add(new ListItem(v.Volunteer_Email, v.Volunteer_ID.ToString()));

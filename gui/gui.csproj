@@ -45,6 +45,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AjaxControlToolkit, Version=17.1.1.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL">
+      <HintPath>..\packages\AjaxControlToolkit.17.1.1.0\lib\net40\AjaxControlToolkit.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="ExcelDataReader, Version=3.2.0.0, Culture=neutral, PublicKeyToken=93517dbe6a4012fa, processorArchitecture=MSIL">
       <HintPath>..\packages\ExcelDataReader.3.2.0\lib\net45\ExcelDataReader.dll</HintPath>
       <Private>True</Private>
@@ -66,6 +70,10 @@
     </Reference>
     <Reference Include="Google.Maps, Version=0.18.70.0, Culture=neutral, PublicKeyToken=4aa992bb5d22d4ff, processorArchitecture=MSIL">
       <HintPath>..\packages\gmaps-api-net.0.18.70\lib\Google.Maps.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp, Version=5.5.12.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\iTextSharp.5.5.12\lib\itextsharp.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
@@ -101,6 +109,8 @@
     <Content Include="Content\homepic.PNG" />
     <Content Include="Content\back.jpg" />
     <Content Include="css\animate.css" />
+    <Content Include="css\jquery-ui.css" />
+    <Content Include="css\jquery-ui.js" />
     <Content Include="css\Loginstyle.css" />
     <Content Include="css\StatusBar.css" />
     <Content Include="EmailMessages\CompanyWorkshop\AssignCompleteCompany.txt" />
@@ -115,7 +125,9 @@
     <Content Include="EmailMessages\General\VolunteerInviteBody.txt" />
     <Content Include="css\bootstrap-rtl.min.css" />
     <Content Include="Excel.dll" />
+    <Content Include="Gui\Company\EditInfoForCompany.aspx" />
     <Content Include="Gui\Documents\AssignForms.aspx" />
+    <Content Include="Gui\Documents\EmailTemplates.aspx" />
     <Content Include="Gui\Documents\FeedbackTeacher.aspx" />
     <Content Include="Gui\Documents\FeedbackVolunteer.aspx" />
     <Content Include="Gui\Documents\LoginManager.aspx" />
@@ -126,7 +138,6 @@
     <Content Include="Gui\School\SchoolEditInfo.aspx" />
     <Content Include="Gui\Volunteer\ApproveNewVolunteerForm.aspx" />
     <Content Include="Gui\Company\CompanyView.aspx" />
-    <Content Include="Gui\Company\CompanyEditInformation.aspx" />
     <Content Include="Gui\Documents\Manager_Home.aspx" />
     <Content Include="Gui\Company\NewCompanyForm.aspx" />
     <Content Include="Gui\Volunteer\NewVolunteerForm.aspx" />
@@ -157,6 +168,8 @@
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="Site.Master" />
     <Content Include="css\bootstrap-rtl.css.map" />
+    <Content Include="Gui\Volunteer\VolunteerHandler.ashx" />
+    <Content Include="Gui\Volunteer\VolunteerHandler2.ashx" />
     <None Include="Properties\PublishProfiles\mmt.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -180,12 +193,26 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Gui\Company\EditInfoForCompany.aspx.cs">
+      <DependentUpon>EditInfoForCompany.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Gui\Company\EditInfoForCompany.aspx.designer.cs">
+      <DependentUpon>EditInfoForCompany.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Gui\Documents\AssignForms.aspx.cs">
       <DependentUpon>AssignForms.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Gui\Documents\AssignForms.aspx.designer.cs">
       <DependentUpon>AssignForms.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Gui\Documents\EmailTemplates.aspx.cs">
+      <DependentUpon>EmailTemplates.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Gui\Documents\EmailTemplates.aspx.designer.cs">
+      <DependentUpon>EmailTemplates.aspx</DependentUpon>
     </Compile>
     <Compile Include="Gui\Documents\FeedbackTeacher.aspx.cs">
       <DependentUpon>FeedbackTeacher.aspx</DependentUpon>
@@ -257,13 +284,6 @@
     <Compile Include="Gui\Company\CompanyView.aspx.designer.cs">
       <DependentUpon>CompanyView.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Gui\Company\CompanyEditInformation.aspx.cs">
-      <DependentUpon>CompanyEditInformation.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Gui\Company\CompanyEditInformation.aspx.designer.cs">
-      <DependentUpon>CompanyEditInformation.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Gui\Documents\Manager_Home.aspx.cs">
       <DependentUpon>Manager_Home.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -291,6 +311,12 @@
     </Compile>
     <Compile Include="Gui\Volunteer\VolunteerEditInfo.aspx.designer.cs">
       <DependentUpon>VolunteerEditInfo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Gui\Volunteer\VolunteerHandler.ashx.cs">
+      <DependentUpon>VolunteerHandler.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Gui\Volunteer\VolunteerHandler2.ashx.cs">
+      <DependentUpon>VolunteerHandler2.ashx</DependentUpon>
     </Compile>
     <Compile Include="Gui\Workshop\CompanyWorkshopEditInfo.aspx.cs">
       <DependentUpon>CompanyWorkshopEditInfo.aspx</DependentUpon>
@@ -401,6 +427,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="css\images\" />
   </ItemGroup>
   <ItemGroup>
     <COMReference Include="Microsoft.Office.Core">

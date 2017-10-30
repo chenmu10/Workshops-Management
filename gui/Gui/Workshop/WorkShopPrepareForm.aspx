@@ -78,7 +78,7 @@
                     <label class="control-label" for="schoolparking">אפשרויות חנייה (בבי"ס או מסביב ואם יש עלות): </label>
                     <div>
                         <asp:TextBox ID="schoolparking"
-                            type="text"
+                            type="text" Width="40%"
                             class="form-control"
                             placeholder="לדוג' חנייה ברחוב X בתשלום 20 ליום.."
                             runat="server"></asp:TextBox>

@@ -297,10 +297,13 @@
             <div class="col-md-2">
 
                 <asp:Button ID="Buttonsen" class="btn btn-primary" runat="server" OnClick="ButtonSubmit_Click" Text="שליחה" />
-
+                <br />
+                <br />
                 <br />
             </div>
+            <br />
         </div>
+
     </form>
 </body>
 </html>
