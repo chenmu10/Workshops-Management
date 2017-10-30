@@ -42,16 +42,17 @@
 
             <div class="jumbotron">
                 <h2>סדנאות: שיבוץ מתנדבות</h2>
-                <b> לכל שאלה או בעיה מוזמנות לפנות אלינו ל mehamemet@cyber.org.il</b>
-             
-            </div>
-            <div class="row">
-            <asp:DropDownList  runat="server" ID="DropDownListAreas" Width="150px" Height="30px"></asp:DropDownList>
-            <asp:Button runat="server" ID="Select" Text="בחירה" OnClick="Select_Click1"  CssClass="btn btn-success" />
-            <asp:Button runat="server" ID="Clear" Text="ניקוי" OnClick="Clear_Click" CssClass="btn btn-success"  />
+                <b>לכל שאלה או בעיה מוזמנות לפנות אלינו ל <a href="mailto:mehamemet@cyber.org.il">mehamemet@cyber.org.il</a>  </b>
 
             </div>
-          
+
+            <div class="form-inline text-center">
+                <asp:DropDownList runat="server" ID="DropDownListAreas" Width="150px" Height="30px" CssClass="form-control"></asp:DropDownList>
+                <asp:Button runat="server" ID="Select" Text="בחירה" OnClick="Select_Click1" CssClass="btn btn-info" />
+                <asp:Button runat="server" ID="Clear" Text="ניקוי" OnClick="Clear_Click" CssClass="btn btn-info" />
+            </div>
+
+
             <br />
 
             <!-- Workshops Table-->
@@ -92,7 +93,7 @@
                 <div class="col-md-4">
                     <fieldset id="Volunteer1" runat="server">
                         <legend>מתנדבת 1 - ותיקה</legend>
-                            <asp:TextBox runat="server" placeholder="אימייל"  Width="250px" ID="V1Name"></asp:TextBox>
+                        <asp:TextBox runat="server" placeholder="אימייל" Width="250px" ID="V1Name"></asp:TextBox>
                         <asp:Label runat="server" ID="VolunteerName1" Text=""></asp:Label>
                         <br />
                         <asp:DropDownList
@@ -121,8 +122,8 @@
                 <div class="col-md-4">
                     <fieldset id="Volunteer2" runat="server">
                         <legend>מתנדבת 2 </legend>
-                        <asp:TextBox runat="server" placeholder="אימייל" Width="250px"  ID="V2Name"></asp:TextBox>
-                        <asp:Label runat="server" ID="VolunteerName2"  Text=""></asp:Label>
+                        <asp:TextBox runat="server" placeholder="אימייל" Width="250px" ID="V2Name"></asp:TextBox>
+                        <asp:Label runat="server" ID="VolunteerName2" Text=""></asp:Label>
                         <br />
                         <asp:DropDownList ID="Voluntter2DropDownList"
                             AutoPostBack="true"
@@ -150,7 +151,7 @@
                 <div class="col-md-4">
                     <fieldset id="Volunteer3" runat="server">
                         <legend>מתנדבת 3</legend>
-                        <asp:TextBox runat="server" placeholder="אימייל" Width="250px"  ID="V3Name"></asp:TextBox>
+                        <asp:TextBox runat="server" placeholder="אימייל" Width="250px" ID="V3Name"></asp:TextBox>
                         <asp:Label runat="server" ID="VolunteerName3" Text=""></asp:Label>
                         <br />
                         <asp:DropDownList
@@ -174,15 +175,17 @@
                         </asp:TextBox>
                     </fieldset>
                 </div>
-        </div>
-        <div style="margin-right: 50%; margin-top: 25px">
-            <asp:Button runat="server" class="btn btn-success" ID="assign" Text="עדכני" OnClick="assign_Click" />
+                <div style="margin-right: 50%; margin-top: 25px">
+                    <asp:Button runat="server" class="btn btn-success" ID="assign" Text="עדכני" OnClick="assign_Click" />
+
+                    <asp:Label runat="server" ID="DupLabel" Text="יש כפילות בבחירת המתנדבות,אנא בחרי שנית" Visible="false"></asp:Label>
+                    <asp:Label runat="server" ID="succsess" Text="ההרשמה הצליחה" Visible="false"></asp:Label>
+                    <asp:Label runat="server" ID="nonSelected" Text="יש לבחור מתנדבת על מנת לעדכן" Visible="false"></asp:Label>
+                    <asp:Label runat="server" ID="emailerror" Text="שגיאה במייל" Visible="false"></asp:Label>
+                </div>
             </asp:PlaceHolder>
-            <asp:Label runat="server" ID="DupLabel" Text="יש כפילות בבחירת המתנדבות,אנא בחרי שנית" Visible="false"></asp:Label>
-            <asp:Label runat="server" ID="succsess" Text="ההרשמה הצליחה" Visible="false"></asp:Label>
-            <asp:Label runat="server" ID="nonSelected" Text="יש לבחור מתנדבת על מנת לעדכן" Visible="false"></asp:Label>
-            <asp:Label runat="server" ID="emailerror" Text="שגיאה במייל" Visible="false"></asp:Label>
         </div>
+
     </form>
 
 </body>

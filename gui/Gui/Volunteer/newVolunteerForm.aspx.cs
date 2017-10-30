@@ -174,7 +174,7 @@ namespace gui
                  string.IsNullOrWhiteSpace(Email.Text) ||
                  string.IsNullOrWhiteSpace(Phone.Text) ||
                  DropDownListOccupation.SelectedIndex == 0 ||
-                 string.IsNullOrWhiteSpace(Employer.Text) ||
+                 //string.IsNullOrWhiteSpace(Employer.Text) ||
                  DropDownListReference.SelectedIndex == 0)
             {
                 Response.Write("<script>alert('נא למלא את כל השדות');</script>");

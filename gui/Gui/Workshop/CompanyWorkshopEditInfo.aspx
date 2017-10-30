@@ -97,11 +97,11 @@
              <div class="form-inline" style="padding-top:100px;">
                 <label class="control-label" for="selectpicker">שינוי סטטוס: </label>
                 <asp:DropDownList runat="server" ID="selectpicker" CssClass="form-control" Width="150px">
-                    <asp:ListItem Value="1">לשיבוץ מתנדבות</asp:ListItem>
-                    <asp:ListItem Value="2">למתנדבות שובצו</asp:ListItem>
-                    <asp:ListItem Value="3">לביצוע</asp:ListItem>
-                    <asp:ListItem Value="4">למישוב</asp:ListItem>
-                    <asp:ListItem Value="5">לסגור</asp:ListItem>
+                    <asp:ListItem Value="1">שיבוץ מתנדבות</asp:ListItem>
+                    <asp:ListItem Value="2">מתנדבות שובצו</asp:ListItem>
+                    <asp:ListItem Value="3">ביצוע</asp:ListItem>
+                    <asp:ListItem Value="4">מישוב</asp:ListItem>
+                    <asp:ListItem Value="5">סגירה</asp:ListItem>
                 </asp:DropDownList>
                 <asp:Button runat="server" ID="Button2" Text="אישור שינוי" class="btn btn-link" OnClick="updateStatus_Click" />
 
@@ -140,7 +140,7 @@
                                         <div class="form-inline">
                                             <asp:TextBox ID="companyName" Enabled="false"
                                                 required="required"
-                                                class="form-control"
+                                                CssClass="form-control disabled"
                                                 oninvalid="setCustomValidity('יש להזין שם חברה')"
                                                 onchange="try{setCustomValidity('')}catch(e){}"
                                                 runat="server">
@@ -150,7 +150,7 @@
                                         <!-- Company Address -->
                                         <label class="control-label" for="address">כתובת:</label>
                                         <div>
-                                            <asp:TextBox ID="address" runat="server" Enabled="false"></asp:TextBox>
+                                            <asp:TextBox ID="address" runat="server" Enabled="false" Width="220px" CssClass="form-control disabled"></asp:TextBox>
                                         </div>
                                         <br />
                                         <asp:LinkButton runat="server" ID="goToCompany" class="btn btn-link">מעבר לפרטי חברה</asp:LinkButton>
@@ -170,7 +170,7 @@
                                         <div class="form-inline">
                                             <asp:TextBox ID="studentsPredictedNum" Enabled="false"
                                                 type="number"
-                                                class="form-control"
+                                               CssClass="form-control disabled"
                                                 min="0"
                                                 required="required"
                                                 oninvalid="setCustomValidity('יש להזין מס' משתתפות אפשרי')"
@@ -183,7 +183,7 @@
                                         <div class="form-inline">
                                             <asp:TextBox ID="companyComments" Enabled="false"
                                                 runat="server" Width="220px"
-                                                class="form-control"
+                                               CssClass="form-control disabled"
                                                 TextMode="MultiLine"
                                                 Rows="5" Style="resize: none;"></asp:TextBox>
                                         </div>
@@ -192,7 +192,7 @@
                                         <div class="form-inline">
                                             <asp:TextBox ID="dateTime" Enabled="false"
                                                 runat="server" Width="220px"
-                                                class="form-control"></asp:TextBox>
+                                               CssClass="form-control disabled"></asp:TextBox>
                                         </div>
                                      
                                     </fieldset>
@@ -205,7 +205,7 @@
                                 <div class="form-inline">
                                     <asp:TextBox ID="schoolname" Enabled="false"
                                         required="required"
-                                        class="form-control"
+                                        CssClass="form-control disabled"
                                         oninvalid="setCustomValidity('יש להזין שם בית ספר')"
                                         onchange="try{setCustomValidity('')}catch(e){}"
                                         runat="server">
@@ -220,8 +220,8 @@
                                 <div>
                                     <asp:TextBox ID="FinalStudentsNum" Enabled="false"
                                         type="number"
-                                        class="form-control"
-                                        min="0"
+                                        CssClass="form-control disabled"
+                                        min="0" Width="220px"
                                         required="required"
                                         oninvalid="setCustomValidity('יש להזין מס' משתתפות')"
                                         onchange="try{setCustomValidity('')}catch(e){}"
@@ -232,7 +232,7 @@
                                 <div class="form-inline">
                                     <asp:TextBox ID="schoolComments" Enabled="false"
                                         runat="server"
-                                        class="form-control"
+                                        CssClass="form-control disabled"
                                         TextMode="MultiLine"
                                         Rows="5" Style="resize: none;"></asp:TextBox>
                                 </div>

@@ -71,17 +71,30 @@ namespace gui
                 if (!Schools.Exists(Schools => Schools.School_Serial_Number == SchoolSymbol)) //new school
                 {
                     School newSchool = new School(0, SchoolSymbol, SchoolName, SchoolAddress, SchoolAreaValue, SchoolCity, ContactName, ContactPhone, ContactEmail, ContantComputer, ContantComputerPhone, "");
-                    db.InsetNewSchool(newSchool);
-                    SchoolWorkShop NewSchoolWorkShop = new SchoolWorkShop(Date1, Date2, Date3, StudentCount, ComputerCount, FormComment,
-                    ContactName, ContactPhone, ContactEmail, isAMTStudent, newSchool.School_ID);
-                    if (db.InsertNewSchoolWorkShop(NewSchoolWorkShop))
+                    if (db.InsertNewSchool(newSchool))
                     {
-                        
-                        Response.Write("<script>alert('בית ספר חדש וסדנא חדשה נוספו בהצלחה');</script>");
-                        Response.Redirect("../Documents/SuccessForm.aspx", false);
+                        SchoolWorkShop NewSchoolWorkShop = new SchoolWorkShop(Date1, Date2, Date3, StudentCount, ComputerCount, FormComment,
+                                                                             ContactName, ContactPhone, ContactEmail, isAMTStudent, newSchool.School_ID);
+                        if (db.InsertNewSchoolWorkShop(NewSchoolWorkShop))
+                        {
+
+                            Response.Write("<script>alert('בית ספר חדש וסדנא חדשה נוספו בהצלחה');</script>");
+                            Response.Redirect("../Documents/SuccessForm.aspx", false);
+
+                        }
+                        else
+                        {
+                            Response.Write("<script>alert('שגיאה בהכנסת סדנא. בית ספר נוסף למאגר.');</script>");
+                        }
 
                     }
-                        
+                    else
+                    {
+                        Response.Write("<script>alert('שגיאה בהכנסה למאגר');</script>");
+                    }
+
+
+
                 }
                 else
                 {
@@ -92,8 +105,12 @@ namespace gui
                         Response.Write("<script>alert('סדנא נוצרה בהצלחה');</script>");
                         Response.Redirect("../Documents/SuccessForm.aspx", false);
                     }
-                       
-                    
+                    else
+                    {
+                        Response.Write("<script>alert('שגיאה בהכנסה למאגר');</script>");
+                    }
+
+
                 }
                 
                 

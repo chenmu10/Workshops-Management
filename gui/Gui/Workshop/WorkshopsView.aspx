@@ -57,10 +57,6 @@
                             <asp:ListItem>שם חברה</asp:ListItem>
                         </asp:DropDownList>
 
-                        <%-- מועד קיום:
-                        <asp:TextBox class="form-control" ID="date" runat="server" TextMode="Date" Width="150px"></asp:TextBox>
-                        <br />--%>
-
                         מתאריך:
                         <asp:TextBox class="form-control" ID="from_Date" runat="server" TextMode="Date" Width="150px"></asp:TextBox>
                         עד תאריך:
@@ -69,16 +65,16 @@
                         <asp:Button runat="server" ID="filter" class="btn btn-info" OnClick="Filter_Click" Text="סינון" />
                     </div>
 
-                </div>
+                
+                <br />
+                        
+                <asp:Button runat="server" Visible="false" ID="expot" class="btn btn-info" Text="ייצא לאקסל" OnClick="btnExportExcel_Click" />
+                <asp:Button runat="server" ID="Clear" class="btn btn-info" Text="ניקוי" OnClick="Clear_Click" />
+
+                <br /> <br />
+                <asp:Label runat="server" ID="Sum"></asp:Label>
                 <br />
 
-                   <asp:Button runat="server" Visible="false" ID="expot"  class="btn btn-info" Text="ייצא לאקסל" OnClick="btnExportExcel_Click" />
-           <asp:Button runat="server"  ID="Clear"  class="btn btn-info" Text="ניקוי" OnClick="Clear_Click" />
-
-            <br />
-             <asp:Label runat="server" ID="Sum"></asp:Label>
-            <br />
-                
                 <%--Table--%>
                 <asp:Table ID="workshopTable" runat="server" CssClass="table table-hover">
                     <asp:TableRow>

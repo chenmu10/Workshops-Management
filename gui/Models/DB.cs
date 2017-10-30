@@ -967,7 +967,7 @@ namespace gui
         #endregion
 
         #region School
-        public Boolean InsetNewSchool(School school)
+        public Boolean InsertNewSchool(School school)
         {
             try
             {
@@ -1527,7 +1527,7 @@ namespace gui
                         }
                         
 
-                        InsetNewSchool(NewSchool);
+                        InsertNewSchool(NewSchool);
                     }
                     index++;
                 }

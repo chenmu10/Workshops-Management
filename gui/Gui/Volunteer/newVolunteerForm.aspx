@@ -43,7 +43,7 @@
                     לאחר ההכשרה את מוזמנת להירשם להעברת סדנה במועד ובמקום שמתאים לך.
                     אחת לחודש - חודשיים אנחנו מקיימות ערב הכשרה. את מוזמנת להירשם מטה ונודיע לך על ערב ההכשרה הבא שלנו.
                     הצטרפי אלינו בהובלת שינוי משמעותי בכמות הבנות הנרשמות למגמות טכנולוגיות!
-                            <br /><b> לכל שאלה או בעיה מוזמנות לפנות אלינו ל mehamemet@cyber.org.il</b>
+                            <br /><b> לכל שאלה או בעיה מוזמנות לפנות אלינו ל <a href="mailto:mehamemet@cyber.org.il">mehamemet@cyber.org.il</a>  </b>
                         </p>
                     </div>
                     <br />
@@ -133,7 +133,7 @@
                             pattern="([A-z\u0590-\u05FF0-9\s]){2,}"
                             oninvalid="setCustomValidity('קלט לא תקין')"
                             onchange="try{setCustomValidity('')}catch(e){}"
-                            required="required" runat="server"></asp:TextBox>
+                             runat="server"></asp:TextBox>
                     </div>
                     <br />
                     <!--Reference-->
@@ -184,7 +184,7 @@
 
 
                     <asp:Button ID="Send" class="btn btn-success" runat="server" Text="שליחה"/>
-
+                    <br /> <br />
 
                 </div>
 

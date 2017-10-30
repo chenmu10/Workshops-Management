@@ -46,7 +46,6 @@
 
                         <asp:Button runat="server" ID="search" class="btn btn-info" OnClick="search_Click" Text="חיפוש" />
 
-                        <asp:Button runat="server" ID="Clear"  OnClick="Clear_Click" class="btn btn-info" Text="ניקוי" />
                     </div>
                     <br />
                 </div>
@@ -55,6 +54,8 @@
             <%--end row--%>
             <%--Table--%>
                 <asp:Button runat="server" Visible="false" ID="expot"  class="btn btn-info" Text="ייצא לאקסל" OnClick="btnExportExcel_Click" />
+                <asp:Button runat="server" ID="Clear"  OnClick="Clear_Click" class="btn btn-info" Text="ניקוי" />
+
             <br />
              <asp:Label runat="server" ID="Sum"></asp:Label>
               <br />

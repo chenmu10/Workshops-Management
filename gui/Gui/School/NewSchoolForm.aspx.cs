@@ -61,8 +61,13 @@ namespace gui.Gui
 
                 School newSchool = new School(0, SchoolSymbol, SchoolName, SchoolAddress, SchoolAreaValue, SchoolCity, ContactName, ContactPhone, ContactEmail, ContantComputer, ContantComputerPhone, "");
 
-
-                if (db.InsetNewSchool(newSchool))
+                Schools = db.GetAllSchools();
+                
+                if (Schools.Exists(Schools => Schools.School_Serial_Number == SchoolSymbol))
+                {
+                    Response.Write("<script>alert('בית ספר קיים במאגר. צרי קשר במקרה של שינוי/בעיה');</script>");
+                }
+                else if (db.InsertNewSchool(newSchool))
                 {
                     ClearForm();
                     Response.Write("<script>alert('בית ספר חדש נוסף בהצלחה');window.location.href = ''; </script>");                  

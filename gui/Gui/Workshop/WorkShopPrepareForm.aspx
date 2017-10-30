@@ -108,7 +108,8 @@
                     <!--Answer_PerWorkshop yes/no-->
                     <label class="control-label" for="RadioButtonListAnswer_PerWorkshop">
                         האם כל התלמידות ענו על השאלון המקדים לסדנה? השאלון נמצא ב:
-                         https://docs.google.com/forms/d/17vFUdE_wN4RuuGp4J1OC_Au5zK_DqIKqXExwVeaYCa8/viewform</label>
+                        <a href="https://docs.google.com/forms/d/17vFUdE_wN4RuuGp4J1OC_Au5zK_DqIKqXExwVeaYCa8/viewform">קישור</a>
+                         </label>
                     <asp:RadioButtonList ID="RadioButtonListAnswer_PerWorkshop" runat="server">
                         <asp:ListItem Value="True" Text="כן"></asp:ListItem>
                         <asp:ListItem Value="False" Text="לא"></asp:ListItem>

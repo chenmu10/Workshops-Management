@@ -80,7 +80,7 @@ namespace gui.Gui.Workshop
             foreach (WorkshopJoin t in CompanyWorkshopsJoin)
             {
                 TableRow row = new TableRow();
-
+                
                 TableCell id = new TableCell();
                 id.CssClass = "alnright";
                 id.Text = t.WorkShop_ID;
@@ -98,12 +98,13 @@ namespace gui.Gui.Workshop
                 
                 status.Text = t.Status_Description;
                
- 
-                 row.Cells.Add(status);
-
+                row.Cells.Add(status);
                 TableCell Date = new TableCell();
                 Date.CssClass = "alnright";
                 Date.Text = t.WorkShop_Date;
+                // don't show seconds
+                //DateTime dt = Convert.ToDateTime(t.WorkShop_Date);
+                //Date.Text = dt.ToShortDateString();
                 row.Cells.Add(Date);
 
                 TableCell School = new TableCell();
