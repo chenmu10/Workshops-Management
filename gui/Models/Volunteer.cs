@@ -38,7 +38,18 @@ namespace gui.Models
             Volunteer_Number_Of_Activities = int.Parse(row["Volunteer_Number_Of_Activities"].ToString());
             Volunteer_prefer_traning_area = int.Parse(row["Volunteer_prefer_traning_area"].ToString());
         }
-        public Volunteer() { }
+        public Volunteer() {
+
+        Volunteer_First_Name="";
+        Volunteer_First_Name_Eng = "";
+        Volunteer_Last_Name = "";
+        Volunteer_Last_Name_Eng = "";
+        Volunteer_Email = "";
+        Volunteer_phone = "";
+        Volunteer_Occupation = "";
+        Volunteer_Reference = "";
+        Volunteer_Employer = "";
+    }
         public Volunteer(string _First_Name,string _First_Name_Eng,string _Last_Name,string _Last_Name_Eng,string _Email,
          string _phone,string _Occupation,string _Reference,List<int> _Area_Activity,string _Employer,int _Number_Of_Activities,
          int _Volunteer_prefer_traning_area)

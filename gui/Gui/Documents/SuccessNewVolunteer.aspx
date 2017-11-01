@@ -29,13 +29,13 @@
                 <div class="col-sm-6">
 
                     <div class="page-header">
-                        <asp:Image runat="server" Height="107px" Width="402px" ImageUrl="../../../Content/mmtlogo.png" AlternateText="Picture not found" />
+                        <asp:Image runat="server" Height="107px" Width="402px" ImageUrl="../../../Content/homepic.PNG" AlternateText="Picture not found" />
 
                         <h3>הצטרפות להתנדבות בסדנאות 
 							<br />
                             <small>נעדכן אותך בסדנאות ובאירועי הכשרת מתנדבות.
                                 <br />
-                                *כל השדות חובה
+                                *שדות חובה
                             </small>
                         </h3>
                         <p>
@@ -47,6 +47,7 @@
                     לאחר ההכשרה את מוזמנת להירשם להעברת סדנה במועד ובמקום שמתאים לך.
                     אחת לחודש - חודשיים אנחנו מקיימות ערב הכשרה. את מוזמנת להירשם מטה ונודיע לך על ערב ההכשרה הבא שלנו.
                     הצטרפי אלינו בהובלת שינוי משמעותי בכמות הבנות הנרשמות למגמות טכנולוגיות!
+                             <br /><b> לכל שאלה או בעיה מוזמנות לפנות אלינו ל <a href="mailto:mehamemet@cyber.org.il">mehamemet@cyber.org.il</a>  </b>
                         </p>
                     </div>
                     <br />

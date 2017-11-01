@@ -15,8 +15,16 @@ namespace gui.Gui
         override protected void OnInit(EventArgs e)
         {
             Workshop_Selected_Visibly_Change(true);
-            
-
+            db = new DB();
+            db.IsConnect();
+            List<ListItem> areas = db.GetAllAreas();
+            DropDownListAreas.Items.Clear();
+            DropDownListAreas.Items.Add(new ListItem("איזור"));
+            foreach (ListItem i in areas)
+            {
+                DropDownListAreas.Items.Add(i);
+            }
+            FillTable(db.GetAllWorkshopsByJoin());
         }
 
         protected void Page_Load(object sender, EventArgs e)
@@ -24,17 +32,16 @@ namespace gui.Gui
             this.Load += new System.EventHandler(this.Page_Load);
             db = new DB();
             db.IsConnect();
-            if (!Page.IsPostBack)
-            {              
-                List<ListItem> areas = db.GetAllAreas();
-                DropDownListAreas.Items.Clear();
-                DropDownListAreas.Items.Add(new ListItem("איזור"));
-                foreach (ListItem i in areas)
-                {
-                    DropDownListAreas.Items.Add(i);
-                }                               
+            if (Page.IsPostBack && DropDownListAreas.SelectedIndex!=0)
+            {
+                int index = DropDownListAreas.SelectedIndex + 1;
+                List<WorkshopJoin> allWorkshop = db.GetAllWorkshopsByJoin();
+                if (index != 1)
+                    allWorkshop = allWorkshop.Where(x => x.Area == index).ToList();
+                FillTable(allWorkshop);
+                Workshop_Selected_Visibly_Change(true);
             }
-            FillTable(db.GetAllWorkshopsByJoin());
+
         }
 
         protected void FillTable(List<WorkshopJoin> CompanyWorkshopsJoins)
@@ -62,7 +69,7 @@ namespace gui.Gui
                     */
 
                     TableCell Date = new TableCell();
-                    Date.Text = t.WorkShop_Date;
+                    Date.Text = t.WorkShop_Date.Substring(0, 16);
                     row.Cells.Add(Date);
 
                     TableCell Address = new TableCell();
@@ -92,6 +99,7 @@ namespace gui.Gui
                     */
                     Editbtn.Attributes.Add("IsCompany", t.Is_company.ToString());
                     Editbtn.Click += new EventHandler(Select_Click);
+                    
                     Editbtn.Text = "הרשמה";
                     Editbtn.CssClass = "btn btn-info";
                     Edit.Controls.Add(Editbtn);
@@ -530,17 +538,26 @@ namespace gui.Gui
                 V2 = Volunteers.Find(x => x.Volunteer_ID == ID2);
                 V3 = Volunteers.Find(x => x.Volunteer_ID == ID3);
 
-                if (V1Name.Enabled && V2 != null && V3 != null)
-                    if (v1Email == V2.Volunteer_Email || v1Email == V3.Volunteer_Email)
+                if (V1Name.Enabled && V2 != null)
+                    if (v1Email == V2.Volunteer_Email)
                         DupLabel.Visible = true;
-                if (V2Name.Enabled && V1 != null && V3 != null)
-                    if (v2Email == V1.Volunteer_Email || v2Email == V3.Volunteer_Email)
+                if (V1Name.Enabled  && V3 != null)
+                    if (v1Email == V3.Volunteer_Email)
                         DupLabel.Visible = true;
-                if (V3Name.Enabled && V1 != null && V2 != null)
-                    if (v3Email == V1.Volunteer_Email || v3Email == V2.Volunteer_Email)
+                if (V2Name.Enabled && V1 != null )
+                    if (v2Email == V1.Volunteer_Email )
+                        DupLabel.Visible = true;
+                if (V2Name.Enabled && V3 != null)
+                    if (v2Email == V3.Volunteer_Email)
+                        DupLabel.Visible = true;
+                if (V3Name.Enabled && V1 != null)
+                    if (v3Email == V1.Volunteer_Email)
+                        DupLabel.Visible = true;
+                if (V3Name.Enabled  && V2 != null)
+                    if ( v3Email == V2.Volunteer_Email)
                         DupLabel.Visible = true;
 
-                if(!v1Email.Equals("") && !v2Email.Equals("") && v1Email.Equals(v2Email))
+                if (!v1Email.Equals("") && !v2Email.Equals("") && v1Email.Equals(v2Email))
                     DupLabel.Visible = true;
                 if (!v1Email.Equals("") && !v3Email.Equals("") && v1Email.Equals(v3Email))
                     DupLabel.Visible = true;
@@ -564,7 +581,7 @@ namespace gui.Gui
                     if (db.updateCompanyWorkshopVolunteer(selectedWorkshop.CompanyWorkShopID, ID1, ID2, ID3,
                         volunteer1Ride.Text, volunteer2Ride.Text, volunteer3Ride.Text))
                     {
-                        Clear_Bold_In_Table();
+                        //Clear_Bold_In_Table();
                         Workshop_Selected_Visibly_Change(true);
                         succsess.Visible = true;
 
@@ -588,14 +605,23 @@ namespace gui.Gui
                 V2 = Volunteers.Find(x => x.Volunteer_ID == ID2);
                 V3 = Volunteers.Find(x => x.Volunteer_ID == ID3);
 
-                if (V1Name.Enabled && V2 != null && V3 != null)
-                    if (v1Email == V2.Volunteer_Email || v1Email == V3.Volunteer_Email)
+                if (V1Name.Enabled && V2 != null)
+                    if (v1Email == V2.Volunteer_Email)
                         DupLabel.Visible = true;
-                if (V2Name.Enabled && V1 != null && V3 != null)
-                    if (v2Email == V1.Volunteer_Email || v2Email == V3.Volunteer_Email)
+                if (V1Name.Enabled && V3 != null)
+                    if (v1Email == V3.Volunteer_Email)
                         DupLabel.Visible = true;
-                if (V3Name.Enabled && V1 != null && V2 != null)
-                    if (v3Email == V1.Volunteer_Email || v3Email == V2.Volunteer_Email)
+                if (V2Name.Enabled && V1 != null)
+                    if (v2Email == V1.Volunteer_Email)
+                        DupLabel.Visible = true;
+                if (V2Name.Enabled && V3 != null)
+                    if (v2Email == V3.Volunteer_Email)
+                        DupLabel.Visible = true;
+                if (V3Name.Enabled && V1 != null)
+                    if (v3Email == V1.Volunteer_Email)
+                        DupLabel.Visible = true;
+                if (V3Name.Enabled && V2 != null)
+                    if (v3Email == V2.Volunteer_Email)
                         DupLabel.Visible = true;
 
                 if (!v1Email.Equals("") && !v2Email.Equals("") && v1Email.Equals(v2Email))
@@ -642,7 +668,7 @@ namespace gui.Gui
                     if (db.updateSchoolWorkshopVolunteer(SelectedWorkshop.SchoolWorkShopID, ID1, ID2, ID3,
                         volunteer1Ride.Text, volunteer2Ride.Text, volunteer3Ride.Text))
                     {
-                        Clear_Bold_In_Table();
+                        //Clear_Bold_In_Table();
                         Workshop_Selected_Visibly_Change(true);
                         succsess.Visible = true;
 

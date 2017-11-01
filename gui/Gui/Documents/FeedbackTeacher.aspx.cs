@@ -130,6 +130,7 @@ namespace gui.Gui.Documents
                     str = "המשוב התקבל בהצלחה";
                     //Response.Write("<script>alert('"+ str + "'); window.location.href = ''; </script>");
                     Response.Write("<script>alert('" + str + "'); </script>");
+                    Response.Redirect("../Documents/SuccessForm.aspx", false);
                     break;
 
                 case 3:

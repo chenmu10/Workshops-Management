@@ -201,7 +201,7 @@ namespace gui
                     volunteer.Volunteer_Number_Of_Activities,
                     volunteer.Volunteer_prefer_traning_area,
                     isActive);
-                log(query);
+                //log(query);
                 query += "SELECT Volunteer_ID FROM mmt_db.volunteer order by Volunteer_ID DESC LIMIT 1;";
                 int row = Insert(query);
                 if (row == 0)
@@ -1164,25 +1164,6 @@ namespace gui
         }
         public bool InsertNewFeedBack(FeedBack f)
         {
-            /*
-            	WorkShop_ID INTEGER NOT NULL ,
-	            WorkShop_Person INTEGER NOT NULL,
-                WorkShop_Is_Volunteer boolean,
-                WorkShop_Is_Company boolean,
-                WorkShop_Is_Teacher_present INTEGER,
-                WorkShop_Is_Teacher_present_Comment VARCHAR(150),
-                WorkShop_Level_Of_Listening INTEGER,
-                WorkShop_Main_Issues_Difficulties VARCHAR(150),
-                WorkShop_Technical_Faults VARCHAR(150),
-                WorkShop_General_Comments VARCHAR(150),
-                WorkShop_Choosing_technological INTEGER,
-                WorkShop_Activity_Again INTEGER,
-                WorkShop_Opinion VARCHAR(150),
-                WorkShop_Improves VARCHAR(150),
-                WorkShop_Additional_Comments VARCHAR(150),
-                WorkShop_Post_Feedback INTEGER,
-                PRIMARY KEY (WorkShop_ID,WorkShop
-            */
             int row=0;
             try
             {

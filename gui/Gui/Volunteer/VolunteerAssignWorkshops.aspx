@@ -38,7 +38,7 @@
 <body>
     <form id="form1" runat="server">
         <div class="container">
-            <asp:Image runat="server" ImageUrl="../../../Content/mmtlogo.png" AlternateText="Picture not found" CssClass="center-block" />
+            <asp:Image runat="server" ImageUrl="../../../Content/homepic.PNG" AlternateText="Picture not found" CssClass="center-block" />
 
             <div class="jumbotron">
                 <h2>סדנאות: שיבוץ מתנדבות</h2>
@@ -52,6 +52,7 @@
                 <asp:Button runat="server" ID="Clear" Text="ניקוי" OnClick="Clear_Click" CssClass="btn btn-info" />
             </div>
 
+         <asp:Label runat="server" ID="succsess"  Text="<b>הרישום התבצעה בהצלחה!<b>"  Visible="false"></asp:Label>
 
             <br />
 
@@ -179,7 +180,6 @@
                     <asp:Button runat="server" class="btn btn-success" ID="assign" Text="עדכני" OnClick="assign_Click" />
 
                     <asp:Label runat="server" ID="DupLabel" Text="יש כפילות בבחירת המתנדבות,אנא בחרי שנית" Visible="false"></asp:Label>
-                    <asp:Label runat="server" ID="succsess" Text="ההרשמה הצליחה" Visible="false"></asp:Label>
                     <asp:Label runat="server" ID="nonSelected" Text="יש לבחור מתנדבת על מנת לעדכן" Visible="false"></asp:Label>
                     <asp:Label runat="server" ID="emailerror" Text="שגיאה במייל" Visible="false"></asp:Label>
                 </div>

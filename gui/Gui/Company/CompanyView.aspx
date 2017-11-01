@@ -24,36 +24,35 @@
             <div class="row">
                 <!-- Filter -->
                 <div class="col-md-4">
-                    <div class="form-inline">
-
-                        <asp:DropDownList class="form-control" runat="server" ID="DropDownListAreas">
+                    <div class="col-md-6">
+                        <b>אזור:</b>
+                        <asp:DropDownList class="form-control" runat="server" ID="DropDownListAreas" Width="175px">
                             <asp:ListItem>אזור</asp:ListItem>
                         </asp:DropDownList>
-
-                        <asp:Button runat="server" ID="filter" class="btn btn-info" OnClick="filter_Click" Text="סינון" />
-
+                    </div>
+                    <div class="col-md-6">
+                        <asp:Button runat="server" ID="filter" class="btn btn-info" OnClick="filter_Click" Text="סינון" Style="margin-top: 20px;" />
                     </div>
                 </div>
                 <!-- Search-->
-                <div class="col-md-8">
+                <div class="col-md-8" style="margin-top: 20px;">
                     <div class="form-inline">
-
-                        <asp:TextBox ID="NameInput" runat="server" type="text" class="form-control" placeholder="שם" Width="100px"> </asp:TextBox>
-
+                        <asp:TextBox ID="NameInput" runat="server" type="text" class="form-control" placeholder="שם" Width="140px"> </asp:TextBox>
                         <asp:Button runat="server" ID="search" OnClick="search_Click" class="btn btn-info" Text="חיפוש" />
-
-                        <asp:Button runat="server" ID="clear" class="btn btn-info" OnClick="clear_Click" Text="ניקוי" />
                     </div>
-
                     <br />
                 </div>
 
+                 <div class="col-md-4">
+                <asp:Button runat="server" Visible="false" ID="expot" class="btn btn-info" Text="ייצא לאקסל" OnClick="btnExportExcel_Click" />
+                <asp:Button runat="server" ID="clear" class="btn btn-info" OnClick="clear_Click" Text="ניקוי" />
+            </div>
             </div>
             <%--end row--%>
+           
             <br />
-               <asp:Button runat="server" Visible="false" ID="expot"  class="btn btn-info" Text="ייצא לאקסל" OnClick="btnExportExcel_Click" />
-           <br />
-             <asp:Label runat="server" ID="Sum"></asp:Label>
+            <br />
+            <asp:Label runat="server" ID="Sum"></asp:Label>
             <br />
             <!-- Table-->
             <asp:Table ID="companyTable" runat="server" CssClass="table table-hover">
@@ -71,7 +70,7 @@
                     <asp:TableCell Font-Bold="true">פעולות</asp:TableCell>
                 </asp:TableRow>
             </asp:Table>
-         
+
         </div>
     </form>
     <script>   $(" .navbar a:contains('חברות')").parent().addClass('active');</script>

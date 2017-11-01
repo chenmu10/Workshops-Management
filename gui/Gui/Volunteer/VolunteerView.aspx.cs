@@ -91,7 +91,7 @@ namespace gui.Gui
                     EditbtnManager.CssClass = "btn btn-default";
                     Edit.Controls.Add(EditbtnManager);
                 }
-                
+
                 TableRow TableRow = new TableRow();
                 TableRow.HorizontalAlign = HorizontalAlign.Right;
                 TableRow.Cells.Add(Name);
@@ -135,7 +135,7 @@ namespace gui.Gui
         {
             string key = ((Button)sender).ID.ToString();
             Session["SelectedVolunteer"] = key;
-            Response.Redirect("VolunteerEditInfo.aspx", false);           
+            Response.Redirect("VolunteerEditInfo.aspx", false);
 
         }
 
@@ -184,7 +184,7 @@ namespace gui.Gui
 
         protected void Approve_Click(object sender, EventArgs e)
         {
-            Response.Redirect("../Volunteer/ApproveNewVolunteerForm.aspx", false);      
+            Response.Redirect("../Volunteer/ApproveNewVolunteerForm.aspx", false);
         }
 
         protected void NameSort(object sender, EventArgs e)
@@ -213,7 +213,7 @@ namespace gui.Gui
         {
             List<System.Web.UI.WebControls.ListItem> Areas = db.GetAllAreas();
 
-            string path = Server.MapPath("..\\..\\Content\\Report.csv");
+            string path = Server.MapPath("VolunteerReport.csv");
             try
             {
                 if (System.IO.File.Exists(path))
@@ -228,7 +228,7 @@ namespace gui.Gui
                     string name = nameText.Text.ToString();
                     string email = emailText.Text.ToString();
 
-                    if (status != 0 || area!=0 || traning!=0)
+                    if (status != 0 || area != 0 || traning != 0)
                     {
                         Data = SortByFilterFunc();
 
@@ -248,33 +248,42 @@ namespace gui.Gui
 
                     foreach (Models.Volunteer com in Data)
                     {
-                        name = (com.Volunteer_First_Name+" "+com.Volunteer_Last_Name).Replace(',', ' ');
-                        string Vstatus = ListStatus[com.Volunteer_Practice];
-                        string Occupation = com.Volunteer_Occupation.Replace(',', ' ');
-                        string VEmail = com.Volunteer_Email.Replace(',', ' ');
-                        string Vphone = com.Volunteer_phone.Replace(',', ' ');
-                        string activityAreas = string.Empty;
-                        string Traning = Areas[com.Volunteer_prefer_traning_area].ToString().Replace(',', ' ');
-                        string ActivityNum = com.Volunteer_Number_Of_Activities.ToString();
-                        foreach (int VolunterrArea in com.Volunteer_Area_Activity)
+                        try
                         {
-                            activityAreas = activityAreas + Areas[VolunterrArea].ToString().Replace(',', ' '); ;
-                            activityAreas = activityAreas + " וגם ";
-                        }
-                       
-                        string str =
-                            String.Format("{0},{1},{2},{3},{4},{5},{6},{7}",
-                            name,
-                            Vstatus,
-                            Occupation,
-                            VEmail,
-                            Vphone,
-                            activityAreas,
-                            Traning,
-                            ActivityNum);
+                            name = (com.Volunteer_First_Name + " " + com.Volunteer_Last_Name).Replace(',', ' ');
+                            string Vstatus = ListStatus[com.Volunteer_Practice];
+                            string Occupation = com.Volunteer_Occupation.Replace(',', ' ');
+                            string VEmail = com.Volunteer_Email.Replace(',', ' ');
+                            string Vphone = com.Volunteer_phone.Replace(',', ' ');
+                            string activityAreas = string.Empty;
+                            string Traning = Areas[com.Volunteer_prefer_traning_area-1].ToString().Replace(',', ' ');
+                            string ActivityNum = com.Volunteer_Number_Of_Activities.ToString();
+                            foreach (int VolunterrArea in com.Volunteer_Area_Activity)
+                            {
+                                activityAreas = activityAreas + Areas[VolunterrArea-1].ToString().Replace(',', ' '); ;
+                                activityAreas = activityAreas + " וגם ";
+                            }
 
-                        filewriter.WriteLine(str);
+                            string str =
+                                String.Format("{0},{1},{2},{3},{4},{5},{6},{7}",
+                                name,
+                                Vstatus,
+                                Occupation,
+                                VEmail,
+                                Vphone,
+                                activityAreas,
+                                Traning,
+                                ActivityNum);
+
+                            filewriter.WriteLine(str);
+                        }
+                        catch(Exception ex)
+                        {
+                            filewriter.WriteLine(ex.ToString());
+                        }
+
                     }
+                    
                 }
                 System.IO.FileInfo file = new System.IO.FileInfo(path); //get file object as FileInfo
                 if (file.Exists) //-- if the file exists on the server

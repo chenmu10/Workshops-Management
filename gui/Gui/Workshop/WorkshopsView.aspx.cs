@@ -24,17 +24,18 @@ namespace gui.Gui.Workshop
 
             if (db.IsManager(Session["Manager"]))
             {
+                NewComapnyWorkshopBtn.Visible = false;
                 expot.Visible = true;
             }
 
             WorkshopsJoin = db.GetAllWorkshopsByJoin();
-           FillTable(WorkshopsJoin);
+            FillTable(WorkshopsJoin);
 
-               
+
         }
         protected void Page_Load(object sender, EventArgs e)
         {
-           
+
         }
         public void GetAreasFromDB()
         {
@@ -50,9 +51,9 @@ namespace gui.Gui.Workshop
         public void GetSchoolFromDB()
         {
             List<School> Schools = db.GetAllSchools();
-            if(DropDownListSchool.Items.Count<=1)
+            if (DropDownListSchool.Items.Count <= 1)
             {
-                foreach(School s in Schools)
+                foreach (School s in Schools)
                 {
                     DropDownListSchool.Items.Add(new ListItem(s.School_Name, s.School_ID.ToString()));
                 }
@@ -61,9 +62,9 @@ namespace gui.Gui.Workshop
         public void GetCompanyFromDB()
         {
             List<Models.Company> Companies = db.GetAllComapny();
-            if(DropDownListCompany.Items.Count<=1)
+            if (DropDownListCompany.Items.Count <= 1)
             {
-                foreach(Models.Company c in Companies)
+                foreach (Models.Company c in Companies)
                 {
                     DropDownListCompany.Items.Add(new ListItem(c.Company_Name, c.Company_ID.ToString()));
                 }
@@ -72,7 +73,7 @@ namespace gui.Gui.Workshop
         private void FillTable(List<WorkshopJoin> CompanyWorkshopsJoin)
         {
 
-            TableRow Headers =  workshopTable.Rows[0];
+            TableRow Headers = workshopTable.Rows[0];
             workshopTable.Rows.Clear();
             workshopTable.Rows.Add(Headers);
             int index = 0;
@@ -80,7 +81,7 @@ namespace gui.Gui.Workshop
             foreach (WorkshopJoin t in CompanyWorkshopsJoin)
             {
                 TableRow row = new TableRow();
-                
+
                 TableCell id = new TableCell();
                 id.CssClass = "alnright";
                 id.Text = t.WorkShop_ID;
@@ -95,16 +96,14 @@ namespace gui.Gui.Workshop
                 row.Cells.Add(type);
 
                 TableCell status = new TableCell();
-                
+
                 status.Text = t.Status_Description;
-               
+
                 row.Cells.Add(status);
                 TableCell Date = new TableCell();
                 Date.CssClass = "alnright";
                 Date.Text = t.WorkShop_Date;
-                // don't show seconds
-                //DateTime dt = Convert.ToDateTime(t.WorkShop_Date);
-                //Date.Text = dt.ToShortDateString();
+                //.Substring(0, 16) -קודם לבדוק שכבר יש תאריך
                 row.Cells.Add(Date);
 
                 TableCell School = new TableCell();
@@ -130,7 +129,7 @@ namespace gui.Gui.Workshop
 
                 TableCell Edit = new TableCell();
                 Button Editbtn = new Button();
-          
+
                 Editbtn.Click += new EventHandler(MoreInfo_button12);
                 Editbtn.ID = (index++).ToString();
                 Editbtn.Text = "צפייה";
@@ -140,7 +139,7 @@ namespace gui.Gui.Workshop
 
                 Edit.Controls.Add(Editbtn);
                 row.Cells.Add(Edit);
-              
+
                 workshopTable.Rows.Add(row);
             }
             Sum.Text = "";
@@ -155,8 +154,8 @@ namespace gui.Gui.Workshop
         protected void MoreInfo_button12(object sender, EventArgs e)
         {
             Button selectedButton = (Button)sender;
-        
-            List < WorkshopJoin > Table = Filter_Click_View();
+
+            List<WorkshopJoin> Table = Filter_Click_View();
 
             WorkshopJoin selectedWorkshop = Table[int.Parse(selectedButton.ID)];
             string IsCompany = selectedWorkshop.Is_company.ToString();
@@ -242,7 +241,7 @@ namespace gui.Gui.Workshop
             string start_date = from_Date.Text; //YYYY-MM-DD
             string end_date = to_Date.Text;
 
-            if (status!=0)
+            if (status != 0)
             {
                 result = result.FindAll(x => x.Status == status);
             }
@@ -254,36 +253,36 @@ namespace gui.Gui.Workshop
                 result = result.FindAll(x => x.SchoolID == shcool);
             if (company != 0)
                 result = result.FindAll(x => x.CompanyID == company);
-            if(!start_date.Equals("") && !end_date.Equals(""))
+            if (!start_date.Equals("") && !end_date.Equals(""))
             {
                 //DateBetween 
-                DateTime start = TimeReplace(start_date,false);
+                DateTime start = TimeReplace(start_date, false);
                 DateTime end = TimeReplace(end_date, false);
-                DateTime WorkshopDate= DateTime.Now;
+                DateTime WorkshopDate = DateTime.Now;
                 List<WorkshopJoin> removeable = new List<WorkshopJoin>();
 
                 foreach (WorkshopJoin j in result)
                 {
-                    WorkshopDate = TimeReplace(j.WorkShop_Date,true);
-                    if(!(WorkshopDate >= start && WorkshopDate <= end))
+                    WorkshopDate = TimeReplace(j.WorkShop_Date, true);
+                    if (!(WorkshopDate >= start && WorkshopDate <= end))
                     {
                         // not in between remove from the list
                         removeable.Add(j);
                     }
                 }
-                foreach(WorkshopJoin j in removeable)
-                    result.Remove(j);                
+                foreach (WorkshopJoin j in removeable)
+                    result.Remove(j);
             }
 
-                FillTable(result);
+            FillTable(result);
 
 
         }
-        public DateTime TimeReplace(string FullDate,bool shortdate)
+        public DateTime TimeReplace(string FullDate, bool shortdate)
         {
             string temp = FullDate;
             string[] date;
-            string year ;
+            string year;
             string month;
             string day;
             if (shortdate)
@@ -301,8 +300,8 @@ namespace gui.Gui.Workshop
                 month = date[1];
                 day = date[2];
             }
-                
-            
+
+
             DateTime t = new DateTime(int.Parse(year), int.Parse(month), int.Parse(day));
             return t;
 
@@ -332,7 +331,7 @@ namespace gui.Gui.Workshop
                     int shcool = DropDownListSchool.SelectedIndex;
                     int company = DropDownListCompany.SelectedIndex;
 
-                    if (status != 0 || type != 0 || area != 0 || shcool!=0 || company!=0)
+                    if (status != 0 || type != 0 || area != 0 || shcool != 0 || company != 0)
                     {
                         Data = Filter_Click_View();
 
@@ -349,8 +348,8 @@ namespace gui.Gui.Workshop
                             Type = "בתעשייה";
                         else
                             Type = "בבית ספר";
-                       
-                        string Vstatus =com.Status_Description.Replace(',', ' ');
+
+                        string Vstatus = com.Status_Description.Replace(',', ' ');
                         string Date = com.WorkShop_Date.ToString().Replace(',', ' ');
                         string VSchool = com.School_Name.ToString().Replace(',', ' ');
                         string VCompany = com.Company_Name.ToString().Replace(',', ' ');

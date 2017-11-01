@@ -50,7 +50,7 @@ namespace gui.Gui
                     row.Cells.Add(workshopID);
 
                     TableCell Date = new TableCell();
-                    Date.Text = t.CompanyWorkShopDate;
+                    Date.Text = t.CompanyWorkShopDate.Substring(0, 16);
                     row.Cells.Add(Date);
 
                     TableCell Address = new TableCell();

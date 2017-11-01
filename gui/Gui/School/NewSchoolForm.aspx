@@ -15,7 +15,7 @@
     <form id="form1" runat="server">
 
         <div class="container">
-            <asp:Image runat="server" ImageUrl="../../../Content/mmtlogo.png" AlternateText="Picture not found" CssClass="center-block" />
+            <asp:Image runat="server" ImageUrl="../../../Content/homepic.PNG" AlternateText="Picture not found" CssClass="center-block" />
             <div class="jumbotron">
                 <h2>רישום בית ספר חדש</h2>
                 <p>

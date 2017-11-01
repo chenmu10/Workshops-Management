@@ -26,12 +26,12 @@
                 <div class="col-sm-6">
 
                     <div class="page-header">
-          <asp:Image runat="server" Height="107px" Width="402px" ImageUrl="../../../Content/mmtlogo.png" AlternateText="Picture not found"/>
+          <asp:Image runat="server" Height="107px" Width="402px" ImageUrl="../../../Content/homepic.PNG" AlternateText="Picture not found"/>
 
                         <h3>הצטרפות להתנדבות בסדנאות 
 							<br />
                             <small>נעדכן אותך בסדנאות ובאירועי הכשרת מתנדבות.
-                                <br />*כל השדות חובה
+                                <br />*שדות חובה
                             </small>
                         </h3>
                         <p>
@@ -50,7 +50,7 @@
 
                     <!-- Hebrew First & Last Name-->
                     <div>
-                        <label class="control-label">שם בעברית:</label>
+                        <label class="control-label">*שם בעברית:</label>
                         <br />
 
                         <asp:TextBox ID="Firstname" class="form-control"
@@ -73,7 +73,7 @@
                     <br />
                     <!-- English First & Last Name-->
                     <div>
-                        <label class="control-label">שם באנגלית:</label>
+                        <label class="control-label">*שם באנגלית:</label>
                         <asp:TextBox ID="Firstnameeng" class="form-control"
                             type="text" 
                             pattern="[/^[a-z ,.'-]+$/i]{1,20}"
@@ -93,14 +93,14 @@
                     <br />
                     <!-- Email-->
                     <div>
-                        <label class="control-label" for="email">אימייל:</label>
+                        <label class="control-label" for="email">*אימייל:</label>
                         <asp:TextBox class="form-control" runat="server" ID="Email" placeholder="name@email.com" type="email" required="required" />
                     </div>
                     <br />
                     <!--Phone-->
                     <div>
                         <label class="control-label" for="phone">
-                            טלפון: 
+                            *טלפון: 
                         </label>
                         <asp:TextBox class="form-control" ID="Phone"
                             type="tel"
@@ -114,7 +114,7 @@
                     <br />
                     <!--Occupation-->
                     <div>
-                        <label class="control-label" for="DropDownListOccupation">עיסוק: </label>
+                        <label class="control-label" for="DropDownListOccupation">*עיסוק: </label>
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="DropDownListOccupation" ErrorMessage="יש לבחור" InitialValue="בחרי" Font-Bold="True" ForeColor="Red"></asp:RequiredFieldValidator>
                         <asp:DropDownList class="form-control" ID="DropDownListOccupation" required="required" runat="server">
                             <asp:ListItem Value="בחרי"></asp:ListItem>
@@ -138,7 +138,7 @@
                     <br />
                     <!--Reference-->
                     <div>
-                        <label class="control-label" for="DropDownListReference">איך הגעת אלינו: </label>
+                        <label class="control-label" for="DropDownListReference">*איך הגעת אלינו: </label>
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="DropDownListReference" ErrorMessage="יש לבחור" InitialValue="בחרי" Font-Bold="True" ForeColor="Red"></asp:RequiredFieldValidator>
                         <asp:DropDownList class="form-control" ID="DropDownListReference" runat="server" required="required">
                             <asp:ListItem Value="בחרי"></asp:ListItem>
@@ -164,7 +164,7 @@
 
                     <!--ListAreas-->
                     <div>
-                        <label class="control-label" for="CheckBoxListAreas">אזור פעילות מועדף: </label>
+                        <label class="control-label" for="CheckBoxListAreas">*אזור פעילות מועדף: </label>
                         <!--AreaErrorMsg-->
                         <asp:Label ID="AreaErrorMsg" runat="server" Font-Bold="True" ForeColor="Red"></asp:Label>
                         <asp:CheckBoxList ID="CheckBoxListAreas" runat="server" required="required"></asp:CheckBoxList>
@@ -173,7 +173,7 @@
 
                     <!--ListTraining-->
                     <div>
-                        <label class="control-label" for="DropDownListTraining">אזור מועדף להכשרה:</label>
+                        <label class="control-label" for="DropDownListTraining">*אזור מועדף להכשרה:</label>
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="DropDownListTraining" ErrorMessage="יש לבחור" InitialValue="בחרי" Font-Bold="True" ForeColor="Red"></asp:RequiredFieldValidator>
                         <asp:DropDownList class="form-control" ID="DropDownListTraining" runat="server" required="required">
                             <asp:ListItem Value="0" Text="בחרי"></asp:ListItem>
@@ -183,7 +183,7 @@
                     <br />
 
 
-                    <asp:Button ID="Send" class="btn btn-success" runat="server" Text="שליחה"/>
+                    <asp:Button ID="Send" class="btn btn-success" runat="server" OnClick="Send_Click" Text="שליחה"/>
                     <br /> <br />
 
                 </div>

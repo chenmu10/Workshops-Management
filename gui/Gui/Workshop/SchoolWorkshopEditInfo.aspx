@@ -13,41 +13,38 @@
 
 <body>
     <style>
-    .tabs
-  {
-  
-      padding-right: 40px;
-      width:600px;
-  }
-      .tab
-  {
-     padding-right: 40px;
-     
-  }
-    .selected{
-        border-style: solid;
-        background-color:white ;
-        color:gray;
-             
-    }
-    #Menu1 a.static{
-        padding-left:40px;
-        height:50px;
-        display: table-cell;
-        vertical-align: middle;
-        text-align:center;
-  
-    }
-    #Menu1 a.static.selected{
-    border-top-style: solid;
-    border-top-left-radius:5px;
-    border-top-right-radius:5px;
-    border-right-style: solid;
-    border-bottom-style: none;
-    border-left-style: solid;
-    border-color:lightgray;
-  
-    }
+        .tabs {
+            padding-right: 40px;
+            width: 600px;
+        }
+
+        .tab {
+            padding-right: 40px;
+        }
+
+        .selected {
+            border-style: solid;
+            background-color: white;
+            color: gray;
+        }
+
+        #Menu1 a.static {
+            padding-left: 40px;
+            height: 50px;
+            display: table-cell;
+            vertical-align: middle;
+            text-align: center;
+        }
+
+            #Menu1 a.static.selected {
+                border-top-style: solid;
+                border-top-left-radius: 5px;
+                border-top-right-radius: 5px;
+                border-right-style: solid;
+                border-bottom-style: none;
+                border-left-style: solid;
+                border-color: lightgray;
+            }
     </style>
     <form id="form1" runat="server">
 
@@ -158,7 +155,7 @@
                                     <div class="form-inline">
                                         <asp:TextBox ID="schoolname" Enabled="false"
                                             required="required"
-                                            class="form-control"
+                                            CssClass="form-control disabled"
                                             oninvalid="setCustomValidity('יש להזין שם בית ספר')"
                                             onchange="try{setCustomValidity('')}catch(e){}"
                                             runat="server" Width="220px">
@@ -170,7 +167,7 @@
                                     <div class="form-inline">
                                         <asp:TextBox ID="numberofcumputers" Enabled="false"
                                             type="number"
-                                            class="form-control"
+                                            CssClass="form-control disabled"
                                             min="0"
                                             required="required"
                                             oninvalid="setCustomValidity('יש להזין מס' מחשבים תקינים')"
@@ -182,7 +179,7 @@
                                     <div class="form-inline">
                                         <asp:TextBox ID="studentpredict" Enabled="false"
                                             type="number"
-                                            class="form-control"
+                                            CssClass="form-control disabled"
                                             min="0"
                                             required="required"
                                             oninvalid="setCustomValidity('יש להזין מס' משתתפות צפוי')"
@@ -194,7 +191,7 @@
                                     <div class="form-inline">
                                         <asp:TextBox ID="comments" Enabled="false"
                                             runat="server" Width="220px"
-                                            class="form-control"
+                                            CssClass="form-control disabled"
                                             TextMode="MultiLine"
                                             Rows="5" Style="resize: none;"></asp:TextBox>
                                     </div>
@@ -213,41 +210,40 @@
                                         <label class="control-label" for="date1">תאריך 1: </label>
                                         <asp:Label runat="server" ID="date1"></asp:Label>
                                         <br />
-                                        
+
                                         <label class="control-label" for="date2">תאריך 2: </label>
                                         <asp:Label runat="server" ID="date2"></asp:Label>
                                         <br />
                                         <label class="control-label" for="date3">תאריך 3: </label>
                                         <asp:Label runat="server" ID="date3"></asp:Label>
                                         <br />
-                                   
+
                                         <asp:Label class="control-label" runat="server" ID="dateselecting">בחרי תאריך רצוי </asp:Label>
                                         <div>
                                             <asp:DropDownList runat="server" ID="dateselector"
-                                               
-                                                 CssClass="form-control" Width="220px">
+                                                CssClass="form-control" Width="220px">
                                                 <asp:ListItem Value="0" Text="בחרי תאריך"></asp:ListItem>
                                                 <asp:ListItem Value="1"></asp:ListItem>
                                                 <asp:ListItem Value="2"></asp:ListItem>
                                                 <asp:ListItem Value="3"></asp:ListItem>
                                             </asp:DropDownList>
                                         </div>
-                                     <asp:Button runat="server" ID="EditDate" OnClick="EditDate_Click" Visible="false" Text="עריכת תאריך חדש"  CssClass="btn btn-info"/>
+                                        <asp:Button runat="server" ID="EditDate" OnClick="EditDate_Click" Visible="false" Text="עריכת תאריך חדש" CssClass="btn btn-info" />
                                         <br />
                                         <asp:Label CssClass="control-label" runat="server" Visible="false" ID="date4"><b>תאריך 4:</b></asp:Label>
                                         <asp:TextBox runat="server" Visible="false" type="date" ID="date4select"></asp:TextBox>
-                                                    
-                                         <div class="form-inline">    
-                                             <asp:Label CssClass="control-label" runat="server" Visible="false" ID="hour4"><b>שעה:   &nbsp &nbsp &nbsp</b></asp:Label>                       
+
+                                        <div class="form-inline">
+                                            <asp:Label CssClass="control-label" runat="server" Visible="false" ID="hour4"><b>שעה:   &nbsp &nbsp &nbsp</b></asp:Label>
                                             <!-- Minutes -->
                                             <asp:TextBox ID="minutes" type="number" min="0" max="50" step="10" CssClass="form-control"
-                                                Text="0" Width="60px"  Visible="false"
+                                                Text="0" Width="60px" Visible="false"
                                                 runat="server"></asp:TextBox>
-                                             <asp:Label CssClass="control-label" runat="server" Visible="false" ID="hour41"><b>  :</b></asp:Label>
+                                            <asp:Label CssClass="control-label" runat="server" Visible="false" ID="hour41"><b>  :</b></asp:Label>
                                             <!-- Hour -->
                                             <asp:TextBox ID="hour" Visible="false"
                                                 type="number" min="7" max="23" runat="server" CssClass="form-control"
-                                                Width="60px" placeholder="H" ></asp:TextBox>
+                                                Width="60px" placeholder="H"></asp:TextBox>
                                         </div>
                                         <asp:Button runat="server" Visible="false" ID="AddNewDate" OnClick="AddNewDate_Click" Text="הוספת תאריך חדש" CssClass="btn btn-danger" />
                                         <asp:Label runat="server" Visible="false" ID="NewDateError" Text="שגיאה עם התאריך החדש"></asp:Label>
@@ -347,7 +343,7 @@
                                         </div>
                                     </fieldset>
                                     <br />
-                                    <asp:Button runat="server" Text="אשרי שינוי" OnClick="submitVolnteers" />
+                                    <asp:Button runat="server" Text="אשרי שינוי" OnClick="submitVolnteers" CssClass="btn btn-success" />
                                     <asp:Label runat="server" ID="updateVolunteerLabel" Text="העדכון התבצע בהצלחה" Visible="false"></asp:Label>
                                 </div>
                             </asp:View>
@@ -363,7 +359,7 @@
                                     <div>
                                         <asp:TextBox ID="finalParticipants" Width="20%" Enabled="false"
                                             type="number"
-                                            class="form-control"
+                                            CssClass="form-control disabled"
                                             runat="server"></asp:TextBox>
                                     </div>
                                     <br />
@@ -373,7 +369,7 @@
                                     <div>
                                         <asp:TextBox ID="numOfCompWithEmulator" Width="20%" Enabled="false"
                                             type="number"
-                                            class="form-control"
+                                            CssClass="form-control disabled"
                                             runat="server"></asp:TextBox>
                                     </div>
                                     <br />
@@ -390,58 +386,58 @@
                                     <!--Answer_PerWorkshop yes/no-->
                                     <label class="control-label" for="RadioButtonListAnswer_PerWorkshop">
                                         האם כל התלמידות ענו על השאלון המקדים לסדנה? השאלון נמצא ב:
-                         https://docs.google.com/forms/d/17vFUdE_wN4RuuGp4J1OC_Au5zK_DqIKqXExwVeaYCa8/viewform</label>
-                                    <asp:RadioButtonList ID="RadioButtonListAnswer_PerWorkshop" runat="server">
-                                        <asp:ListItem Value="True" Text="כן"></asp:ListItem>
-                                        <asp:ListItem Value="False" Text="לא"></asp:ListItem>
-                                    </asp:RadioButtonList>
-                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator5" ControlToValidate="RadioButtonListAnswer_PerWorkshop" runat="server" ErrorMessage="יש לבחור" ForeColor="Red"></asp:RequiredFieldValidator>
-                                    <br />
+                         <a href="https://docs.google.com/forms/d/17vFUdE_wN4RuuGp4J1OC_Au5zK_DqIKqXExwVeaYCa8/viewform">קישור</a>
+                                        <asp:RadioButtonList ID="RadioButtonListAnswer_PerWorkshop" runat="server">
+                                            <asp:ListItem Value="True" Text="כן"></asp:ListItem>
+                                            <asp:ListItem Value="False" Text="לא"></asp:ListItem>
+                                        </asp:RadioButtonList>
 
-                                    <!--Student_Gmail yes/no-->
-                                    <label class="control-label" for="RadioButtonListStudent_Gmail">האם לכל התלמידות נפתח חשבון ג'ימייל (והן זוכרות את הסיסמה)? זה הכרחי לפעילות.</label>
-                                    <asp:RadioButtonList ID="RadioButtonListStudent_Gmail" runat="server">
-                                        <asp:ListItem Value="True" Text="כן"></asp:ListItem>
-                                        <asp:ListItem Value="False" Text="לא"></asp:ListItem>
-                                    </asp:RadioButtonList>
-                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator6" ControlToValidate="RadioButtonListStudent_Gmail" runat="server" ErrorMessage="יש לבחור" ForeColor="Red"></asp:RequiredFieldValidator>
-                                    <br />
+                                        <br />
 
-                                    <!--Projector\contorl program yes/no -->
-                                    <asp:Label runat="server" ID="RadioButtonListProjectOrControlLabel" idclass="control-label" for="RadioButtonListProjectOrControl">קיום מקרן/תוכנת השתלטות</asp:Label>
+                                        <!--Student_Gmail yes/no-->
+                                        <label class="control-label" for="RadioButtonListStudent_Gmail">האם לכל התלמידות נפתח חשבון ג'ימייל (והן זוכרות את הסיסמה)? זה הכרחי לפעילות.</label>
+                                        <asp:RadioButtonList ID="RadioButtonListStudent_Gmail" runat="server">
+                                            <asp:ListItem Value="True" Text="כן"></asp:ListItem>
+                                            <asp:ListItem Value="False" Text="לא"></asp:ListItem>
+                                        </asp:RadioButtonList>
 
-                                    <asp:RadioButtonList ID="RadioButtonListProjectOrControl" runat="server">
-                                        <asp:ListItem Value="True"> כן</asp:ListItem>
-                                        <asp:ListItem Value="False">לא </asp:ListItem>
-                                    </asp:RadioButtonList>
-                                    <br />
+                                        <br />
 
-                                    <!--Seniors coming yes/no -->
-                                    <asp:Label runat="server" ID="RadioButtonListSeniorsLabel" class="control-label" for="RadioButtonListSeniors">מגיעות בוגרות מגמה:</asp:Label>
+                                        <!--Projector\contorl program yes/no -->
+                                        <asp:Label runat="server" ID="RadioButtonListProjectOrControlLabel" idclass="control-label" for="RadioButtonListProjectOrControl">קיום מקרן/תוכנת השתלטות</asp:Label>
 
-                                    <asp:RadioButtonList ID="RadioButtonListSeniors" runat="server">
-                                        <asp:ListItem Value="True">כן </asp:ListItem>
-                                        <asp:ListItem Value="False">לא </asp:ListItem>
-                                    </asp:RadioButtonList>
-                                    <br />
+                                        <asp:RadioButtonList ID="RadioButtonListProjectOrControl" runat="server">
+                                            <asp:ListItem Value="True"> כן</asp:ListItem>
+                                            <asp:ListItem Value="False">לא </asp:ListItem>
+                                        </asp:RadioButtonList>
+                                        <br />
 
-                                    <!--Show video yes/no -->
-                                    <asp:Label runat="server" ID="RadioButtonListShowVideoLabel" class="control-label" for="RadioButtonListShowVideo">אפשר להראות וידאו</asp:Label>
-                                    <asp:RadioButtonList ID="RadioButtonListShowVideo" runat="server">
-                                        <asp:ListItem Value="True">כן</asp:ListItem>
-                                        <asp:ListItem Value="False">לא</asp:ListItem>
-                                    </asp:RadioButtonList>
-                                    <br />
+                                        <!--Seniors coming yes/no -->
+                                        <asp:Label runat="server" ID="RadioButtonListSeniorsLabel" class="control-label" for="RadioButtonListSeniors">מגיעות בוגרות מגמה:</asp:Label>
 
-                                    <label class="control-label" for="prepareComments">הערות: </label>
-                                    <div class="form-inline">
-                                        <asp:TextBox ID="prepareComments" Enabled="false" Text="הערות שהזינו בטופס ועכשיו רק מוצגות"
-                                            runat="server" Width="220px"
-                                            class="form-control"
-                                            TextMode="MultiLine"
-                                            Rows="3" Style="resize: none;"></asp:TextBox>
-                                    </div>
-                                    <br />
+                                        <asp:RadioButtonList ID="RadioButtonListSeniors" runat="server">
+                                            <asp:ListItem Value="True">כן </asp:ListItem>
+                                            <asp:ListItem Value="False">לא </asp:ListItem>
+                                        </asp:RadioButtonList>
+                                        <br />
+
+                                        <!--Show video yes/no -->
+                                        <asp:Label runat="server" ID="RadioButtonListShowVideoLabel" class="control-label" for="RadioButtonListShowVideo">אפשר להראות וידאו</asp:Label>
+                                        <asp:RadioButtonList ID="RadioButtonListShowVideo" runat="server">
+                                            <asp:ListItem Value="True">כן</asp:ListItem>
+                                            <asp:ListItem Value="False">לא</asp:ListItem>
+                                        </asp:RadioButtonList>
+                                        <br />
+
+                                        <label class="control-label" for="prepareComments">הערות: </label>
+                                        
+                                            <asp:TextBox ID="prepareComments" Enabled="false" Text="הערות שהזינו בטופס ועכשיו רק מוצגות"
+                                                runat="server" Width="220px"
+                                                CssClass="form-control disabled"
+                                                TextMode="MultiLine"
+                                                Rows="3" Style="resize: none;"></asp:TextBox>
+                                       
+                                        <br />
                                 </div>
                                 <div class="col-md-6">
                                     <!-- Teacher Details-->
@@ -451,19 +447,19 @@
                                             <!-- Name-->
                                             <label class="control-label">שם מלא:</label>
                                             <br />
-                                            <asp:TextBox ID="teacherName" class="form-control" Width="40%"
+                                            <asp:TextBox ID="teacherName" class="form-control diabled" Width="40%"
                                                 type="text" Enabled="false"
                                                 runat="server"></asp:TextBox>
                                             <br />
                                             <!-- Email-->
                                             <label class="control-label" for="teacherEmail">אימייל:</label>
                                             <br />
-                                            <asp:TextBox Enabled="false" class="form-control" runat="server" Width="40%" ID="teacherEmail" type="email" required="required" />
+                                            <asp:TextBox Enabled="false" class="form-control diabled" runat="server" Width="40%" ID="teacherEmail" type="email" required="required" />
                                             <br />
                                             <!--Phone-->
                                             <label class="control-label" for="teacherPhone">טלפון:</label>
                                             <br />
-                                            <asp:TextBox Enabled="false" class="form-control" ID="teacherPhone" Width="40%"
+                                            <asp:TextBox Enabled="false" class="form-control diabled" ID="teacherPhone" Width="40%"
                                                 type="tel"
                                                 runat="server"></asp:TextBox>
                                         </fieldset>

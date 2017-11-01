@@ -17,7 +17,7 @@
     <form id="form1" runat="server">
 
         <div class="container">
-              <asp:Image runat="server" ImageUrl="../../../Content/mmtlogo.png" AlternateText="Picture not found" CssClass="center-block" />
+              <asp:Image runat="server" ImageUrl="../../../Content/homepic.PNG" AlternateText="Picture not found" CssClass="center-block" />
             <div class="jumbotron">
                 <h2>פניה לתיאום סדנת מהממ"ט</h2>
                 <p>  מורים? מנהלי בית ספר? אם אתם רוצים שנגיע אליכם, נשמח אם תמלאו את הטופס המצורף.<br />

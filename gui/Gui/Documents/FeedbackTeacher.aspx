@@ -18,7 +18,7 @@
         <div class="row">
             <div class="col-sm-6">
                 <div class="page-header">
-                     <asp:Image runat="server" Height="107px" Width="402px" ImageUrl="../../../Content/mmtlogo.png" AlternateText="Picture not found"/>
+                     <asp:Image runat="server" Height="107px" Width="402px" ImageUrl="../../../Content/homepic.PNG" AlternateText="Picture not found"/>
                     <h3>משוב עבור סדנת מהממ"ט-מורה
                         <br />
                         <small>*-דרוש</small></h3>

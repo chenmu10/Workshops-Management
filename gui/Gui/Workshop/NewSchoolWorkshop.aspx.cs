@@ -54,7 +54,7 @@ namespace gui
 
                 string Date1 = Convert2Date(datePicker1.Text, hh1.Text.ToString(), mm1.Text.ToString());
                 string Date2 = Convert2Date(datePicker2.Text, hh2.Text.ToString(), mm2.Text.ToString());
-                string Date3 = Convert2Date(datePicker3.Text, hh2.Text.ToString(), mm3.Text.ToString());
+                string Date3 = Convert2Date(datePicker3.Text, hh3.Text.ToString(), mm3.Text.ToString());
                 //string Date1 = datetimePicker1.Text;
                 //string Date2 = datetimePicker2.Text;
                 //string Date3 = datetimePicker3.Text;

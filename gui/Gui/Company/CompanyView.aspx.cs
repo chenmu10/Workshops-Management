@@ -113,7 +113,7 @@ namespace gui.Gui
         {
             List<Models.Company> result = db.GetAllComapny();
             List<System.Web.UI.WebControls.ListItem> Areas = db.GetAllAreas();
-            if (DropDownListAreas.SelectedIndex!=0)
+            if (DropDownListAreas.SelectedIndex != 0)
             {
                 int index = DropDownListAreas.SelectedIndex;
                 result = result.Where(x => x.Company_Area_Activity == index).ToList();
@@ -125,7 +125,7 @@ namespace gui.Gui
         {
             string key = ((Button)sender).ID.ToString();
             Session["SelectedCompany"] = key;
-            Response.Redirect("../Company/EditInfoForCompany.aspx", false);            
+            Response.Redirect("../Company/EditInfoForCompany.aspx", false);
         }
 
         public void FillFilterDropdowns()
@@ -146,7 +146,7 @@ namespace gui.Gui
         {
             List<System.Web.UI.WebControls.ListItem> Areas = db.GetAllAreas();
 
-            string path = Server.MapPath("..\\..\\Content\\Report.csv"); 
+            string path = Server.MapPath("..\\..\\Content\\Report.csv");
             try
             {
                 if (System.IO.File.Exists(path))
@@ -155,12 +155,13 @@ namespace gui.Gui
                 {
                     filewriter.WriteLine("Company Name,Address,Area,Contant,Phone,Email");
                     List<Models.Company> Data = new List<Models.Company>();
-                    if(DropDownListAreas.SelectedIndex!=0)
+                    if (DropDownListAreas.SelectedIndex != 0)
                     {
                         Data = Filter_Click_View();
-                    
+
                     } // if
-                    else if (!NameInput.Text.Equals("")) {
+                    else if (!NameInput.Text.Equals(""))
+                    {
                         Data = Sreach_Click_View();
                     }
                     else
@@ -207,7 +208,7 @@ namespace gui.Gui
             catch (Exception exp)
             {
             }
-     }
+        }
         protected void btnExportPDF_Click(object sender, EventArgs e)
         {
             Response.ContentType = "application/pdf";

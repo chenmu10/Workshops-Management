@@ -45,12 +45,12 @@ namespace gui
         protected void Page_Load(object sender, EventArgs e)
         {
 
-            FormOkToDB = !FormOkToDB;
-            if (Page.IsPostBack && !IsEmptyFields() && FormOkToDB)
-            {
-                LastPostRequest = DateTime.Now;
-                InsertVolunteerToDB();
-            }
+            //FormOkToDB = !FormOkToDB;
+            //if (Page.IsPostBack && !IsEmptyFields() && FormOkToDB)
+            //{
+            //    LastPostRequest = DateTime.Now;
+            //    InsertVolunteerToDB();
+            //}
 
         }
 
@@ -133,20 +133,63 @@ namespace gui
 
             Volunteer NewVolunteer = new Volunteer(firstnamevalue, firstnameEngValue, lastnamevalue, lastnameEngValue, emailvalue, phonevalue, occupation, reference, SelectedAreas, employervalue, 0, trainingArea);
 
+            /*Test*/
+            string query="";
+            try
+            {
+                query = string.Format(@"INSERT INTO Volunteer 
+                VALUES(null,{0},'{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}',{10},{12},{11});",
+                    NewVolunteer.Volunteer_Practice,
+                    (NewVolunteer.Volunteer_First_Name),
+                    (NewVolunteer.Volunteer_First_Name_Eng),
+                    (NewVolunteer.Volunteer_Last_Name),
+                    (NewVolunteer.Volunteer_Last_Name_Eng),
+                    (NewVolunteer.Volunteer_Email),
+                    (NewVolunteer.Volunteer_phone),
+                    (NewVolunteer.Volunteer_Occupation),
+                    (NewVolunteer.Volunteer_Reference),
+                    (NewVolunteer.Volunteer_Employer),
+                    NewVolunteer.Volunteer_Number_Of_Activities,
+                    NewVolunteer.Volunteer_prefer_traning_area,
+                    true);
+                //log(query);
+                query += "SELECT Volunteer_ID FROM mmt_db.volunteer order by Volunteer_ID DESC LIMIT 1;";
+
+                //Get volunteer ID
+
+
+
+                //foreach (int Area in volunteer.Volunteer_Area_Activity)
+                //{
+                //    query = string.Format(@"INSERT INTO VolunteerToAreas VALUES(null,{0},{1});", volunteer.Volunteer_ID, Area);
+                //    log(query);
+                //    if (!Update(query)) return false;
+                //}
+                Response.Write("<script>alert('Query:  " + query + "');</script>");
+
+            }
+            catch (Exception e)
+            {
+                Response.Write("<script>alert('Error: ');</script>");
+
+            }
+
+
+
             if (db.IsVolunteerExist(NewVolunteer))
             {
                 Response.Write("<script>alert('מתנדבת קיימת. צרי קשר במקרה של שינוי/בעיה');</script>");
+                return;
             }
-            else if (db.InsertNewVolunteer(NewVolunteer,false))
+            if (!db.InsertNewVolunteer(NewVolunteer,true))
             {
                 ClearForm();
-                //Response.Write("<script>alert('נוספת בהצלחה למאגר'); window.location.href = '../Documents/SuccessNewVolunteer.aspx'; </script>");
                 Response.Write("<script>alert('נוספת בהצלחה למאגר');</script>");
-                //Thread.Sleep(50);
                 Response.Redirect("../Documents/SuccessNewVolunteer.aspx", false);
             }
             else
             {
+                //Response.Write("<script>alert('QERTY :   ');</script>");
                 Response.Write("<script>alert('שגיאה בגישה למאגר');</script>");
             }
 
@@ -218,6 +261,10 @@ namespace gui
             return false;
         }
 
+        protected void Send_Click(object sender, EventArgs e)
+        {
+            InsertVolunteerToDB();
+        }
     }
 }
 

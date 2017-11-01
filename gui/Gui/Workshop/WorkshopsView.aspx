@@ -25,7 +25,8 @@
             <div class="row">
                 <div class="col-md-12">
                     <!-- Filter -->
-                    <div class="form-inline">
+                    <div class="col-md-2">
+                        <b>סטטוס:</b>
                         <asp:DropDownList class="form-control" runat="server" ID="DropDownListStatus" Width="150px">
                             <asp:ListItem>סטטוס</asp:ListItem>
                             <asp:ListItem>לשיבוץ מתנדבות</asp:ListItem>
@@ -38,57 +39,79 @@
                             <asp:ListItem>למישוב</asp:ListItem>
                             <asp:ListItem>סגור</asp:ListItem>
                         </asp:DropDownList>
-
-                        <asp:DropDownList class="form-control" runat="server" ID="DropDownListType" Width="110px">
+                    </div>
+                    <div class="col-md-2">
+                        <b>סוג:</b>
+                        <asp:DropDownList class="form-control" runat="server" ID="DropDownListType" Width="150px">
                             <asp:ListItem>סוג</asp:ListItem>
                             <asp:ListItem>בתעשייה</asp:ListItem>
                             <asp:ListItem>בבתי ספר</asp:ListItem>
                         </asp:DropDownList>
-
+                    </div>
+                    <div class="col-md-2">
+                        <b>אזור:</b>
                         <asp:DropDownList class="form-control" runat="server" ID="DropDownListAreas" Width="150px">
                             <asp:ListItem>אזור</asp:ListItem>
                         </asp:DropDownList>
-
-                        <asp:DropDownList class="form-control" runat="server" ID="DropDownListSchool" Width="120px">
-                            <asp:ListItem>שם בית ספר</asp:ListItem>
+                    </div>
+                    <div class="col-md-2">
+                        <b>בית ספר:</b>
+                        <asp:DropDownList class="form-control" runat="server" ID="DropDownListSchool" Width="150px">
+                            <asp:ListItem>בית ספר</asp:ListItem>
                         </asp:DropDownList>
-
-                        <asp:DropDownList class="form-control" runat="server" ID="DropDownListCompany" Width="120px">
-                            <asp:ListItem>שם חברה</asp:ListItem>
+                    </div>
+                    <div class="col-md-2">
+                        <b>חברה:</b>
+                        <asp:DropDownList class="form-control" runat="server" ID="DropDownListCompany" Width="150px">
+                            <asp:ListItem>חברה</asp:ListItem>
                         </asp:DropDownList>
-
-                        מתאריך:
-                        <asp:TextBox class="form-control" ID="from_Date" runat="server" TextMode="Date" Width="150px"></asp:TextBox>
-                        עד תאריך:
-                        <asp:TextBox class="form-control" ID="to_Date" runat="server" TextMode="Date" Width="150px"></asp:TextBox>
-
+                    </div>
+                </div>
+            </div>
+           
+            <br />
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="col-md-4">
+                        <b>מתאריך:</b>
+                        <asp:TextBox class="form-control" ID="from_Date" runat="server" TextMode="Date" Width="160px"></asp:TextBox>
+                    </div>
+                    <div class="col-md-4">
+                        <b>עד תאריך:</b>
+                        <asp:TextBox class="form-control" ID="to_Date" runat="server" TextMode="Date" Width="160px"></asp:TextBox>
+                    </div>
+                    <div class="col-md-4"  style="margin-top: 20px;">
                         <asp:Button runat="server" ID="filter" class="btn btn-info" OnClick="Filter_Click" Text="סינון" />
                     </div>
+                </div>
+            </div>
 
-                
-                <br />
-                        
+
+            <br />
+            <div style="margin-right: 15px;">
                 <asp:Button runat="server" Visible="false" ID="expot" class="btn btn-info" Text="ייצא לאקסל" OnClick="btnExportExcel_Click" />
                 <asp:Button runat="server" ID="Clear" class="btn btn-info" Text="ניקוי" OnClick="Clear_Click" />
-
-                <br /> <br />
-                <asp:Label runat="server" ID="Sum"></asp:Label>
-                <br />
-
-                <%--Table--%>
-                <asp:Table ID="workshopTable" runat="server" CssClass="table table-hover">
-                    <asp:TableRow>
-                        <asp:TableCell Font-Bold="true" CssClass=" alnright">#</asp:TableCell>
-                        <asp:TableCell Font-Bold="true" CssClass=" alnright">סוג</asp:TableCell>
-                        <asp:TableCell Font-Bold="true" CssClass=" alnright">סטטוס <span class="glyphicon glyphicon-sort"></span></asp:TableCell>
-                        <asp:TableCell Font-Bold="true" CssClass=" alnright">מועד</asp:TableCell>
-                        <asp:TableCell Font-Bold="true" CssClass=" alnright">בי"ס<span class="glyphicon glyphicon-sort"></span></asp:TableCell>
-                        <asp:TableCell Font-Bold="true" CssClass=" alnright">חברה</asp:TableCell>
-                        <asp:TableCell Font-Bold="true" CssClass=" alnright">מתנדבות משובצות</asp:TableCell>
-                        <asp:TableCell Font-Bold="true" CssClass=" alnright">פעולות</asp:TableCell>
-                    </asp:TableRow>
-                </asp:Table>
             </div>
+            <br />
+            <br />
+            <asp:Label runat="server" ID="Sum"></asp:Label>
+            <br />
+
+            <%--Table--%>
+            <asp:Table ID="workshopTable" runat="server" CssClass="table table-hover">
+                <asp:TableRow>
+                    <asp:TableCell Font-Bold="true" CssClass=" alnright">#</asp:TableCell>
+                    <asp:TableCell Font-Bold="true" CssClass=" alnright">סוג</asp:TableCell>
+                    <asp:TableCell Font-Bold="true" CssClass=" alnright">סטטוס <span class="glyphicon glyphicon-sort"></span></asp:TableCell>
+                    <asp:TableCell Font-Bold="true" CssClass=" alnright">מועד</asp:TableCell>
+                    <asp:TableCell Font-Bold="true" CssClass=" alnright">בי"ס<span class="glyphicon glyphicon-sort"></span></asp:TableCell>
+                    <asp:TableCell Font-Bold="true" CssClass=" alnright">חברה</asp:TableCell>
+                    <asp:TableCell Font-Bold="true" CssClass=" alnright">מתנדבות משובצות</asp:TableCell>
+                    <asp:TableCell Font-Bold="true" CssClass=" alnright">פעולות</asp:TableCell>
+                </asp:TableRow>
+            </asp:Table>
+        </div>
+        </div>
         </div>
     </form>
     <script>   $(" .navbar a:contains('סדנאות')").parent().addClass('active');</script>

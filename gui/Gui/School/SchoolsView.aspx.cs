@@ -25,7 +25,7 @@ namespace gui.Gui
             Schools = db.GetAllSchools();
             FillFilterDropdowns();
             FillTable(Schools);
-          
+
         }
 
         private void FillTable(List<School> schools)
@@ -48,7 +48,7 @@ namespace gui.Gui
             int index = 1;
             foreach (School School in Schools)
             {
-                
+
                 TableCell id = new TableCell();
                 id.Text = index.ToString();
                 index++;
@@ -78,7 +78,7 @@ namespace gui.Gui
                 Button Editbtn = new Button();
                 Editbtn.Text = "צפייה";
                 Editbtn.CssClass = "btn btn-default";
-                Editbtn.ID = School.School_ID.ToString()+"s";
+                Editbtn.ID = School.School_ID.ToString() + "s";
                 Editbtn.Click += new EventHandler(MoreInfo_button);
                 Edit.Controls.Add(Editbtn);
 
@@ -115,7 +115,7 @@ namespace gui.Gui
 
         protected void MoreInfo_button(object sender, EventArgs e)
         {
-            int btnID = int.Parse(((Button)sender).ID.Replace('s',' '));
+            int btnID = int.Parse(((Button)sender).ID.Replace('s', ' '));
             Session["SelectedSchool"] = btnID;
             Response.Redirect("SchoolEditInfo.aspx", false);
 
@@ -141,25 +141,25 @@ namespace gui.Gui
             Schools = db.GetAllSchools();
             string name = nameText.Text;
             string symbol = symbolText.Text;
-            if(!name.Equals(""))
+            if (!name.Equals(""))
             {
-                Schools= Schools.FindAll(x => x.School_Name.ToUpper().Contains(name.ToUpper()) || x.School_Contact_Name.ToUpper().Contains(name.ToUpper()) ||
-                x.School_Contact_Email.ToUpper().Contains(name.ToUpper()) || x.School_Address.ToUpper().Contains(name.ToUpper())
+                Schools = Schools.FindAll(x => x.School_Name.ToUpper().Contains(name.ToUpper()) || x.School_Contact_Name.ToUpper().Contains(name.ToUpper()) ||
+                 x.School_Contact_Email.ToUpper().Contains(name.ToUpper()) || x.School_Address.ToUpper().Contains(name.ToUpper())
                 ).ToList();
 
             }
-            if(!symbol.Equals(""))
+            if (!symbol.Equals(""))
             {
                 int symbolNum;
                 try
                 {
                     symbolNum = int.Parse(symbol);
-                    Schools=Schools.FindAll(x => x.School_Serial_Number == symbolNum).ToList();
+                    Schools = Schools.FindAll(x => x.School_Serial_Number == symbolNum).ToList();
                 }
-                catch(Exception exp)
-                {                  
+                catch (Exception exp)
+                {
                 }
-                
+
             }
             FillTable(Schools);
         }
@@ -173,7 +173,7 @@ namespace gui.Gui
                 return;
             }
             Schools = db.GetAllSchools();
-            Schools=Schools.Where(x => x.School_Area == areaindex).ToList();
+            Schools = Schools.Where(x => x.School_Area == areaindex).ToList();
             FillTable(Schools);
 
         }
@@ -184,7 +184,7 @@ namespace gui.Gui
             {
                 case 1:
                     str = "יש לבחור איזור על מנת לסנן";
-                    Response.Write("<script>alert('"+ str + "');</script>");
+                    Response.Write("<script>alert('" + str + "');</script>");
                     break;
 
             }
@@ -193,7 +193,7 @@ namespace gui.Gui
         {
             List<System.Web.UI.WebControls.ListItem> Areas = db.GetAllAreas();
 
-            string path = Server.MapPath("..\\..\\Content\\Report.csv");
+            string path = Server.MapPath("SchooReport.csv");
             try
             {
                 if (System.IO.File.Exists(path))
@@ -230,25 +230,34 @@ namespace gui.Gui
 
                     foreach (School com in Data)
                     {
-                        name = com.School_Name.Replace(',', ' ');
-                        string Symbol = com.School_Serial_Number.ToString();
-                        string Area = Areas[com.School_Area].ToString().Replace(',', ' ');
-                        string address = com.School_Address.Replace(',', ' ');
-                        string Cname = com.School_Contact_Name.Replace(',', ' ');
-                        string CEmail = com.School_Contact_Email.Replace(',', ' ');
-                        string CPhone = com.Scool_Contact_Phone.Replace(',', ' ');
-                        string str =
-                            String.Format("{0},{1},{2},{3},{4},{5},{6}",
-                            name,
-                            Symbol,
-                            Area,
-                            address,
-                            Cname,
-                            CEmail,
-                            CPhone
-                            );
+                        try
+                        {
+                            name = com.School_Name.Replace(',', ' ');
+                            string Symbol = com.School_Serial_Number.ToString();
+                            string Area = Areas[com.School_Area - 1].ToString().Replace(',', ' ');
+                            string address = com.School_Address.Replace(',', ' ');
+                            string Cname = com.School_Contact_Name.Replace(',', ' ');
+                            string CEmail = com.School_Contact_Email.Replace(',', ' ');
+                            string CPhone = com.Scool_Contact_Phone.Replace(',', ' ');
+                            string str =
+                                String.Format("{0},{1},{2},{3},{4},{5},{6}",
+                                name,
+                                Symbol,
+                                Area,
+                                address,
+                                Cname,
+                                CEmail,
+                                CPhone
+                                );
+                            filewriter.WriteLine(str);
+                        }
+                        catch(Exception ex)
+                        {
+                            filewriter.WriteLine(ex.ToString());
+                        }
+                    
 
-                        filewriter.WriteLine(str);
+                        
                     }
                 }
                 System.IO.FileInfo file = new System.IO.FileInfo(path); //get file object as FileInfo

@@ -24,7 +24,15 @@ namespace gui.Models
         public string WorkShop_Improves;
         public string WorkShop_Additional_Comments;
         public int WorkShop_Post_Feedback;
-        public FeedBack() { }
+        public FeedBack() {
+            WorkShop_Is_Teacher_present_Comment = "";
+            WorkShop_Main_Issues_Difficulties = "";
+            WorkShop_Technical_Faults = "";
+            WorkShop_General_Comments = "";
+            WorkShop_Opinion = "";
+            WorkShop_Improves = "";
+            WorkShop_Additional_Comments = "";
+        }
         public FeedBack(DataRow dt) {
             try
             {

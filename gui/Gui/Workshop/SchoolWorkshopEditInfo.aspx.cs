@@ -183,7 +183,7 @@ namespace gui.Gui.Workshop
                         break;
 
                 }
-                if (db.IsManager(Session["Manager"]) && status==5)
+                if (status==5)
                 {
                     EditDate.Visible = true;
                 }

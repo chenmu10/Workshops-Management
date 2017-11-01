@@ -10,7 +10,7 @@
 
     <link href="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.9/themes/start/jquery-ui.css" rel="stylesheet" type="text/css" />
     <link href="../../css/StatusBar.css" rel="stylesheet" type="text/css" />
-</head>
+
        <style>
     .tabs
   {
@@ -48,6 +48,7 @@
   
     }
     </style>
+    </head>
 <body>
     <form id="form1" runat="server">
 
@@ -94,6 +95,7 @@
                 </ul>
             </div>
            
+
              <div class="form-inline" style="padding-top:100px;">
                 <label class="control-label" for="selectpicker">שינוי סטטוס: </label>
                 <asp:DropDownList runat="server" ID="selectpicker" CssClass="form-control" Width="150px">
@@ -335,7 +337,7 @@
                                         </div>
                                     </fieldset>
                                     <br />
-                                    <asp:Button runat="server" Text="אשרי שינוי" OnClick="submitVolnteers"/>
+                                    <asp:Button runat="server" Text="אשרי שינוי" OnClick="submitVolnteers" CssClass="btn btn-success"/>
                                 <asp:Label runat="server" ID="updateVolunteerLabel" Text="העדכון התבצע בהצלחה" Visible="false"></asp:Label>
 
                                 </div>

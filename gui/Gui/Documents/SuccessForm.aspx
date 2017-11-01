@@ -20,11 +20,11 @@
 
     <div class="container">
 
-        <asp:Image ID="Image2" runat="server" ImageUrl="../../../Content/mmtlogo.png" AlternateText="Picture not found" class="img-responsive center-block"/>
+        <asp:Image ID="Image2" runat="server" ImageUrl="../../../Content/homepic.PNG" AlternateText="Picture not found" class="img-responsive center-block"/>
 
         <div class="text-center">
 
-            <h3 class="text-center">ההרשמה התבצעה בהצלחה.</h3>
+            <h3 class="text-center">טופס נשלח בהצלחה.</h3>
 
         </div>
 

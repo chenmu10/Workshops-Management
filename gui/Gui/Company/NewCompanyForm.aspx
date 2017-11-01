@@ -101,7 +101,8 @@
                 <asp:Label runat="server" ID="Msg" Font-Italic="true"></asp:Label>
                 <br />
                 <asp:Button ID="Button1" class="btn btn-success" runat="server" OnClick="AddCompany" Text="הוספת חברה" />
-                <asp:Button ID="Button2" class="btn btn-info" runat="server" Text="ביטול" />
+              
+                <asp:LinkButton runat="server" ID="LinkButton2" href="CompanyView.aspx"  class="btn btn-info">ביטול</asp:LinkButton>
                 <br />
             </div>
         </div>

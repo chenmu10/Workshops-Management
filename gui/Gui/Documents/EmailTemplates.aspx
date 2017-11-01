@@ -48,7 +48,7 @@
          <div class="container">
             <div  class="jumbotron" style="background-color:rgba(255, 255, 255,0.8); width:80%; height:80%; margin:auto;">
             
-                 <asp:Image ID="Image2" runat="server" Height="107px" ImageUrl="../../../Content/mmtlogo.PNG" AlternateText="Picture not found" Width="402px" CssClass="center-block" />
+                 <asp:Image ID="Image2" runat="server" Height="107px" ImageUrl="../../../Content/homepic.PNG" AlternateText="Picture not found" Width="402px" CssClass="center-block" />
                 <h3>תבנית מיילים</h3>
                 <br />
        

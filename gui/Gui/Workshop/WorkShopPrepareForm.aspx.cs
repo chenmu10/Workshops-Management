@@ -138,8 +138,8 @@ namespace gui.Gui
 
                 if (db.UpdatePrepare(prepareInfo)) 
                 {
-                    Response.Write("<script>alert('טופס הכנה עודכן בהצלחה!');</script>");
                     ClearForm();
+                    Response.Redirect("../Documents/SuccessForm.aspx", false);
                 }
                 else
                 {

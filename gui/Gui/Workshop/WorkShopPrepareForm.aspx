@@ -18,7 +18,7 @@
             <div class="row">
                 <div class="col-sm-6">
                     <div class="page-header">
-                        <asp:Image runat="server" Height="107px" Width="402px" ImageUrl="../../../Content/mmtlogo.png" AlternateText="Picture not found" />
+                        <asp:Image runat="server" Height="107px" Width="402px" ImageUrl="../../../Content/homepic.PNG" AlternateText="Picture not found" />
                         <h3>הכנה לסדנת מהממ"ט בבי"ס<br />
                         </h3>
                         מס' סדנא: <span id="workshopID" runat="server">
@@ -204,7 +204,8 @@
                     <asp:Button runat="server" CssClass="btn btn-success center-block" Text="שליחה" OnClick="UpdatePrepareToWorkshop" />
 
                     <span id="msg" style="font-style: italic" runat="server"></span>
-
+                     <br />
+                    <br />
                 </div>
 
 
